@@ -9,6 +9,3 @@ define('LIBS_DIR', WWW_DIR . '/../vendor');
 // require APP_DIR . '/templates/maintenance.phtml';
 
 require APP_DIR . '/bootstrap.php';
-
-// Configure and run the application!
-$container->application->run();
