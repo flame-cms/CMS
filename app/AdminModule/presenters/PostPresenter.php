@@ -76,10 +76,8 @@ class PostPresenter extends AdminPresenter
 	{
 		$this->id = $id;
 
-        if($this->post = $this->postFacade->getOne($id)){
-            $this['postForm']->setDefaults($this->post->toArray());
-        }else{
-            $this->flashMessage('Post does not exist.');
+        if(!$this->post = $this->postFacade->getOne($id)){
+	        $this->flashMessage('Post does not exist.');
             $this->redirect('Post:');
         }
 
@@ -98,34 +96,14 @@ class PostPresenter extends AdminPresenter
 
 	protected function createComponentPostForm()
 	{
-		$f = new Form;
-		$f->addText('name', 'Name:', 80)
-			->addRule(FORM::FILLED, 'Name is required.')
-			->addRule(FORM::MAX_LENGTH, 'Name of post must be shorter than %d chars', 100);
 
-		$f->addText('slug', 'Name in URL', 80)
-			->addRule(FORM::MAX_LENGTH, 'Name in URL must be shorter than %d chars', 100);
+		$f = new \Flame\Forms\PostForm;
 
-		$f->addText('keywords', 'META Keywords', 80)
-			->addRule(FORM::MAX_LENGTH, 'Meta keywords must be shorter than %d chars', 500);
-
-		$f->addTextArea('description', 'Descriptions', 90, 5)
-			->addRule(FORM::MAX_LENGTH, 'Descriptions must be shorter than %d chars', 250);
-
-		$f->addTextArea('content', 'Content:', 115, 35)
-			->addRule(FORM::FILLED, 'Content is required.')
-			->getControlPrototype()->class('mceEditor');
-
-		$f->addCheckbox('publish', 'Make this post published?');
-
-        if($this->id){
-            $f->addCheckbox('comment', 'Allow comments?');
-            $f->addSubmit('create', 'Edit post');
-        }else{
-            $f->addCheckbox('comment', 'Allow comments?')
-                ->setDefaultValue('1');
-            $f->addSubmit('create', 'Create post');
-        }
+		if($this->id){
+			$f->configureEdit($this->post->toArray());
+		}else{
+			$f->configureAdd();
+		}
 
 		$f->onSuccess[] = callback($this, 'postFormSubmitted');
 

@@ -22,7 +22,7 @@
 			<tbody>
 				<tr n:foreach="$posts as $post">
 					<td><a n:href=":Front:Post: $post->id, slug => $post->slug" target="_blank">{$post->name}</a></td>
-					<td>{!$post->content|striptags|truncate:250}</td>
+					<td>{!$post->content|striptags|truncate:200}</td>
 					<td>{if $post->publish}Yes{else}No{/if}</td>
 					<td>{if $post->comment}Yes{else}No{/if}</td>
 					<td>{$post->user->username}</td>
