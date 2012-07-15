@@ -1,0 +1,16 @@
+{var $title="DB schema tool"}
+
+{block #content}
+	<ul>
+		<li><a href="{plink getQuery!, create}" class="ajax">Create</a></li>
+		<li><a href="{plink getQuery!, update}" class="ajax">Update</a></li>
+		<li><a href="{plink getQuery!, drop}" class="ajax">Drop</a></li>
+	</ul>
+
+	{snippet dump}
+		{ifset $query}
+		<h3>{$statement} query dump, <a href="{plink executeQuery!, $statement}" class="ajax">execute</a></h3>
+			{? dump($query)}
+		{/ifset}
+	{/snippet}
+{/block}
