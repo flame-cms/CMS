@@ -72,11 +72,16 @@ class TagPresenter extends AdminPresenter
 				->setSlug($slug);
 
 			$this->tagFacade->persist($this->tag);
-			$this->flashMessage('Tag was eidted');
+			$this->flashMessage('Tag was edited');
 		}else{
-			$tag = new \Flame\Models\Tags\Tag($values['name'], $slug);
-			$this->tagFacade->persist($tag);
-			$this->flashMessage('Tag was added');
+			if(!$this->tagFacade->getOneByName($values['name'])){
+
+				$tag = new \Flame\Models\Tags\Tag($values['name'], $slug);
+				$this->tagFacade->persist($tag);
+				$this->flashMessage('Tag was added');
+			}else{
+				$this->flashMessage('Tag with name "' . $values['name'] . '" exist.');
+			}
 		}
 
 		if($this->isAjax()){

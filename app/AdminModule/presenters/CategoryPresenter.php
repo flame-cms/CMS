@@ -80,10 +80,13 @@ class CategoryPresenter extends AdminPresenter
 
 		}else{
 
-			$category = new \Flame\Models\Categories\Category($values['name'], $values['description'], $slug);
-
-			$this->categoryFacade->persist($category);
-			$this->flashMessage('Category was added');
+			if($this->categoryFacade->getOneByName($values['name'])){
+				$this->flashMessage('Category with name "' . $values['name'] . '" exist.');
+			}else{
+				$category = new \Flame\Models\Categories\Category($values['name'], $values['description'], $slug);
+				$this->categoryFacade->persist($category);
+				$this->flashMessage('Category was added');
+			}
 		}
 
 		if($this->isAjax()){
