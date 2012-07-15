@@ -2,12 +2,11 @@
 
 namespace AdminModule;
 
-use Nette\Application\UI,
-    Nette\Security as NS, 
+use Nette\Security as NS,
     Nette\Application\UI\Form;
 
 
-class SignPresenter extends AdminPresenter
+class SignPresenter extends \Flame\Application\UI\Presenter
 {
 
     public function startup()
