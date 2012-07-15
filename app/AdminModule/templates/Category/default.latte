@@ -1,0 +1,69 @@
+{var $title = "Categories"}
+
+{block #content}
+
+	<h3>Add new category</h3>
+
+	{snippet addForm}
+		<fieldset>
+			{form categoryForm class => ajax}
+				<table>
+					<tr>{control $form errors}</tr>
+					<tr>
+						<th>{label name /}</th>
+						<td>{input name size => 50, autofocus => true}</td>
+					</tr>
+
+					<tr>
+						<th>{label slug /}</th>
+						<td>{input slug size => 50}</td>
+					</tr>
+
+					<tr>
+						<th>{label description /}</th>
+						<td>{input description}</td>
+					</tr>
+
+					<tr>
+						<th>{label send /}</th>
+						<td>{input send}</td>
+					</tr>
+
+				</table>
+			{/form}
+		</fieldset>
+	{/snippet}
+
+	{snippet #categories}
+		{if count($categories)}
+			<h3>Categories</h3>
+
+			<table>
+
+				<thead>
+					<th>Name</th>
+					<th>Slug</th>
+					<th>Description</th>
+					<th>Posts</th>
+					<th>Actions</th>
+				</thead>
+
+				<tbody>
+
+					<tr n:foreach="$categories as $category">
+						<td>{$category->name}</td>
+						<td>{$category->slug}</td>
+						<td>{$category->description}</td>
+						<td>{count($category->posts)}</td>
+						<td>
+							<a n:href="Category:edit $category->id">Edit</a>
+							<a n:href="delete! $category->id" class="ajax">X</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		{else}
+			<h4>None</h4>
+		{/if}
+	{/snippet}
+{/block}

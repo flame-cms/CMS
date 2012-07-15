@@ -1,0 +1,62 @@
+{var $title = 'Tags'}
+
+{block #content}
+
+	<h3>Add new tag</h3>
+
+	{snippet addForm}
+	<fieldset>
+		{form tagForm class => ajax}
+			<table>
+				<tr>{control $form errors}</tr>
+				<tr>
+					<th>{label name /}</th>
+					<td>{input name size => 50, autofocus => true}</td>
+				</tr>
+
+				<tr>
+					<th>{label slug /}</th>
+					<td>{input slug size => 50}</td>
+				</tr>
+
+				<tr>
+					<th>{label send /}</th>
+					<td>{input send}</td>
+				</tr>
+
+			</table>
+		{/form}
+	</fieldset>
+	{/snippet}
+
+	{snippet #tags}
+		{if count($tags)}
+			<h3>Tags</h3>
+	
+			<table>
+	
+				<thead>
+				<th>Name</th>
+				<th>Slug</th>
+				<th>Posts</th>
+				<th>Actions</th>
+				</thead>
+	
+				<tbody>
+	
+				<tr n:foreach="$tags as $tag">
+					<td>{$tag->name}</td>
+					<td>{$tag->slug}</td>
+					<td>{count($tag->posts)}</td>
+					<td>
+						<a n:href="Category:edit $tag->id">Edit</a>
+						<a n:href="delete! $tag->id" class="ajax">X</a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		{else}
+			<h4>None</h4>
+		{/if}
+	{/snippet}
+{/block}
