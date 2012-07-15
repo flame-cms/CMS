@@ -13,7 +13,7 @@ class UserPresenter extends AdminPresenter
 
     private $authenticator;
 
-    public function __construct(\Flame\Models\Users\UserFacade $userFacade, \Flame\Models\Security\Authenticator $authenticator)
+    public function __construct(\Flame\Models\Users\UserFacade $userFacade, \Flame\Security\Authenticator $authenticator)
     {
         $this->userFacade = $userFacade;
         $this->authenticator = $authenticator;
