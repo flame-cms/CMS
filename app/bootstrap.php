@@ -21,7 +21,7 @@ if(!defined('FLAME_DIR')) die('You must load Flame loader');
 $configurator = new Configurator();
 $configurator->enableDebugger(WWW_DIR . '/../log');
 $configurator->setTempDirectory(WWW_DIR . '/../temp');
-
+$configurator->addParameters(array('flameDir' => FLAME_DIR));
 $configurator->createRobotLoader()->addDirectory(APP_DIR)->addDirectory(FLAME_DIR)->register();
 
 if (PHP_SAPI == 'cli') {
