@@ -20,4 +20,7 @@ $(document).ready(function (){
     $('input[name="name"]').keyup(function (){
         $('input[name="slug"]').val(slug($('input[name="name"]').val()));
     });
+    $('input[name="name"]').change(function (){
+        $('input[name="slug"]').val(slug($('input[name="name"]').val()));
+    });
 });
