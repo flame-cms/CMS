@@ -19,12 +19,12 @@ require LIBS_DIR . '/jsifalda/flame/Flame/loader.php';
 if(!defined('FLAME_DIR')) die('You must load Flame loader');
 
 $configurator = new Configurator();
-$configurator->enableDebugger(WWW_DIR . '/../log');
-$configurator->setTempDirectory(WWW_DIR . '/../temp');
+$configurator->enableDebugger(__DIR__ . '/../log');
+$configurator->setTempDirectory(__DIR__ . '/../temp');
 $configurator->addParameters(array('flameDir' => FLAME_DIR));
 $configurator->createRobotLoader()->addDirectory(APP_DIR)->addDirectory(FLAME_DIR)->register();
 
-if (PHP_SAPI == 'cli') {
+if (php_sapi_name() == 'cli') {
 	$configurator->setDebugMode(TRUE);
 	$configurator->addConfig(FLAME_DIR . '/Config/config.neon', $configurator::DEVELOPMENT);
 }else{
@@ -44,6 +44,3 @@ $container->router[] = $adminRouter = new RouteList('Admin');
 
 $container->router[] = $frontRouter = new RouteList('Front');
 	$frontRouter[] = new Route('<presenter>/<action>[/<id>][/<slug>]', 'Homepage:default');
-
-// Configure and run the application!
-$container->application->run();
