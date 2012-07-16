@@ -34,6 +34,9 @@ if (PHP_SAPI == 'cli') {
 
 $container = $configurator->createContainer();
 
+$doctrineConfig = $container->getService('em_config');
+$doctrineConfig->setSQLLogger(\Flame\Utils\ConnectionPanel::register());
+
 $container->router[] = new Route('index.php', 'Front:Homepage:default', Route::ONE_WAY);
 
 $container->router[] = $adminRouter = new RouteList('Admin');
