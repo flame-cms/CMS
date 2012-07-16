@@ -33,4 +33,15 @@ abstract class AdminPresenter extends \Flame\Application\UI\Presenter
 		$this->redirect('Sign:in');
 		
 	}
+
+	protected function createSlug($name)
+	{
+		$url = preg_replace('~[^\\pL0-9_]+~u', '-', $name);
+		$url = trim($url, "-");
+		$url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
+		$url = strToLower($url);
+		$url = preg_replace('~[^-a-z0-9_]+~', '', $url);
+
+		return $url;
+	}
 }
