@@ -14,11 +14,20 @@ class PostPresenter extends AdminPresenter
 
     private $postFacade;
     private $userFacade;
+	private $categoryFacade;
+	private $tagFacade;
 
-    public function __construct(\Flame\Models\Posts\PostFacade $postFacade, \Flame\Models\Users\UserFacade $userFacade)
+    public function __construct(
+	    \Flame\Models\Posts\PostFacade $postFacade,
+	    \Flame\Models\Users\UserFacade $userFacade,
+		\Flame\Models\Categories\CategoryFacade $categoryFacade,
+		\Flame\Models\Tags\TagFacade $tagFacade
+    )
     {
         $this->postFacade = $postFacade;
         $this->userFacade = $userFacade;
+	    $this->categoryFacade = $categoryFacade;
+	    $this->tagFacade = $tagFacade;
     }
 	
 	public function renderDefault()
@@ -83,21 +92,12 @@ class PostPresenter extends AdminPresenter
 
 	}
 
-    private function createPostsSlug($name)
-    {
-        $url = preg_replace('~[^\\pL0-9_]+~u', '-', $name);
-        $url = trim($url, "-");
-        $url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
-        $url = strToLower($url);
-        $url = preg_replace('~[^-a-z0-9_]+~', '', $url);
-
-        return $url;
-    }
-
 	protected function createComponentPostForm()
 	{
-
-		$f = new \Flame\Forms\PostForm;
+		$f = new \Flame\Forms\PostForm(
+			$this->categoryFacade->getLastCategories(),
+			$this->tagFacade->getLastTags()
+		);
 
 		if($this->id){
 			$f->configureEdit($this->post->toArray());
@@ -119,10 +119,17 @@ class PostPresenter extends AdminPresenter
         $values = $f->getValues();
 
         if(empty($values['slug'])){
-            $slug = $this->createPostsSlug($values['name']);
+            $slug = $this->createSlug($values['name']);
         }else{
-            $slug = $this->createPostsSlug($values['slug']);
+            $slug = $this->createSlug($values['slug']);
         }
+
+		if(count($values['tags'])){
+			$tags = array();
+			foreach($values['tags'] as $tag){
+				$tags[] = $this->tagFacade->getOne($tag);
+			}
+		}
 
         if($this->id){
             $this->post
@@ -131,6 +138,8 @@ class PostPresenter extends AdminPresenter
                 ->setDescription($values['description'])
                 ->setKeywords($values['keywords'])
                 ->setContent($values['content'])
+                ->setCategory($this->categoryFacade->getOne((int)$values['category']))
+                ->setTags($tags)
                 ->setPublish($values['publish'])
                 ->setComment($values['comment']);
 
@@ -146,9 +155,12 @@ class PostPresenter extends AdminPresenter
                 $values['description'],
                 $values['keywords'],
                 $values['content'],
+	            $this->categoryFacade->getOne($values['category']),
+	            $tags,
                 $values['publish'],
                 $values['comment']
             );
+
             $this->postFacade->persist($post);
             $this->flashMessage('Post was successfully added.', 'success');
             $this->redirect('Post:');
