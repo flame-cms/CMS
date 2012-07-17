@@ -41,4 +41,9 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 
 		return $newsreel;
 	}
+
+	protected function createComponentCategoriesControl()
+	{
+		return new \Flame\Components\CategoriesControl($this->context->CategoryFacade);
+	}
 }
