@@ -16,18 +16,25 @@ class PostPresenter extends AdminPresenter
     private $userFacade;
 	private $categoryFacade;
 	private $tagFacade;
+	private $optionFacade;
+
+	private $useMarkDown;
 
     public function __construct(
 	    \Flame\Models\Posts\PostFacade $postFacade,
 	    \Flame\Models\Users\UserFacade $userFacade,
 		\Flame\Models\Categories\CategoryFacade $categoryFacade,
-		\Flame\Models\Tags\TagFacade $tagFacade
+		\Flame\Models\Tags\TagFacade $tagFacade,
+		\Flame\Models\Options\OptionFacade $optionFacade
     )
     {
         $this->postFacade = $postFacade;
         $this->userFacade = $userFacade;
 	    $this->categoryFacade = $categoryFacade;
 	    $this->tagFacade = $tagFacade;
+	    $this->optionFacade = $optionFacade;
+
+	    $this->useMarkDown = $this->optionFacade->getOptionValue('allow_mardown');
     }
 	
 	public function renderDefault()
@@ -94,9 +101,11 @@ class PostPresenter extends AdminPresenter
 
 	protected function createComponentPostForm()
 	{
+
 		$f = new \Flame\Forms\PostForm(
 			$this->categoryFacade->getLastCategories(),
-			$this->tagFacade->getLastTags()
+			$this->tagFacade->getLastTags(),
+			$this->useMarkDown
 		);
 
 		if($this->id){
@@ -183,7 +192,8 @@ class PostPresenter extends AdminPresenter
 		            $category,
 		            $tags,
 	                $values['publish'],
-	                $values['comment']
+	                $values['comment'],
+					$this->useMarkDown
 	            );
 
 	            $this->postFacade->persist($post);

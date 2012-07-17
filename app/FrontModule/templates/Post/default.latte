@@ -8,7 +8,12 @@
 
 <h3>{$post->description}</h3>
 
-{!$post->content}
+{if $post->markdown}
+	{!$post->content|markdown}
+{else}
+	{!$post->content}
+{/if}
+
 
 <p><small>{$post->created|date:'%d.%m.%y'} | {$post->hit} Views</small></p>
 
