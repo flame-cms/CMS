@@ -1,4 +1,21 @@
 {
+	"name": "jsifalda/flame-sandbox",
+	"description": "Flame is simple but smart CMS based on php framework Nette",
+	"keywords": ["cms", "nette", "simple", "flame", "jsifalda"],
+	"homepage": "https://github.com/jsifalda/flame-sandbox",
+	"license": ["BSD-3"],
+	"authors": [
+		{
+			"name": "Jiří Šifalda",
+			"homepage": "http://jsifalda.name/"
+		}
+	],
+
+	"support":{
+		"email":"sifalda.jiri@gmail.com",
+		"issues":"https://github.com/jsifalda/flame/issues"
+	},
+
 	"require": {
 		"jsifalda/flame": "dev-master"
 	}
