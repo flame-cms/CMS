@@ -99,7 +99,7 @@ a.active {
 }
 
 .odd {
-	background-color: $eee;
+	background-color: #eee;
 }
 
 #left {
@@ -129,4 +129,13 @@ a.active {
 .wrapper {
 	width: 980px;
 	margin: 0 auto;
+}
+
+#categories-menu {
+    margin: 15px 5px;
+}
+
+#categories-menu li {
+    border-bottom: 1px solid #eee;
+    padding: 5px;
 }

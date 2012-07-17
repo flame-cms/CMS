@@ -15,3 +15,23 @@ body {
 #navigation a {
 	color: black;
 }
+
+.error-font {
+    color: red;
+    font-weight: bold;
+}
+
+fieldset {
+    padding: 1em;
+    border: 1px solid blue;
+    background: #E5ECF9;
+    font-size: 125%;
+    margin: 15px 0;
+}
+label {
+    float:left;
+    margin-right:0.5em;
+    padding-top:0.2em;
+    text-align:right;
+    font-weight:bold;
+}
