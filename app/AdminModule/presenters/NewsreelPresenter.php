@@ -40,25 +40,17 @@ class NewsreelPresenter extends AdminPresenter
 
     protected function createComponentNewsreelForm($name)
     {
-        $f = new Form($this, $name);
-        $f->addText('title', 'Title:', 100)
-            ->addRule(Form::FILLED, 'Title is required item.')
-            ->addRule(Form::MAX_LENGTH, 'Title muse be shorten than 100 chars', 100);
-        $f->addTextArea('content', 'Content:', 99, 20)
-            ->addRule(Form::FILLED, 'Content is required item of form')
-            ->getControlPrototype()->class('mceEditor');
-        $f->addDatePicker('date', 'Date:')
-            ->setDefaultValue(new \DateTime())
-            ->addRule(Form::VALID, 'Entered date is not valid')
-            ->addRule(Form::FILLED, 'Date is required item of form');
+        $f = new \Flame\Forms\NewsreelForm();
 
         if($this->id){
-            $f->addSubmit('Create', 'Edit newsreel');
+			$f->configureEdit();
         }else{
-            $f->addSubmit('Create', 'Create newsreel');
+            $f->configureAdd();
         }
 
         $f->onSuccess[] = callback($this, 'newsreelFormSubmitted');
+
+	    return $f;
     }
 
     public function newsreelFormSubmitted(Form $f)
