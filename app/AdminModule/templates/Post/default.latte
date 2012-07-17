@@ -24,10 +24,16 @@
 				<tr n:foreach="$posts as $post">
 					<td><a n:href=":Front:Post: $post->id, slug => $post->slug" target="_blank">{$post->name}</a></td>
 					<td>{!$post->content|striptags|truncate:200}</td>
-					<td>{$post->category->name}</td>
+					<td>
+						{if $post->category}
+							<a n:href=":Front:Category:posts $post->category->id" target="_blank">{$post->category->name}</a>
+						{else}
+							<span class="error-font">Category does not exist!</span>
+						{/if}
+					</td>
 					<td>{if $post->publish}Yes{else}No{/if}</td>
 					<td>{if $post->comment}Yes{else}No{/if}</td>
-					<td>{$post->user->username}</td>
+					<td>{if $post->user}{$post->user->username}{else}<span class="error-font">User does nto exist!</span>{/if}</td>
 					<td>{$post->created|date:'%d.%m.%y'}</td>
 					<td>{$post->hit}</td>
 					<td>
