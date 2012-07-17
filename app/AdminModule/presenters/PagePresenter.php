@@ -39,28 +39,13 @@ class PagePresenter extends AdminPresenter
 
     protected function createComponentPageForm()
     {
-        $form = new Form;
-        $form->addText('name', 'Name:', 80)
-            ->addRule(Form::FILLED, 'Name of page is required.')
-            ->addRule(Form::MAX_LENGTH, 'Name must be shorter than %d chars.', 100);
+        $form = new \Flame\Forms\PageForm();
 
-        $form->addText('slug', 'Slug:', 80);
-
-        $form->addTextArea('description', 'Description:', 80, 6)
-            ->addRule(Form::MAX_LENGTH, 'Meta description must be shorter than %d chars', 250);
-
-        $form->addTextArea('keywords', 'META keywords:', 80, 6)
-            ->addRule(Form::MAX_LENGTH, 'Meta keywords must be shorter than %d chars', 250);
-
-        $form->addTextArea('content', 'Content:', 110, 30)
-            ->addRule(Form::FILLED, 'Content of page is required.')
-            ->getControlPrototype()->class('mceEditor');
-
-        if($this->id){
-            $form->addSubmit('send', 'Edit page');
-        }else{
-            $form->addSubmit('send', 'Create page');
-        }
+	    if($this->id){
+			$form->configureEdit();
+	    }else{
+		    $form->configureAdd();
+	    }
 
         $form->onSuccess[] = callback($this, 'pageFormSubmitted');
         return $form;
