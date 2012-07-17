@@ -131,19 +131,27 @@ class PostPresenter extends AdminPresenter
 			}
 		}
 
+		if(isset($values['tagsNew']) and !empty($values['tagsNew'])){
+			if(strpos($values['tagsNew'], ',') !== false){
+				$tagsRaw = explode(',', $values['tagsNew']);
+
+				foreach($tagsRaw as $tag){
+					if(!empty($tag)) $tags[] = $this->createNewTag(trim($tag));
+				}
+			}
+		}
+
 		if(isset($values['categoryNew']) and isset($values['category']) and !empty($values['categoryNew'])){
 			$category = $this->createNewCategory($values['categoryNew']);
-			if(!$category) $f->addError('Category with same name exist! Please try it again.');
 
 		}elseif(isset($values['categoryNew']) and !empty($values['categoryNew'])){
 			$category = $this->createNewCategory($values['categoryNew']);
-			if(!$category) $f->addError('Category with same name exist! Please try it again.');
 
 		}elseif(isset($values['category'])){
-			$category = $values['category'];
+			$category = $this->categoryFacade->getOne($values['category']);
 
 		}else{
-			$f->addError('Category is required. Please select one.');
+			$f->addError('Category is required. Please select one or create new.');
 
 		}
 
@@ -155,11 +163,11 @@ class PostPresenter extends AdminPresenter
 	                ->setDescription($values['description'])
 	                ->setKeywords($values['keywords'])
 	                ->setContent($values['content'])
-	                ->setCategory($this->categoryFacade->getOne($category))
+	                ->setCategory($category)
 	                ->setTags($tags)
 	                ->setPublish($values['publish'])
 	                ->setComment($values['comment']);
-		        //dump($this->post);exit;
+
 	            $this->postFacade->persist($this->post);
 		        $this->flashMessage('Post was edited');
 		        $this->redirect('this');
@@ -172,7 +180,7 @@ class PostPresenter extends AdminPresenter
 	                $values['description'],
 	                $values['keywords'],
 	                $values['content'],
-		            $this->categoryFacade->getOne($category),
+		            $category,
 		            $tags,
 	                $values['publish'],
 	                $values['comment']
@@ -189,11 +197,20 @@ class PostPresenter extends AdminPresenter
 
 	private function createNewCategory($name)
 	{
-		if($this->categoryFacade->getOneByName($name)) return false;
+		if($categoryExist = $this->categoryFacade->getOneByName($name)) return $categoryExist;
 
 		$category = new \Flame\Models\Categories\Category($name, "", $this->createSlug($name));
 		$this->categoryFacade->persist($category);
-		return $category->getId();
+		return $category;
+	}
+
+	private function createNewTag($name)
+	{
+		if($tagExist = $this->tagFacade->getOneByName($name)) return $tagExist;
+
+		$tag = new \Flame\Models\Tags\Tag($name, $this->createSlug($name));
+		$this->tagFacade->persist($tag);
+		return $tag;
 	}
 
 }

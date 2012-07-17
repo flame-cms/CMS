@@ -35,3 +35,7 @@ label {
     text-align:right;
     font-weight:bold;
 }
+
+.tags-multiSelect{
+    max-height: 250px;
+}

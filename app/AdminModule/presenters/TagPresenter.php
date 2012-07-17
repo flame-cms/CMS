@@ -90,4 +90,23 @@ class TagPresenter extends AdminPresenter
 			$this->redirect('this');
 		}
 	}
+
+	public function handleDelete($id)
+	{
+		if(!$this->getUser()->isAllowed('Admin:Tag', 'delete')){
+			$this->flashMessage('Access denied');
+		}else{
+			$tag = $this->tagFacade->getOne($id);
+
+			if($tag){
+				$this->tagFacade->delete($tag);
+			}
+		}
+
+		if($this->isAjax()){
+			$this->invalidateControl();
+		}else{
+			$this->redirect('this');
+		}
+	}
 }
