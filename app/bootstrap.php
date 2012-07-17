@@ -34,7 +34,7 @@ if (php_sapi_name() == 'cli') {
 
 $container = $configurator->createContainer();
 
-$doctrineConfig = $container->getService('em_config');
+$doctrineConfig = $container->getService('EntityManagerConfig');
 $doctrineConfig->setSQLLogger(\Flame\Utils\ConnectionPanel::register());
 
 $container->router[] = new Route('index.php', 'Front:Homepage:default', Route::ONE_WAY);

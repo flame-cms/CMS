@@ -25,9 +25,7 @@ class PostPresenter extends FrontPresenter
 		if(!$this->post){
 			$this->setView('notFound');
 		}else{
-
-            $this->post->setHit($this->post->getHit() + 1);
-            $this->postFacade->persist($this->post);
+            $this->postFacade->increaseHit($this->post);
 		}
 
 		$this->template->post = $this->post;
