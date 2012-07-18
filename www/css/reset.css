@@ -57,6 +57,7 @@ caption {background:#8EB6FA;}
 	background-color: #DB568B;
 	padding: 5px;
 	list-style: none;
+    color: #000000;
 }
 a[href^="error:"] {
 	background: red;
