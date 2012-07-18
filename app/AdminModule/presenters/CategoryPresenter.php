@@ -83,7 +83,8 @@ class CategoryPresenter extends AdminPresenter
 			if($this->categoryFacade->getOneByName($values['name'])){
 				$this->flashMessage('Category with name "' . $values['name'] . '" exist.');
 			}else{
-				$category = new \Flame\Models\Categories\Category($values['name'], $values['description'], $slug);
+				$category = new \Flame\Models\Categories\Category($values['name'], $slug);
+				$category->setDescription($values['description']);
 				$this->categoryFacade->persist($category);
 				$this->flashMessage('Category was added');
 			}

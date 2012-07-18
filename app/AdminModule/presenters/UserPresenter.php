@@ -2,9 +2,10 @@
 
 namespace AdminModule;
 
-use Nette\Application\UI\Form,
+use Flame\Forms\UserForm,
     Nette\Security as NS,
-    Flame\Models\Users\User;
+    Flame\Models\Users\User,
+	Flame\Forms\ChangePasswordForm;
 
 
 class UserPresenter extends AdminPresenter
@@ -26,31 +27,14 @@ class UserPresenter extends AdminPresenter
 
 	protected function createComponentAddUserForm()
 	{
-		$f = new Form;
-		$f->addText('username', 'Username:', 60)
-			->addRule(FORM::FILLED, 'Username is required.')
-			->addRule(FORM::MAX_LENGTH, 'Username must be shorter than %d chars.', 35);
-
-		$f->addPassword('password', 'Password:', 60)
-			->addRule(FORM::FILLED, 'Password is required.');
-
-		$f->addSelect('role', 'Role:')
-			->setItems(array('user', 'moderator', 'administrator'), false);
-
-		$f->addText('name', 'Name:', 60)
-			->addRule(FORM::MAX_LENGTH, 'Name must be shorten than %d chars.', 150);
-
-		$f->addText('email', 'EMAIL:', 60)
-			->addRule(FORM::MAX_LENGTH, 'EMAIL must be shorten than %d chars.', 100)
-			->addRule(FORM::FILLED, 'EMAIL is required.');
-
-		$f->addSubmit('add', 'Create');
+		$f = new UserForm();
+		$f->configureAdd();
 		$f->onSuccess[] = callback($this, 'addUserFormSubmitted');
 
         return $f;
 	}
 
-	public function addUserFormSubmitted(Form $form)
+	public function addUserFormSubmitted(UserForm $form)
 	{
 		$values = $form->getValues();
 
@@ -63,35 +47,28 @@ class UserPresenter extends AdminPresenter
                 $values['username'],
                 $this->authenticator->calculateHash($values['password']),
                 $values['role'],
-                $values['name'],
                 $values['email']
 			);
 
+			$user->setName($values['name']);
             $this->userFacade->persist($user);
 
 			$this->flashMessage('User was added');
-			$this->redirect('this');
+			$this->redirect('User:');
 		}
 	}
 
 	protected function createComponentPasswordForm()
 	{
-		$form = new Form;
-		$form->addPassword('oldPassword', 'Current password:', 30)
-			->addRule(Form::FILLED, 'Current password is required');
-		$form->addPassword('newPassword', 'New password:', 30)
-			->addRule(Form::MIN_LENGTH, 'New password must be longer than %d chars.', 6);
-		$form->addPassword('confirmPassword', 'New password (verify):', 30)
-			->addRule(Form::FILLED, 'New password is required for verify.')
-			->addRule(Form::EQUAL, 'Entered passwords is not equal. Try it again.', $form['newPassword']);
-		$form->addSubmit('set', 'Change password');
+		$form = new ChangePasswordForm();
+		$form->configure();
 		$form->onSuccess[] = callback($this, 'passwordFormSubmitted');
 
         return $form;
 	}
 
 
-	public function passwordFormSubmitted(Form $form)
+	public function passwordFormSubmitted(ChangePasswordForm $form)
 	{
 		$values = $form->getValues();
 		$user = $this->getUser();

@@ -36,31 +36,22 @@ class ImagePresenter extends AdminPresenter
 	
 	public function createComponentUploadImageForm()
 	{
-		$f = new Form;
-		$f->addUpload('image', 'Image')
-			->addRule(FORM::FILLED)
-			->addRule(FORM::IMAGE, 'Image must be JPEG, PNG or GIF')
-			->addRule(FORM::MAX_FILE_SIZE, 'MAX file size is 5MB', 1024 * 5000/* 5MB in bytes */);
-		$f->addText('name', 'Name:')
-			->addRule(FORM::MAX_LENGTH, 'Name of the image must be shorter than %d chars', 100);
-		$f->addTextArea('desc', 'Description')
-			->addRule(FORM::MAX_LENGTH, 'Description of the image must be shorter than %d chars', 250);
-		$f->addSubmit('upload', 'Upload');
+		$f = new ImageForm();
+		$f->configure();
 		$f->onSuccess[] = callback($this, 'uploadImageSubmitted');
 
 		return $f;
 	}
 
-	public function uploadImageSubmitted(Form $f)
+	public function uploadImageSubmitted(ImageForm $f)
 	{
 		$values = $f->getValues();
 
 		$image = new \Flame\Models\Images\Image(
-			$this->userFacade->getOne($this->getUser()->getId()),
-			$this->saveImage($values['image']),
-			$values['name'],
-			$values['desc']
-		);
+			$this->userFacade->getOne($this->getUser()->getId()), $this->saveImage($values['image']));
+
+		$image->setName($values['name'])
+			->setDescription($values['description']);
 
 		$this->imageFacade->persist($image);
 		$this->flashMessage('Image was uploaded.');
