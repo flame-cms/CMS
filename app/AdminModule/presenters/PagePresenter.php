@@ -82,12 +82,11 @@ class PagePresenter extends AdminPresenter
                 $this->userFacade->getOne($this->getUser()->getId()),
                 $values['name'],
                 $slug,
-                $values['description'],
-                $values['keywords'],
-                $values['content'],
-                new \DateTime,
-                0
+                $values['content']
             );
+
+	        $page->setKeywords($values['keywords'])
+		        ->setDescription($values['description']);
 
             $this->pageFacade->persist($page);
             $this->flashMessage('Page was added.');
