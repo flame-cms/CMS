@@ -38,6 +38,7 @@ class ImagePresenter extends AdminPresenter
 	{
 		$f = new Form;
 		$f->addUpload('image', 'Image')
+			->addRule(FORM::FILLED)
 			->addRule(FORM::IMAGE, 'Image must be JPEG, PNG or GIF')
 			->addRule(FORM::MAX_FILE_SIZE, 'MAX file size is 5MB', 1024 * 5000/* 5MB in bytes */);
 		$f->addText('name', 'Name:')
