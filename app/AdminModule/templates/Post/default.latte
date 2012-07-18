@@ -12,9 +12,9 @@
 				<th>Name</th>
 				<th>Content</th>
 				<th>Category</th>
+				<th>Tags</th>
 				<th>Publish</th>
 				<th>Comments</th>
-				<th>User</th>
 				<th>Created</th>
 				<th>Views</th>
 				<th>Actions</th>
@@ -31,9 +31,9 @@
 							<span class="error-font">Category does not exist!</span>
 						{/if}
 					</td>
+					<td>{count($post->tags)}</td>
 					<td>{if $post->publish}Yes{else}No{/if}</td>
 					<td>{if $post->comment}Yes{else}No{/if}</td>
-					<td>{if $post->user}{$post->user->username}{else}<span class="error-font">User does nto exist!</span>{/if}</td>
 					<td>{$post->created|date:'%d.%m.%y'}</td>
 					<td>{$post->hit}</td>
 					<td>

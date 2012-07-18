@@ -18,23 +18,17 @@ class PostPresenter extends AdminPresenter
 	private $tagFacade;
 	private $optionFacade;
 
-	private $useMarkDown;
-
     public function __construct(
 	    \Flame\Models\Posts\PostFacade $postFacade,
 	    \Flame\Models\Users\UserFacade $userFacade,
 		\Flame\Models\Categories\CategoryFacade $categoryFacade,
-		\Flame\Models\Tags\TagFacade $tagFacade,
-		\Flame\Models\Options\OptionFacade $optionFacade
+		\Flame\Models\Tags\TagFacade $tagFacade
     )
     {
         $this->postFacade = $postFacade;
         $this->userFacade = $userFacade;
 	    $this->categoryFacade = $categoryFacade;
 	    $this->tagFacade = $tagFacade;
-	    $this->optionFacade = $optionFacade;
-
-	    $this->useMarkDown = $this->optionFacade->getOptionValue('allow_mardown');
     }
 	
 	public function renderDefault()
@@ -104,8 +98,7 @@ class PostPresenter extends AdminPresenter
 
 		$f = new \Flame\Forms\PostForm(
 			$this->categoryFacade->getLastCategories(),
-			$this->tagFacade->getLastTags(),
-			$this->useMarkDown
+			$this->tagFacade->getLastTags()
 		);
 
 		if($this->id){
@@ -186,15 +179,16 @@ class PostPresenter extends AdminPresenter
 	                $this->userFacade->getOne($this->getUser()->getId()),
 	                $values['name'],
 	                $slug,
-	                $values['description'],
-	                $values['keywords'],
 	                $values['content'],
-		            $category,
-		            $tags,
-	                $values['publish'],
-	                $values['comment'],
-					$this->useMarkDown
+		            $category
 	            );
+
+		        $post->setComment($values['comment'])
+			        ->setMarkdown($values['markdown'])
+			        ->setPublish($values['publish'])
+			        ->setTags($tags)
+			        ->setKeywords($values['keywords'])
+			        ->setDescription($values['description']);
 
 	            $this->postFacade->persist($post);
 		        $this->flashMessage('Post was successfully added.', 'success');

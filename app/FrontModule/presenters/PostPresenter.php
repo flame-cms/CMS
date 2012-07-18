@@ -26,14 +26,23 @@ class PostPresenter extends FrontPresenter
 			$this->setView('notFound');
 		}else{
             $this->postFacade->increaseHit($this->post);
-		}
 
-		$this->template->post = $this->post;
+			$this->template->post = $this->post;
+
+			if(count($tags = $this->post->tags->toArray())){
+				$tags = implode(',', $tags);
+			}else{
+				$tags = 'none';
+			}
+			$this->template->tags = $tags;
+
+			if(!$category = $this->post->category) $category = 'none';
+			$this->template->category = $category;
+		}
 	}
 
 	protected function createComponentComments()
 	{
-		if(!$this->post) return null;
 		return new \Flame\Components\CommentsControl($this->post, $this->commentFacade);
 	}
 }
