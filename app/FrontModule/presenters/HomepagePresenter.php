@@ -9,9 +9,12 @@ class HomepagePresenter extends FrontPresenter
 {
 	private $postFacade;
 
-    public function __construct(\Flame\Models\Posts\PostFacade $postFacade)
+	private $optionFacade;
+
+    public function __construct(\Flame\Models\Posts\PostFacade $postFacade, \Flame\Models\Options\OptionFacade $optionFacade)
     {
         $this->postFacade = $postFacade;
+	    $this->optionFacade = $optionFacade;
     }
 	
 	public function actionDefault()
@@ -24,7 +27,12 @@ class HomepagePresenter extends FrontPresenter
 
 	public function createComponentPostsControl()
 	{
-		return new \Flame\Components\PostsControl($this->postFacade->getLastPublishPosts());
+		$postControl = new \Flame\Components\PostsControl($this->postFacade->getLastPublishPosts());
+
+		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
+		if($itemsPerPage) $postControl->setCountOfItemsPerPage($itemsPerPage);
+
+		return $postControl;
 	}
 }
 

@@ -14,12 +14,14 @@ class CategoryPresenter extends \FrontModule\FrontPresenter
 {
 	private $categoryFacade;
 	private $postFacade;
+	private $optionFacade;
 
 	private $posts;
 
 	public function __construct(
 		\Flame\Models\Categories\CategoryFacade $categoryFacade,
-		\Flame\Models\Posts\PostFacade $postFacade
+		\Flame\Models\Posts\PostFacade $postFacade,
+		\Flame\Models\Options\OptionFacade $optionFacade
 	)
 	{
 		$this->categoryFacade = $categoryFacade;
@@ -45,6 +47,11 @@ class CategoryPresenter extends \FrontModule\FrontPresenter
 
 	public function createComponentPostsControl()
 	{
-		return new \Flame\Components\PostsControl($this->posts);
+		$postControl = new \Flame\Components\PostsControl($this->posts);
+
+		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
+		if($itemsPerPage) $postControl->setCountOfItemsPerPage($itemsPerPage);
+
+		return $postControl;
 	}
 }
