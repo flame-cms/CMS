@@ -2,8 +2,8 @@
 
 namespace AdminModule;
 
-use Nette\Application\UI\Form,
-	Nette\Image;
+use Nette\Image,
+	Flame\Forms\ImageForm;
 
 /**
 * Images presenter
