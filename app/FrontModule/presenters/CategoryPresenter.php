@@ -26,6 +26,7 @@ class CategoryPresenter extends \FrontModule\FrontPresenter
 	{
 		$this->categoryFacade = $categoryFacade;
 		$this->postFacade = $postFacade;
+		$this->optionFacade = $optionFacade;
 	}
 
 	public function actionPosts($id)
