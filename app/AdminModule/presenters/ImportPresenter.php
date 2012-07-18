@@ -10,6 +10,8 @@
 
 namespace AdminModule;
 
+use Flame\Forms\ImportForm;
+
 class ImportPresenter extends AdminPresenter
 {
 
@@ -23,12 +25,21 @@ class ImportPresenter extends AdminPresenter
 
 	private $tagFacade;
 
+	private $imageFacade;
+
+	private $imageStorage;
+
+	private $downloadImages = true;
+
+	private $dirName;
+
 	public function __construct(
 		\Flame\Utils\WordPressImporter $wordPressImporter,
 		\Flame\Models\Posts\PostFacade $postFacade,
 		\Flame\Models\Users\UserFacade $userFacade,
 		\Flame\Models\Categories\CategoryFacade $categoryFacade,
-		\Flame\Models\Tags\TagFacade $tagFacade)
+		\Flame\Models\Tags\TagFacade $tagFacade
+	)
 	{
 		$this->wordPressImporter = $wordPressImporter;
 		$this->postFacade = $postFacade;
@@ -37,22 +48,34 @@ class ImportPresenter extends AdminPresenter
 		$this->tagFacade = $tagFacade;
 	}
 
-	public function renderDefault()
+	public function startup()
 	{
+		parent::startup();
 
+		$params = $this->context->getParameters();
+
+		if(!isset($params['imageStorage'])){
+			throw new \Nette\Application\BadRequestException;
+		}else{
+			$this->imageStorage = $params['imageStorage'];
+			$this->dirName = $this->imageStorage['baseDir'] . DIRECTORY_SEPARATOR . $this->imageStorage['importImageDir'];
+		}
 	}
 
 	protected function createComponentImportForm()
 	{
-		$form = new \Flame\Forms\ImportForm();
+		$form = new ImportForm();
 		$form->configure();
 		$form->onSuccess[] = callback($this, 'importFormSubmitted');
 		return $form;
 	}
 
-	public function importFormSubmitted(\Flame\Application\UI\Form $form)
+	public function importFormSubmitted(ImportForm $form)
 	{
 		$values = $form->getValues();
+
+		$this->downloadImages = (bool) $values['downloadImages'];
+		if($this->downloadImages) $this->createDirForImages();
 
 		if(!$values['file']->isOk()){
 			$this->flashMessage('Uploaded file is not valid. '. $values['file']->getError());
@@ -60,7 +83,7 @@ class ImportPresenter extends AdminPresenter
 			$posts = $this->wordPressImporter->convert($values['file']->getTemporaryFile());
 
 			if(is_array($posts) and count($posts)){
-				foreach($posts as $post){
+				foreach($posts as $k =>$post){
 					$this->createNewPost($post);
 				}
 			}
@@ -73,6 +96,16 @@ class ImportPresenter extends AdminPresenter
 
 	private function createNewPost(array $postData)
 	{
+
+		if(isset($postData['images'][1]) and count($postData['images']) and $this->downloadImages){
+
+			foreach($postData['images'][1] as $imageUrl){
+				$imageName = $this->getImageName($imageUrl);
+				$file = $this->downloadImage($imageUrl);
+				if($file) $this->saveImage($file, $imageName);
+				$postData['content'] = str_replace($imageUrl, $this->getUrlOfNewImage($imageName), $postData['content']);
+			}
+		}
 
 		if(isset($postData['category'])){
 			$category = $this->createNewCategory($postData['category']);
@@ -129,6 +162,47 @@ class ImportPresenter extends AdminPresenter
 		}
 
 		return $prepared;
+	}
+
+	private function downloadImageCurl($url)
+	{
+		$curl = curl_init($url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		$file = curl_exec($curl);
+		$code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		curl_close($curl);
+
+		if((int) $code < 400) return $file;
+	}
+
+	private function downloadImage($url)
+	{
+		if(@$file = file_get_contents($url)) return $file;
+	}
+
+	private function createDirForImages()
+	{
+		if(!file_exists($this->dirName)){
+			return mkdir($this->dirName);
+		}
+	}
+
+	private function saveImage($image, $name)
+	{
+		return file_put_contents($this->dirName . DIRECTORY_SEPARATOR . $name, $image);
+	}
+
+	private function getImageName($url)
+	{
+		if(strpos($url, '/') !== false){
+			$parts = explode('/', $url);
+			return $parts[count($parts) - 1];
+		}
+	}
+
+	private function getUrlOfNewImage($name)
+	{
+		return $this->getHttpRequest()->url->baseUrl . $this->imageStorage['importImageDir'] . '/' . $name;
 	}
 
 }
