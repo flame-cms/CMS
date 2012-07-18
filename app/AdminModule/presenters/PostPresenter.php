@@ -16,7 +16,6 @@ class PostPresenter extends AdminPresenter
     private $userFacade;
 	private $categoryFacade;
 	private $tagFacade;
-	private $optionFacade;
 
     public function __construct(
 	    \Flame\Models\Posts\PostFacade $postFacade,
@@ -134,13 +133,17 @@ class PostPresenter extends AdminPresenter
 		}
 
 		if(isset($values['tagsNew']) and !empty($values['tagsNew'])){
-			if(strpos($values['tagsNew'], ',') !== false){
-				$tagsRaw = explode(',', $values['tagsNew']);
 
+			$tagsRaw = explode(',', $values['tagsNew']);
+
+			if(count($tagsRaw)){
 				foreach($tagsRaw as $tag){
 					if(!empty($tag)) $tags[] = $this->createNewTag(trim($tag));
 				}
+			}else{
+				if(!empty($values['tagsNew'])) $tags[] = $this->createNewTag(trim($values['tagsNew']));
 			}
+
 		}
 
 		if(isset($values['categoryNew']) and isset($values['category']) and !empty($values['categoryNew'])){
