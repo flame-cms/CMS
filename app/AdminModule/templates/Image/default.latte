@@ -11,6 +11,7 @@
 				<thead>
 					<th>Thumbnail</th>
 					<th>File</th>
+					<th>Url</th>
 					<th>Name</th>
 					<th>Description</th>
 					<th>Actions</th>
@@ -18,12 +19,9 @@
 
 				<tbody>
 					<tr n:foreach="$images as $image">
-						<td>
-							<a href="{$baseUrl}/media/images/{$image->file}">
-								<img src="{$baseUrl}/{$image->file|thumb:230}">
-							</a>
-						</td>
+						<td><a href="{$baseUrl}/{$imageDir}/{$image->file}" target="_blank"><img src="{$baseUrl}/{$image->file|thumb:230}"></a></td>
 						<td>{$image->file}</td>
+						<td><a href="{$baseUrl}/{$imageDir}/{$image->file}">{$baseUrl}/{$imageDir}/{$image->file}</a></td>
 						<td>{$image->name}</td>
 						<td>{$image->description}</td>
 						<td>

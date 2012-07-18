@@ -32,6 +32,7 @@ class ImagePresenter extends AdminPresenter
 	public function renderDefault()
 	{
 		$this->template->images = $this->imageFacade->getLastImages();
+		$this->template->imageDir = $this->imageStorage['imageDir'];
 	}
 	
 	public function createComponentUploadImageForm()
