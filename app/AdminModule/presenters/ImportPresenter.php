@@ -25,8 +25,6 @@ class ImportPresenter extends AdminPresenter
 
 	private $tagFacade;
 
-	private $imageFacade;
-
 	private $imageStorage;
 
 	private $downloadImages = true;
@@ -52,12 +50,11 @@ class ImportPresenter extends AdminPresenter
 	{
 		parent::startup();
 
-		$params = $this->context->getParameters();
+		$this->imageStorage = $this->getContextParameter('imageStorage');
 
-		if(!isset($params['imageStorage'])){
+		if(!$this->imageStorage){
 			throw new \Nette\Application\BadRequestException;
 		}else{
-			$this->imageStorage = $params['imageStorage'];
 			$this->dirName = $this->imageStorage['baseDir'] . DIRECTORY_SEPARATOR . $this->imageStorage['importImageDir'];
 		}
 	}
