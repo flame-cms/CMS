@@ -34,7 +34,7 @@ class ImagePresenter extends AdminPresenter
 		$this->template->images = $this->imageFacade->getLastImages();
 		$this->template->imageDir = $this->imageStorage['imageDir'];
 	}
-	
+
 	public function createComponentUploadImageForm()
 	{
 		$f = new ImageForm();
@@ -66,7 +66,7 @@ class ImagePresenter extends AdminPresenter
 			DIRECTORY_SEPARATOR .
 			$this->imageStorage['imageDir'] .
 			DIRECTORY_SEPARATOR . $name;
-		
+
 		if(!file_exists($path)){
 			$file->move($path);
 		}else{
@@ -124,4 +124,3 @@ class ImagePresenter extends AdminPresenter
 		}
 	}
 }
-?>

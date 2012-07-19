@@ -30,7 +30,7 @@ class SignPresenter extends \Flame\Application\UI\Presenter
 
 	public function signInFormSubmitted(Form $form)
 	{
-		
+
 		try {
 
 			$user = $this->getUser();

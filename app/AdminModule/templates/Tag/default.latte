@@ -32,18 +32,18 @@
 	{snippet #tags}
 		{if count($tags)}
 			<h3>Tags</h3>
-	
+
 			<table>
-	
+
 				<thead>
 				<th>Name</th>
 				<th>Slug</th>
 				<th>Posts</th>
 				<th>Actions</th>
 				</thead>
-	
+
 				<tbody>
-	
+
 				<tr n:foreach="$tags as $tag">
 					<td>{$tag->name}</td>
 					<td>{$tag->slug}</td>

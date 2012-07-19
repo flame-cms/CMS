@@ -29,7 +29,7 @@ class PostPresenter extends AdminPresenter
 	    $this->categoryFacade = $categoryFacade;
 	    $this->tagFacade = $tagFacade;
     }
-	
+
 	public function renderDefault()
 	{
 		$this->template->posts = $this->postFacade->getLastPosts();
@@ -40,7 +40,7 @@ class PostPresenter extends AdminPresenter
 		if(!$this->getUser()->isAllowed('Admin:Post', 'delete')){
 			$this->flashMessage('Access denied');
 		}else{
-			
+
 			$post = $this->postFacade->getOne($id);
 
 			if($post){
@@ -221,4 +221,3 @@ class PostPresenter extends AdminPresenter
 	}
 
 }
-?>

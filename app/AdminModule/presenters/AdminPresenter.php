@@ -8,7 +8,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\Presenter
 	public function startup()
 	{
 		parent::startup();
-		
+
 		$user = $this->getUser();
 
 		if(!$user->isLoggedIn()){
@@ -31,7 +31,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\Presenter
 		$this->getUser()->logout();
 		$this->flashMessage('You have been signed out.');
 		$this->redirect('Sign:in');
-		
+
 	}
 
 	protected function createSlug($name)

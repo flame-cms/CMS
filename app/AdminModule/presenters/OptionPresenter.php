@@ -20,7 +20,7 @@ class OptionPresenter extends AdminPresenter
     {
         $this->optionFacade = $optionFacade;
     }
-	
+
 	public function renderDefault()
 	{
 		$this->template->options = $this->optionFacade->getAll();
@@ -116,4 +116,3 @@ class OptionPresenter extends AdminPresenter
 		}
 	}
 }
-?>

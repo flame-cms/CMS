@@ -46,4 +46,3 @@ class PostPresenter extends FrontPresenter
 		return new \Flame\Components\CommentsControl($this->post, $this->commentFacade);
 	}
 }
-?>

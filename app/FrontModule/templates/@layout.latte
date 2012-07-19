@@ -20,7 +20,7 @@
 	<link rel="stylesheet" media="screen" href="{$basePath}/css/paginator.css" type="text/css">
 	<link rel="stylesheet" media="screen" href="{$basePath}/css/reset.css" type="text/css">
 	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css" type="text/css">
-	
+
 	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css" type="text/css">
 
 	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
@@ -47,7 +47,7 @@
 	</div>
 
 	<div id="main" class="wrapper">
-		
+
 		<div id="left">
 			{snippet flashMessages}
 				<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
@@ -72,6 +72,6 @@
 			{if !$user->isLoggedIn()}<a n:href=":Admin:Sign:in">Sign in</a>{else}<a n:href=":Admin:Dashboard:">Go to the Admin...</a> {/if}
 		</div>
 	</div>
-	
+
 </body>
 </html>

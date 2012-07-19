@@ -87,7 +87,7 @@ class UserPresenter extends AdminPresenter
 	}
 
 	public function handleDelete($id)
-	{	
+	{
 		if($this->getUser()->getId() == $id){
 			$this->flashMessage('You cannot delete yourself');
 		}elseif(!$this->getUser()->isAllowed('Admin:User', 'delete')){

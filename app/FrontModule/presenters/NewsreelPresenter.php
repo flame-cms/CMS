@@ -11,7 +11,7 @@ class NewsreelPresenter extends FrontPresenter
 	{
 		$this->newsreelFacade = $newsreelFacade;
 	}
-	
+
 	public function actionDetail($id)
 	{
 		if($newsreel = $this->newsreelFacade->getOne($id)){

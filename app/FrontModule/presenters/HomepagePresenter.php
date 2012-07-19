@@ -16,12 +16,12 @@ class HomepagePresenter extends FrontPresenter
         $this->postFacade = $postFacade;
 	    $this->optionFacade = $optionFacade;
     }
-	
+
 	public function actionDefault()
 	{
 		if(!count($this->postFacade->getLastPublishPosts())){
 			$this->flashMessage('No posts');
-		}	
+		}
 
 	}
 
@@ -35,5 +35,3 @@ class HomepagePresenter extends FrontPresenter
 		return $postControl;
 	}
 }
-
-?>
