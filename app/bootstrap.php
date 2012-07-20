@@ -13,7 +13,6 @@ use Nette\Application\Routers\Route,
 	Nette\Config\Configurator;
 
 require LIBS_DIR . '/autoload.php';
-require LIBS_DIR . '/nette/nette/Nette/loader.php';
 require LIBS_DIR . '/jsifalda/flame/Flame/loader.php';
 
 if(!defined('FLAME_DIR')) die('You must load Flame loader');
