@@ -1,5 +1,5 @@
 web1:
-  name: flame
+  name: flame-app
   shared_writable_dirs:
     - temp
     - log
@@ -17,5 +17,5 @@ web1:
   after_deploy:
     - "rm -R temp/cache"
 db1: #component type & number
-  name: flame
+  name: flame-app
   type: mysql
