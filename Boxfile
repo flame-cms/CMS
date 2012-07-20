@@ -9,9 +9,7 @@ web1:
     - pdo_mysql
     - gd
     - apc
-    - fileinfo
     - intl
-    - tokenizer
     - zip # for composer
   after_build:
     - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
