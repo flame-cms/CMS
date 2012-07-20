@@ -11,11 +11,10 @@ web1:
     - fileinfo
     - intl
     - tokenizer
+  after_build:
+    - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
   after_deploy:
     - "rm -R temp/cache"
-  after_build:
-      - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
-
 db1: #component type & number
   name: flame
   type: mysql
