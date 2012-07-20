@@ -9,11 +9,7 @@ The basic structure for your application based on Flame CMS
 	cd myApp
 
 - Make directories './log' and './temp' writable (chmod 777)
-- Install composer (If you do not have installed composer globally)
-
-	curl -s http://getcomposer.org/installer | php
-
-- Install dependencies:
+- Install dependencies (composer.phar included in sandbox)
 
 	php composer.phar install
 
