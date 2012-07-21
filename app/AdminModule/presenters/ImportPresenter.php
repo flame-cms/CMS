@@ -80,7 +80,7 @@ class ImportPresenter extends AdminPresenter
 			$posts = $this->wordPressImporter->convert($values['file']->getTemporaryFile());
 
 			if(is_array($posts) and count($posts)){
-				foreach($posts as $k =>$post){
+				foreach($posts as $post){
 					$this->createNewPost($post);
 				}
 			}
@@ -169,12 +169,12 @@ class ImportPresenter extends AdminPresenter
 		$code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 
-		if((int) $code < 400) return $file;
+		if((int) $code < 400) return $file; else return null;
 	}
 
 	private function downloadImage($url)
 	{
-		if(@$file = file_get_contents($url)) return $file;
+		if(@$file = file_get_contents($url)) return $file; else return null;
 	}
 
 	private function createDirForImages()
@@ -195,6 +195,8 @@ class ImportPresenter extends AdminPresenter
 			$parts = explode('/', $url);
 			return $parts[count($parts) - 1];
 		}
+
+		return $url;
 	}
 
 	private function getUrlOfNewImage($name)
