@@ -2,7 +2,7 @@
 
 The basic structure for your application based on Flame CMS
 
-###Instaling
+###Installing
 - Download sandbox
 
 	git clone git://github.com/jsifalda/flame-sandbox.git myApp
