@@ -12,6 +12,7 @@ use Nette\Application\Routers\Route,
 	Nette\Application\Routers\RouteList;
 
 require LIBS_DIR . '/autoload.php';
+require LIBS_DIR . '/jsifalda/flame/Flame/loader.php';
 
 $container->router[] = new Route('index.php', 'Front:Homepage:default', Route::ONE_WAY);
 
