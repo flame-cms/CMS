@@ -9,32 +9,11 @@
  */
 
 use Nette\Application\Routers\Route,
-	Nette\Application\Routers\RouteList,
-	Nette\Config\Configurator;
+	Nette\Application\Routers\RouteList;
 
 require LIBS_DIR . '/autoload.php';
 require LIBS_DIR . '/jsifalda/flame/Flame/loader.php';
 
-if(!defined('FLAME_DIR')) die('You must load Flame loader');
-
-$configurator = new Configurator();
-$configurator->enableDebugger(__DIR__ . '/../log');
-$configurator->setTempDirectory(__DIR__ . '/../temp');
-$configurator->addParameters(array('flameDir' => FLAME_DIR));
-$configurator->createRobotLoader()->addDirectory(APP_DIR)->addDirectory(FLAME_DIR)->register();
-
-if (php_sapi_name() == 'cli') {
-	$configurator->setDebugMode(TRUE);
-	$configurator->addConfig(FLAME_DIR . '/Config/config.neon', $configurator::DEVELOPMENT);
-}else{
-	$configurator->setDebugMode($configurator::AUTO);
-	$configurator->addConfig(FLAME_DIR . '/Config/config.neon');
-}
-
-$container = $configurator->createContainer();
-
-$doctrineConfig = $container->getService('EntityManagerConfig');
-$doctrineConfig->setSQLLogger(\Flame\Utils\ConnectionPanel::register());
 
 $container->router[] = new Route('index.php', 'Front:Homepage:default', Route::ONE_WAY);
 
