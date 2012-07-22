@@ -201,7 +201,7 @@ class ImportPresenter extends AdminPresenter
 
 	private function getUrlOfNewImage($name)
 	{
-		return $this->getHttpRequest()->url->baseUrl . $this->imageStorage['importImageDir'] . '/' . $name;
+		return $this->getBaseUrl() . $this->imageStorage['importImageDir'] . '/' . $name;
 	}
 
 }
