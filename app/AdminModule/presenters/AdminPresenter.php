@@ -21,11 +21,6 @@ abstract class AdminPresenter extends \Flame\Application\UI\Presenter
 		}
 	}
 
-	public function beforeRender()
-	{
-		parent::beforeRender();
-	}
-
 	public function handleSignOut()
 	{
 		$this->getUser()->logout();
