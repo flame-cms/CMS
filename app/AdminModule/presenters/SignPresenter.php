@@ -3,7 +3,7 @@
 namespace AdminModule;
 
 use Nette\Security as NS,
-    Nette\Application\UI\Form;
+    Flame\Forms\SignInForm;
 
 
 class SignPresenter extends \Flame\Application\UI\Presenter
@@ -19,16 +19,13 @@ class SignPresenter extends \Flame\Application\UI\Presenter
 
 	protected function createComponentSignInForm()
 	{
-		$form = new Form();
-		$form->addText('username', 'Username:', 30, 20);
-		$form->addPassword('password', 'Password:', 30);
-		$form->addCheckbox('persistent', 'Remember me?');
-		$form->addSubmit('login', 'Login');
+		$form = new SignInForm();
+		$form->configure();
 		$form->onSuccess[] = callback($this, 'signInFormSubmitted');
 		return $form;
 	}
 
-	public function signInFormSubmitted(Form $form)
+	public function signInFormSubmitted(SignInForm $form)
 	{
 
 		try {
