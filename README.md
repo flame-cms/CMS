@@ -1,6 +1,6 @@
 #FLAME:CMS (sandbox)
 
-The basic structure for your application based on Flame CMS
+The basic structure for your application based on [Flame CMS](https://github.com/jsifalda/flame)
 
 ###Installing
 - Download sandbox
