@@ -14,10 +14,6 @@ class NewsreelPresenter extends AdminPresenter
 	public function __construct(\Flame\Models\Newsreel\NewsreelFacade $newsreelFacade )
 	{
 	    $this->newsreelFacade = $newsreelFacade;
-
-        \Nette\Forms\Container::extensionMethod('addDatePicker', function (\Nette\Forms\Container $container, $name, $label = NULL) {
-            return $container[$name] = new \Flame\Utils\DatePicker($label);
-        });
 	}
 
     public function renderDefault()
