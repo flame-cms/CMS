@@ -3,7 +3,6 @@
 namespace AdminModule;
 
 use Flame\Forms\UserForm,
-    Nette\Security as NS,
     Flame\Models\Users\User,
 	Flame\Forms\ChangePasswordForm;
 
@@ -12,50 +11,127 @@ class UserPresenter extends AdminPresenter
 {
     private $userFacade;
 
+	private $userInfoFacade;
+
     private $authenticator;
 
-    public function __construct(\Flame\Models\Users\UserFacade $userFacade, \Flame\Security\Authenticator $authenticator)
+	private $user;
+
+	private $id;
+
+    public function __construct(
+	    \Flame\Models\Users\UserFacade $userFacade,
+	    \Flame\Security\Authenticator $authenticator,
+		\Flame\Models\UsersInfo\UserInfoFacade $userInfoFacade
+    )
     {
         $this->userFacade = $userFacade;
         $this->authenticator = $authenticator;
+	    $this->userInfoFacade = $userInfoFacade;
     }
 
-	public function actionDefault()
+	public function renderDefault()
 	{
 		$this->template->users = $this->userFacade->getLastUsers();
 	}
 
+	public function actionEdit($id)
+	{
+		$this->id = $id;
+
+		if($this->getUser()->getId() != $id or !$this->getUser()->isAllowed('Admin:User', 'editAnother')){
+			$this->flashMessage('Access denied');
+			$this->redirect('Dashboard:');
+		}else{
+			if($user = $this->userFacade->getOne($id)){
+				$this->user = $user;
+			}else{
+				$this->flashMessage('User does not exist!');
+				$this->redirect('Dashboard:');
+			}
+		}
+
+	}
+
+	protected function createComponentEditUserForm()
+	{
+		$form = new UserForm();
+
+		$userInfo = $this->userInfoFacade->getOneByUser($this->user);
+		$default = array_merge(
+			array('email' => $this->user->getEmail()),
+			$userInfo ? $userInfo->toArray() : array()
+		);
+
+		$form->configureEditFull($default);
+		$form->onSuccess[] = callback($this, 'userEditFormSubmitted');
+		return $form;
+	}
+
+
 	protected function createComponentAddUserForm()
 	{
 		$f = new UserForm();
+		$f->configureRoles();
 		$f->configureAdd();
-		$f->onSuccess[] = callback($this, 'addUserFormSubmitted');
+		$f->onSuccess[] = callback($this, 'userAddFormSubmitted');
 
         return $f;
 	}
 
-	public function addUserFormSubmitted(UserForm $form)
+	public function userEditFormSubmitted(UserForm $form)
+	{
+		if($this->id and !$this->user){
+			throw new \Nette\Application\BadRequestException;
+		}
+
+		$values = $form->getValues();
+
+
+		if($info = $this->userInfoFacade->getOneByUser($this->user)){
+			$info->setName($values['name'])
+				->setAbout($values['about'])
+				->setBirthday($values['birthday'])
+				->setWeb($values['web'])
+				->setFacebook($values['facebook'])
+				->setTwitter($values['twitter']);
+			$this->userInfoFacade->persist($info);
+		}else{
+			$info = new \Flame\Models\UsersInfo\UserInfo($this->user, $values['name']);
+			$info->setAbout($values['about'])
+				->setBirthday($values['birthday'])
+				->setWeb($values['web'])
+				->setFacebook($values['facebook'])
+				->setTwitter($values['twitter']);
+			$this->userInfoFacade->persist($info);
+		}
+
+		$this->flashMessage('User was edited');
+		$this->redirect('this');
+
+
+	}
+
+	public function userAddFormSubmitted(UserForm $form)
 	{
 		$values = $form->getValues();
 
-		if($this->userFacade->getByUsername($values['username'])){
-			$form->addError('Username exist yet.');
-		}elseif($this->userFacade->getByEmail($values['email'])){
-			$form->addError('Email exist yet.');
+
+		if($this->userFacade->getByEmail($values['email'])){
+			$form->addError('Email ' . $values['email'] . ' exist.');
 		}else{
 			$user = new \Flame\Models\Users\User(
-                $values['username'],
-                $this->authenticator->calculateHash($values['password']),
-                $values['role'],
-                $values['email']
+				$values['email'],
+				$this->authenticator->calculateHash($values['password']),
+				$values['role']
 			);
 
-			$user->setName($values['name']);
-            $this->userFacade->persist($user);
+			$this->userFacade->persist($user);
 
 			$this->flashMessage('User was added');
 			$this->redirect('User:');
 		}
+
 	}
 
 	protected function createComponentPasswordForm()
@@ -81,7 +157,7 @@ class UserPresenter extends AdminPresenter
 
 			$this->flashMessage('Password was changed.', 'success');
 			$this->redirect('this');
-		} catch (NS\AuthenticationException $e) {
+		} catch (\Nette\Security\AuthenticationException $e) {
 			$form->addError('Invalid credentials');
 		}
 	}

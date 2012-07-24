@@ -37,7 +37,7 @@ class SignPresenter extends \Flame\Application\UI\Presenter
 				$user->setExpiration('+30 days', FALSE);
 			}
 
-			$user->login($values->username, $values->password);
+			$user->login($values->email, $values->password);
 			$this->flashMessage('Login was successful', 'success');
 			$this->redirect('Dashboard:');
 

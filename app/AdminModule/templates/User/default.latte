@@ -8,8 +8,6 @@
 		{if count($users)}
 			<table>
 				<thead>
-					<th>Username</th>
-					<th>Name</th>
 					<th>Role</th>
 					<th>Email</th>
 					<th>Actions</th>
@@ -17,11 +15,12 @@
 
 				<tbody>
 					<tr n:foreach="$users as $user">
-						<td>{$user->username}</td>
-						<td>{$user->name}</td>
 						<td>{$user->role}</td>
 						<td>{$user->email}</td>
-						<td><a n:href="Delete! $user->id" class="ajax">X</a></td>
+						<td>
+							<a n:href="Delete! $user->id" class="ajax">X</a>
+							<a n:href="User:edit $user->id">Edit</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

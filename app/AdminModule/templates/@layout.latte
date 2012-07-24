@@ -69,7 +69,10 @@
 
 	{if $user->isLoggedIn()}
 		<div id="footer">
-			Logged in as <a n:href="User:password">{$user->getIdentity()->username}</a> | <a n:href="signOut!">Logout</a> | <a style="font-weight: bold;" n:href=":Front:Homepage:">Show web</a></a>
+			Logged in as <a n:href="User:edit $user->getId()">{$user->getIdentity()->email}</a> |
+			<a n:href="User:password">Change password</a> |
+			<a n:href="signOut!">Logout</a> |
+			<a style="font-weight: bold;" n:href=":Front:Homepage:">Show web</a>
 		</div>
 	{/if}
 
