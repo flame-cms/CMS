@@ -34,20 +34,12 @@
 
 		<H1>{$name}</H1>
 
-		{if $user->isLoggedIn()}
+		{if $user->isLoggedIn() and count($menuItems)}
 			<div id="navigation">
 				<ul>
-					<li><a n:href="Dashboard:">Dashboard</a></li>
-					<li><a n:href="Post:">Posts</a></li>
-					<li><a n:href="Category:">Categories</a></li>
-					<li><a n:href="Tag:">Tags</a></li>
-					<li><a n:href="Page:">Pages</a></li>
-					<li><a n:href="Image:">Images</a></li>
-					<li><a n:href="Comment:">Comments</a></li>
-					<li><a n:href="Newsreel:">Newsreel</a></li>
-					<li><a n:href="Option:">Options</a></li>
-					<li><a n:href="User:">Users</a></li>
-					<li><a n:href="Import:">Import data</a></li>
+					<li n:foreach="$menuItems as $menuItem">
+						<a n:href="{$menuItem->page}">{$menuItem->title}</a>
+					</li>
 				</ul>
 			</div>
 		{/if}
