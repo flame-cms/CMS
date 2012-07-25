@@ -3,36 +3,7 @@
 {block #content}
 
 	<h3>Add new category</h3>
-
-	{snippet addForm}
-		<fieldset>
-			{form categoryForm class => ajax}
-				<table>
-					<tr>{control $form errors}</tr>
-					<tr>
-						<th>{label name /}</th>
-						<td>{input name size => 50, autofocus => true}</td>
-					</tr>
-
-					<tr>
-						<th>{label slug /}</th>
-						<td>{input slug size => 50}</td>
-					</tr>
-
-					<tr>
-						<th>{label description /}</th>
-						<td>{input description}</td>
-					</tr>
-
-					<tr>
-						<th>{label send /}</th>
-						<td>{input send}</td>
-					</tr>
-
-				</table>
-			{/form}
-		</fieldset>
-	{/snippet}
+	{control categoryForm}
 
 	{snippet #categories}
 		{if count($categories)}
@@ -44,6 +15,7 @@
 					<th>Name</th>
 					<th>Slug</th>
 					<th>Description</th>
+					<th>Parent</th>
 					<th>Posts</th>
 					<th>Actions</th>
 				</thead>
@@ -54,6 +26,7 @@
 						<td>{$category->name}</td>
 						<td>{$category->slug}</td>
 						<td>{$category->description}</td>
+						<td>{$category->parent}</td>
 						<td>{count($category->posts)}</td>
 						<td>
 							<a n:href="Category:edit $category->id">Edit</a>

@@ -10,7 +10,7 @@
 
 namespace AdminModule;
 
-use Nette\Application\UI\Form;
+use Flame\Forms\CategoryForm;
 
 class CategoryPresenter extends AdminPresenter
 {
@@ -20,6 +20,8 @@ class CategoryPresenter extends AdminPresenter
 	private $category;
 
 	private $categoryFacade;
+
+	private $categories;
 
 	public function __construct(\Flame\Models\Categories\CategoryFacade $categoryFacade)
 	{
@@ -43,7 +45,8 @@ class CategoryPresenter extends AdminPresenter
 
 	protected function createComponentCategoryForm()
 	{
-		$f = new \Flame\Forms\CategoryForm();
+		$categories = $this->categoryFacade->getLastCategories() ? $this->categoryFacade->getLastCategories() : array();
+		$f = new CategoryForm($categories);
 
 		if($this->id){
 			$f->configureEdit($this->category->toArray());
@@ -56,7 +59,7 @@ class CategoryPresenter extends AdminPresenter
 		return $f;
 	}
 
-	public function categoryFormSubmitted(Form $form)
+	public function categoryFormSubmitted(CategoryForm $form)
 	{
 		if($this->id and !$this->category){
 			throw new \Nette\Application\BadRequestException;
@@ -75,6 +78,11 @@ class CategoryPresenter extends AdminPresenter
 				->setName($values['name'])
 				->setSlug($slug)
 				->setDescription($values['description']);
+
+			if($parent = $this->categoryFacade->getOne($values['parent'])){
+				$this->category->setParent($parent);
+			}
+
 			$this->categoryFacade->persist($this->category);
 			$this->flashMessage('Category was edited');
 
@@ -85,16 +93,17 @@ class CategoryPresenter extends AdminPresenter
 			}else{
 				$category = new \Flame\Models\Categories\Category($values['name'], $slug);
 				$category->setDescription($values['description']);
+
+				if($parent = $this->categoryFacade->getOne($values['parent'])){
+					$category->setParent($parent);
+				}
+
 				$this->categoryFacade->persist($category);
 				$this->flashMessage('Category was added');
 			}
 		}
 
-		if($this->isAjax()){
-			$this->invalidateControl();
-		}else{
-			$this->redirect('this');
-		}
+		$this->redirect('this');
 	}
 
 	public function handleDelete($id)

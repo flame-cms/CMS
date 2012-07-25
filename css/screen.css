@@ -139,6 +139,10 @@ a.active {
     border-bottom: 1px solid #eee;
     padding: 5px;
 }
+#categories-menu li.last {
+    border-bottom: none;
+    padding: 5px;
+}
 
 img {
     max-width: 600px;
