@@ -1,0 +1,43 @@
+/* Reset by Mr. Meyer - http://meyerweb.com/eric/tools/css/reset/index.html - v1.0 | 20080212 */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:none;}:focus{outline:0;}ins{text-decoration:none;}del{text-decoration:line-through;}table{border-collapse:collapse;border-spacing:0;}
+
+/**
+ * Author: Ondrej Slamecka, www.slamecka.cz
+ */
+body{width: 700px; margin: 1em auto; font-family: sans-serif }
+header{height: 1em; padding: 0 0 .8em; margin: 0 0 .8em; border-bottom: 2px solid #999 }
+footer{position: absolute; bottom: 0; right: 0; font-size: .8em; color: #333 }
+
+/* General */
+h1{margin: 1em 0; font-size: 1.5em; color: #222 }
+
+div.flash{padding: .6em .8em; background: #C3D9FF }
+ul.error{margin: 1em 0; font-weight: bold; color: #FF1A00 }
+
+a{padding: .2em}
+a:hover{text-decoration: none}
+a:visited{color: blue }
+a.delete{color: red }
+a.delete:hover{border-radius: 3px; background: red; color: white }
+
+table.data tr.even{background: #EEEEEE }
+table.data tbody tr:hover{background: #F9F7ED }
+table.data td, table.data th{padding: .5em; border: 1px solid #ccc }
+
+input[type="submit"]{padding: .5em .8em }
+
+/* Header */
+a#logo{}
+img#loader{display: none; vertical-align: middle }
+span.right{float: right }
+#clearingTempFilesState{display: none; padding: .2em; border-radius: 3px; background: #FFFF88 }
+
+/* Content */
+table input{ margin: .3em }
+
+table#files{width: 100% }
+table#files th:first-child{width: 50% }
+table#files th{width: 25% }
+table#files td:first-child{text-align: left }
+table#files td{text-align: center }
+table#files a:visited{color: #800080 }

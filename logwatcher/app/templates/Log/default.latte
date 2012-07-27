@@ -1,0 +1,17 @@
+{block #content}
+
+<table id="files" class="data">
+    <thead>
+        <th>Name</th>
+        <th>Last modified</th>
+        <th>Delete</th>
+    </thead>
+
+{foreach $files as $file}
+    <tr n:class="$iterator->isEven() ? even">
+        <td><a href="{link read $file['fullname']}" target="_blank" title="{$file['fullname']}">{$file['name']}</a></td>
+        <td>{$file['datetime']|date:'Y-m-d H:i:s'}</td>
+        <td><a href="{link delete! $file['fullname']}" class="ajax delete">Delete</a></td>
+    </tr>
+{/foreach}
+</table>
