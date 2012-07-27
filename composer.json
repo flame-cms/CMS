@@ -18,6 +18,10 @@
 		"issues":"https://github.com/jsifalda/flame/issues"
 	},
 
+	"config": {
+		"vendor-dir": "libs"
+	},
+
 	"require": {
 		"jsifalda/flame": "dev-master"
 	}

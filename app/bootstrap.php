@@ -22,7 +22,9 @@ $configurator->setOptionalParameters();
 $configurator->enableDebugger(WWW_DIR . '/log');
 $configurator->setTempDirectory(WWW_DIR . '/temp');
 $configurator->createRobotLoader()->addDirectory(APP_DIR)->register();
+
 $configurator->addConfig(FLAME_DIR . '/Config/config.neon');
+
 $configurator->setDatabaseParametersFromEnv();
 $container = $configurator->createContainer();
 

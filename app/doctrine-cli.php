@@ -1,7 +1,7 @@
 <?php
 
 define('APP_DIR', __DIR__ . '/../app');
-define('LIBS_DIR', __DIR__ . '/../vendor');
+define('LIBS_DIR', __DIR__ . '/../libs');
 
 require APP_DIR . '/bootstrap.php';
 
