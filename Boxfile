@@ -3,7 +3,6 @@ web1:
   shared_writable_dirs:
     - temp
     - log
-    - libs
   #document_root: www
   php_extensions:
     - pdo_mysql
