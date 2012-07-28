@@ -13,11 +13,12 @@ web1:
     - intl
     - zip # for composer
   after_build:
-    - "rm -Rf temp/*"
-    - "rm log/*"
     - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
   before_deploy:
     # - "php app/doctrine-cli.php doctrine:schema:update --force"
+  after_deploy:
+    - "rm -Rf temp/*"
+    - "rm log/*"
 db1: #component type & number
   name: flame-app
   type: mysql
