@@ -1,5 +1,5 @@
 <?php
-
+define('WWW_DIR', __DIR__ . '/../www');
 define('APP_DIR', __DIR__ . '/../app');
 define('LIBS_DIR', __DIR__ . '/../libs');
 
