@@ -35,9 +35,3 @@ $adminRouter[] = new Route('admin/<presenter>/<action>[/<id>]', 'Dashboard:defau
 
 $container->router[] = $frontRouter = new RouteList('Front');
 $frontRouter[] = new Route('<presenter>/<action>[/<id>][/<slug>]', 'Homepage:default');
-
-if (PHP_SAPI == 'cli') {
-	$container->console->run();
-} else {
-	$container->application->run();
-}
