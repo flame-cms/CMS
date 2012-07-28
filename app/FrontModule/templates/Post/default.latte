@@ -2,7 +2,7 @@
 {var $desc = $post->description}
 {var $keys = $post->keywords}
 
-{block content}
+{#content}
 
 <h2>{$post->name}</h2>
 
@@ -14,7 +14,13 @@
 	{!$post->content}
 {/if}
 
-<p><small>In category: {$category} | Tags: {$tags}  | Published: {$post->created|date:'%d.%m.%y'} | {$post->hit} Views</small></p>
+<p>
+	<small>In category: {$category} |
+	{if count($tags)} Tags: {$tags|implode:', '}  | {/if}
+	Published: {$post->created|date:'%d.%m.%y'} |
+	{$post->hit} Views
+	</small>
+</p>
 
 {if $post->comment}
 	{control comments}

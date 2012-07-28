@@ -28,13 +28,7 @@ class PostPresenter extends FrontPresenter
             $this->postFacade->increaseHit($this->post);
 
 			$this->template->post = $this->post;
-
-			if(count($tags = $this->post->tags->toArray())){
-				$tags = implode(',', $tags);
-			}else{
-				$tags = 'none';
-			}
-			$this->template->tags = $tags;
+			$this->template->tags = $this->post->tags->toArray();
 
 			if(!$category = $this->post->category) $category = 'none';
 			$this->template->category = $category;
