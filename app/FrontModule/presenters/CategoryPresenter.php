@@ -13,30 +13,22 @@ namespace FrontModule;
 class CategoryPresenter extends \FrontModule\FrontPresenter
 {
 	private $categoryFacade;
-	private $postFacade;
 	private $optionFacade;
 
 	private $posts;
 
-	public function __construct(
-		\Flame\Models\Categories\CategoryFacade $categoryFacade,
-		\Flame\Models\Posts\PostFacade $postFacade,
-		\Flame\Models\Options\OptionFacade $optionFacade
-	)
+	public function __construct(\Flame\Models\Categories\CategoryFacade $categoryFacade, \Flame\Models\Options\OptionFacade $optionFacade)
 	{
 		$this->categoryFacade = $categoryFacade;
-		$this->postFacade = $postFacade;
 		$this->optionFacade = $optionFacade;
 	}
 
 	public function actionPosts($id)
 	{
-		$category = $this->categoryFacade->getOne($id);
-
-		if($category){
+		if($category = $this->categoryFacade->getOne($id)){
 			$this->template->category = $category;
 
-			$this->posts = $this->postFacade->getLastPublishPosts($category->id);
+			$this->posts = $category->getPosts()->toArray();
 
 			if(!count($this->posts)){
 				$this->flashMessage('No posts in category.');
