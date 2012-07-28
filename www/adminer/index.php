@@ -7,4 +7,4 @@
  * @date    28.07.12
  */
 
-header('Location: manage/');
+header('Location: adminer/');
