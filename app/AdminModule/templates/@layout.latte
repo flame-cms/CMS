@@ -5,7 +5,7 @@
 
 	<meta name="robots" content="noindex,nofollow">
 
-	<title>{ifset $title}{$title} &ndash; {/ifset}{$name} - Administration</title>
+	<title>{ifset $title}{$title}{/ifset}{if $name != ''} &ndash; {$name}{/if} &ndash; Administration</title>
 
 	<link rel="stylesheet" media="screen" href="{$basePath}/css/reset.css" type="text/css">
 	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/admin/screen.css" type="text/css">
