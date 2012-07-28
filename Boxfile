@@ -6,7 +6,13 @@ web1:
   document_root: www
   php_version: 5.3.10
   php_extensions:
+    - pdo_dblib
+    - pdo_firebird
     - pdo_mysql
+    - pdo_pgsql
+    - pdo
+    - pdo_sqlite
+    - mysqli
     - mysql
     - gd
     - apc
