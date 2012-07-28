@@ -14,7 +14,7 @@ web1:
     - zip # for composer
   after_build:
     - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
-  before_deploy
+  before_deploy:
     - "php app/doctrine-cli.php doctrine:schema:update --force"
 db1: #component type & number
   name: flame-app
