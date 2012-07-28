@@ -42,7 +42,7 @@ class TagPresenter extends FrontPresenter
 
 	public function createComponentPostsControl()
 	{
-		$postControl = new \Flame\Components\PostsControl($this->posts);
+		$postControl = new \Flame\Components\Posts\Post($this->posts);
 
 		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
 		if($itemsPerPage) $postControl->setCountOfItemsPerPage($itemsPerPage);

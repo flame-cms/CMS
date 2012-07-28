@@ -27,7 +27,7 @@ class HomepagePresenter extends FrontPresenter
 
 	public function createComponentPostsControl()
 	{
-		$postControl = new \Flame\Components\PostsControl($this->postFacade->getLastPublishPosts());
+		$postControl = new \Flame\Components\Posts\Post($this->postFacade->getLastPublishPosts());
 
 		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
 		if($itemsPerPage) $postControl->setCountOfItemsPerPage($itemsPerPage);

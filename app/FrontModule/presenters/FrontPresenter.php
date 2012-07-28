@@ -36,7 +36,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	{
         $itemsInNewsreelMenuList = $this->context->OptionFacade->getOptionValue('items_in_newsreel_menu_list');
 
-		$newsreel = new \Flame\Components\NewsreelControl($this->context->NewsreelFacade);
+		$newsreel = new \Flame\Components\Newsreel\Newsreel($this->context->NewsreelFacade);
         if(!is_null($itemsInNewsreelMenuList)) $newsreel->setCountOfItemsInNewsreel($itemsInNewsreelMenuList);
 
 		return $newsreel;
@@ -44,11 +44,11 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 
 	protected function createComponentCategoriesControl()
 	{
-		return new \Flame\Components\CategoriesControl($this->context->CategoryFacade);
+		return new \Flame\Components\Categories\Category($this->context->CategoryFacade);
 	}
 
 	protected function createComponentTagsControl()
 	{
-		return new \Flame\Components\TagControl($this->context->TagFacade);
+		return new \Flame\Components\Tags\Tag($this->context->TagFacade);
 	}
 }
