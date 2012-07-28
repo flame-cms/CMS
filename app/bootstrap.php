@@ -28,10 +28,18 @@ $container = $configurator->createContainer();
 $doctrineConfig = $container->getService('EntityManagerConfig');
 $doctrineConfig->setSQLLogger(\Flame\Utils\ConnectionPanel::register());
 
-$container->router[] = new Route('index.php', 'Front:Homepage:default', Route::ONE_WAY);
+if ($container->parameters['consoleMode']) {
+	$container->router[] = new \Nette\Application\Routers\SimpleRouter();
+} else {
 
-$container->router[] = $adminRouter = new RouteList('Admin');
-$adminRouter[] = new Route('admin/<presenter>/<action>[/<id>]', 'Dashboard:default');
+	$container->router[] = new Route('index.php', 'Front:Homepage:default', Route::ONE_WAY);
 
-$container->router[] = $frontRouter = new RouteList('Front');
-$frontRouter[] = new Route('<presenter>/<action>[/<id>][/<slug>]', 'Homepage:default');
+	$container->router[] = $adminRouter = new RouteList('Admin');
+	$adminRouter[] = new Route('admin/<presenter>/<action>[/<id>]', 'Dashboard:default');
+
+	$container->router[] = $frontRouter = new RouteList('Front');
+	$frontRouter[] = new Route('<presenter>/<action>[/<id>][/<slug>]', 'Homepage:default');
+}
+
+if (!$container->parameters['consoleMode'])
+	$container->application->run();
