@@ -46,4 +46,9 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	{
 		return new \Flame\Components\CategoriesControl($this->context->CategoryFacade);
 	}
+
+	protected function createComponentTagsControl()
+	{
+		return new \Flame\Components\TagControl($this->context->TagFacade);
+	}
 }
