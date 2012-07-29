@@ -37,6 +37,6 @@ class PostPresenter extends FrontPresenter
 
 	protected function createComponentComments()
 	{
-		return new \Flame\Components\CommentsControl($this->post, $this->commentFacade);
+		return new \Flame\Components\Comments\Comment($this->post, $this->commentFacade);
 	}
 }
