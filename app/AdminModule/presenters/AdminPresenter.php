@@ -9,16 +9,16 @@ abstract class AdminPresenter extends \Flame\Application\UI\Presenter
 	{
 		parent::startup();
 
-		$user = $this->getUser();
-
-		if(!$user->isLoggedIn()){
-            $this->redirect('Sign:in');
-		}else{
-			if(!$user->isAllowed($this->name, $this->view)){
-				$this->flashMessage('Access denied');
-				$this->redirect('Dashboard:');
-			}
-		}
+//		$user = $this->getUser();
+//
+//		if(!$user->isLoggedIn()){
+//            $this->redirect('Sign:in');
+//		}else{
+//			if(!$user->isAllowed($this->name, $this->view)){
+//				$this->flashMessage('Access denied');
+//				$this->redirect('Dashboard:');
+//			}
+//		}
 	}
 
 	public function beforeRender()
