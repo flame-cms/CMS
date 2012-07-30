@@ -2,7 +2,7 @@
 
 namespace AdminModule;
 
-use Nette\Application\UI\Form;
+use Flame\Forms\Posts\PostForm;
 
 /**
 * PostPresenter
@@ -95,7 +95,7 @@ class PostPresenter extends AdminPresenter
 	protected function createComponentPostForm()
 	{
 
-		$f = new \Flame\Forms\PostForm(
+		$f = new PostForm(
 			$this->categoryFacade->getLastCategories(),
 			$this->tagFacade->getLastTags()
 		);
@@ -111,7 +111,7 @@ class PostPresenter extends AdminPresenter
         return $f;
 	}
 
-	public function postFormSubmitted(Form $f)
+	public function postFormSubmitted(PostForm $f)
 	{
         if($this->id and !$this->post){
             throw new \Nette\Application\BadRequestException;
