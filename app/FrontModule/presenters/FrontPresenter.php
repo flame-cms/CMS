@@ -11,10 +11,10 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	{
 		parent::startup();
 
-//		if(!$this->getUser()->isAllowed($this->name, $this->view)){
-//			$this->flashMessage('Access denied');
-//			$this->redirect('Homepage:');
-//		}
+		if(!$this->getUser()->isAllowed($this->name, $this->view)){
+			$this->flashMessage('Access denied');
+			$this->redirect('Homepage:');
+		}
 
         $this->initGlobalParameters();
 	}
