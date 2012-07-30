@@ -7,76 +7,17 @@
 
 	<title>{ifset $title}{$title}{/ifset}{if $name != ''} &ndash; {$name}{/if} &ndash; Administration</title>
 
-	<link rel="stylesheet" media="screen" href="{$basePath}/css/reset.css" type="text/css">
-	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/admin/screen.css" type="text/css">
+	<link rel="stylesheet" media="screen" href="{$baseUrl}/css/reset.css" type="text/css">
+	<link rel="stylesheet" media="screen,projection,tv" href="{$baseUrl}/css/admin/screen.css" type="text/css">
 
-	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="{$baseUrl}/favicon.ico" type="image/x-icon">
 
 	<script type="text/javascript" src="{$jqueryLib}"></script>
-	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
-	<script type="text/javascript" src="{$basePath}/js/ajax.js"></script>
-	<script type="text/javascript" src="{$basePath}/js/admin/createSlug.js"></script>
-    <script type="text/javascript" src="{$basePath}/js/admin/tiny_mce/tiny_mce.js" ></script>
-	<script type="text/javascript" src="{$basePath}/js/admin/epiceditor/js/epiceditor.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/js/netteForms.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/js/ajax.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/js/admin/createSlug.js"></script>
 
-	<script type="text/javascript" >
-		$(document).ready(function(){
-			tinyMCE.init({
-				mode: "specific_textareas",
-				editor_selector: "mceEditor",
-				theme : "advanced"
-			});
-
-			var opts = {
-				container: 'frm-postForm-content',
-				basePath: {$basePath . '/js/admin/epiceditor'},
-				clientSideStorage: false,
-				localStorageName: 'epiceditor',
-				parser: marked,
-				file: {
-					name: 'epiceditor',
-					defaultContent: '',
-					autoSave: 100
-				},
-				theme: {
-					base:'/themes/base/epiceditor.css',
-					preview:'/themes/preview/preview-dark.css',
-					editor:'/themes/editor/epic-dark.css'
-				},
-				focusOnLoad: false,
-				shortcut: {
-					modifier: 18,
-					fullscreen: 70,
-					preview: 80,
-					edit: 79
-				}
-			}
-
-			var epicEditor = new EpicEditor(opts);
-			epicEditor.load(function(){
-				console.log('epicEditor was loaded.');
-			});
-
-			$('.use-markdown-syntax').change(function (){
-				if($('.use-markdown-syntax').attr('checked')){
-					tinyMCE.execCommand('mceFocus', false, 'frm-postForm-content');
-					tinyMCE.execCommand('mceRemoveControl', false, 'frm-postForm-content');
-
-					epicEditor.load(function(){
-						console.log('epicEditor was loaded.');
-					});
-				}else{
-					tinyMCE.execCommand('mceAddControl', false, 'frm-postForm-content');
-
-					epicEditor.unload(function(){
-						console.log('epicEditor was unloaded.');
-					});
-				}
-			});
-
-		});
-	</script >
-	{block head}{/block}
+	{#head}{/#}
 </head>
 
 <body>
