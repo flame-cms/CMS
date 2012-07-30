@@ -22,7 +22,13 @@ $configurator->setOptionalParameters();
 $configurator->enableDebugger(WWW_DIR . '/../log');
 $configurator->setTempDirectory(WWW_DIR . '/../temp');
 $configurator->createRobotLoader()->addDirectory(APP_DIR)->register();
-$configurator->addConfig(FLAME_DIR . '/Config/config.neon');
+
+if (PHP_SAPI == 'cli') {
+	$configurator->addConfig(FLAME_DIR . '/Config/config.neon', $configurator::DEVELOPMENT);
+}else{
+	$configurator->addConfig(FLAME_DIR . '/Config/config.neon', $configurator::AUTO);
+}
+
 $container = $configurator->createContainer();
 
 $doctrineConfig = $container->getService('EntityManagerConfig');
