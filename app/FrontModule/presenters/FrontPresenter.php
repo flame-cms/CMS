@@ -28,6 +28,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	public function beforeRender()
 	{
 		parent::beforeRender();
+		$this->template->name = $this->context->OptionFacade->getOptionValue('name');
 		$this->template->menus = $this->context->PageFacade->getLastPages($this->itemsInMenu);
 
 	}
