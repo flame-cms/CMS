@@ -34,8 +34,8 @@ class NewsreelFacadeTest extends IntegrationTestCase
 //
 //    }
 
-    private function createNewsreel($date = new DateTime())
+    private function createNewsreel($date = null)
     {
-        return new \Flame\Models\Newsreel\Newsreel('newsreel', 'the best test of newsreel', $date);
+        return new \Flame\Models\Newsreel\Newsreel('newsreel', 'the best test of newsreel', $date ? $date : new \DateTime());
     }
 }
