@@ -1,56 +1,41 @@
 <?php
 
-require LIBS_DIR . '/jsifalda/flame/Flame/Models/Newsreel/NewsreelFacade.php';
-
-use Flame\Models\Newsreel\NewsreelRepository,
-	Flame\Models\Newsreel\Newsreel,
-	Flame\Models\Newsreel\NewsreelFacade;
-
-class NewsreelFacadeTest extends UnitTestCase
+class NewsreelFacadeTest extends IntegrationTestCase
 {
-    private $repository;
 
     private $facade;
 
+	private $repository;
+
     public function setUp()
     {
+	    $this->facade = new \Flame\Models\Newsreel\NewsreelFacade($this->getContext()->EntityManager);
 
-        $this->repository = $this->getMockBuilder('\Flame\Models\Newsreel\NewsreelRepository')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->facade = new NewsreelFacade($this->repository);
-
-	    exit('sdf');
-
+	    $this->repository = $this->getMockBuilder('\Flame\Models\Newsreel\NewsreelRepository')
+		    ->disableOriginalConstructor()
+		    ->getMock();
     }
 
-    public function testGetOne()
+	public function testGetOne()
+	{
+		$newsreel = $this->createNewsreel();
+		$this->repository->expects($this->once())
+			->method('findOneById')
+			//->with(1)
+			->will($this->returnValue($newsreel));
+
+		$this->assertEquals($newsreel, $this->facade->getOne(1));
+	}
+
+//    public function testPersist()
+//    {
+//        $newsreelPattern = $this->createNewsreel();
+//		$this->facade->persist($newsreelPattern);
+//
+//    }
+
+    private function createNewsreel($date = new DateTime())
     {
-        $newsreelPattern = $this->createNewsreel();
-        $this->repository->expects($this->once())
-            ->method('getOne')
-            ->with(1)
-            ->will($this->returnValue($newsreelPattern));
-
-        $this->assertEquals($newsreelPattern, $this->facade->getOne(1));
-    }
-
-    public function testLastnewsreel()
-    {
-        $newsreelPattern = $this->createNewsreel();
-
-        $this->repository->expects($this->once())
-            ->method('getLastNewsreel')
-            ->will($this->returnValue(array($newsreelPattern)));
-
-        $newsreel = $this->facade->getLastNewsreel();
-        $this->assertEquals(1, count($newsreel));
-        $this->assertEquals($newsreelPattern, $newsreel[0]);
-    }
-
-    private function createNewsreel()
-    {
-        return new Newsreel(1, 'newsreel', 'the best test of newsreel', new \DateTime(), 0);
+        return new \Flame\Models\Newsreel\Newsreel('newsreel', 'the best test of newsreel', $date);
     }
 }

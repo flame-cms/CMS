@@ -12,4 +12,9 @@ abstract class IntegrationTestCase extends PHPUnit_Framework_TestCase
 		return Environment::getService('container');
 	}
 
+	public function getContext()
+	{
+		return Environment::getContext();
+	}
+
 }

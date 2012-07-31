@@ -1,9 +1,16 @@
 ## Running tests ##
 
+### Unit & integration tests ###
+
+Install PHPUnit:
+
+	pear config-set auto_discover 1
+	pear install pear.phpunit.de/PHPUnit
+	pear install phpunit/PHPUnit_Selenium
+
 Run unit & integration tests:
 
-	cd tests
-	phpunit ./case/unit
+	phpunit ./tests/case/unit/
 
 ### Selenium tests ###
 
@@ -18,4 +25,4 @@ Run Selenium server:
 Run selenium tests:
 
 	cd tests
-	phpunit ./case/selenium
+	phpunit ./tests/case/selenium/
