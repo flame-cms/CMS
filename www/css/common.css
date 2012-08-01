@@ -1,0 +1,40 @@
+body {
+    font: 16px/1.5 Georgia, serif;
+    color: #333;
+    background-color: #fff;
+    margin: 20px auto;
+    min-width: 770px;
+}
+.error {
+    background-color: #DB568B;
+    padding: 5px;
+    list-style: none;
+    color: #000000;
+}
+a[href^="error:"] {
+    background: red;
+    color: white;
+}
+div.flash {
+    color: black;
+    background: #FFF9D7;
+    border: 1px solid #E2C822;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.required { color: maroon }
+
+
+#ajax-spinner {
+    margin: 15px 0 0 15px;
+    padding: 13px;
+    background: white url('../images/spinner.gif') no-repeat 50% 50%;
+    font-size: 0;
+    z-index: 123456;
+    display: none;
+}
