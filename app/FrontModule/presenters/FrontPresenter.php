@@ -21,7 +21,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 
     private function initGlobalParameters()
     {
-        $option = $this->context->OptionFacade->getOptionValue('items_in_menu');
+        $option = $this->context->OptionFacade->getOptionValue('menu_items');
         if(!is_null($option)) $this->itemsInMenu = $option;
     }
 
@@ -35,7 +35,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 
 	protected function createComponentNewsreelControl()
 	{
-        $itemsInNewsreelMenuList = $this->context->OptionFacade->getOptionValue('items_in_newsreel_menu_list');
+        $itemsInNewsreelMenuList = $this->context->OptionFacade->getOptionValue('menu_newsreel_count');
 
 		$newsreel = new \Flame\Components\Newsreel\Newsreel($this->context->NewsreelFacade);
         if(!is_null($itemsInNewsreelMenuList)) $newsreel->setCountOfItemsInNewsreel($itemsInNewsreelMenuList);
