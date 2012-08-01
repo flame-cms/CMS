@@ -121,11 +121,16 @@ class ImportPresenter extends AdminPresenter
 		if($postData['comment'] == 'closed') $comment = false; else $comment = true;
 		if($postData['status'] == 'publish') $status = true; else $status = false;
 
-		$post->setTags($this->createNewTags($postData['tags']))
-			->setDescription($postData['description'])
+		$post->setDescription($postData['description'])
 			->setCreated($postData['pubDate'])
 			->setPublish($status)
 			->setComment($comment);
+
+		if(isset($postData['tags']) and count($postData['tags'])){
+			foreach($postData['tags'] as $tag){
+				$post->setTags($this->createNewTag($tag));
+			}
+		}
 
 		$this->postFacade->persist($post);
 	}
