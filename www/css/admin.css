@@ -44,3 +44,7 @@ label {
 .tags-multiSelect{
     max-height: 200px;
 }
+
+.pair {
+    clear: both;
+}
