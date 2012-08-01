@@ -12,7 +12,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="robots" content="{$robots}" n:ifset="$robots">
 
-	<title>{ifset $title}{$title}{/ifset}{if $name != ''} &ndash; {$name}{/if}</title>
+	<title>{ifset $title}{$title}{/ifset}{ifset $name}{if $name != ''} &ndash; {$name}{/if}{/ifset}</title>
 
 	<meta name="description" content="{$desc}" n:ifset="$desc">
 	<meta name="keywords" content="{$keys}" n:ifset="$keys">
@@ -35,7 +35,7 @@
 <body>
 	<div id="header">
 		<div id="header-cont" class="wrapper">
-			<H1>{$name}</H1>
+			<H1>{ifset $name}{$name}{/ifset}</H1>
 		</div>
 		<ul id="navigation">
 			<div class="wrapper">
