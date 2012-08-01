@@ -8,7 +8,7 @@ The basic structure for your application based on [Flame CMS](https://github.com
 	git clone git://github.com/jsifalda/flame-sandbox.git myApp
 	cd myApp
 
-- Make directories './log' and './temp' writable (chmod 777)
+- Make directories './log', './temp' and './www/media' writable (chmod 777)
 - Install dependencies (composer.phar included in sandbox)
 
 	php composer.phar install
