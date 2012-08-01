@@ -1,9 +1,5 @@
 body {
-	font-size: 13px;
-	font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;	
-	width:auto; height:auto;	
-	padding: 0 0 0 0;
-	margin: 0;
+	margin: 0 auto;
 	color: #7d7d7b;	
 	background-color: #f3f2f2;
 	border-top: 5px solid #ffd800;	

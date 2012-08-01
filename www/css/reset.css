@@ -52,27 +52,3 @@ th, td, caption {padding:4px 10px 4px 5px;}
 tbody tr:nth-child(even) td, tbody tr.even td {background:#e5ecf9;}
 tfoot {font-style:italic;}
 caption {background:#8EB6FA;}
-
-.error {
-	background-color: #DB568B;
-	padding: 5px;
-	list-style: none;
-    color: #000000;
-}
-a[href^="error:"] {
-	background: red;
-	color: white;
-}
-div.flash {
-	color: black;
-	background: #FFF9D7;
-	border: 1px solid #E2C822;
-	padding: 1em;
-	margin: 1em 0;
-}
-
-.clear {
-	clear: both;
-}
-
-.required { color: maroon }
