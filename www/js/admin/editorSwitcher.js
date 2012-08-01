@@ -14,7 +14,7 @@ $(document).ready(function(){
 
     var opts = {
         container: 'epicEditor',
-        basePath: getBaseUrl() + '/js/admin/epiceditor',
+        basePath: getBaseUrl() + '/epiceditor',
         clientSideStorage: false,
         localStorageName: 'epiceditor',
         parser: marked,
