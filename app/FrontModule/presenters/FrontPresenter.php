@@ -50,6 +50,11 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 
 	protected function createComponentTagsControl()
 	{
-		return new \Flame\Components\Tags\Tag($this->context->TagFacade);
+		$countOfTags = $this->context->OptionFacade->getOptionValue('menu_tags_count');
+
+		$tagControl = new \Flame\Components\Tags\Tag($this->context->TagFacade);
+		if(!is_null($countOfTags)) $tagControl->setCountOfItems($countOfTags);
+
+		return $tagControl;
 	}
 }
