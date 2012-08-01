@@ -185,7 +185,7 @@ class ImportPresenter extends AdminPresenter
 	private function createDirForImages()
 	{
 		if(!file_exists($this->dirName)){
-			return mkdir($this->dirName);
+			return mkdir($this->dirName, 0777, true);
 		}
 	}
 
