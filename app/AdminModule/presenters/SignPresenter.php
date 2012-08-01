@@ -21,7 +21,7 @@ class SignPresenter extends \Flame\Application\UI\Presenter
 	{
 		$form = new SignInForm();
 		$form->configure();
-		$form->onSuccess[] = callback($this, 'signInFormSubmitted');
+		$form->onSuccess[] = $this->signInFormSubmitted;
 		return $form;
 	}
 
@@ -29,20 +29,17 @@ class SignPresenter extends \Flame\Application\UI\Presenter
 	{
 
 		try {
-
-			$user = $this->getUser();
 			$values = $form->getValues();
-
 			if ($values->persistent) {
-				$user->setExpiration('+30 days', FALSE);
+				$this->getUser()->setExpiration('+ 14 days', FALSE);
+			} else {
+				$this->getUser()->setExpiration('+ 20 minutes', TRUE);
 			}
-
-			$user->login($values->email, $values->password);
-			$this->flashMessage('Login was successful', 'success');
-			$this->redirect('Dashboard:');
+			$this->getUser()->login($values->email, $values->password);
+			$this->redirect('DashBoard:');
 
 		} catch (NS\AuthenticationException $e) {
-			$form->addError('Invalid username or password');
+			$form->addError($e->getMessage());
 		}
 	}
 
