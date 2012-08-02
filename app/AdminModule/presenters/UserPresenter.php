@@ -57,7 +57,7 @@ class UserPresenter extends AdminPresenter
 	{
 		$form = new UserForm();
 
-		$userInfo = $this->userInfoFacade->getOneByUser($this->user);
+		$userInfo = $this->user->getInfo();
 		$default = array_merge(
 			array('email' => $this->user->getEmail()),
 			$userInfo ? $userInfo->toArray() : array()
@@ -88,7 +88,7 @@ class UserPresenter extends AdminPresenter
 		$values = $form->getValues();
 
 
-		if($info = $this->userInfoFacade->getOneByUser($this->user)){
+		if($info = $this->user->getInfo()){
 			$info->setName($values['name'])
 				->setAbout($values['about'])
 				->setBirthday($values['birthday'])
@@ -97,13 +97,15 @@ class UserPresenter extends AdminPresenter
 				->setTwitter($values['twitter']);
 			$this->userInfoFacade->persist($info);
 		}else{
-			$info = new \Flame\Models\UsersInfo\UserInfo($this->user, $values['name']);
+			$info = new \Flame\Models\UsersInfo\UserInfo($values['name']);
 			$info->setAbout($values['about'])
 				->setBirthday($values['birthday'])
 				->setWeb($values['web'])
 				->setFacebook($values['facebook'])
 				->setTwitter($values['twitter']);
 			$this->userInfoFacade->persist($info);
+			$this->user->setInfo($info);
+			$this->userFacade->persist($this->user);
 		}
 
 		$this->flashMessage('User was edited');
