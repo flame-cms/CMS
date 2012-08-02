@@ -13,4 +13,8 @@ The basic structure for your application based on [Flame CMS](https://github.com
 
 	php composer.phar install
 
+- Create database structure with command:
+
+	php app/doctrine-cli.php  orm:schema-tool:update --force
+
 Flame is ready now!
