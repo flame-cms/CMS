@@ -6,7 +6,7 @@
 	<meta name="robots" content="noindex,nofollow">
 
 	<title>
-		{ifset $title}{$title}{/ifset}{ifset $name}{if $name != ''} &ndash; {$name}{/if}{/ifset} &ndash; Administration</title>
+		{ifset $title}{$title}{/ifset} &ndash; Administration</title>
 
 	<link rel="stylesheet" media="screen" href="{$baseUrl}/css/reset.css" type="text/css">
 	<link rel="stylesheet" media="screen" href="{$baseUrl}/css/common.css" type="text/css">
@@ -24,8 +24,6 @@
 
 <body>
 	<div id="header">
-
-		<H1>{ifset $name}{$name}{/ifset}</H1>
 
 		{if $user->isLoggedIn() and count($menuItems)}
 			<div id="navigation">
