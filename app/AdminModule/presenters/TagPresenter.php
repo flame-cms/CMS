@@ -19,7 +19,7 @@ class TagPresenter extends AdminPresenter
 
 	private $tagFacade;
 
-	public function __construct(\Flame\Models\Tags\TagFacade $tagFacade)
+	public function injectTagFacade(\Flame\Models\Tags\TagFacade $tagFacade)
 	{
 		$this->tagFacade = $tagFacade;
 	}
