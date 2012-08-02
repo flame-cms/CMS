@@ -152,7 +152,7 @@ class UserPresenter extends AdminPresenter
 		$user = $this->getUser();
 
 		try {
-			$this->authenticator->authenticate(array($user->getIdentity()->username, $values->oldPassword));
+			$this->authenticator->authenticate(array($user->getIdentity()->email, $values->oldPassword));
 
             $userEntity = $this->userFacade->getOne($user->getId());
             $this->authenticator->setPassword($userEntity, $values['newPassword']);
