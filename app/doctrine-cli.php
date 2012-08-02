@@ -1,16 +1,24 @@
 <?php
+
+use Doctrine\Common\ClassLoader;
+
 define('WWW_DIR', __DIR__ . '/../www');
 define('APP_DIR', __DIR__ . '/../app');
 define('LIBS_DIR', __DIR__ . '/../libs');
 
 require APP_DIR . '/bootstrap.php';
 
+$classLoader = new ClassLoader('Doctrine\DBAL\Migrations', $container->getParam('entities'));
+$classLoader->register();
+
 $entityManager = $container->getByType('Doctrine\ORM\EntityManager');
 
 // symfony console app helpers
-$helperSet = new Symfony\Component\Console\Helper\HelperSet();
-$helperSet->set(new Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($entityManager->getConnection()), 'db');
-$helperSet->set(new Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($entityManager), 'em');
+$helperSet = new Symfony\Component\Console\Helper\HelperSet(array(
+	'db' => new Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($entityManager->getConnection()),
+	'em' => new Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($entityManager),
+	'dialog' => new \Symfony\Component\Console\Helper\DialogHelper(),
+));
 
 // symfony console app
 $cli = new Symfony\Component\Console\Application('Doctrine Command Line Interface', Doctrine\ORM\Version::VERSION);
@@ -20,6 +28,14 @@ $cli->addCommands(array(
 	// DBAL Commands
 	new Doctrine\DBAL\Tools\Console\Command\RunSqlCommand(),
 	new Doctrine\DBAL\Tools\Console\Command\ImportCommand(),
+
+	// Migrations Commands
+	new \Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand(),
+	new \Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand(),
+	new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand(),
+	new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand(),
+	new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand(),
+	new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand(),
 
 	// ORM Commands
 	new Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand(),
