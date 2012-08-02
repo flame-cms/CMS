@@ -14,7 +14,7 @@ $helperSet->set(new Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($entit
 
 // symfony console app
 $cli = new Symfony\Component\Console\Application('Doctrine Command Line Interface', Doctrine\ORM\Version::VERSION);
-$cli->setCatchExceptions(FALSE);
+$cli->setCatchExceptions(true);
 $cli->setHelperSet($helperSet);
 $cli->addCommands(array(
 	// DBAL Commands
