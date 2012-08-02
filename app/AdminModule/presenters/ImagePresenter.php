@@ -48,8 +48,7 @@ class ImagePresenter extends AdminPresenter
 	{
 		$values = $f->getValues();
 
-		$image = new \Flame\Models\Images\Image(
-			$this->userFacade->getOne($this->getUser()->getId()), $this->saveImage($values['image']));
+		$image = new \Flame\Models\Images\Image($this->saveImage($values['image']));
 
 		$image->setName($values['name'])
 			->setDescription($values['description']);
