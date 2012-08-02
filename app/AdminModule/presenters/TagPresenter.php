@@ -31,7 +31,9 @@ class TagPresenter extends AdminPresenter
 
 	public function actionEdit($id)
 	{
-		if($this->tag = $this->tagFacade->getOne($id)){
+		$this->id = $id;
+
+		if(!$this->tag = $this->tagFacade->getOne($id)){
 			$this->flashMessage('Tag does not exist!');
 			$this->redirect('Tag:');
 		}
