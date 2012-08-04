@@ -12,7 +12,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="robots" content="{$robots}" n:ifset="$robots">
 
-	<title>{ifset $title}{$title}{/ifset}{ifset $name}{if $name != ''} &ndash; {$name}{/if}{/ifset}</title>
+	<title>{#title}{ifset $title}{$title}{/ifset}{/#}{ifset $name}{if $name != ''} &ndash; {$name}{/if}{/ifset}</title>
 
 	<meta name="description" content="{$desc}" n:ifset="$desc">
 	<meta name="keywords" content="{$keys}" n:ifset="$keys">
