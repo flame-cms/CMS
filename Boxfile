@@ -15,10 +15,11 @@ web1:
   after_build:
     - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
   after_deploy:
-    - "php app/doctrine-cli.php orm:schema-tool:update --force"
-    - "php app/doctrine-cli.php dbal:import app/default-data.sql"
     - "rm -Rf temp/*"
     - "rm -Rf log/*"
+    - "php app/doctrine-cli.php orm:schema-tool:drop --force"
+    - "php app/doctrine-cli.php orm:schema-tool:create"
+    - "php app/doctrine-cli.php dbal:import app/default-data.sql"
 db1: #component type & number
   name: flame-app
   type: mysql
