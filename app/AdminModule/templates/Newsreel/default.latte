@@ -1,18 +1,20 @@
 {var $title='List of newsreel'}
 
-{block #content}
+{#content}
 
     <p><a n:href="Newsreel:add">Add new newsreel</a> </p>
 
     {snippet #newsreel}
         {if count($newsreels)}
-            <table>
+            <table class="table table-striped table-condensed">
                 <thead>
-                <th>Date</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Hit</th>
-                <th>Actions</th>
+                    <tr>
+	                    <th>Date</th>
+	                    <th>Title</th>
+	                    <th>Content</th>
+	                    <th>Hit</th>
+	                    <th>Actions</th>
+                    </tr>
                 </thead>
 
                 <tbody>
@@ -32,4 +34,4 @@
             <h4>None</h4>
         {/if}
     {/snippet}
-{/block}
+{/#}

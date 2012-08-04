@@ -1,18 +1,21 @@
 {var $title = 'Comments'}
 
-{block #content}
+{#content}
 	{snippet #comments}
 		{if count($comments)}
-			<table>
+			<table class="table table-striped table-condensed">
 				<thead>
-				<th>Post</th>
-				<th>User name</th>
-				<th>Email</th>
-				<th>Web</th>
-				<th>Content</th>
-				<th>Published</th>
-				<th>Created</th>
-				<th>Actions</th>
+					<tr>
+						<th>Post</th>
+						<th>User name</th>
+						<th>Email</th>
+						<th>Web</th>
+						<th>Content</th>
+						<th>Published</th>
+						<th>Created</th>
+						<th>Actions</th>
+					</tr>
+
 				</thead>
 
 				<tbody>
@@ -39,5 +42,5 @@
 			<h4>None</h4>
 		{/if}
 	{/snippet}
-{/block}
+{/#}
 	

@@ -1,27 +1,5 @@
 {var $title = 'Sign in'}
 
 {#content}
-
-    {form signInForm}
-    <div class="sign-in-form">
-        {control $form errors}
-
-        <div class="pair">
-            {label email /}
-            <div class="input">{input email}</div>
-        </div>
-        <div class="pair">
-            {label password /}
-            <div class="input">{input password}</div>
-        </div>
-        <div class="pair">
-            <div class="input">{input persistent} {label persistent /}</div>
-        </div>
-
-        <div class="pair">
-            <div class="input">{input login}</div>
-        </div>
-    </div>
-    {/form}
-
+    {control signInForm}
 {/#}

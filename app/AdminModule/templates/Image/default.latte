@@ -1,20 +1,22 @@
 {var $title="Images"}
 
-{block #content}
+{#content}
 
 	<p><a n:href="Image:upload">Upload new Image</a></p>
 
 	{snippet #images}
 
 		{if count($images)}
-			<table>
+			<table class="table table-striped table-condensed">
 				<thead>
-					<th>Thumbnail</th>
-					<th>File</th>
-					<th>Url</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Actions</th>
+					<tr>
+						<th>Thumbnail</th>
+						<th>File</th>
+						<th>Url</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Actions</th>
+					</tr>
 				</thead>
 
 				<tbody>
