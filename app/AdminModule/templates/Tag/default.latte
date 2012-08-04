@@ -6,7 +6,7 @@
 
 	{snippet addForm}
 	<fieldset>
-		{form tagForm class => ajax}
+		{form tagForm class => [ajax]}
 			<table>
 				<tr>{control $form errors}</tr>
 				<tr>
@@ -34,12 +34,13 @@
 			<h3>Tags</h3>
 
 			<table>
-
 				<thead>
-				<th>Name</th>
-				<th>Slug</th>
-				<th>Posts</th>
-				<th>Actions</th>
+					<tr>
+						<th>Name</th>
+						<th>Slug</th>
+						<th>Posts</th>
+						<th>Actions</th>
+					</tr>
 				</thead>
 
 				<tbody>

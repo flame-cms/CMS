@@ -7,56 +7,89 @@
 
 	<title>{#title}{ifset $title}{$title}{/ifset}{/#} &ndash; Administration</title>
 
-	<link rel="stylesheet" media="screen" href="{$baseUrl}/css/reset.css" type="text/css">
-	<link rel="stylesheet" media="screen" href="{$baseUrl}/css/common.css" type="text/css">
-	<link rel="stylesheet" media="screen,projection,tv" href="{$baseUrl}/css/admin.css" type="text/css">
+	<link rel="stylesheet" style="text/css" href="{$baseUrl}/css/bootstrap.min.css" />
+	<link rel="stylesheet" style="text/css" href="{$baseUrl}/css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" style="text/css" href="{$baseUrl}/css/common.css">
 
 	<link rel="shortcut icon" href="{$baseUrl}/favicon.ico" type="image/x-icon">
 
 	<script type="text/javascript" src="{$baseUrl}/js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/js/netteForms.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/js/ajax.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/js/admin/createSlug.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/js/createSlug.js"></script>
+
+	<style type="text/css">
+		body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+
+		input, textarea {
+			width: auto;
+		}
+
+		.tags-multiSelect{
+			max-height: 200px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		$(document).ready(function (){
+			$('.button').addClass('btn btn-primary');
+			$('form').addClass('well');
+			$('table').addClass('table table-striped table-condensed');
+		});
+	</script>
 
 	{#head}{/#}
 </head>
 
 <body>
-	<div id="header">
 
-		{if $user->isLoggedIn() and count($menuItems)}
-			<div id="navigation">
-				<ul>
-					<li n:foreach="$menuItems as $menuItem">
-						<a n:href="{$menuItem->page}">{$menuItem->title}</a>
-					</li>
-				</ul>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="{$baseUrl}/admin/">{*NAME*}</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+					{if $user->isLoggedIn() and count($menuItems)}
+						<li n:foreach="$menuItems as $menuItem">
+							<a n:href="{$menuItem->page}">{$menuItem->title}</a>
+						</li>
+					{/if}
+					</ul>
+				</div><!--/.nav-collapse -->
 			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="hero-unit">
+
+			{snippet flashMessages}
+				<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+			{/snippet}
+
+
+			{include #content}
+
+		</div>
+
+		{if $user->isLoggedIn()}
+			<footer>
+				Logged in as <a n:href="User:edit $user->getId()">{$user->getIdentity()->email}</a> |
+				<a n:href="User:password">Change password</a> |
+				<a n:href="signOut!">Logout</a> |
+				<a style="font-weight: bold;" n:href=":Front:Homepage:">Show web</a>
+			</footer>
 		{/if}
 
-		<H2>{$presenter->name} | {$presenter->view}</H2>
 	</div>
-
-	<div id="main">
-
-		{snippet flashMessages}
-			<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
-		{/snippet}
-
-		<div id="content">
-			{include #content}
-		</div>
-
-	</div>
-
-	{if $user->isLoggedIn()}
-		<div id="footer">
-			Logged in as <a n:href="User:edit $user->getId()">{$user->getIdentity()->email}</a> |
-			<a n:href="User:password">Change password</a> |
-			<a n:href="signOut!">Logout</a> |
-			<a style="font-weight: bold;" n:href=":Front:Homepage:">Show web</a>
-		</div>
-	{/if}
-
 </body>
 </html>
