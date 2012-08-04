@@ -1,5 +1,6 @@
 {block #ListFull}
 
+	{cache expire => '+10 minutes'}
 	<div class="post-box" n:foreach="$posts as $post">
 		<h2><a href="{plink Post: $post->id, slug => $post->slug}"> {$post->name}</a></h2>
 		{if $post->markdown}
@@ -11,4 +12,6 @@
 	</div>
 
 	{control paginator}
+	{/cache}
+
 {/block}
