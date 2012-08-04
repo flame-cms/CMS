@@ -103,7 +103,11 @@ class CategoryPresenter extends AdminPresenter
 			}
 		}
 
-		$this->redirect('this');
+		if($this->isAjax()){
+			$this->invalidateControl();
+		}else{
+			$this->redirect('this');
+		}
 	}
 
 	public function handleDelete($id)
