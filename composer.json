@@ -1,8 +1,8 @@
 {
-	"name": "jsifalda/flame-sandbox",
-	"description": "Sandbox for flame:CMS",
+	"name": "jsifalda/flame-cms",
+	"description": "Simple and smart CMS based on framework Flame",
 	"keywords": ["cms", "nette", "simple", "flame", "jsifalda", "sandbox"],
-	"homepage": "https://github.com/jsifalda/flame-sandbox",
+	"homepage": "https://github.com/jsifalda/flame-cms",
 	"license": "BSD-2-Clause-FreeBSD",
 	"minimum-stability":"dev",
 
@@ -15,7 +15,7 @@
 
 	"support":{
 		"email":"sifalda.jiri@gmail.com",
-		"issues":"https://github.com/jsifalda/flame/issues"
+		"issues":"https://github.com/jsifalda/flame-cms/issues"
 	},
 
 	"config": {
@@ -23,6 +23,9 @@
 	},
 
 	"require": {
-		"jsifalda/flame": "dev-master"
+		"jsifalda/flame": "dev-master",
+		"dflydev/markdown": "1.0.2",
+		"doctrine/migrations": "dev-master",
+		"symfony/console": "2.0.*"
 	}
 }
