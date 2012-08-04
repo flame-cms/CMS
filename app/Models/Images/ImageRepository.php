@@ -8,7 +8,7 @@
  * @date    11.07.12
  */
 
-namespace Flame\Models\Images;
+namespace Flame\CMS\Models\Images;
 
 
 class ImageRepository extends \Flame\Doctrine\Repository

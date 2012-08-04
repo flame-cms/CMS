@@ -8,7 +8,7 @@
  * @date    23.07.12
  */
 
-namespace Flame\Models\UsersInfo;
+namespace Flame\CMS\Models\UsersInfo;
 
 class UserInfoFacade extends \Nette\Object
 {
@@ -17,7 +17,7 @@ class UserInfoFacade extends \Nette\Object
 
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
 	{
-		$this->repository = $entityManager->getRepository('\Flame\Models\UsersInfo\UserInfo');
+		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\UsersInfo\UserInfo');
 	}
 
 	public function persist(UserInfo $user)

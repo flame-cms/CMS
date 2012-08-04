@@ -14,7 +14,7 @@ class PagePresenter extends AdminPresenter
 
     private $userFacade;
 
-    public function __construct(\Flame\Models\Pages\PageFacade $pageFacade, \Flame\Models\Users\UserFacade $userFacade)
+    public function __construct(\Flame\CMS\Models\Pages\PageFacade $pageFacade, \Flame\CMS\Models\Users\UserFacade $userFacade)
     {
         $this->pageFacade = $pageFacade;
         $this->userFacade = $userFacade;
@@ -39,7 +39,7 @@ class PagePresenter extends AdminPresenter
 
     protected function createComponentPageForm()
     {
-        $form = new \Flame\Forms\PageForm();
+        $form = new \Flame\CMS\Forms\PageForm();
 
 	    if($this->id){
 			$form->configureEdit();
@@ -78,7 +78,7 @@ class PagePresenter extends AdminPresenter
             $this->redirect('this');
 
         }else{
-            $page = new \Flame\Models\Pages\Page(
+            $page = new \Flame\CMS\Models\Pages\Page(
                 $this->userFacade->getOne($this->getUser()->getId()),
                 $values['name'],
                 $slug,

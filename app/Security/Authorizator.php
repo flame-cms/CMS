@@ -1,6 +1,6 @@
 <?php
 
-namespace Flame\Security;
+namespace Flame\CMS\Security;
 
 use Nette\Security as NS;
 

@@ -8,7 +8,7 @@
  * @date    15.07.12
  */
 
-namespace Flame\Forms;
+namespace Flame\CMS\Forms;
 
 class TagForm extends \Flame\Application\UI\Form
 {

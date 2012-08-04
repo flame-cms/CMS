@@ -1,16 +1,16 @@
 <?php
 
-namespace Flame\Components\Newsreel;
+namespace Flame\CMS\Components\Newsreel;
 
 class Newsreel extends \Flame\Application\UI\Control
 {
 	/**
-	 * @var \Flame\Models\Newsreel\NewsreelFacade
+	 * @var \Flame\CMS\Models\Newsreel\NewsreelFacade
 	 */
 	private $newsreelFacade;
 	
 	/**
-	 * @var \Flame\Models\Options\OptionFacade
+	 * @var \Flame\CMS\Models\Options\OptionFacade
 	 */
 	private $optionFacade;
 	

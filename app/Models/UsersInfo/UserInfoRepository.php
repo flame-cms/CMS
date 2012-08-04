@@ -8,7 +8,7 @@
  * @date    23.07.12
  */
 
-namespace Flame\Models\UsersInfo;
+namespace Flame\CMS\Models\UsersInfo;
 
 class UserInfoRepository extends \Flame\Doctrine\Repository
 {

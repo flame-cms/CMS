@@ -37,26 +37,26 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	}
 
 	/**
-	 * @return \Flame\Components\Newsreel\Newsreel
+	 * @return \Flame\CMS\Components\Newsreel\Newsreel
 	 */
 	protected function createComponentNewsreelControl()
 	{
-		return new \Flame\Components\Newsreel\Newsreel($this, 'newsreelControl');
+		return new \Flame\CMS\Components\Newsreel\Newsreel($this, 'newsreelControl');
 	}
 
 	/**
-	 * @return \Flame\Components\Categories\Category
+	 * @return \Flame\CMS\Components\Categories\Category
 	 */
 	protected function createComponentCategoriesControl()
 	{
-		return new \Flame\Components\Categories\Category($this, 'categoriesControl');
+		return new \Flame\CMS\Components\Categories\Category($this, 'categoriesControl');
 	}
 
 	/**
-	 * @return \Flame\Components\Tags\Tag
+	 * @return \Flame\CMS\Components\Tags\Tag
 	 */
 	protected function createComponentTagsControl()
 	{
-		return new \Flame\Components\Tags\Tag($this, 'tagsControl');
+		return new \Flame\CMS\Components\Tags\Tag($this, 'tagsControl');
 	}
 }

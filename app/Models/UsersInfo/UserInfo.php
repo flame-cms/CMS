@@ -8,9 +8,9 @@
  * @date    23.07.12
  */
 
-namespace Flame\Models\UsersInfo;
+namespace Flame\CMS\Models\UsersInfo;
 
-use Flame\Models\Users\User,
+use Flame\CMS\Models\Users\User,
 	DateTime;
 
 /**

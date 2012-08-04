@@ -3,7 +3,7 @@
 namespace AdminModule;
 
 use Nette\Application\UI\Form,
-    \Flame\Models\Options;
+    \Flame\CMS\Models\Options;
 
 /**
 * Represent class for global settings and variables

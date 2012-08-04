@@ -8,9 +8,9 @@
  * @date    09.07.12
  */
 
-namespace Flame\Models\Pages;
+namespace Flame\CMS\Models\Pages;
 
-use Flame\Models\Pages;
+use Flame\CMS\Models\Pages;
 
 class PageFacade extends \Nette\Object
 {
@@ -18,7 +18,7 @@ class PageFacade extends \Nette\Object
 
     public function __construct(\Doctrine\ORM\EntityManager $entityManager)
     {
-        $this->repository = $entityManager->getRepository('\Flame\Models\Pages\Page');
+        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Pages\Page');
     }
 
     public function getOne($id)

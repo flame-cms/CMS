@@ -6,14 +6,14 @@ class NewsreelPresenter extends FrontPresenter
 {
 
 	/**
-	 * @var \Flame\Models\Newsreel\NewsreelFacade
+	 * @var \Flame\CMS\Models\Newsreel\NewsreelFacade
 	 */
 	private $newsreelFacade;
 
 	/**
-	 * @param \Flame\Models\Newsreel\NewsreelFacade $newsreelFacade
+	 * @param \Flame\CMS\Models\Newsreel\NewsreelFacade $newsreelFacade
 	 */
-	public function injectNewsreelFacade(\Flame\Models\Newsreel\NewsreelFacade $newsreelFacade)
+	public function injectNewsreelFacade(\Flame\CMS\Models\Newsreel\NewsreelFacade $newsreelFacade)
 	{
 		$this->newsreelFacade = $newsreelFacade;
 	}

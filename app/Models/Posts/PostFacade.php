@@ -8,7 +8,7 @@
  * @date    10.07.12
  */
 
-namespace Flame\Models\Posts;
+namespace Flame\CMS\Models\Posts;
 
 class PostFacade extends \Nette\Object
 {
@@ -17,7 +17,7 @@ class PostFacade extends \Nette\Object
 
     public function __construct(\Doctrine\ORM\EntityManager $entityManager)
     {
-        $this->repository = $entityManager->getRepository('\Flame\Models\Posts\Post');
+        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Posts\Post');
     }
 
     public function getLastPosts()

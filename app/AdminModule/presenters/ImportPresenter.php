@@ -10,7 +10,7 @@
 
 namespace AdminModule;
 
-use Flame\Forms\ImportForm;
+use Flame\CMS\Forms\ImportForm;
 
 class ImportPresenter extends AdminPresenter
 {
@@ -33,10 +33,10 @@ class ImportPresenter extends AdminPresenter
 
 	public function __construct(
 		\Flame\Utils\WordPressImporter $wordPressImporter,
-		\Flame\Models\Posts\PostFacade $postFacade,
-		\Flame\Models\Users\UserFacade $userFacade,
-		\Flame\Models\Categories\CategoryFacade $categoryFacade,
-		\Flame\Models\Tags\TagFacade $tagFacade
+		\Flame\CMS\Models\Posts\PostFacade $postFacade,
+		\Flame\CMS\Models\Users\UserFacade $userFacade,
+		\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade,
+		\Flame\CMS\Models\Tags\TagFacade $tagFacade
 	)
 	{
 		$this->wordPressImporter = $wordPressImporter;
@@ -110,7 +110,7 @@ class ImportPresenter extends AdminPresenter
 			$category = $this->createNewCategory('Uncategorized');
 		}
 
-		$post = new \Flame\Models\Posts\Post(
+		$post = new \Flame\CMS\Models\Posts\Post(
 			$this->userFacade->getOne($this->getUser()->getId()),
 			$postData['name'],
 			$this->createSlug($postData['name']),
@@ -139,7 +139,7 @@ class ImportPresenter extends AdminPresenter
 	{
 		if($category = $this->categoryFacade->getOneByName($name)) return $category;
 
-		$category = new \Flame\Models\Categories\Category($name, "", $this->createSlug($name));
+		$category = new \Flame\CMS\Models\Categories\Category($name, "", $this->createSlug($name));
 		$this->categoryFacade->persist($category);
 		return $category;
 	}
@@ -148,7 +148,7 @@ class ImportPresenter extends AdminPresenter
 	{
 		if($tag = $this->tagFacade->getOneByName($name)) return $tag;
 
-		$tag = new \Flame\Models\Tags\Tag($name, $this->createSlug($name));
+		$tag = new \Flame\CMS\Models\Tags\Tag($name, $this->createSlug($name));
 		$this->tagFacade->persist($tag);
 		return $tag;
 	}

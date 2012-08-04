@@ -1,6 +1,6 @@
 <?php
 
-namespace Flame\Components\Posts;
+namespace Flame\CMS\Components\Posts;
 
 /**
 * Comments component
@@ -69,11 +69,11 @@ class Post extends \Flame\Application\UI\Control
 	}
 
 	/**
-	 * @return \Flame\Utils\VisualPaginator\Paginator
+	 * @return \Flame\Addons\VisualPaginator\Paginator
 	 */
 	protected function createComponentPaginator()
 	{
-		$visualPaginator = new \Flame\Utils\VisualPaginator\Paginator($this, 'paginator');
+		$visualPaginator = new \Flame\Addons\VisualPaginator\Paginator($this, 'paginator');
 	    $visualPaginator->paginator->itemsPerPage = $this->itemsPerPage;
 	    return $visualPaginator;
 	}

@@ -8,12 +8,12 @@
  * @date    10.07.12
  */
 
-namespace Flame\Models\Posts;
+namespace Flame\CMS\Models\Posts;
 
 use DateTime,
-    Flame\Models\Users\User,
-	Flame\Models\Categories\Category,
-	Flame\Models\Tags\Tag;
+    Flame\CMS\Models\Users\User,
+	Flame\CMS\Models\Categories\Category,
+	Flame\CMS\Models\Tags\Tag;
 
 /**
  * @Entity(repositoryClass="PostRepository")
@@ -24,7 +24,7 @@ class Post extends \Flame\Doctrine\Entity
 {
 
     /**
-     * @ManyToOne(targetEntity="\Flame\Models\Users\User")
+     * @ManyToOne(targetEntity="\Flame\CMS\Models\Users\User")
      */
     protected $user;
 
@@ -54,12 +54,12 @@ class Post extends \Flame\Doctrine\Entity
     protected $content;
 
 	/**
-	 * @ManyToOne(targetEntity="\Flame\Models\Categories\Category", inversedBy="posts")
+	 * @ManyToOne(targetEntity="\Flame\CMS\Models\Categories\Category", inversedBy="posts")
 	 */
 	protected $category;
 
 	/**
-	 * @ManyToMany(targetEntity="\Flame\Models\Tags\Tag", inversedBy="posts")
+	 * @ManyToMany(targetEntity="\Flame\CMS\Models\Tags\Tag", inversedBy="posts")
 	 */
 	protected $tags;
 

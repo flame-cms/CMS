@@ -2,7 +2,7 @@
 
 namespace AdminModule;
 
-use Flame\Forms\Posts\PostForm;
+use Flame\CMS\Forms\Posts\PostForm;
 
 /**
 * PostPresenter
@@ -18,10 +18,10 @@ class PostPresenter extends AdminPresenter
 	private $tagFacade;
 
     public function __construct(
-	    \Flame\Models\Posts\PostFacade $postFacade,
-	    \Flame\Models\Users\UserFacade $userFacade,
-		\Flame\Models\Categories\CategoryFacade $categoryFacade,
-		\Flame\Models\Tags\TagFacade $tagFacade
+	    \Flame\CMS\Models\Posts\PostFacade $postFacade,
+	    \Flame\CMS\Models\Users\UserFacade $userFacade,
+		\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade,
+		\Flame\CMS\Models\Tags\TagFacade $tagFacade
     )
     {
         $this->postFacade = $postFacade;
@@ -177,7 +177,7 @@ class PostPresenter extends AdminPresenter
 		        $this->redirect('this');
 
 	        }else{
-	            $post = new \Flame\Models\Posts\Post(
+	            $post = new \Flame\CMS\Models\Posts\Post(
 	                $this->userFacade->getOne($this->getUser()->getId()),
 	                $values['name'],
 	                $slug,
@@ -210,7 +210,7 @@ class PostPresenter extends AdminPresenter
 	{
 		if($categoryExist = $this->categoryFacade->getOneByName($name)) return $categoryExist;
 
-		$category = new \Flame\Models\Categories\Category($name, "", $this->createSlug($name));
+		$category = new \Flame\CMS\Models\Categories\Category($name, "", $this->createSlug($name));
 		$this->categoryFacade->persist($category);
 		return $category;
 	}
@@ -219,7 +219,7 @@ class PostPresenter extends AdminPresenter
 	{
 		if($tagExist = $this->tagFacade->getOneByName($name)) return $tagExist;
 
-		$tag = new \Flame\Models\Tags\Tag($name, $this->createSlug($name));
+		$tag = new \Flame\CMS\Models\Tags\Tag($name, $this->createSlug($name));
 		$this->tagFacade->persist($tag);
 		return $tag;
 	}

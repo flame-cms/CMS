@@ -8,7 +8,7 @@
  * @date    10.07.12
  */
 
-namespace Flame\Models\Options;
+namespace Flame\CMS\Models\Options;
 
 class OptionRepository extends \Flame\Doctrine\Repository
 {

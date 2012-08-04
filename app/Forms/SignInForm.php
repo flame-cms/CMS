@@ -8,7 +8,7 @@
  * @date    22.07.12
  */
 
-namespace Flame\Forms;
+namespace Flame\CMS\Forms;
 
 class SignInForm extends \Flame\Application\UI\Form
 {

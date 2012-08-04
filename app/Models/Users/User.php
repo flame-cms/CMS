@@ -8,7 +8,7 @@
  * @date    09.07.12
  */
 
-namespace Flame\Models\Users;
+namespace Flame\CMS\Models\Users;
 
 /**
  * @Entity(repositoryClass="UserRepository")
@@ -37,7 +37,7 @@ class User extends \Flame\Doctrine\Entity
 	protected $facebook;
 
 	/**
-	 * @OneToOne(targetEntity="\Flame\Models\UsersInfo\UserInfo")
+	 * @OneToOne(targetEntity="\Flame\CMS\Models\UsersInfo\UserInfo")
 	 */
 	protected $info;
 
@@ -93,7 +93,7 @@ class User extends \Flame\Doctrine\Entity
 		return $this->info;
 	}
 
-	public function setInfo(\Flame\Models\UsersInfo\UserInfo $info)
+	public function setInfo(\Flame\CMS\Models\UsersInfo\UserInfo $info)
 	{
 		$this->info = $info;
 		return $this;

@@ -8,7 +8,7 @@
  * @date    14.07.12
  */
 
-namespace Flame\Models\Categories;
+namespace Flame\CMS\Models\Categories;
 
 /**
  * @Entity(repositoryClass="CategoryRepository")
@@ -44,7 +44,7 @@ class Category extends \Flame\Doctrine\Entity
 	protected $parent;
 
 	/**
-	 * @OneToMany(targetEntity="\Flame\Models\Posts\Post", mappedBy="category")
+	 * @OneToMany(targetEntity="\Flame\CMS\Models\Posts\Post", mappedBy="category")
 	 */
 	protected $posts;
 

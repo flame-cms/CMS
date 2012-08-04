@@ -8,7 +8,7 @@
  * @date    09.07.12
  */
 
-namespace Flame\Models\Users;
+namespace Flame\CMS\Models\Users;
 
 class UserFacade extends \Nette\Object
 {
@@ -16,7 +16,7 @@ class UserFacade extends \Nette\Object
 
     public function __construct(\Doctrine\ORM\EntityManager $entityManager)
     {
-        $this->repository = $entityManager->getRepository('\Flame\Models\Users\User');
+        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Users\User');
     }
 
     public function getOne($id)

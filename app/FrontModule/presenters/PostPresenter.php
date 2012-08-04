@@ -8,19 +8,19 @@ namespace FrontModule;
 class PostPresenter extends FrontPresenter
 {
 	/**
-	 * @var \Flame\Models\Posts\PostFacade
+	 * @var \Flame\CMS\Models\Posts\PostFacade
 	 */
 	private $postFacade;
 
 	/**
-	 * @var \Flame\Models\Posts\Post
+	 * @var \Flame\CMS\Models\Posts\Post
 	 */
     private $post;
 
     /**
-     * @param \Flame\Models\Posts\PostFacade $postFacade
+     * @param \Flame\CMS\Models\Posts\PostFacade $postFacade
      */
-    public function injectPostFacade(\Flame\Models\Posts\PostFacade $postFacade)
+    public function injectPostFacade(\Flame\CMS\Models\Posts\PostFacade $postFacade)
     {
     	$this->postFacade = $postFacade;
     }
@@ -45,7 +45,7 @@ class PostPresenter extends FrontPresenter
 
 	protected function createComponentCommentsControl()
 	{
-		$control =  new \Flame\Components\Comments\Comment($this, 'commentsControl');
+		$control =  new \Flame\CMS\Components\Comments\Comment($this, 'commentsControl');
 		$control->setPost($this->post);
 		return $control;
 	}

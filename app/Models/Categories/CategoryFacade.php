@@ -8,7 +8,7 @@
  * @date    14.07.12
  */
 
-namespace Flame\Models\Categories;
+namespace Flame\CMS\Models\Categories;
 
 class CategoryFacade extends \Nette\Object
 {
@@ -16,7 +16,7 @@ class CategoryFacade extends \Nette\Object
 
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
 	{
-		$this->repository = $entityManager->getRepository('\Flame\Models\Categories\Category');
+		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\Categories\Category');
 	}
 
 	public function getOne($id)

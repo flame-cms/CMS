@@ -1,6 +1,6 @@
 <?php
 
-namespace Flame\Models\Newsreel;
+namespace Flame\CMS\Models\Newsreel;
 
 use DateTime;
 

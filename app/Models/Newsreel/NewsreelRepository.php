@@ -8,7 +8,7 @@
  * @date    10.07.12
  */
 
-namespace Flame\Models\Newsreel;
+namespace Flame\CMS\Models\Newsreel;
 
 class NewsreelRepository extends \Flame\Doctrine\Repository
 {
@@ -16,7 +16,7 @@ class NewsreelRepository extends \Flame\Doctrine\Repository
 	{
 		$qb = $this->entityManager->createQueryBuilder();
 		$q = $qb->select('n')
-			->from('\Flame\Models\Newsreel\Newsreel', 'n')
+			->from('\Flame\CMS\Models\Newsreel\Newsreel', 'n')
 			->where($qb->expr()->lte('n.date', ':date_from'))
 			->orderBy('n.date', 'DESC');
 

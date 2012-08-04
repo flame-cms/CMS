@@ -8,17 +8,17 @@
  * @date    28.07.12
  */
 
-namespace Flame\Components\Tags;
+namespace Flame\CMS\Components\Tags;
 
 class Tag extends \Flame\Application\UI\Control
 {
 	/**
-	 * @var \Flame\Models\Tags\TagFacade
+	 * @var \Flame\CMS\Models\Tags\TagFacade
 	 */
 	private $tagFacade;
 
 	/**
-	 * @var \Flame\Models\Options\OptionFacade
+	 * @var \Flame\CMS\Models\Options\OptionFacade
 	 */
 	private $optionFacade;
 

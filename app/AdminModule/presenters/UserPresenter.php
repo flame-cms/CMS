@@ -2,9 +2,9 @@
 
 namespace AdminModule;
 
-use Flame\Forms\UserForm,
-    Flame\Models\Users\User,
-	Flame\Forms\ChangePasswordForm;
+use Flame\CMS\Forms\UserForm,
+    Flame\CMS\Models\Users\User,
+	Flame\CMS\Forms\ChangePasswordForm;
 
 
 class UserPresenter extends AdminPresenter
@@ -20,9 +20,9 @@ class UserPresenter extends AdminPresenter
 	private $id;
 
     public function __construct(
-	    \Flame\Models\Users\UserFacade $userFacade,
-	    \Flame\Security\Authenticator $authenticator,
-		\Flame\Models\UsersInfo\UserInfoFacade $userInfoFacade
+	    \Flame\CMS\Models\Users\UserFacade $userFacade,
+	    \Flame\CMS\Security\Authenticator $authenticator,
+		\Flame\CMS\Models\UsersInfo\UserInfoFacade $userInfoFacade
     )
     {
         $this->userFacade = $userFacade;
@@ -97,7 +97,7 @@ class UserPresenter extends AdminPresenter
 				->setTwitter($values['twitter']);
 			$this->userInfoFacade->persist($info);
 		}else{
-			$info = new \Flame\Models\UsersInfo\UserInfo($values['name']);
+			$info = new \Flame\CMS\Models\UsersInfo\UserInfo($values['name']);
 			$info->setAbout($values['about'])
 				->setBirthday($values['birthday'])
 				->setWeb($values['web'])
@@ -122,7 +122,7 @@ class UserPresenter extends AdminPresenter
 		if($this->userFacade->getByEmail($values['email'])){
 			$form->addError('Email ' . $values['email'] . ' exist.');
 		}else{
-			$user = new \Flame\Models\Users\User(
+			$user = new \Flame\CMS\Models\Users\User(
 				$values['email'],
 				$this->authenticator->calculateHash($values['password']),
 				$values['role']

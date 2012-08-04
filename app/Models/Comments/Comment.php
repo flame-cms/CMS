@@ -8,10 +8,10 @@
  * @date    10.07.12
  */
 
-namespace Flame\Models\Comments;
+namespace Flame\CMS\Models\Comments;
 
 use DateTime,
-	Flame\Models\Posts\Post;
+	Flame\CMS\Models\Posts\Post;
 
 /**
  * @Entity(repositoryClass="CommentRepository")
@@ -20,7 +20,7 @@ use DateTime,
 class Comment extends \Flame\Doctrine\Entity
 {
     /**
-     * @ManyToOne(targetEntity="\Flame\Models\Posts\Post")
+     * @ManyToOne(targetEntity="\Flame\CMS\Models\Posts\Post")
      */
     protected $post;
 

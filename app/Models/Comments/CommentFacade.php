@@ -8,9 +8,9 @@
  * @date    10.07.12
  */
 
-namespace Flame\Models\Comments;
+namespace Flame\CMS\Models\Comments;
 
-use \Flame\Models\Comments\Comment;
+use \Flame\CMS\Models\Comments\Comment;
 
 class CommentFacade extends \Nette\Object
 {
@@ -19,7 +19,7 @@ class CommentFacade extends \Nette\Object
 
     public function __construct(\Doctrine\ORM\EntityManager $entityManager)
     {
-        $this->repository = $entityManager->getRepository('\Flame\Models\Comments\Comment');
+        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Comments\Comment');
     }
 
     public function getOne($id)

@@ -1,6 +1,6 @@
 services:
-	Authorizator: Flame\Security\Authorizator
-	Authenticator: Flame\Security\Authenticator
+	Authorizator: Flame\CMS\Security\Authorizator
+	Authenticator: Flame\CMS\Security\Authenticator
 
 	SqlLogger: Flame\Utils\ConnectionPanel::register
 
@@ -14,15 +14,15 @@ services:
 		class: Doctrine\ORM\EntityManager
 		factory: Doctrine\ORM\EntityManager::create(%database%, @EntityManagerConfig)
 
-	NewsreelFacade: Flame\Models\Newsreel\NewsreelFacade
-	UserFacade: Flame\Models\Users\UserFacade
-	OptionFacade: Flame\Models\Options\OptionFacade
-	CommentFacade: Flame\Models\Comments\CommentFacade
-	PostFacade: Flame\Models\Posts\PostFacade
-	CategoryFacade: Flame\Models\Categories\CategoryFacade
-	TagFacade: Flame\Models\Tags\TagFacade
-	PageFacade: Flame\Models\Pages\PageFacade
-	ImageFacade: Flame\Models\Images\ImageFacade
-	UserInfoFacade: Flame\Models\UsersInfo\UserInfoFacade
+	NewsreelFacade: Flame\CMS\Models\Newsreel\NewsreelFacade
+	UserFacade: Flame\CMS\Models\Users\UserFacade
+	OptionFacade: Flame\CMS\Models\Options\OptionFacade
+	CommentFacade: Flame\CMS\Models\Comments\CommentFacade
+	PostFacade: Flame\CMS\Models\Posts\PostFacade
+	CategoryFacade: Flame\CMS\Models\Categories\CategoryFacade
+	TagFacade: Flame\CMS\Models\Tags\TagFacade
+	PageFacade: Flame\CMS\Models\Pages\PageFacade
+	ImageFacade: Flame\CMS\Models\Images\ImageFacade
+	UserInfoFacade: Flame\CMS\Models\UsersInfo\UserInfoFacade
 
 	WordPressImporter: Flame\Utils\WordPressImporter

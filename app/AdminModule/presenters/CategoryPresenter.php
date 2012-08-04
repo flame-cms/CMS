@@ -10,7 +10,7 @@
 
 namespace AdminModule;
 
-use Flame\Forms\CategoryForm;
+use Flame\CMS\Forms\CategoryForm;
 
 class CategoryPresenter extends AdminPresenter
 {
@@ -23,7 +23,7 @@ class CategoryPresenter extends AdminPresenter
 
 	private $categories;
 
-	public function __construct(\Flame\Models\Categories\CategoryFacade $categoryFacade)
+	public function __construct(\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade)
 	{
 		$this->categoryFacade = $categoryFacade;
 	}
@@ -91,7 +91,7 @@ class CategoryPresenter extends AdminPresenter
 			if($this->categoryFacade->getOneByName($values['name'])){
 				$this->flashMessage('Category with name "' . $values['name'] . '" exist.');
 			}else{
-				$category = new \Flame\Models\Categories\Category($values['name'], $slug);
+				$category = new \Flame\CMS\Models\Categories\Category($values['name'], $slug);
 				$category->setDescription($values['description']);
 
 				if($parent = $this->categoryFacade->getOne($values['parent'])){

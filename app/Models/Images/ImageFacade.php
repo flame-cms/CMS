@@ -8,7 +8,7 @@
  * @date    11.07.12
  */
 
-namespace Flame\Models\Images;
+namespace Flame\CMS\Models\Images;
 
 class ImageFacade extends \Nette\Object
 {
@@ -17,7 +17,7 @@ class ImageFacade extends \Nette\Object
 
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
 	{
-		$this->repository = $entityManager->getRepository('\Flame\Models\Images\Image');
+		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\Images\Image');
 	}
 
 	public function getOne($id)

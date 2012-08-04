@@ -1,6 +1,6 @@
 <?php
 
-namespace Flame\Security;
+namespace Flame\CMS\Security;
 
 use Nette\Security as NS;
 
@@ -8,18 +8,18 @@ use Nette\Security as NS;
 /**
  * Users authenticator.
  */
-class Authenticator extends \Nette\Object implements NS\IAuthenticator
+class Authenticator extends \Flame\Security\Authenticator
 {
 
 	/**
-	 * @var \Flame\Models\Users\UserFacade
+	 * @var \Flame\CMS\Models\Users\UserFacade
 	 */
 	private $userFacade;
 
 	/**
-	 * @param \Flame\Models\Users\UserFacade $usersFacade
+	 * @param \Flame\CMS\Models\Users\UserFacade $usersFacade
 	 */
-	public function __construct(\Flame\Models\Users\UserFacade $usersFacade)
+	public function __construct(\Flame\CMS\Models\Users\UserFacade $usersFacade)
 	{
 		$this->userFacade = $usersFacade;
 	}
@@ -43,20 +43,6 @@ class Authenticator extends \Nette\Object implements NS\IAuthenticator
 	    }
 
 	    return new Identity($user);
-	}
-
-	/**
-	 * @param $password
-	 * @param $salt
-	 * @return string
-	 */
-	public function calculateHash($password, $salt = null)
-	{
-		if ($salt === null) {
-			$salt = '$2a$07$' . md5(uniqid(time())) . '$';
-		}
-
-		return crypt($password, $salt);
 	}
 
 }

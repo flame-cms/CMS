@@ -8,14 +8,14 @@
  * @date    22.07.12
  */
 
-namespace Flame\Security;
+namespace Flame\CMS\Security;
 
 class Identity extends \Nette\Security\Identity
 {
 
 	private $user;
 
-	public function __construct(\Flame\Models\Users\User $user)
+	public function __construct(\Flame\CMS\Models\Users\User $user)
 	{
 		$this->user = $user;
 		$this->user->setPassword(null);

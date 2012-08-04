@@ -1,6 +1,6 @@
 <?php
 
-namespace Flame\Models\Newsreel;
+namespace Flame\CMS\Models\Newsreel;
 
 class NewsreelFacade extends \Nette\Object
 {
@@ -8,7 +8,7 @@ class NewsreelFacade extends \Nette\Object
 
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
 	{
-		$this->repository = $entityManager->getRepository('\Flame\Models\Newsreel\Newsreel');
+		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\Newsreel\Newsreel');
 	}
 
 	public function getOne($id)

@@ -8,7 +8,7 @@
  * @date    11.07.12
  */
 
-namespace Flame\Models\Pages;
+namespace Flame\CMS\Models\Pages;
 
 class PageRepository extends \Flame\Doctrine\Repository
 {
@@ -16,7 +16,7 @@ class PageRepository extends \Flame\Doctrine\Repository
 	{
 		$qb = $this->entityManager->createQueryBuilder();
 		$q = $qb->select('p')
-			->from('\Flame\Models\Pages\Page', 'p')
+			->from('\Flame\CMS\Models\Pages\Page', 'p')
 			->orderBy('p.id', 'DESC');
 
 		if($limit){

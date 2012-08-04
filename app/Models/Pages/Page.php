@@ -1,9 +1,9 @@
 <?php
 
-namespace Flame\Models\Pages;
+namespace Flame\CMS\Models\Pages;
 
 use DateTime,
-    \Flame\Models\Users\User;
+    \Flame\CMS\Models\Users\User;
 
 /**
  * @Entity(repositoryClass="PageRepository")
@@ -12,7 +12,7 @@ use DateTime,
 class Page extends \Flame\Doctrine\Entity
 {
     /**
-     * @ManyToOne(targetEntity="\Flame\Models\Users\User")
+     * @ManyToOne(targetEntity="\Flame\CMS\Models\Users\User")
      */
     protected $user;
 

@@ -8,7 +8,7 @@
  * @date    14.07.12
  */
 
-namespace Flame\Models\Tags;
+namespace Flame\CMS\Models\Tags;
 
 class TagFacade extends \Nette\Object
 {
@@ -16,7 +16,7 @@ class TagFacade extends \Nette\Object
 
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
 	{
-		$this->repository = $entityManager->getRepository('\Flame\Models\Tags\Tag');
+		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\Tags\Tag');
 	}
 
 	public function getOne($id)

@@ -9,7 +9,7 @@ class CommentPresenter extends AdminPresenter
 {
 	private $commentFacade;
 
-    public function __construct(\Flame\Models\Comments\CommentFacade $commentFacade)
+    public function __construct(\Flame\CMS\Models\Comments\CommentFacade $commentFacade)
     {
         $this->commentFacade = $commentFacade;
     }

@@ -3,7 +3,7 @@
 namespace AdminModule;
 
 use Nette\Security as NS,
-    Flame\Forms\SignInForm;
+    Flame\CMS\Forms\SignInForm;
 
 
 class SignPresenter extends \Flame\Application\UI\Presenter

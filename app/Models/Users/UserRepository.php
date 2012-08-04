@@ -8,7 +8,7 @@
  * @date    10.07.12
  */
 
-namespace Flame\Models\Users;
+namespace Flame\CMS\Models\Users;
 
 class UserRepository extends \Flame\Doctrine\Repository
 {

@@ -8,13 +8,13 @@
  * @date    16.07.12
  */
 
-namespace Flame\Components\Categories;
+namespace Flame\CMS\Components\Categories;
 
 class Category extends \Flame\Application\UI\Control
 {
 
 	/**
-	 * @var \Flame\Models\Categories\CategoryFacade
+	 * @var \Flame\CMS\Models\Categories\CategoryFacade
 	 */
 	private $categoryFacade;
 

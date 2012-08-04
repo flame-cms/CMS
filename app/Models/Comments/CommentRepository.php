@@ -8,7 +8,7 @@
  * @date    10.07.12
  */
 
-namespace Flame\Models\Comments;
+namespace Flame\CMS\Models\Comments;
 
 class CommentRepository extends \Flame\Doctrine\Repository
 {

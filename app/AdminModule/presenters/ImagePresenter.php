@@ -3,7 +3,7 @@
 namespace AdminModule;
 
 use Nette\Image,
-	Flame\Forms\ImageForm;
+	Flame\CMS\Forms\ImageForm;
 
 /**
 * Images presenter
@@ -16,7 +16,7 @@ class ImagePresenter extends AdminPresenter
 
 	private $imageStorage;
 
-	public function __construct(\Flame\Models\Images\ImageFacade $imageFacade, \Flame\Models\Users\UserFacade $userFacade)
+	public function __construct(\Flame\CMS\Models\Images\ImageFacade $imageFacade, \Flame\CMS\Models\Users\UserFacade $userFacade)
 	{
 		$this->imageFacade = $imageFacade;
 		$this->userFacade = $userFacade;
@@ -48,7 +48,7 @@ class ImagePresenter extends AdminPresenter
 	{
 		$values = $f->getValues();
 
-		$image = new \Flame\Models\Images\Image($this->saveImage($values['image']));
+		$image = new \Flame\CMS\Models\Images\Image($this->saveImage($values['image']));
 
 		$image->setName($values['name'])
 			->setDescription($values['description']);

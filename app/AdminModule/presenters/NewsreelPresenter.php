@@ -11,7 +11,7 @@ class NewsreelPresenter extends AdminPresenter
     private $newsreel;
     private $id;
 
-	public function __construct(\Flame\Models\Newsreel\NewsreelFacade $newsreelFacade )
+	public function __construct(\Flame\CMS\Models\Newsreel\NewsreelFacade $newsreelFacade )
 	{
 	    $this->newsreelFacade = $newsreelFacade;
 	}
@@ -36,7 +36,7 @@ class NewsreelPresenter extends AdminPresenter
 
     protected function createComponentNewsreelForm($name)
     {
-        $f = new \Flame\Forms\NewsreelForm();
+        $f = new \Flame\CMS\Forms\NewsreelForm();
 
         if($this->id){
 			$f->configureEdit();
@@ -69,7 +69,7 @@ class NewsreelPresenter extends AdminPresenter
             $this->redirect('this');
         }else{ //add
 
-            $newsreel = new \Flame\Models\Newsreel\Newsreel($values['title'], $values['content'], $values['date'], 0);
+            $newsreel = new \Flame\CMS\Models\Newsreel\Newsreel($values['title'], $values['content'], $values['date'], 0);
             $this->newsreelFacade->persist($newsreel);
 
             $this->flashMessage('Newsreel was successfully added');

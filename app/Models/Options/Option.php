@@ -8,7 +8,7 @@
  * @date    09.07.12
  */
 
-namespace Flame\Models\Options;
+namespace Flame\CMS\Models\Options;
 
 /**
  * @Entity(repositoryClass="OptionRepository")

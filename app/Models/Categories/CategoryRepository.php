@@ -8,7 +8,7 @@
  * @date    14.07.12
  */
 
-namespace Flame\Models\Categories;
+namespace Flame\CMS\Models\Categories;
 
 class CategoryRepository extends \Flame\Doctrine\Repository
 {

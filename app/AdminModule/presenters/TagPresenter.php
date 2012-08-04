@@ -19,7 +19,7 @@ class TagPresenter extends AdminPresenter
 
 	private $tagFacade;
 
-	public function injectTagFacade(\Flame\Models\Tags\TagFacade $tagFacade)
+	public function injectTagFacade(\Flame\CMS\Models\Tags\TagFacade $tagFacade)
 	{
 		$this->tagFacade = $tagFacade;
 	}
@@ -41,7 +41,7 @@ class TagPresenter extends AdminPresenter
 
 	protected function createComponentTagForm()
 	{
-		$form = new \Flame\Forms\TagForm();
+		$form = new \Flame\CMS\Forms\TagForm();
 
 		if($this->id){
 			$form->configureEdit($this->tag->toArray());
@@ -78,7 +78,7 @@ class TagPresenter extends AdminPresenter
 		}else{
 			if(!$this->tagFacade->getOneByName($values['name'])){
 
-				$tag = new \Flame\Models\Tags\Tag($values['name'], $slug);
+				$tag = new \Flame\CMS\Models\Tags\Tag($values['name'], $slug);
 				$this->tagFacade->persist($tag);
 				$this->flashMessage('Tag was added');
 			}else{

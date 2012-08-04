@@ -8,7 +8,7 @@
  * @date    09.07.12
  */
 
-namespace Flame\Models\Options;
+namespace Flame\CMS\Models\Options;
 
 class OptionFacade extends \Nette\Object
 {
@@ -16,7 +16,7 @@ class OptionFacade extends \Nette\Object
 
     public function __construct(\Doctrine\ORM\EntityManager $entityManager)
     {
-        $this->repository = $entityManager->getRepository('\Flame\Models\Options\Option');
+        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Options\Option');
     }
 
     public function getOne($id)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Flame\Components\Comments;
+namespace Flame\CMS\Components\Comments;
 
 use	Nette\Application\UI\Form;
 
@@ -11,12 +11,12 @@ class Comment extends \Flame\Application\UI\Control
 {
 
 	/**
-	 * @var \Flame\Models\Posts\Post $post
+	 * @var \Flame\CMS\Models\Posts\Post $post
 	 */
 	private $post;
 
 	/**
-	 * @var \Flame\Models\Comments\CommentFacade
+	 * @var \Flame\CMS\Models\Comments\CommentFacade
 	 */
 	private $commentFacade;
 
@@ -32,9 +32,9 @@ class Comment extends \Flame\Application\UI\Control
 	}
 
 	/**
-	 * @param \Flame\Models\Posts\Post $post
+	 * @param \Flame\CMS\Models\Posts\Post $post
 	 */
-	public function setPost(\Flame\Models\Posts\Post $post)
+	public function setPost(\Flame\CMS\Models\Posts\Post $post)
 	{
 		$this->post = $post;
 	}
@@ -87,7 +87,7 @@ class Comment extends \Flame\Application\UI\Control
 
 		$values = $f->getValues();
 
-		$comment = new \Flame\Models\Comments\Comment($this->post, $values['name'], $values['email'], $values['content']);
+		$comment = new \Flame\CMS\Models\Comments\Comment($this->post, $values['name'], $values['email'], $values['content']);
 		$comment->setWeb($values['web']);
         $this->commentFacade->persist($comment);
 		$this->flashMessage('Your comment is waiting for moderation');

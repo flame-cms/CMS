@@ -8,7 +8,7 @@
  * @date    14.07.12
  */
 
-namespace Flame\Models\Tags;
+namespace Flame\CMS\Models\Tags;
 
 /**
  * @Entity(repositoryClass="TagRepository")
@@ -27,7 +27,7 @@ class Tag extends \Flame\Doctrine\Entity
 	protected $slug;
 
 	/**
-	 * @ManyToMany(targetEntity="\Flame\Models\Posts\Post", mappedBy="tags")
+	 * @ManyToMany(targetEntity="\Flame\CMS\Models\Posts\Post", mappedBy="tags")
 	 */
 	protected $posts;
 
