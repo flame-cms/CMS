@@ -155,7 +155,8 @@ class UserPresenter extends AdminPresenter
 			$this->authenticator->authenticate(array($user->getIdentity()->email, $values->oldPassword));
 
             $userEntity = $this->userFacade->getOne($user->getId());
-            $this->authenticator->setPassword($userEntity, $values['newPassword']);
+            $userEntity->setPassword($this->authenticator->calculateHash($values['newPassword']));
+			$this->userFacade->persist($userEntity);
 
 			$this->flashMessage('Password was changed.', 'success');
 			$this->redirect('this');
