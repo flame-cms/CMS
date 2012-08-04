@@ -10,7 +10,7 @@
 
 namespace Flame\Models\Newsreel;
 
-class NewsreelRepository extends \Flame\Doctrine\BaseRepository
+class NewsreelRepository extends \Flame\Doctrine\Repository
 {
 	public function findAllPassed($limit)
 	{

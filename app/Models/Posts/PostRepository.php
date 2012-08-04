@@ -10,7 +10,7 @@
 
 namespace Flame\Models\Posts;
 
-class PostRepository extends \Flame\Doctrine\BaseRepository
+class PostRepository extends \Flame\Doctrine\Repository
 {
 
 }

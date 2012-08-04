@@ -11,7 +11,7 @@
 namespace Flame\Models\Images;
 
 
-class ImageRepository extends \Flame\Doctrine\BaseRepository
+class ImageRepository extends \Flame\Doctrine\Repository
 {
 
 

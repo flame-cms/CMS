@@ -10,7 +10,7 @@
 
 namespace Flame\Models\Pages;
 
-class PageRepository extends \Flame\Doctrine\BaseRepository
+class PageRepository extends \Flame\Doctrine\Repository
 {
 	public function findLast($limit)
 	{

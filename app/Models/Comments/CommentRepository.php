@@ -10,7 +10,7 @@
 
 namespace Flame\Models\Comments;
 
-class CommentRepository extends \Flame\Doctrine\BaseRepository
+class CommentRepository extends \Flame\Doctrine\Repository
 {
 
 }

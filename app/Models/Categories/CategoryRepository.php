@@ -10,7 +10,7 @@
 
 namespace Flame\Models\Categories;
 
-class CategoryRepository extends \Flame\Doctrine\BaseRepository
+class CategoryRepository extends \Flame\Doctrine\Repository
 {
 
 }
