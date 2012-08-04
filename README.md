@@ -15,12 +15,12 @@ The basic structure for your application based on [Flame CMS](https://github.com
 
 #####Create database structure with command:
 
-	php app/doctrine-cli.php  orm:schema-tool:update --force
+	php app/doctrine-cli.php orm:schema-tool:create
 
 #####Import defaults data
 
 	php app/doctrine-cli.php dbal:import app/default-data.sql
 
-#####Flame is ready now!
+###Flame is ready now!
 
 If you want to sign in to backend part (Administration) of Flame, use email **user@demo.com** and password **PASSWORD12** (all in lower case)
