@@ -5,7 +5,7 @@ parameters:
 		port: 3306
 
 	entities:
-		- %flameDir%/Models
+		- %appDir%/Models
 
 	imageStorage:
 		thumbDir: 'media/images_thumbnails'
