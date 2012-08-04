@@ -7,14 +7,22 @@ namespace FrontModule;
 */
 class PostPresenter extends FrontPresenter
 {
-    private $commentFacade;
+	/**
+	 * @var \Flame\Models\Posts\PostFacade
+	 */
 	private $postFacade;
+
+	/**
+	 * @var \Flame\Models\Posts\Post
+	 */
     private $post;
 
-    public function __construct(\Flame\Models\Posts\PostFacade $postFacade, \Flame\Models\Comments\CommentFacade $commentFacade)
+    /**
+     * @param \Flame\Models\Posts\PostFacade $postFacade
+     */
+    public function injectPostFacade(\Flame\Models\Posts\PostFacade $postFacade)
     {
-        $this->postFacade = $postFacade;
-        $this->commentFacade = $commentFacade;
+    	$this->postFacade = $postFacade;
     }
 
 	public function actionDefault($id)
@@ -28,15 +36,17 @@ class PostPresenter extends FrontPresenter
             $this->postFacade->increaseHit($this->post);
 
 			$this->template->post = $this->post;
-			$this->template->tags = $this->post->tags->toArray();
+			$this->template->tags = $this->post->getTags()->toArray();
 
-			if(!$category = $this->post->category) $category = 'none';
+			if(!$category = $this->post->getCategory()) $category = 'none';
 			$this->template->category = $category;
 		}
 	}
 
-	protected function createComponentComments()
+	protected function createComponentCommentsControl()
 	{
-		return new \Flame\Components\Comments\Comment($this->post, $this->commentFacade);
+		$control =  new \Flame\Components\Comments\Comment($this, 'commentsControl');
+		$control->setPost($this->post);
+		return $control;
 	}
 }

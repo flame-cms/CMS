@@ -7,15 +7,19 @@ namespace FrontModule;
 */
 class HomepagePresenter extends FrontPresenter
 {
+
+	/**
+	 * @var \Flame\Models\Posts\PostFacade
+	 */
 	private $postFacade;
 
-	private $optionFacade;
-
-    public function __construct(\Flame\Models\Posts\PostFacade $postFacade, \Flame\Models\Options\OptionFacade $optionFacade)
-    {
-        $this->postFacade = $postFacade;
-	    $this->optionFacade = $optionFacade;
-    }
+	/**
+	 * @param \Flame\Models\Posts\PostFacade $postFacade
+	 */
+	public function injectPostFacade(\Flame\Models\Posts\PostFacade $postFacade)
+	{
+		$this->postFacade = $postFacade;
+	}
 
 	public function actionDefault()
 	{
@@ -25,13 +29,13 @@ class HomepagePresenter extends FrontPresenter
 
 	}
 
+	/**
+	 * @return \Flame\Components\Posts\Post
+	 */
 	public function createComponentPostsControl()
 	{
-		$postControl = new \Flame\Components\Posts\Post($this->postFacade->getLastPublishPosts());
-
-		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
-		if($itemsPerPage) $postControl->setCountOfItemsPerPage($itemsPerPage);
-
+		$postControl = new \Flame\Components\Posts\Post($this, 'postsControl');
+		$postControl->setPosts($this->postFacade->getLastPosts());
 		return $postControl;
 	}
 }

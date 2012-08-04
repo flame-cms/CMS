@@ -13,16 +13,22 @@ namespace FrontModule;
 class TagPresenter extends FrontPresenter
 {
 
-	private $optionFacade;
-
-	private $tagFacade;
-
+	/**
+	 * @var array
+	 */
 	private $posts;
 
-	public function __construct(\Flame\Models\Tags\TagFacade $tagFacade, \Flame\Models\Options\OptionFacade $optionFacade)
+	/**
+	 * @var \Flame\Models\Tags\TagFacade
+	 */
+	private $tagFacade;
+
+	/**
+	 * @param \Flame\Models\Tags\TagFacade $tagFacade
+	 */
+	public function injectTagFacade(\Flame\Models\Tags\TagFacade $tagFacade)
 	{
 		$this->tagFacade = $tagFacade;
-		$this->optionFacade = $optionFacade;
 	}
 
 	public function actionPosts($id)
@@ -42,11 +48,8 @@ class TagPresenter extends FrontPresenter
 
 	public function createComponentPostsControl()
 	{
-		$postControl = new \Flame\Components\Posts\Post($this->posts);
-
-		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
-		if($itemsPerPage) $postControl->setCountOfItemsPerPage($itemsPerPage);
-
+		$postControl = new \Flame\Components\Posts\Post($this, 'postsControl');
+		$postControl->setPosts($this->posts);
 		return $postControl;
 	}
 

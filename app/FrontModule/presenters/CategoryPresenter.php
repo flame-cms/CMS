@@ -12,17 +12,28 @@ namespace FrontModule;
 
 class CategoryPresenter extends \FrontModule\FrontPresenter
 {
-	private $categoryFacade;
-	private $optionFacade;
 
+	/**
+	 * @var array
+	 */
 	private $posts;
 
-	public function __construct(\Flame\Models\Categories\CategoryFacade $categoryFacade, \Flame\Models\Options\OptionFacade $optionFacade)
+	/**
+	 * @var \Flame\Models\Categories\CategoryFacade
+	 */
+	private $categoryFacade;
+
+	/**
+	 * @param \Flame\Models\Categories\CategoryFacade $categoryFacade
+	 */
+	public function injectCategoryFacade(\Flame\Models\Categories\CategoryFacade $categoryFacade)
 	{
 		$this->categoryFacade = $categoryFacade;
-		$this->optionFacade = $optionFacade;
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function actionPosts($id)
 	{
 		if($category = $this->categoryFacade->getOne($id)){
@@ -38,13 +49,13 @@ class CategoryPresenter extends \FrontModule\FrontPresenter
 		}
 	}
 
-	public function createComponentPostsControl()
+	/**
+	 * @return \Flame\Components\Posts\Post
+	 */
+	protected function createComponentPostsControl()
 	{
-		$postControl = new \Flame\Components\Posts\Post($this->posts);
-
-		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
-		if($itemsPerPage) $postControl->setCountOfItemsPerPage($itemsPerPage);
-
+		$postControl = new \Flame\Components\Posts\Post($this, 'postsControl');
+		$postControl->setPosts($this->posts);
 		return $postControl;
 	}
 }

@@ -12,13 +12,23 @@ namespace FrontModule;
 
 class PagePresenter extends FrontPresenter
 {
+
+	/**
+	 * @var \Flame\Models\Pages\PageFacade
+	 */
     private $pageFacade;
 
-    public function __construct(\Flame\Models\Pages\PageFacade $pageFacade)
+	/**
+	 * @param \Flame\Models\Pages\PageFacade $pageFacade
+	 */
+    public function injectPageFacade(\Flame\Models\Pages\PageFacade $pageFacade)
     {
-        $this->pageFacade = $pageFacade;
+    	$this->pageFacade = $pageFacade;
     }
 
+	/**
+	 * @param $id
+	 */
     public function actionDetail($id)
     {
         if($page = $this->pageFacade->getOne($id)){

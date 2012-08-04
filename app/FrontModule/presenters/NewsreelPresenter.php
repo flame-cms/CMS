@@ -5,13 +5,22 @@ namespace FrontModule;
 class NewsreelPresenter extends FrontPresenter
 {
 
+	/**
+	 * @var \Flame\Models\Newsreel\NewsreelFacade
+	 */
 	private $newsreelFacade;
 
-	public function __construct(\Flame\Models\Newsreel\NewsreelFacade $newsreelFacade)
+	/**
+	 * @param \Flame\Models\Newsreel\NewsreelFacade $newsreelFacade
+	 */
+	public function injectNewsreelFacade(\Flame\Models\Newsreel\NewsreelFacade $newsreelFacade)
 	{
 		$this->newsreelFacade = $newsreelFacade;
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function actionDetail($id)
 	{
 		if($newsreel = $this->newsreelFacade->getOne($id)){
