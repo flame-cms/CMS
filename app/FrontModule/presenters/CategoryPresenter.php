@@ -42,7 +42,7 @@ class CategoryPresenter extends \FrontModule\FrontPresenter
 			$this->posts = $category->getPosts()->toArray();
 
 			if(!count($this->posts)){
-				$this->flashMessage('No posts in category.');
+				$this->setView('none');
 			}
 		}else{
 			$this->setView('notFound');

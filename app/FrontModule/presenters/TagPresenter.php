@@ -39,7 +39,7 @@ class TagPresenter extends FrontPresenter
 			$this->posts = $tag->getPosts()->toArray();
 
 			if(!count($this->posts)){
-				$this->flashMessage('No posts with tag');
+				$this->setView('none');
 			}
 		}else{
 			$this->setView('notFound');

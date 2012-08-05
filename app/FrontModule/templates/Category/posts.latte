@@ -1,6 +1,5 @@
-{var $title = "Posts in category " . $category->name}
 
-{block #content}
-
+{#content}
+	<H1>{#title}Posts in category {$category->name}{/#}</H1>
 	{control postsControl:except}
-{/block}
+{/#}
