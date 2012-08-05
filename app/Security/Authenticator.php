@@ -35,7 +35,7 @@ class Authenticator extends \Flame\Security\Authenticator
 	    $user = $this->userFacade->getByEmail($email);
 
 	    if (!$user) {
-	        throw new NS\AuthenticationException("User '$email' not found.", self::IDENTITY_NOT_FOUND);
+	        throw new NS\AuthenticationException("Email '$email' not found.", self::IDENTITY_NOT_FOUND);
 	    }
 
 	    if ($user->password !== $this->calculateHash($password, $user->password)) {
