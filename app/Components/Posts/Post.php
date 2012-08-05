@@ -11,6 +11,11 @@ class Post extends \Flame\Application\UI\Control
 	private $posts;
 
 	/**
+	 * @var bool
+	 */
+	private $onlyPublish;
+
+	/**
 	 * @var \Flame\CMS\Models\Posts\PostFacade
 	 */
 	private $postFacade;
@@ -28,10 +33,13 @@ class Post extends \Flame\Application\UI\Control
 	/**
 	 * @param \Nette\ComponentModel\IContainer $parent
 	 * @param null $name
+	 * @param bool $onlyPublish
 	 */
-	public function __construct($parent, $name)
+	public function __construct($parent, $name, $onlyPublish = true)
 	{
 		parent::__construct($parent, $name);
+
+		$this->onlyPublish = $onlyPublish;
 
 		$this->optionFacade = $this->presenter->context->OptionFacade;
 		$this->postFacade = $this->presenter->context->PostFacade;
@@ -68,6 +76,13 @@ class Post extends \Flame\Application\UI\Control
 		$this->template->render();
 	}
 
+	public function renderTable()
+	{
+		$this->beforeRender();
+		$this->template->setFile(__DIR__ . '/PostTable.latte');
+		$this->template->render();
+	}
+
 	/**
 	 * @param $posts
 	 */
@@ -92,7 +107,11 @@ class Post extends \Flame\Application\UI\Control
 	 */
 	private function getItemsPerPagePaginator($offset)
 	{
-		return $this->postFacade->getLastPublishPostsPaginator($offset, $this->itemsPerPage);
+		if(!$this->onlyPublish){
+			return $this->postFacade->getLastPostsPaginator($offset, $this->itemsPerPage);
+		}else{
+			return $this->postFacade->getLastPublishPostsPaginator($offset, $this->itemsPerPage);
+		}
 	}
 
 	/**

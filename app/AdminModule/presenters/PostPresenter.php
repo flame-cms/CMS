@@ -9,32 +9,71 @@ use Flame\CMS\Forms\Posts\PostForm;
 */
 class PostPresenter extends AdminPresenter
 {
+	/**
+	 * @var int
+	 */
 	private $id;
+
+	/**
+	 * @var \Flame\CMS\Models\Posts\Post
+	 */
     private $post;
 
-    private $postFacade;
-    private $userFacade;
-	private $categoryFacade;
+	/**
+	 * @var \Flame\CMS\Models\Tags\TagFacade
+	 */
 	private $tagFacade;
 
-    public function __construct(
-	    \Flame\CMS\Models\Posts\PostFacade $postFacade,
-	    \Flame\CMS\Models\Users\UserFacade $userFacade,
-		\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade,
-		\Flame\CMS\Models\Tags\TagFacade $tagFacade
-    )
+	/**
+	 * @var \Flame\CMS\Models\Posts\PostFacade
+	 */
+    private $postFacade;
+
+	/**
+	 * @var \Flame\CMS\Models\Users\UserFacade
+	 */
+    private $userFacade;
+
+	/**
+	 * @var \Flame\CMS\Models\Categories\CategoryFacade
+	 */
+	private $categoryFacade;
+
+	/**
+	 * @param \Flame\CMS\Models\Tags\TagFacade $tagFacade
+	 */
+    public function injectTagFacade(\Flame\CMS\Models\Tags\TagFacade $tagFacade)
     {
-        $this->postFacade = $postFacade;
-        $this->userFacade = $userFacade;
-	    $this->categoryFacade = $categoryFacade;
-	    $this->tagFacade = $tagFacade;
+    	$this->tagFacade = $tagFacade;
     }
 
-	public function renderDefault()
+	/**
+	 * @param \Flame\CMS\Models\Posts\PostFacade $postFacade
+	 */
+	public function injectPostFacade(\Flame\CMS\Models\Posts\PostFacade $postFacade)
 	{
-		$this->template->posts = $this->postFacade->getLastPosts();
+		$this->postFacade = $postFacade;
 	}
 
+	/**
+	 * @param \Flame\CMS\Models\Users\UserFacade $userFacade
+	 */
+	public function injectUserFacade(\Flame\CMS\Models\Users\UserFacade $userFacade)
+	{
+		$this->userFacade = $userFacade;
+	}
+
+	/**
+	 * @param \Flame\CMS\Models\Categories\CategoryFacade $categoryFacade
+	 */
+	public function injectCategoryFacade(\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade)
+	{
+		$this->categoryFacade = $categoryFacade;
+	}
+
+	/**
+	 * @param $id
+	 */
 	public function handleDelete($id)
 	{
 		if(!$this->getUser()->isAllowed('Admin:Post', 'delete')){
@@ -57,6 +96,9 @@ class PostPresenter extends AdminPresenter
 		}
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function handleMarkPublish($id)
 	{
 		if(!$this->getUser()->isAllowed('Admin:Post', 'publish')){
@@ -81,6 +123,9 @@ class PostPresenter extends AdminPresenter
 		}
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function actionEdit($id)
 	{
 		$this->id = $id;
@@ -92,6 +137,17 @@ class PostPresenter extends AdminPresenter
 
 	}
 
+	/**
+	 * @return \Flame\CMS\Components\Posts\Post
+	 */
+	protected function createComponentPostControl()
+	{
+		return new \Flame\CMS\Components\Posts\Post($this, 'postControl', false);
+	}
+
+	/**
+	 * @return \Flame\CMS\Forms\Posts\PostForm
+	 */
 	protected function createComponentPostForm()
 	{
 
@@ -106,11 +162,15 @@ class PostPresenter extends AdminPresenter
 			$f->configureAdd();
 		}
 
-		$f->onSuccess[] = callback($this, 'postFormSubmitted');
+		$f->onSuccess[] = $this->postFormSubmitted;
 
         return $f;
 	}
 
+	/**
+	 * @param \Flame\CMS\Forms\Posts\PostForm $f
+	 * @throws \Nette\Application\BadRequestException
+	 */
 	public function postFormSubmitted(PostForm $f)
 	{
         if($this->id and !$this->post){
@@ -206,6 +266,10 @@ class PostPresenter extends AdminPresenter
 
 	}
 
+	/**
+	 * @param $name
+	 * @return \Flame\CMS\Models\Categories\Category|object
+	 */
 	private function createNewCategory($name)
 	{
 		if($categoryExist = $this->categoryFacade->getOneByName($name)) return $categoryExist;
@@ -215,6 +279,10 @@ class PostPresenter extends AdminPresenter
 		return $category;
 	}
 
+	/**
+	 * @param $name
+	 * @return \Flame\CMS\Models\Tags\Tag|object
+	 */
 	private function createNewTag($name)
 	{
 		if($tagExist = $this->tagFacade->getOneByName($name)) return $tagExist;
