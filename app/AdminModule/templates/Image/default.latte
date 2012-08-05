@@ -7,31 +7,21 @@
 	{snippet #images}
 
 		{if count($images)}
-			<table class="table table-striped table-condensed">
-				<thead>
-					<tr>
-						<th>Thumbnail</th>
-						<th>File</th>
-						<th>Url</th>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
 
-				<tbody>
-					<tr n:foreach="$images as $image">
-						<td><a href="{$baseUrl}/{$imageDir}/{$image->file}" target="_blank"><img src="{$baseUrl}/{$image->file|thumb:230}"></a></td>
-						<td>{$image->file}</td>
-						<td><a href="{$baseUrl}/{$imageDir}/{$image->file}">{$baseUrl}/{$imageDir}/{$image->file}</a></td>
-						<td>{$image->name}</td>
-						<td>{$image->description}</td>
-						<td>
-							<a n:href="delete! $image->id" class="ajax">X</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<ul class="thumbnails">
+			<li class="span3" n:foreach="$images as $image">
+				<div class="thumbnail">
+					<a href="{$baseUrl}/{$imageDir}/{$image->file}" target="_blank"  class="thumbnail">
+						<img src="{$baseUrl}/{$image->file|thumb:230}" alt="">
+					</a>
+					<div class="caption">
+						<h5>{$image->name}</h5>
+						<p>{$image->description}</p>
+						<p><a n:href="delete! $image->id" class="ajax btn btn-primary">Delete</a></p>
+					</div>
+				</div>
+			</li>
+		</ul>
 		{else}
 			<H4>None</H4>
 		{/if}
