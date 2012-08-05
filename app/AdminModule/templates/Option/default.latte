@@ -2,7 +2,10 @@
 
 {#content}
 
-	<p><a n:href="Option:add">Add new variable</a></p>
+	<h3>Add new Option</h3>
+	{snippet addForm}
+		{control optionForm}
+	{/snippet}
 
 	{snippet #options}
 		{if count($options)}

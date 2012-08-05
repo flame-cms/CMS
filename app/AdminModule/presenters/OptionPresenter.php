@@ -2,7 +2,7 @@
 
 namespace AdminModule;
 
-use Nette\Application\UI\Form,
+use Flame\CMS\Forms\OptionForm,
     \Flame\CMS\Models\Options;
 
 /**
@@ -10,15 +10,27 @@ use Nette\Application\UI\Form,
 */
 class OptionPresenter extends AdminPresenter
 {
-
-    private $optionFacade;
-
+	/**
+	 * @var int
+	 */
     private $id;
+
+	/**
+	 * @var \Flame\CMS\Models\Options\Option
+	 */
     private $option;
 
-    public function __construct(Options\OptionFacade $optionFacade)
+	/**
+	 * @var \Flame\CMS\Models\Options\OptionFacade
+	 */
+	private $optionFacade;
+
+	/**
+	 * @param \Flame\CMS\Models\Options\OptionFacade $optionFacade
+	 */
+    public function injectOptionFacade(\Flame\CMS\Models\Options\OptionFacade $optionFacade)
     {
-        $this->optionFacade = $optionFacade;
+    	$this->optionFacade = $optionFacade;
     }
 
 	public function renderDefault()
@@ -26,6 +38,9 @@ class OptionPresenter extends AdminPresenter
 		$this->template->options = $this->optionFacade->getAll();
 	}
 
+	/**
+	 * @param $id
+	 */
     public function actionEdit($id)
     {
         $this->id = $id;
@@ -38,36 +53,28 @@ class OptionPresenter extends AdminPresenter
         }
     }
 
+	/**
+	 * @return \Flame\CMS\Forms\OptionForm
+	 */
 	public function createComponentOptionForm()
 	{
-		$f = new Form;
+		$f = new OptionForm();
 
         if($this->id){
-            $f->addText('name', 'Name:', 54)
-                ->addRule(FORM::FILLED, 'Name of variable is required')
-                ->addRule(FORM::MAX_LENGTH, 'Name must be shorter than %d chars', 50)
-                ->setDisabled();
+            $f->configureEdit();
         }else{
-            $f->addText('name', 'Name:', 54)
-                ->addRule(FORM::FILLED, 'Name of variable is required')
-                ->addRule(FORM::MAX_LENGTH, 'Name must be shorter than %d chars', 50);
+            $f->configureAdd();
         }
 
-		$f->addTextArea('value', 'Value:')
-			->addRule(FORM::FILLED, 'Value of variable is required')
-			->addRule(FORM::MAX_LENGTH, 'Value must be shorter than %d chars', 250);
-
-        if($this->id){
-            $f->addSubmit('Submit', 'Edit');
-        }else{
-            $f->addSubmit('Submit', 'Add');
-        }
-		$f->onSuccess[] = callback($this, 'optionFormSubmitted');
-
+		$f->onSuccess[] = $this->optionFormSubmitted;
         return $f;
 	}
 
-	public function optionFormSubmitted(Form $f)
+	/**
+	 * @param \Flame\CMS\Forms\OptionForm $f
+	 * @throws \Nette\Application\BadRequestException
+	 */
+	public function optionFormSubmitted(OptionForm $f)
 	{
 
         if($this->id and !$this->option){
@@ -80,8 +87,7 @@ class OptionPresenter extends AdminPresenter
 
             $this->option->setValue($values['value']);
             $this->optionFacade->persist($this->option);
-            $this->flashMessage('Option was edited.');
-            $this->redirect('this');
+            $this->flashMessage('Option was edited.', 'success');
 
         }else{
             if($this->optionFacade->getByName($values['name'])){
@@ -91,11 +97,19 @@ class OptionPresenter extends AdminPresenter
                 $this->optionFacade->persist($option);
 
                 $this->flashMessage('Global variable was added', 'success');
-                $this->redirect('Option:');
             }
         }
+
+		if($this->isAjax()){
+			$this->invalidateControl();
+		}else{
+			$this->redirect('this');
+		}
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function handleDelete($id)
 	{
 		if(!$this->getUser()->isAllowed('Admin:Option', 'delete')){
