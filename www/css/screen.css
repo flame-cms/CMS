@@ -148,3 +148,10 @@ img {
 .clear {
     clear: both;
 }
+div.flash {
+    color: black;
+    background: #FFF9D7;
+    border: 1px solid #E2C822;
+    padding: 1em;
+    margin: 1em 0;
+}
