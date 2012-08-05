@@ -6,7 +6,6 @@
 			<th>Name</th>
 			<th>Content</th>
 			<th>Category</th>
-			<th>Publish</th>
 			<th>Comments</th>
 			<th>Created</th>
 			<th>Views</th>
@@ -26,7 +25,6 @@
 				{/if}
 			</td>
 			<td>{if $post->publish}Yes{else}No{/if}</td>
-			<td>{if $post->comment}Yes{else}No{/if}</td>
 			<td>{$post->created|date:'%d.%m.%y'}</td>
 			<td>{$post->hit}</td>
 			<td>
