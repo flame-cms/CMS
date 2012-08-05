@@ -20,12 +20,22 @@ class PostFacade extends \Nette\Object
         $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Posts\Post');
     }
 
-    public function getLastPosts()
+    public function getLastPosts($query = false, $limit = 10)
     {
-        return $this->repository->findBy(array(), array('id'=> 'DESC'));
+	    if($query){
+		    return $this->repository->findAllQuery($limit);
+	    }else{
+		    return $this->repository->findBy(array(), array('id'=> 'DESC'));
+	    }
+
     }
 
-    public function getLastPublishPosts()
+	public function getLastPublishPostsPaginator($first, $limit = 10)
+	{
+		return new \Doctrine\ORM\Tools\Pagination\Paginator($this->repository->findPublishedQuery($first, $limit), true);
+	}
+
+    public function getLastPublishPosts($query = false, $limit = 10)
     {
 	    return $this->repository->findBy(array('publish' => '1'), array('id'=> 'DESC'));
     }

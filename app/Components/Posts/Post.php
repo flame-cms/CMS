@@ -7,10 +7,20 @@ namespace Flame\CMS\Components\Posts;
 */
 class Post extends \Flame\Application\UI\Control
 {
-	private $posts;
 
+	/**
+	 * @var \Flame\CMS\Models\Posts\PostFacade
+	 */
+	private $postFacade;
+
+	/**
+	 * @var \Flame\CMS\Models\Options\OptionFacade
+	 */
 	private $optionFacade;
 
+	/**
+	 * @var int
+	 */
 	private $itemsPerPage = 10;
 
 	/**
@@ -20,15 +30,9 @@ class Post extends \Flame\Application\UI\Control
 	public function __construct($parent, $name)
 	{
 		parent::__construct($parent, $name);
-		$this->optionFacade = $this->presenter->context->OptionFacade;
-	}
 
-	/**
-	 * @param $posts
-	 */
-	public function setPosts($posts)
-	{
-		$this->posts = $posts;
+		$this->optionFacade = $this->presenter->context->OptionFacade;
+		$this->postFacade = $this->presenter->context->PostFacade;
 	}
 
 	private function initItemsPerPage()
@@ -37,21 +41,15 @@ class Post extends \Flame\Application\UI\Control
 		if((int) $itemsPerPage >= 1) $this->itemsPerPage = (int) $itemsPerPage;
 	}
 
-	/**
-	 * @throws \Nette\InvalidArgumentException
-	 */
+
 	private function beforeRender()
 	{
-		if($this->posts === null){
-			throw new \Nette\InvalidArgumentException('You must set posts');
-		}
-
 		$this->initItemsPerPage();
 
 		$paginator = $this['paginator']->getPaginator();
-		$paginator->itemCount = count($this->posts);
-
-		$this->template->posts = $this->getItemsPerPage($this->posts, $paginator->offset);
+		$posts = $this->getItemsPerPage($paginator->offset);
+		$paginator->itemCount = count($posts);
+		$this->template->posts = $posts;
 	}
 
 	public function render()
@@ -79,13 +77,12 @@ class Post extends \Flame\Application\UI\Control
 	}
 
 	/**
-	 * @param $posts
 	 * @param $offset
-	 * @return array
+	 * @return \Doctrine\ORM\Tools\Pagination\Paginator
 	 */
-	private function getItemsPerPage(&$posts, $offset)
+	private function getItemsPerPage($offset)
 	{
-		return array_slice($posts, $offset, $this->itemsPerPage);
+		return $this->postFacade->getLastPublishPostsPaginator($offset, $this->itemsPerPage);
 	}
 
 }

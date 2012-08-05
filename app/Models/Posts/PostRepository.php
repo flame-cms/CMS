@@ -13,4 +13,16 @@ namespace Flame\CMS\Models\Posts;
 class PostRepository extends \Flame\Doctrine\Repository
 {
 
+	public function findAllQuery($first, $limit)
+	{
+		$sql = 'Select p from Flame\CMS\Models\Posts\Post p order by p.id DESC';
+		return $this->_em->createQuery($sql)->setFirstResult($first)->setMaxResults($limit);
+	}
+
+	public function findPublishedQuery($first, $limit)
+	{
+		$sql = 'Select p from Flame\CMS\Models\Posts\Post p where p.publish=1 order by p.id DESC';
+		return $this->_em->createQuery($sql)->setFirstResult($first)->setMaxResults($limit);
+	}
+
 }
