@@ -48,7 +48,7 @@ class PostFacade extends \Nette\Object
 	 */
 	public function getLastPostsPaginator($first, $limit = 10)
 	{
-		return new \Doctrine\ORM\Tools\Pagination\Paginator($this->repository->findQuery($first, $limit));
+		return new \Doctrine\ORM\Tools\Pagination\Paginator($this->repository->findAllQuery($first, $limit));
 	}
 
 	/**
