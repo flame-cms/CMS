@@ -1,6 +1,6 @@
 <?php
 
-class NewsreelFacadeTest extends IntegrationTestCase
+class NewsreelFacadeTest extends \Flame\CMS\Tests\IntegrationTestCase
 {
 
     private $facade;

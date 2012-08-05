@@ -1,8 +1,8 @@
 <?php
 
-use Flame\Models\Newsreel\Newsreel;
+use Flame\CMS\Models\Newsreel\Newsreel;
 
-class NewsreelTest extends UnitTestCase
+class NewsreelTest extends \Flame\CMS\Tests\IntegrationTestCase
 {
     public function testConstruction()
     {

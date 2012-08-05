@@ -14,7 +14,7 @@ parameters:
 		baseDir: %wwwDir%
 
 	selenium:
-		host: localhost
+		host: flame-cms
 		browser: firefox
-		browserUrl: http://localhost/JS-CMS/www/
+		browserUrl: http://flame-cms/
 		# port: 4444
