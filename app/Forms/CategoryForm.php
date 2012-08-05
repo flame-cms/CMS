@@ -37,6 +37,8 @@ class CategoryForm extends \Flame\Application\UI\Form
 
 	private function configure()
 	{
+		$this->getElementPrototype()->class[] = 'ajax';
+
 		$this->addText('name', 'Name:', 50)
 			->addRule(self::FILLED)
 			->addRule(self::MAX_LENGTH, null, 100);

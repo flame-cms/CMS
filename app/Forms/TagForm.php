@@ -28,6 +28,8 @@ class TagForm extends \Flame\Application\UI\Form
 
 	private function configure()
 	{
+		$this->getElementPrototype()->class[] = 'ajax';
+
 		$this->addText('name', 'Name:')
 			->addRule(self::FILLED)
 			->addRule(self::MAX_LENGTH, null, 100);
