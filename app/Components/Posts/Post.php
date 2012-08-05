@@ -2,11 +2,13 @@
 
 namespace Flame\CMS\Components\Posts;
 
-/**
-* Comments component
-*/
 class Post extends \Flame\Application\UI\Control
 {
+
+	/**
+	 * @var array
+	 */
+	private $posts;
 
 	/**
 	 * @var \Flame\CMS\Models\Posts\PostFacade
@@ -33,22 +35,22 @@ class Post extends \Flame\Application\UI\Control
 
 		$this->optionFacade = $this->presenter->context->OptionFacade;
 		$this->postFacade = $this->presenter->context->PostFacade;
-	}
 
-	private function initItemsPerPage()
-	{
-		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
-		if((int) $itemsPerPage >= 1) $this->itemsPerPage = (int) $itemsPerPage;
+		$this->initItemsPerPage();
 	}
-
 
 	private function beforeRender()
 	{
-		$this->initItemsPerPage();
-
 		$paginator = $this['paginator']->getPaginator();
-		$posts = $this->getItemsPerPage($paginator->offset);
-		$paginator->itemCount = count($posts);
+
+		if(!$this->posts){
+			$posts = $this->getItemsPerPagePaginator($paginator->offset);
+			$paginator->itemCount = count($posts);
+		}else{
+			$posts = $this->getItemsPerPage($this->posts, $paginator->offset);
+			$paginator->itemCount = count($this->posts);
+		}
+
 		$this->template->posts = $posts;
 	}
 
@@ -67,12 +69,20 @@ class Post extends \Flame\Application\UI\Control
 	}
 
 	/**
+	 * @param $posts
+	 */
+	public function setPosts($posts)
+	{
+		$this->posts = $posts;
+	}
+
+	/**
 	 * @return \Flame\Addons\VisualPaginator\Paginator
 	 */
 	protected function createComponentPaginator()
 	{
 		$visualPaginator = new \Flame\Addons\VisualPaginator\Paginator($this, 'paginator');
-	    $visualPaginator->paginator->itemsPerPage = $this->itemsPerPage;
+	    $visualPaginator->paginator->setItemsPerPage($this->itemsPerPage);
 	    return $visualPaginator;
 	}
 
@@ -80,9 +90,25 @@ class Post extends \Flame\Application\UI\Control
 	 * @param $offset
 	 * @return \Doctrine\ORM\Tools\Pagination\Paginator
 	 */
-	private function getItemsPerPage($offset)
+	private function getItemsPerPagePaginator($offset)
 	{
 		return $this->postFacade->getLastPublishPostsPaginator($offset, $this->itemsPerPage);
+	}
+
+	/**
+	 * @param $posts
+	 * @param $offset
+	 * @return array
+	 */
+	private function getItemsPerPage(&$posts, $offset)
+	{
+		return array_slice($posts, $offset, $this->itemsPerPage);
+	}
+
+	private function initItemsPerPage()
+	{
+		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
+		if((int) $itemsPerPage >= 1) $this->itemsPerPage = (int) $itemsPerPage;
 	}
 
 }

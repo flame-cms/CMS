@@ -35,8 +35,6 @@ class HomepagePresenter extends FrontPresenter
 	 */
 	public function createComponentPostsControl()
 	{
-		$postControl = new \Flame\CMS\Components\Posts\Post($this, 'postsControl');
-
-		return $postControl;
+		return new \Flame\CMS\Components\Posts\Post($this, 'postsControl');
 	}
 }
