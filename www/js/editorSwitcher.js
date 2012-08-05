@@ -58,7 +58,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.use-markdown-syntax').change(function (){
+    var switchEditors = function (){
         if($('.use-markdown-syntax').attr('checked')){
             editor.load(function(){
                 $mce.hide(100, function(){
@@ -72,5 +72,11 @@ $(document).ready(function(){
                 });
             });
         }
+    };
+
+    switchEditors();
+
+    $('.use-markdown-syntax').change(function (){
+        switchEditors();
     });
 });
