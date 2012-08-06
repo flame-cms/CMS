@@ -12,17 +12,44 @@ namespace Flame\CMS\Forms\Posts;
 
 class PostForm extends \Flame\Application\UI\TemplateForm
 {
-	private $categories;
 
-	private $tags;
+	/**
+	 * @var array
+	 */
+	public $categories;
 
+	/**
+	 * @var array
+	 */
+	public $tags;
+
+	/**
+	 * @var array
+	 */
 	private $defaults;
 
-	public function __construct(array $categories, array $tags)
+	/**
+	 * @param \Nette\ComponentModel\IContainer $parent
+	 * @param null $name
+	 */
+	public function __construct(\Nette\ComponentModel\IContainer $parent, $name)
 	{
-		parent::__construct();
+		parent::__construct($parent, $name);
+	}
 
+	/**
+	 * @param array $categories
+	 */
+	public function setCategories(array $categories)
+	{
 		$this->categories = $this->prepareForFormItem($categories);
+	}
+
+	/**
+	 * @param array $tags
+	 */
+	public function setTags(array $tags)
+	{
 		$this->tags = $this->prepareForFormItem($tags);
 	}
 
@@ -34,6 +61,9 @@ class PostForm extends \Flame\Application\UI\TemplateForm
 
 	}
 
+	/**
+	 * @param array $defaults
+	 */
 	public function configureEdit(array $defaults)
 	{
 		$this->defaults = $this->prepareDefaultValues($defaults);
@@ -71,7 +101,6 @@ class PostForm extends \Flame\Application\UI\TemplateForm
 
 		$this->addGroup('Category');
 
-
 		$this->addSelect('category', 'Category:', $this->categories)
 			->setPrompt('-- Select one --')
 			->setOption('description', 'Select category or create new below.');
@@ -87,10 +116,8 @@ class PostForm extends \Flame\Application\UI\TemplateForm
 
 		$this->addGroup('Tags');
 
-		if($this->tags) {
-			$this->addMultiSelect('tags', 'Tags:', $this->tags, count($this->tags))
-				->setAttribute('class', 'tags-multiSelect');
-		}
+		$this->addMultiSelect('tags', 'Tags:', $this->tags, count($this->tags))
+			->setAttribute('class', 'tags-multiSelect');
 
 		$this->addText('tagsNew', 'Create new tags', 100)
 			->setOption('description', 'Tags split with commas')
@@ -102,6 +129,10 @@ class PostForm extends \Flame\Application\UI\TemplateForm
 		$this->addCheckbox('comment', 'Allow comments?');
 	}
 
+	/**
+	 * @param array $defaults
+	 * @return array
+	 */
 	private function prepareDefaultValues(array $defaults)
 	{
 		if(isset($defaults['category'])){

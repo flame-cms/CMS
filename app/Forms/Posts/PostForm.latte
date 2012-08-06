@@ -60,7 +60,7 @@
 	<fieldset>
 		<legend>Category</legend>
 		<table>
-			{if category}
+			{if $form->categories}
 				<tr>
 					<th>{label category /}</th>
 					<td>{input category}</td>
@@ -78,7 +78,7 @@
 	<fieldset>
 		<legend>Tags</legend>
 		<table>
-			{if tags}
+			{if $form->tags}
 				<tr>
 					<th>{label tags /}</th>
 					<td>{input tags}</td>
@@ -97,7 +97,7 @@
 		<legend>Are you sure?</legend>
 		<table>
 			<tr>
-				<th width="30%">{label publish /}</th>
+				<th>{label publish /}</th>
 				<td>{input publish}</td>
 			</tr>
 

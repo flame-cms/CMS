@@ -151,10 +151,10 @@ class PostPresenter extends AdminPresenter
 	protected function createComponentPostForm()
 	{
 
-		$f = new PostForm(
-			$this->categoryFacade->getLastCategories(),
-			$this->tagFacade->getLastTags()
-		);
+		$f = new PostForm($this, 'postForm');
+
+		$f->setTags($this->tagFacade->getLastTags());
+		$f->setCategories($this->categoryFacade->getLastCategories());
 
 		if($this->id){
 			$f->configureEdit($this->post->toArray());
