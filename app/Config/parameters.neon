@@ -18,3 +18,7 @@ parameters:
 		browser: firefox
 		browserUrl: http://flame-cms/
 		# port: 4444
+
+	theme:
+		baseFolder: themes
+		default: default

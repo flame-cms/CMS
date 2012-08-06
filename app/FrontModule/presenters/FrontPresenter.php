@@ -5,10 +5,24 @@ namespace FrontModule;
 abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 {
 
+	/**
+	 * @var string
+	 */
+	private $theme;
+
+	/**
+	 * @var \Flame\CMS\Models\Pages\PageFacade
+	 */
 	private $pageFacade;
 
+	/**
+	 * @var \Flame\CMS\Models\Options\OptionFacade
+	 */
 	private $optionFacade;
 
+	/**
+	 * @var int
+	 */
     private $itemsInMenu = 5;
 
 	public function startup()
@@ -22,6 +36,18 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 
 		$this->pageFacade = $this->context->PageFacade;
 		$this->optionFacade = $this->context->OptionFacade;
+
+		$this->theme = $this->getTheme();
+	}
+
+	/**
+	 * @return array
+	 */
+	public function formatLayoutTemplateFiles()
+	{
+		$list = parent::formatLayoutTemplateFiles();
+		array_unshift($list, WWW_DIR . '/' .  $this->theme . "/@layout.latte");
+		return $list;
 	}
 
 	public function beforeRender()
@@ -33,7 +59,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 
 		$this->template->name = $this->optionFacade->getOptionValue('name');
 		$this->template->menus = $this->pageFacade->getLastPages($this->itemsInMenu);
-
+		$this->template->theme = $this->theme;
 	}
 
 	/**
@@ -58,5 +84,48 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	protected function createComponentTagsControl()
 	{
 		return new \Flame\CMS\Components\Tags\Tag($this, 'tagsControl');
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getTheme()
+	{
+		$folder = $this->getDefaultThemeFolder();
+
+		if($option = $this->optionFacade->getOptionValue('theme')){
+			$path = $folder . '/' . $option;
+			if($this->existTheme($path)) return $path;
+		}
+
+		return $folder . '/' . $this->getDefaultTheme();
+
+	}
+
+	/**
+	 * @param $path
+	 * @return bool
+	 */
+	private function existTheme($path)
+	{
+		return file_exists($path);
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getDefaultTheme()
+	{
+		$params = $this->context->getParam('theme');
+		return (isset($params['default'])) ? $params['default'] : 'default';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getDefaultThemeFolder()
+	{
+		$params = $this->context->getParam('theme');
+		return (isset($params['baseFolder'])) ? $params['baseFolder'] : 'themes';
 	}
 }

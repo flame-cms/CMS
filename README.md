@@ -38,6 +38,7 @@ If you want to sign in to backend part (Administration) of Flame, use email **us
 * Pages management
 * MarkDown syntax support
 * Wordpress posts import
+* Management of templates
 
 ### Global available settings
 If you want to affect prepared options (set up in the options section)
