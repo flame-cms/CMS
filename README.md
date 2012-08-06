@@ -37,7 +37,7 @@ If you want to sign in to backend part (Administration) of Flame, use email **us
 * Newsreel
 * Pages management
 * Wordpress posts import
-* Management of templates
+* Management of templates for Front part (Twitter Bootstrap for Administration)
 
 ### Global available settings
 If you want to affect prepared options (set up in the options section)
