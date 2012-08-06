@@ -2,7 +2,7 @@
 
 namespace FrontModule;
 
-abstract class FrontPresenter extends \Flame\Application\UI\Presenter
+abstract class FrontPresenter extends \Flame\CMS\Application\UI\Presenter
 {
 
 	/**

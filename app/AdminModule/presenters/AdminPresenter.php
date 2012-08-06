@@ -2,7 +2,7 @@
 
 namespace AdminModule;
 
-abstract class AdminPresenter extends \Flame\Application\UI\Presenter
+abstract class AdminPresenter extends \Flame\CMS\Application\UI\Presenter
 {
 
 	public function startup()
