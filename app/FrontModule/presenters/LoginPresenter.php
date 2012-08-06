@@ -40,7 +40,7 @@ class LoginPresenter extends FrontPresenter
 			if ($values->persistent) {
 				$this->getUser()->setExpiration('+ 14 days', FALSE);
 			} else {
-				$this->getUser()->setExpiration('+ 45 minutes', TRUE);
+				$this->getUser()->setExpiration('+ 3 hours', TRUE);
 			}
 			$this->getUser()->login($values->email, $values->password);
 
