@@ -12,7 +12,8 @@ abstract class AdminPresenter extends \Flame\Application\UI\Presenter
 		$user = $this->getUser();
 
 		if(!$user->isLoggedIn()){
-            $this->redirect(':Front:Login:');
+			$backlink = $this->getApplication()->storeRequest('+ 48 hours');
+			$this->redirect(':Front:Login:', $backlink);
 		}else{
 			if(!$user->isAllowed($this->name, $this->view)){
 				$this->flashMessage('Access denied');
