@@ -37,12 +37,12 @@ class Authorizator extends NS\Permission implements NS\IAuthorizator
         $this->addResource('Front:Page');
 		$this->addResource('Front:Category');
 		$this->addResource('Front:Tag');
+		$this->addResource('Front:Login');
 
 		//DEFINE ADMIN RESOURCE
 		$this->addResource('Admin:Tag');
 		$this->addResource('Admin:Category');
 		$this->addResource('Admin:Dashboard');
-		$this->addResource('Admin:Sign');
 		$this->addResource('Admin:Option');
 		$this->addResource('Admin:Post');
 		$this->addResource('Admin:User');
@@ -52,7 +52,6 @@ class Authorizator extends NS\Permission implements NS\IAuthorizator
 		$this->addResource('Admin:Newsreel');
 		$this->addResource('Admin:Import');
 
-        //DEFINE ADMIN GUEST ACCESS
 		$this->allow(self::GUEST, array(
 			'Front:Homepage',
 			'Front:Newsreel',
@@ -60,16 +59,12 @@ class Authorizator extends NS\Permission implements NS\IAuthorizator
 			'Front:Post',
 			'Front:Message',
 			'Front:Category',
-			'Front:Tag'
+			'Front:Tag',
+			'Front:Login'
 		));
 
-        //DEFINE FRONT GUEST ACCESS
-        $this->allow(self::GUEST, array('Admin:Sign'), array('in'));
-
-        //DEFINE ADMIN USERS ACCESS
 		$this->allow(self::USER, array('Admin:User'), array('password', 'edit'));
 
-		//DEFINE ADMIN MODERATORS ACCESS
 		$this->allow(self::MODERATOR, array(
 			'Admin:Dashboard',
 			'Admin:Post',

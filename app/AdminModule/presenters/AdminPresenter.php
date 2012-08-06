@@ -12,7 +12,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\Presenter
 		$user = $this->getUser();
 
 		if(!$user->isLoggedIn()){
-            $this->redirect('Sign:in');
+            $this->redirect(':Front:Login:');
 		}else{
 			if(!$user->isAllowed($this->name, $this->view)){
 				$this->flashMessage('Access denied');
@@ -31,7 +31,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\Presenter
 	{
 		$this->getUser()->logout();
 		$this->flashMessage('You have been signed out.');
-		$this->redirect('Sign:in');
+		$this->redirect(':Front:Login:');
 
 	}
 

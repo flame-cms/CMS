@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Forms;
 
-class SignInForm extends \Flame\Application\UI\Form
+class LoginForm extends \Flame\Application\UI\Form
 {
 	
 	public function configure()

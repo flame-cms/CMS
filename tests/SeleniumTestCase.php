@@ -41,15 +41,15 @@ class SeleniumTestCase extends \PHPUnit_Extensions_Selenium2TestCase
 
 	protected function loginUser()
 	{
-		$this->url('/admin/sign/in');
+		$this->url('/login');
 
-		$element = $this->byId('frm-signInForm-email');
+		$element = $this->byId('frm-loginForm-email');
 		$element->value('user@demo.com');
 
-		$element = $this->byId('frm-signInForm-password');
+		$element = $this->byId('frm-loginForm-password');
 		$element->value('password12');
 
-		$this->clickOnElement('frm-signInForm-login');
+		$this->clickOnElement('frm-loginForm-login');
 	}
 
 }

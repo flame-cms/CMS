@@ -1,31 +1,31 @@
 <?php
 
-namespace AdminModule;
+namespace FrontModule;
 
 use Nette\Security as NS,
-    Flame\CMS\Forms\SignInForm;
+    Flame\CMS\Forms\LoginForm;
 
 
-class SignPresenter extends \Flame\Application\UI\Presenter
+class LoginPresenter extends FrontPresenter
 {
 
     public function startup()
     {
         parent::startup();
         if($this->getUser()->isLoggedIn()){
-            $this->redirect('Dashboard:');
+            $this->redirect(':Admin:Dashboard:');
         }
     }
 
-	protected function createComponentSignInForm()
+	protected function createComponentLoginForm()
 	{
-		$form = new SignInForm();
+		$form = new LoginForm();
 		$form->configure();
-		$form->onSuccess[] = $this->signInFormSubmitted;
+		$form->onSuccess[] = $this->loginFormSubmitted;
 		return $form;
 	}
 
-	public function signInFormSubmitted(SignInForm $form)
+	public function loginFormSubmitted(LoginForm $form)
 	{
 
 		try {
@@ -36,7 +36,7 @@ class SignPresenter extends \Flame\Application\UI\Presenter
 				$this->getUser()->setExpiration('+ 20 minutes', TRUE);
 			}
 			$this->getUser()->login($values->email, $values->password);
-			$this->redirect('DashBoard:');
+			$this->redirect(':Admin:DashBoard:');
 
 		} catch (NS\AuthenticationException $e) {
 			$form->addError($e->getMessage());

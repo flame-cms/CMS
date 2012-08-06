@@ -10,15 +10,15 @@
 
 namespace Flame\CMS\Tests\Selenium;
 
-class SingPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
+class LoginPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
 {
 	/**
 	 * @test
 	 */
 	public function testEmptyForm()
 	{
-		$this->url('/admin/sign/in');
-		$this->clickOnElement('frm-signInForm-login');
+		$this->url('/login');
+		$this->clickOnElement('frm-loginForm-login');
 		$this->assertEquals('Field "Email:" is required.', $this->alertText());
 	}
 
@@ -27,10 +27,10 @@ class SingPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
 	 */
 	public function testNoPassword()
 	{
-		$this->url('/admin/sign/in');
-		$element = $this->byId('frm-signInForm-email');
+		$this->url('/login');
+		$element = $this->byId('frm-loginForm-email');
 		$element->value('user@demo.com');
-		$this->clickOnElement('frm-signInForm-login');
+		$this->clickOnElement('frm-loginForm-login');
 		$this->assertEquals('Field "Password:" is required.', $this->alertText());
 	}
 
@@ -39,10 +39,10 @@ class SingPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
 	 */
 	public function testNoEmail()
 	{
-		$this->url('/admin/sign/in');
-		$element = $this->byId('frm-signInForm-password');
+		$this->url('/login');
+		$element = $this->byId('frm-loginForm-password');
 		$element->value('password12');
-		$this->clickOnElement('frm-signInForm-login');
+		$this->clickOnElement('frm-loginForm-login');
 		$this->assertEquals('Field "Email:" is required.', $this->alertText());
 	}
 
@@ -51,16 +51,16 @@ class SingPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
 	 */
 	public function testError()
 	{
-		$this->url('/admin/sign/in');
+		$this->url('/login');
 
-		$element = $this->byId('frm-signInForm-password');
+		$element = $this->byId('frm-loginForm-password');
 		$element->value('password12');
 
-		$element = $this->byId('frm-signInForm-email');
+		$element = $this->byId('frm-loginForm-email');
 		$element->value('user@demo.bad');
 
-		$this->clickOnElement('frm-signInForm-login');
-		//sleep(1);
+		$this->clickOnElement('frm-loginForm-login');
+
 		$error = $this->byCssSelector('h4');
 
 		$this->assertEquals('Email \'user@demo.bad\' not found.', $error->text());
@@ -71,15 +71,15 @@ class SingPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
 	 */
 	public function testLogin()
 	{
-		$this->url('/admin/sign/in');
+		$this->url('/login');
 
-		$element = $this->byId('frm-signInForm-email');
+		$element = $this->byId('frm-loginForm-email');
 		$element->value('user@demo.com');
 
-		$element = $this->byId('frm-signInForm-password');
+		$element = $this->byId('frm-loginForm-password');
 		$element->value('password12');
 
-		$this->clickOnElement('frm-signInForm-login');
+		$this->clickOnElement('frm-loginForm-login');
 
 		$this->assertEquals($this->trimUrl($this->url()), 'admin');
 	}
