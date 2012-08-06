@@ -13,11 +13,6 @@ namespace Flame\CMS\Forms;
 class NewsreelForm extends \Flame\Application\UI\Form
 {
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	public function configureAdd()
 	{
 		$this->configure();

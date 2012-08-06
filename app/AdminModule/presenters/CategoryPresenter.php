@@ -15,15 +15,30 @@ use Flame\CMS\Forms\CategoryForm;
 class CategoryPresenter extends AdminPresenter
 {
 
+	/**
+	 * @var int
+	 */
 	private $id;
 
+	/**
+	 * @var \Flame\CMS\Models\Categories\Category
+	 */
 	private $category;
 
+	/**
+	 * @var \Flame\CMS\Models\Categories\CategoryFacade
+	 */
 	private $categoryFacade;
 
+	/**
+	 * @var array
+	 */
 	private $categories;
 
-	public function __construct(\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade)
+	/**
+	 * @param \Flame\CMS\Models\Categories\CategoryFacade $categoryFacade
+	 */
+	public function injectCategoryFacade(\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade)
 	{
 		$this->categoryFacade = $categoryFacade;
 	}
@@ -33,6 +48,9 @@ class CategoryPresenter extends AdminPresenter
 		$this->template->categories = $this->categoryFacade->getLastCategories();
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function actionEdit($id)
 	{
 		$this->id = $id;
@@ -43,10 +61,17 @@ class CategoryPresenter extends AdminPresenter
 		}
 	}
 
+	/**
+	 * @return \Flame\CMS\Forms\CategoryForm
+	 */
 	protected function createComponentCategoryForm()
 	{
-		$categories = $this->categoryFacade->getLastCategories() ? $this->categoryFacade->getLastCategories() : array();
-		$f = new CategoryForm($categories);
+
+		$f = new CategoryForm($this, 'categoryForm');
+
+		if($categories = $this->categoryFacade->getLastCategories()){
+			$f->addCategories($categories);
+		}
 
 		if($this->id){
 			$f->configureEdit($this->category->toArray());
@@ -54,11 +79,15 @@ class CategoryPresenter extends AdminPresenter
 			$f->configureAdd();
 		}
 
-		$f->onSuccess[] = callback($this, 'categoryFormSubmitted');
+		$f->onSuccess[] = $this->categoryFormSubmitted;
 
 		return $f;
 	}
 
+	/**
+	 * @param \Flame\CMS\Forms\CategoryForm $form
+	 * @throws \Nette\Application\BadRequestException
+	 */
 	public function categoryFormSubmitted(CategoryForm $form)
 	{
 		if($this->id and !$this->category){
@@ -110,6 +139,9 @@ class CategoryPresenter extends AdminPresenter
 		}
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function handleDelete($id)
 	{
 		if(!$this->getUser()->isAllowed('Admin:Category', 'delete')){

@@ -13,11 +13,6 @@ namespace Flame\CMS\Forms;
 class PageForm extends \Flame\Application\UI\Form
 {
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	public function configureEdit()
 	{
 		$this->configure();

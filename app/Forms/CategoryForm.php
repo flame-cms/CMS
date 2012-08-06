@@ -12,12 +12,16 @@ namespace Flame\CMS\Forms;
 
 class CategoryForm extends \Flame\Application\UI\Form
 {
-
+	/**
+	 * @var array
+	 */
 	private $categories;
 
-	public function __construct(array $categories)
+	/**
+	 * @param array $categories
+	 */
+	public function addCategories(array $categories)
 	{
-		parent::__construct();
 		$this->categories = $this->prepareForFormItem($categories);
 	}
 
@@ -28,6 +32,9 @@ class CategoryForm extends \Flame\Application\UI\Form
 		$this->addSubmit('send', 'create');
 	}
 
+	/**
+	 * @param array $defaults
+	 */
 	public function configureEdit(array $defaults)
 	{
 		$this->configure();

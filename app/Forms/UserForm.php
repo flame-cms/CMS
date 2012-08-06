@@ -33,6 +33,9 @@ class UserForm extends \Flame\Application\UI\Form
 		$this->addSubmit('create', 'Create new account');
 	}
 
+	/**
+	 * @param array $defaults
+	 */
 	public function configureEditFull(array $defaults)
 	{
 		$this->editForm = true;

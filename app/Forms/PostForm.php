@@ -29,15 +29,6 @@ class PostForm extends \Flame\Application\UI\Form
 	private $defaults;
 
 	/**
-	 * @param \Nette\ComponentModel\IContainer $parent
-	 * @param null $name
-	 */
-	public function __construct(\Nette\ComponentModel\IContainer $parent, $name)
-	{
-		parent::__construct($parent, $name);
-	}
-
-	/**
 	 * @param array $categories
 	 */
 	public function setCategories(array $categories)
