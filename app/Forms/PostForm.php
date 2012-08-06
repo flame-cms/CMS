@@ -105,8 +105,10 @@ class PostForm extends \Flame\Application\UI\Form
 
 		$this->addGroup('Tags');
 
-		$this->addMultiSelect('tags', 'Tags:', $this->tags, count($this->tags))
-			->setAttribute('class', 'tags-multiSelect');
+		if($this->tags){
+			$this->addMultiSelect('tags', 'Tags:', $this->tags, count($this->tags))
+				->setAttribute('class', 'tags-multiSelect');
+		}
 
 		$this->addText('tagsNew', 'Create new tags', 100)
 			->setOption('description', 'Tags split with commas')
