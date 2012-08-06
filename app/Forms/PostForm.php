@@ -8,7 +8,7 @@
  * @date    14.07.12
  */
 
-namespace Flame\CMS\Forms\Posts;
+namespace Flame\CMS\Forms;
 
 class PostForm extends \Flame\Application\UI\Form
 {
@@ -16,12 +16,12 @@ class PostForm extends \Flame\Application\UI\Form
 	/**
 	 * @var array
 	 */
-	public $categories;
+	private $categories;
 
 	/**
 	 * @var array
 	 */
-	public $tags;
+	private $tags;
 
 	/**
 	 * @var array

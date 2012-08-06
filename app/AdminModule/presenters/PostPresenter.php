@@ -2,7 +2,7 @@
 
 namespace AdminModule;
 
-use Flame\CMS\Forms\Posts\PostForm;
+use Flame\CMS\Forms\PostForm;
 
 /**
 * PostPresenter
