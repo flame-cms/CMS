@@ -186,6 +186,14 @@ class PostPresenter extends AdminPresenter
         }
 
 		$tags = array();
+
+		if(isset($values['tags']) and is_array($values['tags']) and count($values['tags'])){
+
+			foreach($values['tags'] as $tag){
+				$tags[] = $this->tagFacade->getOne($tag);
+			}
+		}
+
 		if(isset($values['tagsNew']) and !empty($values['tagsNew'])){
 
 			$tagsRaw = explode(',', $values['tagsNew']);
@@ -224,13 +232,8 @@ class PostPresenter extends AdminPresenter
 	                ->setContent($values['content'])
 	                ->setCategory($category)
 	                ->setPublish($values['publish'])
-	                ->setComment($values['comment']);
-
-		        if(count($tags)){
-			        foreach($tags as $tag){
-				        $this->post->setTags($tag);
-			        }
-		        }
+	                ->setComment($values['comment'])
+		            ->setTags($tags);
 
 	            $this->postFacade->persist($this->post);
 		        $this->flashMessage('Post was edited');
@@ -248,13 +251,8 @@ class PostPresenter extends AdminPresenter
 		        $post->setComment($values['comment'])
 			        ->setPublish($values['publish'])
 			        ->setKeywords($values['keywords'])
-			        ->setDescription($values['description']);
-
-		        if(count($tags)){
-			        foreach($tags as $tag){
-				        $post->setTags($tag);
-			        }
-		        }
+			        ->setDescription($values['description'])
+			        ->setTags($tags);
 
 	            $this->postFacade->persist($post);
 		        $this->flashMessage('Post was successfully added.', 'success');

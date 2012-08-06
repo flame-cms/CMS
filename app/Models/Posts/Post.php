@@ -182,11 +182,17 @@ class Post extends \Flame\Doctrine\Entity
         return $this->tags;
     }
 
-    public function setTags(Tag $tag)
+    public function addTag(Tag $tag)
     {
         $this->tags[] = $tag;
         return $this;
     }
+
+	public function setTags(array $tags)
+	{
+		$this->tags = $tags;
+		return $this;
+	}
 
     public function getCreated()
     {
