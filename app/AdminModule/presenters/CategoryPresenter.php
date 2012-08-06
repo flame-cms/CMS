@@ -64,13 +64,13 @@ class CategoryPresenter extends AdminPresenter
 	/**
 	 * @return \Flame\CMS\Forms\CategoryForm
 	 */
-	protected function createComponentCategoryForm()
+	protected function createComponentCategoryForm($name)
 	{
 
-		$f = new CategoryForm($this, 'categoryForm');
+		$f = new CategoryForm($this, $name);
 
 		if($categories = $this->categoryFacade->getLastCategories()){
-			$f->addCategories($categories);
+			$f->setCategories($categories);
 		}
 
 		if($this->id){
@@ -133,6 +133,7 @@ class CategoryPresenter extends AdminPresenter
 		}
 
 		if($this->isAjax()){
+			$form->restore(array(), $this->categoryFacade->getLastCategories());
 			$this->invalidateControl();
 		}else{
 			$this->redirect('this');

@@ -87,12 +87,16 @@ class TagPresenter extends AdminPresenter
 		}
 
 		if($this->isAjax()){
+			$form->restore();
 			$this->invalidateControl();
 		}else{
 			$this->redirect('this');
 		}
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function handleDelete($id)
 	{
 		if(!$this->getUser()->isAllowed('Admin:Tag', 'delete')){

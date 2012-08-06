@@ -20,9 +20,15 @@ class CategoryForm extends \Flame\Application\UI\Form
 	/**
 	 * @param array $categories
 	 */
-	public function addCategories(array $categories)
+	public function setCategories(array $categories)
 	{
 		$this->categories = $this->prepareForFormItem($categories);
+	}
+
+	public function restore($defaults = array(), $categories = array())
+	{
+		parent::restore($defaults);
+		$this['parent']->setItems($categories);
 	}
 
 
