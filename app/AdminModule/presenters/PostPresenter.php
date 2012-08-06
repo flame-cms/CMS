@@ -246,7 +246,6 @@ class PostPresenter extends AdminPresenter
 	            );
 
 		        $post->setComment($values['comment'])
-			        ->setMarkdown($values['markdown'])
 			        ->setPublish($values['publish'])
 			        ->setKeywords($values['keywords'])
 			        ->setDescription($values['description']);

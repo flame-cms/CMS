@@ -24,7 +24,6 @@
 
 	"require": {
 		"jsifalda/flame": "dev-master",
-		"dflydev/markdown": "1.0.2",
 		"doctrine/migrations": "dev-master",
 		"symfony/console": "2.0.*"
 	}

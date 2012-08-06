@@ -8,11 +8,7 @@
 
 <h3>{$post->description}</h3>
 
-{if $post->markdown}
-	{!$post->content|markdown}
-{else}
-	{!$post->content}
-{/if}
+{!$post->content}
 
 <p>
 	<small>In category: {$category} |

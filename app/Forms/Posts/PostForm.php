@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Forms\Posts;
 
-class PostForm extends \Flame\Application\UI\TemplateForm
+class PostForm extends \Flame\Application\UI\Form
 {
 
 	/**
@@ -84,9 +84,6 @@ class PostForm extends \Flame\Application\UI\TemplateForm
 		$this->addTextArea('content', 'Content:', 105, 35)
 			->addRule(self::FILLED)
 			->setAttribute('class', 'mceEditor');
-
-		$this->addCheckbox('markdown', 'Use MarkDown syntax?')
-			->setAttribute('class', 'use-markdown-syntax');
 
 		$this->addGroup('Meta options');
 

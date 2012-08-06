@@ -83,11 +83,6 @@ class Post extends \Flame\Doctrine\Entity
      */
     protected $hit;
 
-    /**
-     * @Column(type="boolean")
-     */
-    protected $markdown;
-
     public function __construct(User $user, $name, $slug, $content, Category $category)
     {
         $this->user = $user;
@@ -96,7 +91,6 @@ class Post extends \Flame\Doctrine\Entity
         $this->content = $content;
 	    $this->category = $category;
 
-	    $this->markdown = false;
 	    $this->hit = 0;
 	    $this->comment = true;
 	    $this->publish = true;
@@ -235,17 +229,6 @@ class Post extends \Flame\Doctrine\Entity
     public function setHit($hit)
     {
         $this->hit = (int) $hit;
-        return $this;
-    }
-
-    public function getMarkdown()
-    {
-        return $this->markdown;
-    }
-
-    public function setMarkdown($markdown)
-    {
-        $this->markdown = (bool) $markdown;
         return $this;
     }
 }

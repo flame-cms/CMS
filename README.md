@@ -36,7 +36,6 @@ If you want to sign in to backend part (Administration) of Flame, use email **us
 * Users management
 * Newsreel
 * Pages management
-* MarkDown syntax support
 * Wordpress posts import
 * Management of templates
 
