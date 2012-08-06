@@ -26,3 +26,4 @@ services:
 	UserInfoFacade: Flame\CMS\Models\UsersInfo\UserInfoFacade
 
 	WordPressImporter: Flame\Utils\WordPressImporter
+	ThemeManager: Flame\CMS\Utils\ThemeManager(%theme%, @OptionFacade)

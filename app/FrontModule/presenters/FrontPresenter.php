@@ -37,7 +37,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 		$this->pageFacade = $this->context->PageFacade;
 		$this->optionFacade = $this->context->OptionFacade;
 
-		$this->theme = $this->getTheme();
+		$this->theme = $this->context->ThemeManager->getTheme();
 	}
 
 	/**
@@ -86,46 +86,5 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 		return new \Flame\CMS\Components\Tags\Tag($this, 'tagsControl');
 	}
 
-	/**
-	 * @return string
-	 */
-	private function getTheme()
-	{
-		$folder = $this->getDefaultThemeFolder();
 
-		if($option = $this->optionFacade->getOptionValue('theme')){
-			$path = $folder . '/' . $option;
-			if($this->existTheme($path)) return $path;
-		}
-
-		return $folder . '/' . $this->getDefaultTheme();
-
-	}
-
-	/**
-	 * @param $path
-	 * @return bool
-	 */
-	private function existTheme($path)
-	{
-		return file_exists($path);
-	}
-
-	/**
-	 * @return string
-	 */
-	private function getDefaultTheme()
-	{
-		$params = $this->context->getParam('theme');
-		return (isset($params['default'])) ? $params['default'] : 'default';
-	}
-
-	/**
-	 * @return string
-	 */
-	private function getDefaultThemeFolder()
-	{
-		$params = $this->context->getParam('theme');
-		return (isset($params['baseFolder'])) ? $params['baseFolder'] : 'themes';
-	}
 }
