@@ -52,4 +52,9 @@ class SeleniumTestCase extends \PHPUnit_Extensions_Selenium2TestCase
 		$this->clickOnElement('frm-loginForm-login');
 	}
 
+	protected function getUniqueId()
+	{
+		return md5(uniqid(microtime()));
+	}
+
 }
