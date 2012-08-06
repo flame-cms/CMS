@@ -49,6 +49,26 @@ class SingPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
 	/**
 	 * @test
 	 */
+	public function testError()
+	{
+		$this->url('/admin/sign/in');
+
+		$element = $this->byId('frm-signInForm-password');
+		$element->value('password12');
+
+		$element = $this->byId('frm-signInForm-email');
+		$element->value('user@demo.bad');
+
+		$this->clickOnElement('frm-signInForm-login');
+		//sleep(1);
+		$error = $this->byCssSelector('h4');
+
+		$this->assertEquals('Email \'user@demo.bad\' not found.', $error->text());
+	}
+
+	/**
+	 * @test
+	 */
 	public function testLogin()
 	{
 		$this->url('/admin/sign/in');
