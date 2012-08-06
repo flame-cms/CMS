@@ -10,15 +10,29 @@
 
 namespace AdminModule;
 
+use Flame\CMS\Forms\TagForm;
+
 class TagPresenter extends AdminPresenter
 {
 
+	/**
+	 * @var int
+	 */
 	private $id;
 
+	/**
+	 * @var \Flame\CMS\Models\Tags\Tag
+	 */
 	private $tag;
 
+	/**
+	 * @var \Flame\CMS\Models\Tags\TagFacade
+	 */
 	private $tagFacade;
 
+	/**
+	 * @param \Flame\CMS\Models\Tags\TagFacade $tagFacade
+	 */
 	public function injectTagFacade(\Flame\CMS\Models\Tags\TagFacade $tagFacade)
 	{
 		$this->tagFacade = $tagFacade;
@@ -29,6 +43,9 @@ class TagPresenter extends AdminPresenter
 		$this->template->tags = $this->tagFacade->getLastTags();
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function actionEdit($id)
 	{
 		$this->id = $id;
@@ -39,9 +56,13 @@ class TagPresenter extends AdminPresenter
 		}
 	}
 
-	protected function createComponentTagForm()
+	/**
+	 * @param $name
+	 * @return \Flame\CMS\Forms\TagForm
+	 */
+	protected function createComponentTagForm($name)
 	{
-		$form = new \Flame\CMS\Forms\TagForm();
+		$form = new TagForm($this, $name);
 
 		if($this->id){
 			$form->configureEdit($this->tag->toArray());
@@ -49,12 +70,16 @@ class TagPresenter extends AdminPresenter
 			$form->configureAdd();
 		}
 
-		$form->onSuccess[] = callback($this, 'tagFormSubmitted');
+		$form->onSuccess[] = $this->tagFormSubmitted;
 
 		return $form;
 	}
 
-	public function tagFormSubmitted(\Flame\Application\UI\Form $form)
+	/**
+	 * @param \Flame\CMS\Forms\TagForm $form
+	 * @throws \Nette\Application\BadRequestException
+	 */
+	public function tagFormSubmitted(TagForm $form)
 	{
 		if($this->id and !$this->tag){
 			throw new \Nette\Application\BadRequestException;
