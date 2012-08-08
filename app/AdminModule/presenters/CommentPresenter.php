@@ -2,14 +2,17 @@
 
 namespace AdminModule;
 
-/**
-* Comments management
-*/
 class CommentPresenter extends AdminPresenter
 {
+	/**
+	 * @var \Flame\CMS\Models\Comments\CommentFacade
+	 */
 	private $commentFacade;
 
-    public function __construct(\Flame\CMS\Models\Comments\CommentFacade $commentFacade)
+	/**
+	 * @param \Flame\CMS\Models\Comments\CommentFacade $commentFacade
+	 */
+    public function injectCommentFacade(\Flame\CMS\Models\Comments\CommentFacade $commentFacade)
     {
         $this->commentFacade = $commentFacade;
     }
@@ -19,6 +22,9 @@ class CommentPresenter extends AdminPresenter
         $this->template->comments = $this->commentFacade->getLastComments();
 	}
 
+	/**
+	 * @param $id
+	 */
     public function handleDelete($id)
     {
         if(!$this->getUser()->isAllowed('Admin:Comment', 'delete')){
@@ -39,6 +45,9 @@ class CommentPresenter extends AdminPresenter
         }
     }
 
+	/**
+	 * @param $id
+	 */
     public function handleMarkPublish($id)
     {
         if(!$this->getUser()->isAllowed('Admin:Comment', 'publish')){
