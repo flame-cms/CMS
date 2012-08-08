@@ -168,7 +168,7 @@ class PostPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \Flame\CMS\Forms\Posts\PostForm $f
+	 * @param \Flame\CMS\Forms\PostForm $f
 	 * @throws \Nette\Application\BadRequestException
 	 */
 	public function postFormSubmitted(PostForm $f)
@@ -271,7 +271,7 @@ class PostPresenter extends AdminPresenter
 	{
 		if($categoryExist = $this->categoryFacade->getOneByName($name)) return $categoryExist;
 
-		$category = new \Flame\CMS\Models\Categories\Category($name, "", $this->createSlug($name));
+		$category = new \Flame\CMS\Models\Categories\Category($name, $this->createSlug($name));
 		$this->categoryFacade->persist($category);
 		return $category;
 	}
