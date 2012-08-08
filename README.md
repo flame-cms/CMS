@@ -2,6 +2,14 @@
 
 Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flame)
 
+##Screen from FrontModule
+
+![FrontModule](http://projects.jsifalda.name/flame/screens/front_module.png "FrontModule")
+
+##Screen from AdminModule
+
+![AdminModule](http://projects.jsifalda.name/flame/screens/admin_module.png "AdminModule")
+
 ###Installing
 #####Download sandbox
 
