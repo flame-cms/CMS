@@ -8,7 +8,7 @@
  * @date    06.08.12
  */
 
-namespace Flame\CMS\Tests\Selenium;
+namespace Flame\CMS\Tests\Selenium\AdminModule;
 
 class CategoryPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
 {
