@@ -79,16 +79,7 @@ class ImagePresenter extends AdminPresenter
 
 	private function getRandomImagePrefix()
 	{
-		//$charset = 'abcdefghijklmnopqrstuvwxyz012345678901234567890123456789';
-		$charset = uniqid('', false);
-		$str = "";
-
-		for($i=0;$i< 6;$i++) {
-			$pos = mt_rand(0, strlen($charset)-1);
-			$str .= $charset[$pos];
-		}
-
-		return $str;
+		return md5(uniqid(microtime(), true));
 	}
 
 	public function handleDelete($id)
