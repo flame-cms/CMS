@@ -61,20 +61,29 @@ class ImagePresenter extends AdminPresenter
 	private function saveImage($file)
 	{
 		$name = $file->name;
-		$path = $this->imageStorage['baseDir'] .
-			DIRECTORY_SEPARATOR .
-			$this->imageStorage['imageDir'] .
-			DIRECTORY_SEPARATOR . $name;
+		$folder = $this->imageStorage['baseDir'] . DIRECTORY_SEPARATOR . $this->imageStorage['imageDir'];
+		$imagePath = $folder . DIRECTORY_SEPARATOR . $name;
 
-		if(!file_exists($path)){
-			$file->move($path);
+		$this->createFolder($folder);
+
+		if(!file_exists($imagePath)){
+			$file->move($imagePath);
 		}else{
 			$new_name = $this->getRandomImagePrefix() . '_' . $name;
-			$file->move(str_replace($name, $new_name, $path));
+			$file->move(str_replace($name, $new_name, $imagePath));
 			$name = $new_name;
 
 		}
 		return $name;
+	}
+
+	private function createFolder($path)
+	{
+		if(!file_exists($path)){
+			return @mkdir($path, 0777, true);
+		}
+
+		return true;
 	}
 
 	private function getRandomImagePrefix()
