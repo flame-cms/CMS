@@ -28,21 +28,27 @@ class PageForm extends \Flame\Application\UI\Form
 	private function configure()
 	{
 
+		$this->addGroup('Main');
+
 		$this->addText('name', 'Name:', 80)
 			->addRule(self::FILLED)
 			->addRule(self::MAX_LENGTH, null, 100);
+
+
+		$this->addTextArea('content', 'Content:', 110, 30)
+			->addRule(self::FILLED)
+			->setAttribute('class', 'mceEditor');
+
+		$this->addGroup('SEO options');
 
 		$this->addText('slug', 'Slug:', 80);
 
 		$this->addTextArea('description', 'Description:', 80, 6)
 			->addRule(self::MAX_LENGTH, null, 250);
 
-		$this->addTextArea('keywords', 'META keywords:', 80, 6)
+		$this->addText('keywords', 'META keywords:', 80, 6)
 			->addRule(self::MAX_LENGTH, null, 250);
 
-		$this->addTextArea('content', 'Content:', 110, 30)
-			->addRule(self::FILLED)
-			->getControlPrototype()->class('mceEditor');
 	}
 
 }
