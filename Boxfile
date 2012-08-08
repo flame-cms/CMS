@@ -3,7 +3,7 @@ web1:
   shared_writable_dirs:
     - temp
     - log
-    - www/media
+    - www/media/*
   document_root: www
   php_version: 5.3.10
   php_extensions:
