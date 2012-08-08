@@ -92,7 +92,6 @@ class PostForm extends \Flame\Application\UI\Form
 		if($this->categories){
 			$this->addSelect('category', 'Category:', $this->categories)
 				->setPrompt('-- Select one --')
-				->addRule(self::FILLED)
 				->setOption('description', 'Select category or create new below.');
 
 			$this->addText('categoryNew', 'Create new category', 80)
