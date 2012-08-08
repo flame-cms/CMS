@@ -23,7 +23,7 @@
 
 						<td>{$page->name}</td>
 						<td>{!$page->content|striptags|truncate:250}</td>
-						<td>{$page->user->username}</td>
+						<td>{$page->user}</td>
 						<td>{$page->created|date:'%d.%m.%y'}</td>
 						<td>{$page->hit}</td>
 						<td>
