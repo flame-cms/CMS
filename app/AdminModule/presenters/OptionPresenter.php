@@ -101,6 +101,7 @@ class OptionPresenter extends AdminPresenter
         }
 
 		if($this->isAjax()){
+			$f->restore();
 			$this->invalidateControl();
 		}else{
 			$this->redirect('this');
