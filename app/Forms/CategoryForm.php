@@ -29,7 +29,7 @@ class CategoryForm extends \Flame\Application\UI\Form
 	 * @param array $defaults
 	 * @param array $categories
 	 */
-	public function restore($defaults = array(), $categories = array())
+	public function restore(array $defaults = array(), $categories = array())
 	{
 		parent::restore($defaults);
 		$this['parent']->setItems($categories);
