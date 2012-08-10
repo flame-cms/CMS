@@ -10,8 +10,6 @@
 
 namespace AdminModule;
 
-use Flame\CMS\Forms\CategoryForm;
-
 class CategoryPresenter extends AdminPresenter
 {
 
@@ -62,7 +60,7 @@ class CategoryPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @return \Flame\CMS\Forms\CategoryForm
+	 * @return CategoryForm
 	 */
 	protected function createComponentCategoryForm($name)
 	{
@@ -85,7 +83,7 @@ class CategoryPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \Flame\CMS\Forms\CategoryForm $form
+	 * @param CategoryForm $form
 	 * @throws \Nette\Application\BadRequestException
 	 */
 	public function categoryFormSubmitted(CategoryForm $form)

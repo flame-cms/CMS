@@ -2,8 +2,7 @@
 
 namespace AdminModule;
 
-use Nette\Image,
-	Flame\CMS\Forms\ImageForm;
+use Nette\Image;
 
 /**
 * Images presenter

@@ -2,9 +2,8 @@
 
 namespace AdminModule;
 
-use Flame\CMS\Forms\UserForm,
-    Flame\CMS\Models\Users\User,
-	Flame\CMS\Forms\ChangePasswordForm;
+
+use Flame\CMS\Models\Users\User;
 
 
 class UserPresenter extends AdminPresenter

@@ -2,8 +2,7 @@
 
 namespace FrontModule;
 
-use Nette\Security as NS,
-    Flame\CMS\Forms\LoginForm;
+use Nette\Security as NS;
 
 
 class LoginPresenter extends FrontPresenter

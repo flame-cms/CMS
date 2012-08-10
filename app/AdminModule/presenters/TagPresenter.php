@@ -10,8 +10,6 @@
 
 namespace AdminModule;
 
-use Flame\CMS\Forms\TagForm;
-
 class TagPresenter extends AdminPresenter
 {
 
@@ -58,7 +56,7 @@ class TagPresenter extends AdminPresenter
 
 	/**
 	 * @param $name
-	 * @return \Flame\CMS\Forms\TagForm
+	 * @return TagForm
 	 */
 	protected function createComponentTagForm($name)
 	{
@@ -76,7 +74,7 @@ class TagPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \Flame\CMS\Forms\TagForm $form
+	 * @param TagForm $form
 	 * @throws \Nette\Application\BadRequestException
 	 */
 	public function tagFormSubmitted(TagForm $form)

@@ -36,7 +36,7 @@ class NewsreelPresenter extends AdminPresenter
 
     protected function createComponentNewsreelForm($name)
     {
-        $f = new \Flame\CMS\Forms\NewsreelForm();
+        $f = new NewsreelForm();
 
         if($this->id){
 			$f->configureEdit();

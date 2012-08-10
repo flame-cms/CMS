@@ -8,7 +8,7 @@
  * @date    18.07.12
  */
 
-namespace Flame\CMS\Forms;
+namespace AdminModule;
 
 class UserForm extends \Flame\Application\UI\Form
 {

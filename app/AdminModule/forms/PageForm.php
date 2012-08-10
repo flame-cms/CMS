@@ -8,7 +8,7 @@
  * @date    17.07.12
  */
 
-namespace Flame\CMS\Forms;
+namespace AdminModule;
 
 class PageForm extends \Flame\Application\UI\Form
 {

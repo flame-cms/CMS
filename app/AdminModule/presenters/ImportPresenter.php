@@ -10,8 +10,6 @@
 
 namespace AdminModule;
 
-use Flame\CMS\Forms\ImportForm;
-
 class ImportPresenter extends AdminPresenter
 {
 

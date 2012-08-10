@@ -2,8 +2,7 @@
 
 namespace AdminModule;
 
-use Flame\CMS\Forms\OptionForm,
-    \Flame\CMS\Models\Options;
+use Flame\CMS\Models\Options;
 
 /**
 * Represent class for global settings and variables
@@ -54,7 +53,7 @@ class OptionPresenter extends AdminPresenter
     }
 
 	/**
-	 * @return \Flame\CMS\Forms\OptionForm
+	 * @return OptionForm
 	 */
 	public function createComponentOptionForm()
 	{
@@ -71,7 +70,7 @@ class OptionPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \Flame\CMS\Forms\OptionForm $f
+	 * @param OptionForm $f
 	 * @throws \Nette\Application\BadRequestException
 	 */
 	public function optionFormSubmitted(OptionForm $f)

@@ -3,12 +3,12 @@
  * TagForm.php
  *
  * @author  Jiří Šifalda <sifalda.jiri@gmail.com>
- * @package
+ * @package Flame
  *
  * @date    15.07.12
  */
 
-namespace Flame\CMS\Forms;
+namespace AdminModule;
 
 class TagForm extends \Flame\Application\UI\Form
 {

@@ -8,7 +8,7 @@
  * @date    22.07.12
  */
 
-namespace Flame\CMS\Forms;
+namespace FrontModule;
 
 class LoginForm extends \Flame\Application\UI\Form
 {

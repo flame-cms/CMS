@@ -39,7 +39,7 @@ class PagePresenter extends AdminPresenter
 
     protected function createComponentPageForm()
     {
-        $form = new \Flame\CMS\Forms\PageForm();
+        $form = new PageForm();
 
 	    if($this->id){
 			$form->configureEdit();
@@ -51,7 +51,7 @@ class PagePresenter extends AdminPresenter
         return $form;
     }
 
-    public function pageFormSubmitted(Form $form)
+    public function pageFormSubmitted(PageForm $form)
     {
         if($this->id and !$this->page){
             throw new \Nette\Application\BadRequestException;

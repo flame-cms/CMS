@@ -8,7 +8,7 @@
  * @date    18.07.12
  */
 
-namespace Flame\CMS\Forms;
+namespace AdminModule;
 
 class ImportForm extends \Flame\Application\UI\Form
 {

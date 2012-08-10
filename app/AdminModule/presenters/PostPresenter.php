@@ -2,8 +2,6 @@
 
 namespace AdminModule;
 
-use Flame\CMS\Forms\PostForm;
-
 /**
 * PostPresenter
 */
@@ -146,7 +144,7 @@ class PostPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @return \Flame\CMS\Forms\Posts\PostForm
+	 * @return Posts\PostForm
 	 */
 	protected function createComponentPostForm()
 	{
@@ -168,7 +166,7 @@ class PostPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \Flame\CMS\Forms\PostForm $f
+	 * @param PostForm $f
 	 * @throws \Nette\Application\BadRequestException
 	 */
 	public function postFormSubmitted(PostForm $f)
