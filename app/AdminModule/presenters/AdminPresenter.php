@@ -69,6 +69,8 @@ abstract class AdminPresenter extends \Flame\CMS\Application\UI\Presenter
 			if(isset($item['page']) and isset($item['title'])){
 				$parts = explode(':', $item['page']);
 
+				$parts[1] = (empty($parts[1])) ? 'default' : $parts[1];
+				
 				$user = $this->getUser();
 				if(count($parts) <= 2){
 					if($user->isAllowed('Admin:' . $parts[0], $parts['1'])){
