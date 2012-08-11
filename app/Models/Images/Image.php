@@ -12,7 +12,7 @@ namespace Flame\CMS\Models\Images;
 
 /**
  * @Entity(repositoryClass="ImageRepository")
- * @Table(name="images")
+ * @Table(name="fl_images")
  */
 class Image extends \Flame\Doctrine\Entity
 {

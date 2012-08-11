@@ -17,8 +17,7 @@ use DateTime,
 
 /**
  * @Entity(repositoryClass="PostRepository")
- * @Table(name="posts")
- * @orderBy({"id" = "DESC"})
+ * @Table(name="fl_posts")
  */
 class Post extends \Flame\Doctrine\Entity
 {

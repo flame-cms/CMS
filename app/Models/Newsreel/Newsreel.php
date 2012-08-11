@@ -6,8 +6,7 @@ use DateTime;
 
 /**
  * @Entity(repositoryClass="NewsreelRepository")
- * @Table(name="newsreel")
- * @orderBy({"id" = "DESC"})
+ * @Table(name="fl_newsreel")
  */
 class Newsreel extends \Flame\Doctrine\Entity
 {
