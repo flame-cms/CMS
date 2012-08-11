@@ -6,17 +6,40 @@ use \Nette\Application\UI\Form;
 
 class PagePresenter extends AdminPresenter
 {
+
+    /**
+     * @var int
+     */
     private $id;
 
+    /**
+     * @var \Flame\CMS\Models\Pages\Page
+     */
     private $page;
 
+    /**
+     * @var \Flame\CMS\Models\Pages\PageFacade
+     */
     private $pageFacade;
 
+    /**
+     * @var \Flame\CMS\Models\Users\UserFacade
+     */
     private $userFacade;
 
-    public function __construct(\Flame\CMS\Models\Pages\PageFacade $pageFacade, \Flame\CMS\Models\Users\UserFacade $userFacade)
+    /**
+     * @param \Flame\CMS\Models\Pages\PageFacade $pageFacade
+     */
+    public function injectPageFacade(\Flame\CMS\Models\Pages\PageFacade $pageFacade)
     {
         $this->pageFacade = $pageFacade;
+    }
+
+    /**
+     * @param \Flame\CMS\Models\Users\UserFacade $userFacade
+     */
+    public function injectUserFacade(\Flame\CMS\Models\Users\UserFacade $userFacade)
+    {
         $this->userFacade = $userFacade;
     }
 
@@ -25,6 +48,9 @@ class PagePresenter extends AdminPresenter
 		$this->template->pages = $this->pageFacade->getLastPages();
 	}
 
+    /**
+     * @param $id
+     */
     public function actionEdit($id)
     {
         $this->id = $id;
@@ -51,6 +77,10 @@ class PagePresenter extends AdminPresenter
         return $form;
     }
 
+    /**
+     * @param PageForm $form
+     * @throws \Nette\Application\BadRequestException
+     */
     public function pageFormSubmitted(PageForm $form)
     {
         if($this->id and !$this->page){
@@ -94,6 +124,9 @@ class PagePresenter extends AdminPresenter
         }
     }
 
+    /**
+     * @param $id
+     */
     public function handleDelete($id)
     {
         if(!$this->getUser()->isAllowed('Admin:Page', 'edit')){
