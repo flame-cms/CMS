@@ -10,6 +10,19 @@ Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flam
 
 ![AdminModule](http://projects.jsifalda.name/flame/screens/admin_module.png "AdminModule")
 
+### Features
+* Access control list
+* Creating / editing posts (categories, tags)
+* Comments
+* TimyCME editor
+* Managing of images
+* Paginator for posts
+* Users management
+* Newsreel
+* Pages management
+* Wordpress posts import
+* Management of templates for Front part (Twitter Bootstrap for Administration)
+
 ###Installing
 #####Download sandbox
 
@@ -32,20 +45,6 @@ Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flam
 ###Flame is ready now!
 
 If you want to sign in to backend part (Administration) of Flame, use email **user@demo.com** and password **PASSWORD12** (all in lower case)
-
-
-### Features
-* Access control list
-* Creating / editing posts (categories, tags)
-* Comments
-* TimyCME editor
-* Managing of images
-* Paginator for posts
-* Users management
-* Newsreel
-* Pages management
-* Wordpress posts import
-* Management of templates for Front part (Twitter Bootstrap for Administration)
 
 ### Global available settings
 If you want to affect prepared options (set up in the options section)
