@@ -2,31 +2,57 @@
 
 namespace AdminModule;
 
-
 use Flame\CMS\Models\Users\User;
-
 
 class UserPresenter extends AdminPresenter
 {
+    /**
+     * @var id
+     */
+    private $id;
+
+    /**
+     * @var \Flame\CMS\Models\Users\User
+     */
+    private $user;
+
+    /**
+     * @var \Flame\CMS\Models\Users\UserFacade
+     */
     private $userFacade;
 
-	private $userInfoFacade;
+    /**
+     * @var \Flame\CMS\Models\UsersInfo\UserInfoFacade
+     */
+    private $userInfoFacade;
 
+    /**
+     * @var \Flame\CMS\Security\Authenticator
+     */
     private $authenticator;
 
-	private $user;
-
-	private $id;
-
-    public function __construct(
-	    \Flame\CMS\Models\Users\UserFacade $userFacade,
-	    \Flame\CMS\Security\Authenticator $authenticator,
-		\Flame\CMS\Models\UsersInfo\UserInfoFacade $userInfoFacade
-    )
+    /**
+     * @param \Flame\CMS\Models\Users\UserFacade $userFacade
+     */
+    public function injectUserFacade(\Flame\CMS\Models\Users\UserFacade $userFacade)
     {
         $this->userFacade = $userFacade;
+    }
+
+    /**
+     * @param \Flame\CMS\Security\Authenticator $authenticator
+     */
+    public function injectAuthenticator(\Flame\CMS\Security\Authenticator $authenticator)
+    {
         $this->authenticator = $authenticator;
-	    $this->userInfoFacade = $userInfoFacade;
+    }
+
+    /**
+     * @param \Flame\CMS\Models\UsersInfo\UserInfoFacade $userInfoFacade
+     */
+    public function injectUserInfo(\Flame\CMS\Models\UsersInfo\UserInfoFacade $userInfoFacade)
+    {
+        $this->userInfoFacade = $userInfoFacade;
     }
 
 	public function renderDefault()
@@ -34,7 +60,10 @@ class UserPresenter extends AdminPresenter
 		$this->template->users = $this->userFacade->getLastUsers();
 	}
 
-	public function actionEdit($id)
+    /**
+     * @param $id
+     */
+    public function actionEdit($id)
 	{
 		$this->id = $id;
 
@@ -52,7 +81,10 @@ class UserPresenter extends AdminPresenter
 
 	}
 
-	protected function createComponentEditUserForm()
+    /**
+     * @return UserForm
+     */
+    protected function createComponentEditUserForm()
 	{
 		$form = new UserForm();
 
@@ -68,7 +100,10 @@ class UserPresenter extends AdminPresenter
 	}
 
 
-	protected function createComponentAddUserForm()
+    /**
+     * @return UserForm
+     */
+    protected function createComponentAddUserForm()
 	{
 		$f = new UserForm();
 		$f->configureRoles();
@@ -78,7 +113,11 @@ class UserPresenter extends AdminPresenter
         return $f;
 	}
 
-	public function userEditFormSubmitted(UserForm $form)
+    /**
+     * @param UserForm $form
+     * @throws \Nette\Application\BadRequestException
+     */
+    public function userEditFormSubmitted(UserForm $form)
 	{
 		if($this->id and !$this->user){
 			throw new \Nette\Application\BadRequestException;
@@ -113,7 +152,10 @@ class UserPresenter extends AdminPresenter
 
 	}
 
-	public function userAddFormSubmitted(UserForm $form)
+    /**
+     * @param UserForm $form
+     */
+    public function userAddFormSubmitted(UserForm $form)
 	{
 		$values = $form->getValues();
 
@@ -135,7 +177,10 @@ class UserPresenter extends AdminPresenter
 
 	}
 
-	protected function createComponentPasswordForm()
+    /**
+     * @return ChangePasswordForm
+     */
+    protected function createComponentPasswordForm()
 	{
 		$form = new ChangePasswordForm();
 		$form->configure();
@@ -144,8 +189,10 @@ class UserPresenter extends AdminPresenter
         return $form;
 	}
 
-
-	public function passwordFormSubmitted(ChangePasswordForm $form)
+    /**
+     * @param ChangePasswordForm $form
+     */
+    public function passwordFormSubmitted(ChangePasswordForm $form)
 	{
 		$values = $form->getValues();
 		$user = $this->getUser();
@@ -164,7 +211,10 @@ class UserPresenter extends AdminPresenter
 		}
 	}
 
-	public function handleDelete($id)
+    /**
+     * @param $id
+     */
+    public function handleDelete($id)
 	{
 		if($this->getUser()->getId() == $id){
 			$this->flashMessage('You cannot delete yourself');
