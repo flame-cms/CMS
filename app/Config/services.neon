@@ -4,7 +4,7 @@ services:
 
 	SqlLogger: Flame\Utils\ConnectionPanel::register
 
-	TablePrefix: Flame\Utils\TablePrefixSubscriber(%database.prefix%)
+	TablePrefix: Flame\Doctrine\TablePrefix(%database.prefix%)
 
 	EventManager:
 		class: Doctrine\Common\EventManager
