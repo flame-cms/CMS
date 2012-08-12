@@ -29,7 +29,7 @@ development < common:
 	parameters:
 		database:
 			host: localhost
-			dbname: cms
+			dbname: fl_cms
 			user: root
 			password: root
 

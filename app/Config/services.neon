@@ -4,6 +4,13 @@ services:
 
 	SqlLogger: Flame\Utils\ConnectionPanel::register
 
+	TablePrefix: Flame\Utils\TablePrefixSubscriber(%database.prefix%)
+
+	EventManager:
+		class: Doctrine\Common\EventManager
+		setup:
+			- @EventManager::addEventListener('loadClassMetadata', @TablePrefix)
+
 	EntityManagerConfig:
 		class: Doctrine\ORM\Configuration
 		factory: Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(%entities%, true)
@@ -12,7 +19,7 @@ services:
 
 	EntityManager:
 		class: Doctrine\ORM\EntityManager
-		factory: Doctrine\ORM\EntityManager::create(%database%, @EntityManagerConfig)
+		factory: Doctrine\ORM\EntityManager::create(%database%, @EntityManagerConfig, @EventManager)
 
 	NewsreelFacade: Flame\CMS\Models\Newsreel\NewsreelFacade
 	UserFacade: Flame\CMS\Models\Users\UserFacade

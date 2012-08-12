@@ -12,7 +12,7 @@ namespace Flame\CMS\Models\Options;
 
 /**
  * @Entity(repositoryClass="OptionRepository")
- * @Table(name="fl_options")
+ * @Table(name="options")
  */
 class Option extends \Flame\Doctrine\Entity
 {

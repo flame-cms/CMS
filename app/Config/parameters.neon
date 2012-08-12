@@ -3,6 +3,7 @@ parameters:
 		driver: pdo_mysql
 		charset: utf8
 		port: 3306
+		prefix: fl_
 
 	entities:
 		- %appDir%/Models

@@ -6,7 +6,7 @@ use DateTime;
 
 /**
  * @Entity(repositoryClass="NewsreelRepository")
- * @Table(name="fl_newsreel")
+ * @Table(name="newsreel")
  */
 class Newsreel extends \Flame\Doctrine\Entity
 {

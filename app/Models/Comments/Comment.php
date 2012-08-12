@@ -15,7 +15,7 @@ use DateTime,
 
 /**
  * @Entity(repositoryClass="CommentRepository")
- * @Table(name="fl_comments")
+ * @Table(name="comments")
  */
 class Comment extends \Flame\Doctrine\Entity
 {

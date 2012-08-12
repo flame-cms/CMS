@@ -17,7 +17,7 @@ use DateTime,
 
 /**
  * @Entity(repositoryClass="PostRepository")
- * @Table(name="fl_posts")
+ * @Table(name="posts")
  */
 class Post extends \Flame\Doctrine\Entity
 {
