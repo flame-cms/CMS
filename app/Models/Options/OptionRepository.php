@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Options;
 
-class OptionRepository extends \Flame\Doctrine\Repository
+class OptionRepository extends \Flame\Model\Repository
 {
 
 }
