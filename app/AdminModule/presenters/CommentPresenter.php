@@ -62,7 +62,7 @@ class CommentPresenter extends AdminPresenter
                 }else{
                     $comment->setPublish(1);
                 }
-                $this->commentFacade->persist($comment);
+                $this->commentFacade->save($comment);
             }
         }
 

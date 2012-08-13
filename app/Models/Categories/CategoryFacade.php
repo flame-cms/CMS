@@ -55,7 +55,7 @@ class CategoryFacade extends \Nette\Object
 	 * @param Category $category
 	 * @return mixed
 	 */
-	public function persist(Category $category)
+	public function save(Category $category)
 	{
 		return $this->repository->save($category);
 	}

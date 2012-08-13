@@ -34,7 +34,7 @@ class UserFacade extends \Nette\Object
         return $this->repository->findOneBy(array('email' => $email));
     }
 
-    public function persist(User $user)
+    public function save(User $user)
     {
         return $this->repository->save($user);
     }

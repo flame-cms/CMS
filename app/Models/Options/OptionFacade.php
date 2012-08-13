@@ -34,7 +34,7 @@ class OptionFacade extends \Nette\Object
         return $this->repository->findAll();
     }
 
-    public function persist(Option $option)
+    public function save(Option $option)
     {
         return $this->repository->save($option);
     }

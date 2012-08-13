@@ -107,10 +107,10 @@ class PostPresenter extends AdminPresenter
 
 			if($post and (int)$post->getPublish() == 1){
 				$post->setPublish(false);
-                $this->postFacade->persist($post);
+                $this->postFacade->save($post);
 			}else{
                 $post->setPublish(true);
-                $this->postFacade->persist($post);
+                $this->postFacade->save($post);
 			}
 		}
 
@@ -233,7 +233,7 @@ class PostPresenter extends AdminPresenter
 	                ->setComment($values['comment'])
 		            ->setTags($tags);
 
-	            $this->postFacade->persist($this->post);
+	            $this->postFacade->save($this->post);
 		        $this->flashMessage('Post was edited');
 		        $this->redirect('this');
 
@@ -252,7 +252,7 @@ class PostPresenter extends AdminPresenter
 			        ->setDescription($values['description'])
 			        ->setTags($tags);
 
-	            $this->postFacade->persist($post);
+	            $this->postFacade->save($post);
 		        $this->flashMessage('Post was successfully added.', 'success');
 		        $this->redirect('Post:');
 
@@ -270,7 +270,7 @@ class PostPresenter extends AdminPresenter
 		if($categoryExist = $this->categoryFacade->getOneByName($name)) return $categoryExist;
 
 		$category = new \Flame\CMS\Models\Categories\Category($name, $this->createSlug($name));
-		$this->categoryFacade->persist($category);
+		$this->categoryFacade->save($category);
 		return $category;
 	}
 
@@ -283,7 +283,7 @@ class PostPresenter extends AdminPresenter
 		if($tagExist = $this->tagFacade->getOneByName($name)) return $tagExist;
 
 		$tag = new \Flame\CMS\Models\Tags\Tag($name, $this->createSlug($name));
-		$this->tagFacade->persist($tag);
+		$this->tagFacade->save($tag);
 		return $tag;
 	}
 

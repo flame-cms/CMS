@@ -35,7 +35,7 @@ class ImageFacade extends \Nette\Object
 		return $this->repository->delete($image);
 	}
 
-	public function persist(Image $image)
+	public function save(Image $image)
 	{
 		return $this->repository->save($image);
 	}

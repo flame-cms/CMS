@@ -20,7 +20,7 @@ class UserInfoFacade extends \Nette\Object
 		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\UsersInfo\UserInfo');
 	}
 
-	public function persist(UserInfo $user)
+	public function save(UserInfo $user)
 	{
 		return $this->repository->save($user);
 	}

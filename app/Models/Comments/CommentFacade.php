@@ -37,7 +37,7 @@ class CommentFacade extends \Nette\Object
         return $this->repository->findBy(array('post' => $id, 'publish' => '1' ));
     }
 
-    public function persist(Comment $comment)
+    public function save(Comment $comment)
     {
         return $this->repository->save($comment);
     }

@@ -63,14 +63,14 @@ class NewsreelPresenter extends AdminPresenter
                 ->setDate($values['date'])
                 ->setContent($values['content']);
 
-            $this->newsreelFacade->persist($this->newsreel);
+            $this->newsreelFacade->save($this->newsreel);
 
             $this->flashMessage('Newsreel was successfully edited');
             $this->redirect('this');
         }else{ //add
 
             $newsreel = new \Flame\CMS\Models\Newsreel\Newsreel($values['title'], $values['content'], $values['date'], 0);
-            $this->newsreelFacade->persist($newsreel);
+            $this->newsreelFacade->save($newsreel);
 
             $this->flashMessage('Newsreel was successfully added');
             $this->redirect('Newsreel:');

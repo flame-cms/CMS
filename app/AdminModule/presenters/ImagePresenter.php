@@ -52,7 +52,7 @@ class ImagePresenter extends AdminPresenter
 		$image->setName($values['name'])
 			->setDescription($values['description']);
 
-		$this->imageFacade->persist($image);
+		$this->imageFacade->save($image);
 		$this->flashMessage('Image was uploaded.');
 		$this->redirect('Image:');
 	}

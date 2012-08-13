@@ -130,7 +130,7 @@ class ImportPresenter extends AdminPresenter
 			}
 		}
 
-		$this->postFacade->persist($post);
+		$this->postFacade->save($post);
 	}
 
 	private function createNewCategory($name)
@@ -138,7 +138,7 @@ class ImportPresenter extends AdminPresenter
 		if($category = $this->categoryFacade->getOneByName($name)) return $category;
 
 		$category = new \Flame\CMS\Models\Categories\Category($name, "", $this->createSlug($name));
-		$this->categoryFacade->persist($category);
+		$this->categoryFacade->save($category);
 		return $category;
 	}
 
@@ -147,7 +147,7 @@ class ImportPresenter extends AdminPresenter
 		if($tag = $this->tagFacade->getOneByName($name)) return $tag;
 
 		$tag = new \Flame\CMS\Models\Tags\Tag($name, $this->createSlug($name));
-		$this->tagFacade->persist($tag);
+		$this->tagFacade->save($tag);
 		return $tag;
 	}
 

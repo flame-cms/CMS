@@ -76,7 +76,7 @@ class PostFacade extends \Nette\Object
 	public function increaseHit(Post $post)
 	{
 		$post->setHit($post->getHit() + 1);
-		return $this->persist($post);
+		return $this->save($post);
 	}
 
 	/**
@@ -92,7 +92,7 @@ class PostFacade extends \Nette\Object
 	 * @param Post $post
 	 * @return mixed
 	 */
-    public function persist(Post $post)
+    public function save(Post $post)
     {
         return $this->repository->save($post);
     }

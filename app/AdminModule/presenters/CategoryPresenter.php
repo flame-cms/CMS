@@ -110,7 +110,7 @@ class CategoryPresenter extends AdminPresenter
 				$this->category->setParent($parent);
 			}
 
-			$this->categoryFacade->persist($this->category);
+			$this->categoryFacade->save($this->category);
 			$this->flashMessage('Category was edited');
 
 		}else{
@@ -125,7 +125,7 @@ class CategoryPresenter extends AdminPresenter
 					$category->setParent($parent);
 				}
 
-				$this->categoryFacade->persist($category);
+				$this->categoryFacade->save($category);
 				$this->flashMessage('Category was added');
 			}
 		}

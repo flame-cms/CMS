@@ -103,7 +103,7 @@ class PagePresenter extends AdminPresenter
                 ->setKeywords($values['keywords'])
                 ->setContent($values['content']);
 
-            $this->pageFacade->persist($this->page);
+            $this->pageFacade->save($this->page);
             $this->flashMessage('Page was edited.');
             $this->redirect('this');
 
@@ -118,7 +118,7 @@ class PagePresenter extends AdminPresenter
 	        $page->setKeywords($values['keywords'])
 		        ->setDescription($values['description']);
 
-            $this->pageFacade->persist($page);
+            $this->pageFacade->save($page);
             $this->flashMessage('Page was added.');
             $this->redirect('Page:');
         }

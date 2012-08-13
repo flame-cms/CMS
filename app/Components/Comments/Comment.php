@@ -89,7 +89,7 @@ class Comment extends \Flame\Application\UI\Control
 
 		$comment = new \Flame\CMS\Models\Comments\Comment($this->post, $values['name'], $values['email'], $values['content']);
 		$comment->setWeb($values['web']);
-        $this->commentFacade->persist($comment);
+        $this->commentFacade->save($comment);
 		$this->flashMessage('Your comment is waiting for moderation');
 		$this->redirect('this');
 	}

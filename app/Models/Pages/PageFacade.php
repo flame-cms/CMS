@@ -31,7 +31,7 @@ class PageFacade extends \Nette\Object
         return $this->repository->findLast($limit);
     }
 
-    public function persist(Page $page)
+    public function save(Page $page)
     {
         return $this->repository->save($page);
     }

@@ -96,13 +96,13 @@ class TagPresenter extends AdminPresenter
 				->setName($values['name'])
 				->setSlug($slug);
 
-			$this->tagFacade->persist($this->tag);
+			$this->tagFacade->save($this->tag);
 			$this->flashMessage('Tag was edited');
 		}else{
 			if(!$this->tagFacade->getOneByName($values['name'])){
 
 				$tag = new \Flame\CMS\Models\Tags\Tag($values['name'], $slug);
-				$this->tagFacade->persist($tag);
+				$this->tagFacade->save($tag);
 				$this->flashMessage('Tag was added');
 			}else{
 				$this->flashMessage('Tag with name "' . $values['name'] . '" exist.');

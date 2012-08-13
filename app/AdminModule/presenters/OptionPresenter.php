@@ -85,7 +85,7 @@ class OptionPresenter extends AdminPresenter
         if($this->id){
 
             $this->option->setValue($values['value']);
-            $this->optionFacade->persist($this->option);
+            $this->optionFacade->save($this->option);
             $this->flashMessage('Option was edited.', 'success');
 
         }else{
@@ -93,7 +93,7 @@ class OptionPresenter extends AdminPresenter
                 $f->addError('Option name ' . $values['name'] . ' exist, but name of option must be unique.');
             }else{
                 $option = new Options\Option($values['name'], $values['value']);
-                $this->optionFacade->persist($option);
+                $this->optionFacade->save($option);
 
                 $this->flashMessage('Global variable was added', 'success');
             }

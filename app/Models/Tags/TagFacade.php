@@ -38,7 +38,7 @@ class TagFacade extends \Nette\Object
 		}
 	}
 
-	public function persist(Tag $tag)
+	public function save(Tag $tag)
 	{
 		return $this->repository->save($tag);
 	}

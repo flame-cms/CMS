@@ -33,7 +33,7 @@ class PagePresenter extends FrontPresenter
     {
         if($page = $this->pageFacade->getOne($id)){
             $page->setHit($page->getHit() + 1);
-            $this->pageFacade->persist($page);
+            $this->pageFacade->save($page);
             $this->template->page = $page;
         }else{
             $this->setView('notFound');

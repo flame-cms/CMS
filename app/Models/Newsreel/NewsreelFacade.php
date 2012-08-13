@@ -26,7 +26,7 @@ class NewsreelFacade extends \Nette\Object
         return $this->repository->findAllPassed($limit);
     }
 
-    public function persist(Newsreel $newsreel)
+    public function save(Newsreel $newsreel)
     {
         return $this->repository->save($newsreel);
     }
@@ -39,6 +39,6 @@ class NewsreelFacade extends \Nette\Object
 	public function increaseHit(Newsreel $newsreel)
 	{
 		$newsreel->setHit($newsreel->getHit() + 1);
-		return $this->persist($newsreel);
+		return $this->save($newsreel);
 	}
 }

@@ -133,7 +133,7 @@ class UserPresenter extends AdminPresenter
 				->setWeb($values['web'])
 				->setFacebook($values['facebook'])
 				->setTwitter($values['twitter']);
-			$this->userInfoFacade->persist($info);
+			$this->userInfoFacade->save($info);
 		}else{
 			$info = new \Flame\CMS\Models\UsersInfo\UserInfo($values['name']);
 			$info->setAbout($values['about'])
@@ -141,9 +141,9 @@ class UserPresenter extends AdminPresenter
 				->setWeb($values['web'])
 				->setFacebook($values['facebook'])
 				->setTwitter($values['twitter']);
-			$this->userInfoFacade->persist($info);
+			$this->userInfoFacade->save($info);
 			$this->user->setInfo($info);
-			$this->userFacade->persist($this->user);
+			$this->userFacade->save($this->user);
 		}
 
 		$this->flashMessage('User was edited');
@@ -169,7 +169,7 @@ class UserPresenter extends AdminPresenter
 				$values['role']
 			);
 
-			$this->userFacade->persist($user);
+			$this->userFacade->save($user);
 
 			$this->flashMessage('User was added');
 			$this->redirect('User:');
@@ -202,7 +202,7 @@ class UserPresenter extends AdminPresenter
 
             $userEntity = $this->userFacade->getOne($user->getId());
             $userEntity->setPassword($this->authenticator->calculateHash($values['newPassword']));
-			$this->userFacade->persist($userEntity);
+			$this->userFacade->save($userEntity);
 
 			$this->flashMessage('Password was changed.', 'success');
 			$this->redirect('this');
