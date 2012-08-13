@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Users;
 
-class UserFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
+class UserFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
     private $repository;
 

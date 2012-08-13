@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\UsersInfo;
 
-class UserInfoFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
+class UserInfoFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
 
 	private $repository;

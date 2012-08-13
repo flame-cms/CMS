@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Tags;
 
-class TagFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
+class TagFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
 	private $repository;
 

@@ -12,7 +12,7 @@ namespace Flame\CMS\Models\Comments;
 
 use \Flame\CMS\Models\Comments\Comment;
 
-class CommentFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
+class CommentFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
 
     private $repository;

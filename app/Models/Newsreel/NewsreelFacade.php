@@ -2,7 +2,7 @@
 
 namespace Flame\CMS\Models\Newsreel;
 
-class NewsreelFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
+class NewsreelFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
 	private $repository;
 

@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Options;
 
-class OptionFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
+class OptionFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
     private $repository;
 
