@@ -7,7 +7,7 @@ class NewsreelTest extends \Flame\CMS\Tests\IntegrationTestCase
     public function testConstruction()
     {
         $newsreel = new Newsreel('title', 'content', new \Datetime());
-        $this->assertInstanceOf('\Flame\Models\Newsreel\Newsreel', $newsreel);
+        $this->assertInstanceOf('\Flame\CMS\Models\Newsreel\Newsreel', $newsreel);
     }
 
     public function testGetters()
@@ -63,7 +63,7 @@ class NewsreelTest extends \Flame\CMS\Tests\IntegrationTestCase
         $newsreel = new Newsreel('title', 'content', $date);
         $array = $newsreel->toArray();
 
-        $this->assertCount(4, $array);
+        $this->assertCount(5, $array);
         $this->assertEquals('title', $array['title']);
         $this->assertEquals('content', $array['content']);
         $this->assertEquals($date, $array['date']);
