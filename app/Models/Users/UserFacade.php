@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Users;
 
-class UserFacade extends \Nette\Object
+class UserFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
 {
     private $repository;
 
@@ -21,7 +21,7 @@ class UserFacade extends \Nette\Object
 
     public function getOne($id)
     {
-        return $this->repository->findOneBy(array('id' => $id));
+        return $this->repository->findOneById($id);
     }
 
     public function getLastUsers()

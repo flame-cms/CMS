@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\UsersInfo;
 
-class UserInfoFacade extends \Nette\Object
+class UserInfoFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
 {
 
 	private $repository;
@@ -18,6 +18,11 @@ class UserInfoFacade extends \Nette\Object
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
 	{
 		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\UsersInfo\UserInfo');
+	}
+
+	public function getOne($id)
+	{
+		return $this->repository->findOneById($id);
 	}
 
 	public function save(UserInfo $user)

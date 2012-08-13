@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Posts;
 
-class PostFacade extends \Nette\Object
+class PostFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
 {
 	/**
 	 * @var \Doctrine\ORM\EntityRepository

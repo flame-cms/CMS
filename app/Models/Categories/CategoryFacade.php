@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Categories;
 
-class CategoryFacade extends \Nette\Object
+class CategoryFacade extends \Nette\Object implements \Flame\Doctrine\IFacade
 {
 	/**
 	 * @var \Doctrine\ORM\EntityRepository
