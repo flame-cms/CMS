@@ -12,7 +12,6 @@ namespace Flame\CMS\Models\Categories;
 
 /**
  * @Entity(repositoryClass="CategoryRepository")
- * @Table(name="categories")
  */
 class Category extends \Flame\Doctrine\Entity
 {

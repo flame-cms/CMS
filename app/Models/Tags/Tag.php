@@ -12,7 +12,6 @@ namespace Flame\CMS\Models\Tags;
 
 /**
  * @Entity(repositoryClass="TagRepository")
- * @Table(name="tags")
  */
 class Tag extends \Flame\Doctrine\Entity
 {

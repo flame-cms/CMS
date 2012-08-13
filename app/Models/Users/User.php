@@ -12,7 +12,6 @@ namespace Flame\CMS\Models\Users;
 
 /**
  * @Entity(repositoryClass="UserRepository")
- * @Table(name="users")
  */
 class User extends \Flame\Doctrine\Entity
 {

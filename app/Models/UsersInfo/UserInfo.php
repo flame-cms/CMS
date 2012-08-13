@@ -15,7 +15,6 @@ use Flame\CMS\Models\Users\User,
 
 /**
  * @Entity(repositoryClass="UserInfoRepository")
- * @Table(name="users_info")
  */
 class UserInfo extends \Flame\Doctrine\Entity
 {

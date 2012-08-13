@@ -7,7 +7,6 @@ use DateTime,
 
 /**
  * @Entity(repositoryClass="PageRepository")
- * @Table(name="pages")
  */
 class Page extends \Flame\Doctrine\Entity
 {
