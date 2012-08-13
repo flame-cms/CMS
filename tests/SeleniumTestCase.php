@@ -13,7 +13,7 @@ class SeleniumTestCase extends \PHPUnit_Extensions_Selenium2TestCase
 		$this->setHost($seleniumConfiguration['host']);
 		$this->setBrowser($seleniumConfiguration['browser']);
 		$this->setBrowserUrl($seleniumConfiguration['browserUrl']);
-		if ($seleniumConfiguration['port']) {
+		if (isset($seleniumConfiguration['port'])) {
 			$this->setPort((int) $seleniumConfiguration['port']);
 		}
 	}
