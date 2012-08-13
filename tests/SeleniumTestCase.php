@@ -9,6 +9,7 @@ class SeleniumTestCase extends \PHPUnit_Extensions_Selenium2TestCase
 
 	public function setUp()
 	{
+		parent::setUp();
 		$seleniumConfiguration = $this->getSeleniumConfig();
 		$this->setHost($seleniumConfiguration['host']);
 		$this->setBrowser($seleniumConfiguration['browser']);
