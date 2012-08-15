@@ -8,9 +8,12 @@
 	<title>{#title}{ifset $title}{$title}{/ifset}{/#} &ndash; Administration</title>
 
 	<link rel="stylesheet" style="text/css" href="{$baseUrl}/css/bootstrap.min.css" />
+    <link rel="stylesheet" style="text/css" href="{$baseUrl}/css/bootstrap-responsive.min.css" />
+	
 	<link rel="shortcut icon" href="{$baseUrl}/favicon.ico" type="image/x-icon">
 
 	<script type="text/javascript" src="{$baseUrl}/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="{$baseUrl}/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/js/netteForms.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/js/ajax.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/js/createSlug.js"></script>
@@ -32,8 +35,13 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
+                <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 				<a class="brand" href="{$baseUrl}/admin/">{*NAME*}</a>
-				<div class="nav-collapse">
+				<div class="nav-collapse collapse">
 					<ul class="nav">
 					{if $user->isLoggedIn() and count($menuItems)}
 						<li n:foreach="$menuItems as $menuItem" n:class="$presenter->isLinkCurrent($menuItem->page) ? active">
