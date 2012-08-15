@@ -1,3 +1,0 @@
-[submodule "www/adminer"]
-	path = www/adminer
-	url = git://github.com/jsifalda/adminer-mini.git
