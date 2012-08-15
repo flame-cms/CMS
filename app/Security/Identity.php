@@ -13,8 +13,14 @@ namespace Flame\CMS\Security;
 class Identity extends \Nette\Security\Identity
 {
 
+	/**
+	 * @var \Flame\CMS\Models\Users\User
+	 */
 	private $user;
 
+	/**
+	 * @param \Flame\CMS\Models\Users\User $user
+	 */
 	public function __construct(\Flame\CMS\Models\Users\User $user)
 	{
 		$this->user = $user;
@@ -25,11 +31,17 @@ class Identity extends \Nette\Security\Identity
 		$this->user->setInfoNull();
 	}
 
+	/**
+	 * @return \Flame\CMS\Models\Users\User
+	 */
 	public function getUserModel()
 	{
 		return $this->user;
 	}
 
+	/**
+	 * @return array
+	 */
 	private function getUserData()
 	{
 		$userInfo = $this->user->getInfo() ? $this->user->getInfo()->toArray(): null;

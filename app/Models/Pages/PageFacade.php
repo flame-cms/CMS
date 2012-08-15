@@ -14,29 +14,51 @@ use Flame\CMS\Models\Pages;
 
 class PageFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
-    private $repository;
+	/**
+	 * @var \Doctrine\ORM\EntityRepository
+	 */
+	private $repository;
 
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager)
+	/**
+	 * @param \Doctrine\ORM\EntityManager $entityManager
+	 */
+	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
     {
         $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Pages\Page');
     }
 
-    public function getOne($id)
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getOne($id)
     {
 	    return $this->repository->findOneById($id);
     }
 
-    public function getLastPages($limit = null)
+	/**
+	 * @param null $limit
+	 * @return mixed
+	 */
+	public function getLastPages($limit = null)
     {
         return $this->repository->findLast($limit);
     }
 
-    public function save(Page $page)
+	/**
+	 * @param Page $page
+	 * @return mixed
+	 */
+	public function save(Page $page)
     {
         return $this->repository->save($page);
     }
 
-    public function delete(Page $page)
+	/**
+	 * @param Page $page
+	 * @return mixed
+	 */
+	public function delete(Page $page)
     {
         return $this->repository->delete($page);
     }

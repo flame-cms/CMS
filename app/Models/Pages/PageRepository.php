@@ -12,6 +12,10 @@ namespace Flame\CMS\Models\Pages;
 
 class PageRepository extends \Flame\Model\Repository
 {
+	/**
+	 * @param $limit
+	 * @return array
+	 */
 	public function findLast($limit)
 	{
 		$qb = $this->entityManager->createQueryBuilder();

@@ -12,39 +12,68 @@ namespace Flame\CMS\Models\Options;
 
 class OptionFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
-    private $repository;
+	/**
+	 * @var \Doctrine\ORM\EntityRepository
+	 */
+	private $repository;
 
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager)
+	/**
+	 * @param \Doctrine\ORM\EntityManager $entityManager
+	 */
+	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
     {
         $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Options\Option');
     }
 
-    public function getOne($id)
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getOne($id)
     {
 	    return $this->repository->findOneById($id);
     }
 
-    public function getByName($name)
+	/**
+	 * @param $name
+	 * @return object
+	 */
+	public function getByName($name)
     {
         return $this->repository->findOneBy(array('name' => $name));
     }
 
-    public function getAll()
+	/**
+	 * @return array
+	 */
+	public function getAll()
     {
         return $this->repository->findAll();
     }
 
-    public function save(Option $option)
+	/**
+	 * @param Option $option
+	 * @return mixed
+	 */
+	public function save(Option $option)
     {
         return $this->repository->save($option);
     }
 
-    public function delete(Option $option)
+	/**
+	 * @param Option $option
+	 * @return mixed
+	 */
+	public function delete(Option $option)
     {
         return $this->repository->delete($option);
     }
 
-    public function getOptionValue($name)
+	/**
+	 * @param $name
+	 * @return null
+	 */
+	public function getOptionValue($name)
     {
         $option = $this->repository->findOneBy(array('name' => $name));
 

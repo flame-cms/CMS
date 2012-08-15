@@ -15,34 +15,59 @@ use \Flame\CMS\Models\Comments\Comment;
 class CommentFacade extends \Nette\Object implements \Flame\Model\IFacade
 {
 
-    private $repository;
+	/**
+	 * @var \Doctrine\ORM\EntityRepository
+	 */
+	private $repository;
 
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager)
+	/**
+	 * @param \Doctrine\ORM\EntityManager $entityManager
+	 */
+	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
     {
         $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Comments\Comment');
     }
 
-    public function getOne($id)
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getOne($id)
     {
 	    return $this->repository->findOneById($id);
     }
 
-    public function getLastComments()
+	/**
+	 * @return array
+	 */
+	public function getLastComments()
     {
         return $this->repository->findAll();
     }
 
-    public function getPublishCommentsInPost($id)
+	/**
+	 * @param $id
+	 * @return array
+	 */
+	public function getPublishCommentsInPost($id)
     {
         return $this->repository->findBy(array('post' => $id, 'publish' => '1' ));
     }
 
-    public function save(Comment $comment)
+	/**
+	 * @param Comment $comment
+	 * @return mixed
+	 */
+	public function save(Comment $comment)
     {
         return $this->repository->save($comment);
     }
 
-    public function delete(Comment $comment)
+	/**
+	 * @param Comment $comment
+	 * @return mixed
+	 */
+	public function delete(Comment $comment)
     {
         return $this->repository->delete($comment);
     }

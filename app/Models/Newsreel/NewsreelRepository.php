@@ -12,6 +12,10 @@ namespace Flame\CMS\Models\Newsreel;
 
 class NewsreelRepository extends \Flame\Model\Repository
 {
+	/**
+	 * @param $limit
+	 * @return array
+	 */
 	public function findAllPassed($limit)
 	{
 		$qb = $this->entityManager->createQueryBuilder();
