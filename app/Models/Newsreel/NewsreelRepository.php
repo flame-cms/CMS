@@ -18,7 +18,7 @@ class NewsreelRepository extends \Flame\Model\Repository
 	 */
 	public function findAllPassed($limit)
 	{
-		$qb = $this->entityManager->createQueryBuilder();
+		$qb = $this->_em->createQueryBuilder();
 		$q = $qb->select('n')
 			->from('\Flame\CMS\Models\Newsreel\Newsreel', 'n')
 			->where($qb->expr()->lte('n.date', ':date_from'))

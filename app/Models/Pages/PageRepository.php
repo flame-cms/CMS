@@ -18,7 +18,7 @@ class PageRepository extends \Flame\Model\Repository
 	 */
 	public function findLast($limit)
 	{
-		$qb = $this->entityManager->createQueryBuilder();
+		$qb = $this->_em->createQueryBuilder();
 		$q = $qb->select('p')
 			->from('\Flame\CMS\Models\Pages\Page', 'p')
 			->orderBy('p.id', 'DESC');
