@@ -1,3 +1,6 @@
 [submodule "www/adminer"]
 	path = www/adminer
 	url = git://github.com/jsifalda/adminer-mini.git
+[submodule "www/bootstrap"]
+	path = www/bootstrap
+	url = git://github.com/jsifalda/twitter-bootstrap.git
