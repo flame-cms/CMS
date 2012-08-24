@@ -44,7 +44,7 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 					{if $user->isLoggedIn() and count($menuItems)}
-						<li n:foreach="$menuItems as $menuItem" n:class="$presenter->isLinkCurrent($menuItem->page) ? active">
+						<li n:foreach="$menuItems as $menuItem" n:class="$presenter->isLinkCurrent($menuItem->page . '*') ? active">
 							<a n:href="{$menuItem->page}">{$menuItem->title}</a>
 						</li>
 					{/if}
