@@ -9,23 +9,55 @@ use Nette\Image;
 */
 class ImagePresenter extends AdminPresenter
 {
-	private $imageFacade;
 
-	private $userFacade;
-
+	/**
+	 * @var array
+	 */
 	private $imageStorage;
 
-	public function __construct(\Flame\CMS\Models\Images\ImageFacade $imageFacade, \Flame\CMS\Models\Users\UserFacade $userFacade)
+	/**
+	 * @var \Flame\CMS\Models\Images\ImageFacade $imageFacade
+	 */
+	private $imageFacade;
+
+	/**
+	 * @var \Flame\CMS\Models\Users\UserFacade $userFacade
+	 */
+	private $userFacade;
+
+	/**
+	 * @var \Flame\Utils\FileManager $fileManager
+	 */
+	private $fileManager;
+
+	/**
+	 * @param \Flame\Utils\FileManager $fileManager
+	 */
+	public function injectFileManager(\Flame\Utils\FileManager $fileManager)
+	{
+		$this->fileManager = $fileManager;
+	}
+
+	/**
+	 * @param \Flame\CMS\Models\Images\ImageFacade $imageFacade
+	 */
+	public function injectImageFacade(\Flame\CMS\Models\Images\ImageFacade $imageFacade)
 	{
 		$this->imageFacade = $imageFacade;
+	}
+
+	/**
+	 * @param \Flame\CMS\Models\Users\UserFacade $userFacade
+	 */
+	public function injectUserFacade(\Flame\CMS\Models\Users\UserFacade $userFacade)
+	{
 		$this->userFacade = $userFacade;
 	}
 
 	public function startup()
 	{
 		parent::startup();
-		$params = $this->context->getParameters();
-		$this->imageStorage = $params['imageStorage'];
+		$this->imageStorage = $this->getContextParameter('imageStorage');
 	}
 
 	public function renderDefault()
@@ -47,7 +79,7 @@ class ImagePresenter extends AdminPresenter
 	{
 		$values = $f->getValues();
 
-		$image = new \Flame\CMS\Models\Images\Image($this->saveImage($values['image']));
+		$image = new \Flame\CMS\Models\Images\Image($this->fileManager->saveFile($values['image']));
 
 		$image->setName($values['name'])
 			->setDescription($values['description']);
@@ -55,39 +87,6 @@ class ImagePresenter extends AdminPresenter
 		$this->imageFacade->save($image);
 		$this->flashMessage('Image was uploaded.');
 		$this->redirect('Image:');
-	}
-
-	private function saveImage($file)
-	{
-		$name = $file->name;
-		$folder = $this->imageStorage['baseDir'] . DIRECTORY_SEPARATOR . $this->imageStorage['imageDir'];
-		$imagePath = $folder . DIRECTORY_SEPARATOR . $name;
-
-		$this->createFolder($folder);
-
-		if(!file_exists($imagePath)){
-			$file->move($imagePath);
-		}else{
-			$new_name = $this->getRandomImagePrefix() . '_' . $name;
-			$file->move(str_replace($name, $new_name, $imagePath));
-			$name = $new_name;
-
-		}
-		return $name;
-	}
-
-	private function createFolder($path)
-	{
-		if(!file_exists($path)){
-			return @mkdir($path, 0777, true);
-		}
-
-		return true;
-	}
-
-	private function getRandomImagePrefix()
-	{
-		return md5(uniqid(microtime(), true));
 	}
 
 	public function handleDelete($id)

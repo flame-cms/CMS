@@ -34,3 +34,8 @@ services:
 
 	WordPressImporter: Flame\Utils\WordPressImporter
 	ThemeManager: Flame\CMS\Utils\ThemeManager(%theme%, @OptionFacade)
+
+	FileManager:
+		class: Flame\Utils\FileManager
+		setup:
+			- setFileStorage(%wwwDir%/%imageStorage.imageDir%)
