@@ -4,7 +4,6 @@
 	"keywords": ["cms", "nette", "simple", "flame", "jsifalda", "sandbox"],
 	"homepage": "https://github.com/jsifalda/flame-cms",
 	"license": "BSD-2-Clause-FreeBSD",
-	"minimum-stability":"dev",
 
 	"authors": [
 		{
@@ -24,6 +23,7 @@
 
 	"require": {
 		"jsifalda/flame": "dev-master",
+		"nette/nette": "dev-master",
 		"doctrine/migrations": "dev-master",
 		"symfony/console": "2.0.*"
 	}
