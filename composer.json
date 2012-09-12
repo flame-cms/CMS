@@ -22,6 +22,8 @@
 	},
 
 	"require": {
+		"kdyby/bootstrap-form-renderer": "dev-master",
+		"doctrine/orm": "2.2.*",
 		"flame/framework": "dev-master",
 		"nette/nette": "dev-master",
 		"doctrine/migrations": "dev-master",
