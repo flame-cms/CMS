@@ -2,38 +2,13 @@
 
 namespace AdminModule;
 
-abstract class AdminPresenter extends \Flame\CMS\Application\UI\Presenter
+abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 {
-
-	public function startup()
-	{
-		parent::startup();
-
-		$user = $this->getUser();
-
-		if(!$user->isLoggedIn()){
-			$backlink = $this->getApplication()->storeRequest('+ 48 hours');
-			$this->redirect(':Front:Login:', $backlink);
-		}else{
-			if(!$user->isAllowed($this->name, $this->view)){
-				$this->flashMessage('Access denied');
-				$this->redirect('Dashboard:');
-			}
-		}
-	}
 
 	public function beforeRender()
 	{
 		parent::beforeRender();
 		$this->template->menuItems = $this->generateMainMenu();
-	}
-
-	public function handleSignOut()
-	{
-		$this->getUser()->logout();
-		$this->flashMessage('You have been signed out.');
-		$this->redirect(':Front:Login:');
-
 	}
 
 	protected function createSlug($name)
