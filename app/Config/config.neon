@@ -12,7 +12,6 @@ common:
 	nette:
 		application:
 			debugger: true
-			errorPresenter: FrontModule\Error
 
 		session:
 			autoStart: true
