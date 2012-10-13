@@ -1,5 +1,5 @@
 
 {#content}
-	<H1>{#title}Posts in category {$category->name}{/#}</H1>
+	<H1  n:block="title">Posts in category {$category->name}</H1>
 	{control postsControl:except}
 {/#}

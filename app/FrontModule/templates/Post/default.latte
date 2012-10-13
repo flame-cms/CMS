@@ -1,23 +1,22 @@
-{var $title = $post->name}
 {var $desc = $post->description}
 {var $keys = $post->keywords}
 
 {#content}
 
-<h2>{$post->name}</h2>
+	<h2 n:block="title">{$post->name}</h2>
 
-<h3>{$post->description}</h3>
+	<h3>{$post->description}</h3>
 
-{!$post->content}
+	{!$post->content}
 
-<p>
-	<small>In category: {$category} |
-	{if count($tags)} Tags: {$tags|implode:', '}  | {/if}
-	Published: {$post->created|date:'%d.%m.%y'} |
-	{$post->hit} Views
-	</small>
-</p>
+	<p>
+		<small>In category: {$category} |
+		{if count($tags)} Tags: {$tags|implode:', '}  | {/if}
+		Published: {$post->created|date:'%d.%m.%y'} |
+		{$post->hit} Views
+		</small>
+	</p>
 
-{if $post->comment}
-	{control commentsControl}
-{/if}
+	{if $post->comment}
+		{control commentsControl}
+	{/if}
