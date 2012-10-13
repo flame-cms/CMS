@@ -1,6 +1,6 @@
-{var $title = "Categories"}
-
 {#content}
+
+	<h2 n:block="title">Categories</h2>
 
 	<h3>Add new category</h3>
 
@@ -10,9 +10,9 @@
 
 	{snippet #categories}
 		{if count($categories)}
-			<h3>Categories</h3>
+			<h3>List</h3>
 
-			<table class="table table-striped table-condensed">
+        	<table class="table table-striped table-condensed  table-bordered">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -33,8 +33,10 @@
 						<td>{$category->parent}</td>
 						<td>{count($category->posts)}</td>
 						<td>
-							<a n:href="Category:edit $category->id">Edit</a>
-							<a n:href="delete! $category->id" class="ajax">X</a>
+                            <div class="btn-group">
+                                <a rel="tooltip" class="btn btn-small" n:href="Category:edit $category->id"><i class="icon-pencil"></i></a>
+                                <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $category->id"><i class="icon-remove"></i></a>
+                            </div>
 						</td>
 					</tr>
 				</tbody>

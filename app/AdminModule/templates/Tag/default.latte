@@ -1,7 +1,6 @@
-{var $title = 'Tags'}
-
 {#content}
 
+	<h2 n:block="title">Tags</h2>
 	<h3>Add new tag</h3>
 
 	{snippet addForm}
@@ -12,7 +11,7 @@
 		{if count($tags)}
 			<h3>Tags</h3>
 
-			<table class="table table-striped table-condensed">
+			<table class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -29,8 +28,10 @@
 					<td>{$tag->slug}</td>
 					<td>{count($tag->posts)}</td>
 					<td>
-						<a n:href="Tag:edit $tag->id">Edit</a>
-						<a n:href="delete! $tag->id" class="ajax">X</a>
+                        <div class="btn-group">
+                            <a rel="tooltip" class="btn btn-small" n:href="edit $tag->id"><i class="icon-pencil"></i></a>
+                            <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $tag->id"><i class="icon-remove"></i></a>
+                        </div>
 					</td>
 				</tr>
 				</tbody>

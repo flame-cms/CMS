@@ -1,17 +1,22 @@
-{var $title='List of pages'}
-
 {block #content}
-	<p><a n:href="Page:add">Add new page</a> </p>
+
+	<div class="left">
+		<h2 n:block="title">Pages</h2>
+	</div>
+	<div class="right">
+		<a class="btn btn-large btn-primary" n:href="upload"><i class="icon-plus icon-white"></i> Add new page</a>
+	</div>
+
+	<br class="clear" />
 
 	{snippet #pages}
 		{if count($pages)}
 
-			<table class="table table-striped table-condensed">
+			<table class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>Name</th>
 						<th>Content</th>
-						<th>User</th>
 						<th>Created</th>
 						<th>Views</th>
 						<th>Actions</th>
@@ -23,12 +28,13 @@
 
 						<td>{$page->name}</td>
 						<td>{!$page->content|striptags|truncate:250}</td>
-						<td>{$page->user}</td>
 						<td>{$page->created|date:'%d.%m.%y'}</td>
 						<td>{$page->hit}</td>
 						<td>
-							<a n:href="Page:edit $page->id">Edit</a>
-							<a n:href="delete! $page->id">X</a>
+                            <div class="btn-group">
+                                <a rel="tooltip" class="btn btn-small" n:href="edit $page->id"><i class="icon-pencil"></i></a>
+                                <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $page->id"><i class="icon-remove"></i></a>
+                            </div>
 						</td>
 					</tr>
 

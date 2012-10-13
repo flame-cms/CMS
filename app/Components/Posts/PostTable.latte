@@ -16,7 +16,7 @@
 		<tbody>
 		<tr n:foreach="$posts as $post">
 			<td><a href="{plink :Front:Post: $post->id, slug => $post->slug}" target="_blank">{$post->name}</a></td>
-			<td>{!$post->content|striptags|truncate:200}</td>
+			<td>{!$post->content|striptags|truncate:150}</td>
 			<td>
 				{if $post->category}
 					<a href="{plink :Front:Category:posts $post->category->id}" target="_blank">{$post->category->name}</a>
@@ -24,17 +24,16 @@
 					<span class="error-font">Category does not exist!</span>
 				{/if}
 			</td>
-			<td>{if $post->publish}Yes{else}No{/if}</td>
+			<td>{if $post->comment}Yes{else}No{/if}</td>
 			<td>{$post->created|date:'%d.%m.%y'}</td>
 			<td>{$post->hit}</td>
 			<td>
-				<a href="{plink Post:edit $post->id}">Edit</a>
-				<a href="{plink delete! $post->id}" class="ajax">X</a>
-				{if $post->publish}
-					<a href="{plink markPublish! $post->id}" class="ajax">Unpublish</a>
-					{else}
-					<a href="{plink markPublish! $post->id}" class="ajax">Publish</a>
-				{/if}
+                <div class="btn-group">
+                    <a rel="tooltip" class="btn btn-small ajax" href="{plink markPublish! $post->id}" title="Publish/Unpublish">
+							{if $post->publish}<i class="icon-eye-close"></i>{else}<i class="icon-eye-open"></i>{/if}</a>
+                    <a rel="tooltip" class="btn btn-small" href="{plink edit $post->id}"><i class="icon-pencil"></i></a>
+                    <a rel="tooltip" class="btn btn-small ajax" href="{plink delete! $post->id}"><i class="icon-remove"></i></a>
+                </div>
 			</td>
 		</tr>
 		</tbody>

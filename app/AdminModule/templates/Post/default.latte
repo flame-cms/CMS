@@ -1,8 +1,12 @@
-{var $title="Posts"}
-
 {#content}
+	<div class="left">
+		<h2 n:block="title">Posts</h2>
+	</div>
+	<div class="right">
+		<a class="btn btn-large btn-primary" n:href="upload"><i class="icon-plus icon-white"></i> Add new post</a>
+	</div>
 
-	<p><a n:href="Post:add">Add new post</a></p>
+	<br class="clear" />
 
 	{snippet #posts}
 		{control postControl:table}

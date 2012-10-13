@@ -1,9 +1,13 @@
-{var $title="Images"}
-
 {#content}
 
-	<p><a n:href="Image:upload">Upload new Image</a></p>
+	<div class="left">
+		<h2 n:block="title">Images</h2>
+	</div>
+	<div class="right">
+		<a class="btn btn-large btn-primary" n:href="upload"><i class="icon-plus icon-white"></i> Upload new image</a>
+	</div>
 
+	<br class="clear" />
 	{snippet #images}
 
 		{if count($images)}
