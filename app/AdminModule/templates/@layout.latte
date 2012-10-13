@@ -77,6 +77,16 @@
 
 		<div class="hero-unit">
 
+            <ul class="breadcrumb">
+			{foreach $breadCrumbs as $breadcrumb}
+				{if $iterator->last}
+                    <li class="active">{$breadcrumb}</li>
+					{else}
+                    <li><a>{$breadcrumb}</a> <span class="divider">/</span></li>
+				{/if}
+			{/foreach}
+            </ul>
+
 			{snippet flashMessages}
 			<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">
 				<a class="close" data-dismiss="alert" href="#">×</a>
