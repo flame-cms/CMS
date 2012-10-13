@@ -45,13 +45,3 @@ Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flam
 ###Flame is ready now!
 
 If you want to sign in to backend part (Administration) of Flame, use email **user@demo.com** and password **PASSWORD12** (all in lower case)
-
-### Global available settings
-If you want to affect prepared options (set up in the options section)
-* name (e.g. 'FLAME', default: null)
-* thumbnail_width (default: 230)
-* thumbnail_height (default: 230)
-* items_per_page (Paginator, default: 10)
-* menu_items (default: 5)
-* menu_newsreel_count (default: 3)
-* menu_tags_count (default: 35)
