@@ -133,3 +133,11 @@ a[href^="error:"] {
     z-index: 123456;
     display: none;
 }
+
+ul {
+    list-style: none;
+}
+
+input, textarea {
+    width: auto;
+}
