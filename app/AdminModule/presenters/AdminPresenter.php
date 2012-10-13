@@ -5,10 +5,25 @@ namespace AdminModule;
 abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 {
 
+	/**
+	 * @param \Flame\Utils\PresentersList
+	 */
+	protected $presentersList;
+
+	/**
+	 * @param \Flame\Utils\PresentersList $presentersList
+	 */
+	public function injectPresentersList(\Flame\Utils\PresentersList $presentersList)
+	{
+		$this->presentersList = $presentersList;
+	}
+
 	public function beforeRender()
 	{
 		parent::beforeRender();
-		$this->template->menuItems = $this->generateMainMenu();
+
+		$this->template->menuItems = $this->generateMenu();
+		$this->template->breadCrumbs = $this->generateBreadCrumb();
 	}
 
 	protected function createSlug($name)
@@ -22,43 +37,34 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 		return $url;
 	}
 
-	private function generateMainMenu()
+	/**
+	 * @return mixed
+	 */
+	protected function generateMenu()
 	{
-		$items = array(
-			array('page' => 'Dashboard:', 'title' => 'Dashboard'),
-			array('page' => 'Post:', 'title' => 'Posts'),
-			array('page' => 'Category:', 'title' => 'Categories'),
-			array('page' => 'Tag:', 'title' => 'Tags'),
-			array('page' => 'Page:', 'title' => 'Pages'),
-			array('page' => 'Image:', 'title' => 'Images'),
-			array('page' => 'Comment:', 'title' => 'Comments'),
-			array('page' => 'Newsreel:', 'title' => 'Newsreel'),
-			array('page' => 'Option:', 'title' => 'Options'),
-			array('page' => 'User:', 'title' => 'Users'),
-			array('page' => 'Import:', 'title' => 'Import posts'),
-		);
 
-		$menu = array();
+		$this->presentersList->load(__NAMESPACE__);
+		$presenters = $this->presentersList->getPresenters();
 
-		foreach($items as $item){
-			if(isset($item['page']) and isset($item['title'])){
-				$parts = explode(':', $item['page']);
-
-				$parts[1] = (empty($parts[1])) ? 'default' : $parts[1];
-				
-				$user = $this->getUser();
-				if(count($parts) <= 2){
-					if($user->isAllowed('Admin:' . $parts[0], $parts['1'])){
-						$menu[] = (object) $item;
-					}
-				}else{
-					if($user->isAllowed( $parts[0] . ':' . $parts[1], $parts['2'])){
-						$menu[] = (object) $item;
-					}
-				}
-			}
+		foreach($presenters as $k => $v){
+			if($v == 'Admin') unset($presenters[$k]);
+			if($v == 'Dashboard') unset($presenters[$k]);
+			if($v == 'User') unset($presenters[$k]);
 		}
 
-		return $menu;
+		return $presenters;
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function generateBreadCrumb()
+	{
+		$parts = explode(':', $this->name);
+		$parts[] = $this->view;
+		if($parameter = $this->getParameter('id')){
+			$parts[] = $parameter;
+		}
+		return $parts;
 	}
 }

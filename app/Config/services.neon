@@ -41,3 +41,9 @@ services:
 			- setFileStorage(%wwwDir%/%imageStorage.imageDir%)
 
 	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
+	PresenterList:
+		class: Flame\Utils\PresentersList
+		setup:
+			- setAppDirectory(%appDir%)
+
+	Loader: Nette\Loaders\RobotLoader
