@@ -10,6 +10,16 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 	 */
 	protected $presentersList;
 
+	public function startup()
+	{
+		parent::startup();
+
+		if(!$this->getUser()->isAllowed($this->name, $this->view)){
+			$this->flashMessage('Access denied');
+			$this->redirect('Dashboard:');
+		}
+	}
+
 	/**
 	 * @param \Flame\Utils\PresentersList $presentersList
 	 */
