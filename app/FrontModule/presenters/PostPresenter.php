@@ -17,6 +17,19 @@ class PostPresenter extends FrontPresenter
 	 */
     private $post;
 
+	/**
+	 * @var \Flame\CMS\Components\Comments\CommentControlFactory $commentControlFactory
+	 */
+	private $commentControlFactory;
+
+	/**
+	 * @param \Flame\CMS\Components\Comments\CommentControlFactory $commentControlFactory
+	 */
+	public function injectCommentControlFactory(\Flame\CMS\Components\Comments\CommentControlFactory $commentControlFactory)
+	{
+		$this->commentControlFactory = $commentControlFactory;
+	}
+
     /**
      * @param \Flame\CMS\Models\Posts\PostFacade $postFacade
      */
@@ -25,6 +38,9 @@ class PostPresenter extends FrontPresenter
     	$this->postFacade = $postFacade;
     }
 
+	/**
+	 * @param $id
+	 */
 	public function actionDefault($id)
 	{
 
@@ -43,10 +59,13 @@ class PostPresenter extends FrontPresenter
 		}
 	}
 
+	/**
+	 * @return \Flame\CMS\Components\Comments\CommentControl
+	 */
 	protected function createComponentCommentsControl()
 	{
-		$control =  new \Flame\CMS\Components\Comments\Comment($this, 'commentsControl');
-		$control->setPost($this->post);
-		return $control;
+		$this->commentControlFactory->setPostModel($this->post);
+
+		return $this->commentControlFactory->create();
 	}
 }
