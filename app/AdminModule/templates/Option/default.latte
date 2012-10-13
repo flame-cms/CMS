@@ -1,11 +1,13 @@
 {#content}
 
-	<h2 n:block="title">Settings</h2>
+	<div class="left">
+        <h2 n:block="title">Options</h2>
+	</div>
+	<div class="right">
+		<a class="btn btn-large btn-primary" n:href="add"><i class="icon-plus icon-white"></i> Add new option</a>
+	</div>
 
-	<h3>Add new setting</h3>
-	{snippet addForm}
-		{control optionForm}
-	{/snippet}
+	<br class="clear" />
 
 	{snippet #options}
 		{if count($options)}

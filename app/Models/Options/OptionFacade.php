@@ -19,6 +19,22 @@ class OptionFacade extends \Flame\Model\Facade
 	protected $repositoryName = '\Flame\CMS\Models\Options\Option';
 
 	/**
+	 * @var array
+	 */
+	private $availableOptions = array(
+		'Name', 'Thumbnail:Width', 'Thumbnail:Height', 'ItemsPerPage', 'Menu:ItemsCount', 'Menu:NewsreelCount', 'Menu:TagsCount',
+		'Theme'
+	);
+
+	/**
+	 * @return array
+	 */
+	public function getAvailableOptions()
+	{
+		return $this->availableOptions;
+	}
+
+	/**
 	 * @param $id
 	 * @return mixed
 	 */
@@ -39,7 +55,7 @@ class OptionFacade extends \Flame\Model\Facade
 	/**
 	 * @return array
 	 */
-	public function getAll()
+	public function getLastOptions()
     {
         return $this->repository->findAll();
     }
