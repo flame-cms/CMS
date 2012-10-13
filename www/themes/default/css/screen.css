@@ -6,54 +6,8 @@ body {
 	min-width: 1100px;
 }
 
-p {
-	line-height: 1.7em;
-	margin: 0 0 20px 0;	
-}
-
-ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-li {
-	margin: 0 0 0 0;
-	padding: 0;
-}
-
-img {
-	margin: 0;
-}
-
-h1, h2, h3, h4 {
-	color: #3484D2;
-}
-
-h1 {
-	font-size: 200%;
-}
-
-h2 { 
-	font-size: 175%;
-}
-
-h3 {
-	font-size: 150%;
-}
-
-h4 {
-	font-size: 125%;
-}
-
-small {font-size: 75%;}
-
 a:hover {
 	background: #3484D2;
-}
-
-a, a:link, a:visited {
-	color: black;
 }
 
 a.active {
