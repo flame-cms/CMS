@@ -49,7 +49,7 @@ class Tag extends \Flame\Application\UI\Control
 
 	private function initCountOfItems()
 	{
-		$countOfItems = $this->optionFacade->getOptionValue('menu_tags_count');
+		$countOfItems = $this->optionFacade->getOptionValue('Menu:TagsCount');
 		if((int) $countOfItems >= 1) $this->countOfItems = (int) $countOfItems;
 	}
 

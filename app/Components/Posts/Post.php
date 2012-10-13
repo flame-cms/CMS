@@ -126,7 +126,7 @@ class Post extends \Flame\Application\UI\Control
 
 	private function initItemsPerPage()
 	{
-		$itemsPerPage = $this->optionFacade->getOptionValue('items_per_page');
+		$itemsPerPage = $this->optionFacade->getOptionValue('ItemsPerPage');
 		if((int) $itemsPerPage >= 1) $this->itemsPerPage = (int) $itemsPerPage;
 	}
 

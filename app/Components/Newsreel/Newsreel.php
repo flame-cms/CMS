@@ -41,7 +41,7 @@ class Newsreel extends \Flame\Application\UI\Control
 
 	private function initCountOfItems()
 	{
-		$countOfItems = $this->optionFacade->getOptionValue('menu_newsreel_count');
+		$countOfItems = $this->optionFacade->getOptionValue('Menu:NewsreelCount');
 		if((int) $countOfItems >= 1) $this->itemsInNewsreelMenuList = (int) $countOfItems;
 	}
 }

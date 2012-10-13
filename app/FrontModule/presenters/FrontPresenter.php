@@ -54,10 +54,10 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	{
 		parent::beforeRender();
 
-		$option = $this->optionFacade->getOptionValue('menu_items');
+		$option = $this->optionFacade->getOptionValue('Menu:ItemsCount');
 		if(!is_null($option)) $this->itemsInMenu = $option;
 
-		$this->template->name = $this->optionFacade->getOptionValue('name');
+		$this->template->name = $this->optionFacade->getOptionValue('Name');
 		$this->template->menus = $this->pageFacade->getLastPages($this->itemsInMenu);
 		$this->template->theme = $this->theme;
 	}

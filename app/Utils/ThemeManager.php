@@ -40,7 +40,7 @@ class ThemeManager extends \Flame\Utils\ThemeManager
 	{
 		$theme = parent::getTheme();
 
-		if($option = $this->optionFacade->getOptionValue('theme')){
+		if($option = $this->optionFacade->getOptionValue('Theme')){
 			$path = $this->getDefaultThemeFolder() . '/' . $option;
 			if($this->existTheme($path)) return $path;
 		}
