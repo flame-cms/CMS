@@ -63,9 +63,4 @@ class Tag extends \Flame\Doctrine\Entity
 	{
 		return $this->posts;
 	}
-
-	public function __toString()
-	{
-		return $this->name;
-	}
 }

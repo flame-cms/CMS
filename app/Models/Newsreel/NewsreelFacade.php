@@ -2,21 +2,13 @@
 
 namespace Flame\CMS\Models\Newsreel;
 
-class NewsreelFacade extends \Nette\Object implements \Flame\Model\IFacade
+class NewsreelFacade extends \Flame\Model\Facade
 {
 
 	/**
-	 * @var \Doctrine\ORM\EntityRepository
+	 * @var string
 	 */
-	private $repository;
-
-	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
-	 */
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-	{
-		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\Newsreel\Newsreel');
-	}
+	protected $repositoryName = '\Flame\CMS\Models\Newsreel\Newsreel';
 
 	/**
 	 * @param $id
@@ -42,24 +34,6 @@ class NewsreelFacade extends \Nette\Object implements \Flame\Model\IFacade
 	public function getLastPassedNewsreel($limit = null)
     {
         return $this->repository->findAllPassed($limit);
-    }
-
-	/**
-	 * @param Newsreel $newsreel
-	 * @return mixed
-	 */
-	public function save(Newsreel $newsreel)
-    {
-        return $this->repository->save($newsreel);
-    }
-
-	/**
-	 * @param Newsreel $newsreel
-	 * @return mixed
-	 */
-	public function delete(Newsreel $newsreel)
-    {
-        return $this->repository->delete($newsreel);
     }
 
 	/**

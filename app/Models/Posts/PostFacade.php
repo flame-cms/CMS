@@ -10,20 +10,13 @@
 
 namespace Flame\CMS\Models\Posts;
 
-class PostFacade extends \Nette\Object implements \Flame\Model\IFacade
+class PostFacade extends \Flame\Model\Facade
 {
-	/**
-	 * @var \Doctrine\ORM\EntityRepository
-	 */
-    private $repository;
 
 	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
+	 * @var string
 	 */
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-    {
-        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Posts\Post');
-    }
+	protected $repositoryName = '\Flame\CMS\Models\Posts\Post';
 
 	/**
 	 * @param $id
@@ -78,22 +71,4 @@ class PostFacade extends \Nette\Object implements \Flame\Model\IFacade
 		$post->setHit($post->getHit() + 1);
 		return $this->save($post);
 	}
-
-	/**
-	 * @param Post $post
-	 * @return mixed
-	 */
-    public function delete(Post $post)
-    {
-        return $this->repository->delete($post);
-    }
-
-	/**
-	 * @param Post $post
-	 * @return mixed
-	 */
-    public function save(Post $post)
-    {
-        return $this->repository->save($post);
-    }
 }

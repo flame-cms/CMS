@@ -10,20 +10,13 @@
 
 namespace Flame\CMS\Models\Options;
 
-class OptionFacade extends \Nette\Object implements \Flame\Model\IFacade
+class OptionFacade extends \Flame\Model\Facade
 {
-	/**
-	 * @var \Doctrine\ORM\EntityRepository
-	 */
-	private $repository;
 
 	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
+	 * @var string
 	 */
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-    {
-        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Options\Option');
-    }
+	protected $repositoryName = '\Flame\CMS\Models\Options\Option';
 
 	/**
 	 * @param $id
@@ -52,36 +45,13 @@ class OptionFacade extends \Nette\Object implements \Flame\Model\IFacade
     }
 
 	/**
-	 * @param Option $option
-	 * @return mixed
-	 */
-	public function save(Option $option)
-    {
-        return $this->repository->save($option);
-    }
-
-	/**
-	 * @param Option $option
-	 * @return mixed
-	 */
-	public function delete(Option $option)
-    {
-        return $this->repository->delete($option);
-    }
-
-	/**
 	 * @param $name
 	 * @return null
 	 */
 	public function getOptionValue($name)
     {
-        $option = $this->repository->findOneBy(array('name' => $name));
-
-        if($option){
-            return $option->value;
-        }else{
-            return null;
-        }
+	    $value = $this->repository->findOneBy(array('name' => $name));
+	    return $value ? $value->value : null;
     }
 
 }

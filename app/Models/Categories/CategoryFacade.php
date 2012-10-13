@@ -10,20 +10,13 @@
 
 namespace Flame\CMS\Models\Categories;
 
-class CategoryFacade extends \Nette\Object implements \Flame\Model\IFacade
+class CategoryFacade extends \Flame\Model\Facade
 {
-	/**
-	 * @var \Doctrine\ORM\EntityRepository
-	 */
-	private $repository;
 
 	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
+	 * @var string
 	 */
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-	{
-		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\Categories\Category');
-	}
+	protected $repositoryName = '\Flame\CMS\Models\Categories\Category';
 
 	/**
 	 * @param $id
@@ -49,24 +42,6 @@ class CategoryFacade extends \Nette\Object implements \Flame\Model\IFacade
 	public function getLastCategories()
 	{
 		return $this->repository->findBy(array(), array('id' => 'DESC'));
-	}
-
-	/**
-	 * @param Category $category
-	 * @return mixed
-	 */
-	public function save(Category $category)
-	{
-		return $this->repository->save($category);
-	}
-
-	/**
-	 * @param Category $category
-	 * @return mixed
-	 */
-	public function delete(Category $category)
-	{
-		return $this->repository->delete($category);
 	}
 
 }

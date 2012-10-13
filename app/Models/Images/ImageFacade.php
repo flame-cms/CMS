@@ -10,21 +10,13 @@
 
 namespace Flame\CMS\Models\Images;
 
-class ImageFacade extends \Nette\Object implements \Flame\Model\IFacade
+class ImageFacade extends \Flame\Model\Facade
 {
 
 	/**
-	 * @var \Doctrine\ORM\EntityRepository
+	 * @var string
 	 */
-	private $repository;
-
-	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
-	 */
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-	{
-		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\Images\Image');
-	}
+	protected $repositoryName = '\Flame\CMS\Models\Images\Image';
 
 	/**
 	 * @param $id
@@ -41,23 +33,5 @@ class ImageFacade extends \Nette\Object implements \Flame\Model\IFacade
 	public function getLastImages()
 	{
 		return $this->repository->findBy(array(), array('id' => 'DESC'));
-	}
-
-	/**
-	 * @param Image $image
-	 * @return mixed
-	 */
-	public function delete(Image $image)
-	{
-		return $this->repository->delete($image);
-	}
-
-	/**
-	 * @param Image $image
-	 * @return mixed
-	 */
-	public function save(Image $image)
-	{
-		return $this->repository->save($image);
 	}
 }

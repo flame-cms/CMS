@@ -12,21 +12,13 @@ namespace Flame\CMS\Models\Comments;
 
 use \Flame\CMS\Models\Comments\Comment;
 
-class CommentFacade extends \Nette\Object implements \Flame\Model\IFacade
+class CommentFacade extends \Flame\Model\Facade
 {
 
 	/**
-	 * @var \Doctrine\ORM\EntityRepository
+	 * @var string
 	 */
-	private $repository;
-
-	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
-	 */
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-    {
-        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Comments\Comment');
-    }
+	protected  $repositoryName = '\Flame\CMS\Models\Comments\Comment';
 
 	/**
 	 * @param $id
@@ -52,23 +44,5 @@ class CommentFacade extends \Nette\Object implements \Flame\Model\IFacade
 	public function getPublishCommentsInPost($id)
     {
         return $this->repository->findBy(array('post' => $id, 'publish' => '1' ));
-    }
-
-	/**
-	 * @param Comment $comment
-	 * @return mixed
-	 */
-	public function save(Comment $comment)
-    {
-        return $this->repository->save($comment);
-    }
-
-	/**
-	 * @param Comment $comment
-	 * @return mixed
-	 */
-	public function delete(Comment $comment)
-    {
-        return $this->repository->delete($comment);
     }
 }

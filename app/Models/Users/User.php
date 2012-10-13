@@ -106,6 +106,6 @@ class User extends \Flame\Doctrine\Entity
 
 	public function __toString()
 	{
-		return $this->email;
+		return (string) $this->email;
 	}
 }

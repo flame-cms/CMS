@@ -10,21 +10,13 @@
 
 namespace Flame\CMS\Models\UsersInfo;
 
-class UserInfoFacade extends \Nette\Object implements \Flame\Model\IFacade
+class UserInfoFacade extends \Flame\Model\Facade
 {
 
 	/**
-	 * @var \Doctrine\ORM\EntityRepository
+	 * @var string
 	 */
-	private $repository;
-
-	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
-	 */
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-	{
-		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\UsersInfo\UserInfo');
-	}
+	protected $repositoryName = '\Flame\CMS\Models\UsersInfo\UserInfo';
 
 	/**
 	 * @param $id
@@ -33,24 +25,6 @@ class UserInfoFacade extends \Nette\Object implements \Flame\Model\IFacade
 	public function getOne($id)
 	{
 		return $this->repository->findOneById($id);
-	}
-
-	/**
-	 * @param UserInfo $user
-	 * @return mixed
-	 */
-	public function save(UserInfo $user)
-	{
-		return $this->repository->save($user);
-	}
-
-	/**
-	 * @param UserInfo $user
-	 * @return mixed
-	 */
-	public function delete(UserInfo $user)
-	{
-		return $this->repository->delete($user);
 	}
 
 }

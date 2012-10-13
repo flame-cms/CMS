@@ -10,20 +10,13 @@
 
 namespace Flame\CMS\Models\Tags;
 
-class TagFacade extends \Nette\Object implements \Flame\Model\IFacade
+class TagFacade extends \Flame\Model\Facade
 {
-	/**
-	 * @var \Doctrine\ORM\EntityRepository
-	 */
-	private $repository;
 
 	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
+	 * @var string
 	 */
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-	{
-		$this->repository = $entityManager->getRepository('\Flame\CMS\Models\Tags\Tag');
-	}
+	protected $repositoryName = '\Flame\CMS\Models\Tags\Tag';
 
 	/**
 	 * @param $id
@@ -54,23 +47,5 @@ class TagFacade extends \Nette\Object implements \Flame\Model\IFacade
 		}else{
 			return $this->repository->findBy(array(), array('id' => 'DESC'));
 		}
-	}
-
-	/**
-	 * @param Tag $tag
-	 * @return mixed
-	 */
-	public function save(Tag $tag)
-	{
-		return $this->repository->save($tag);
-	}
-
-	/**
-	 * @param Tag $tag
-	 * @return mixed
-	 */
-	public function delete(Tag $tag)
-	{
-		return $this->repository->delete($tag);
 	}
 }

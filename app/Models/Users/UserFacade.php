@@ -10,20 +10,13 @@
 
 namespace Flame\CMS\Models\Users;
 
-class UserFacade extends \Nette\Object implements \Flame\Model\IFacade
+class UserFacade extends \Flame\Model\Facade
 {
-	/**
-	 * @var \Doctrine\ORM\EntityRepository
-	 */
-	private $repository;
 
 	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager
+	 * @var string
 	 */
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-    {
-        $this->repository = $entityManager->getRepository('\Flame\CMS\Models\Users\User');
-    }
+	protected $repositoryName = '\Flame\CMS\Models\Users\User';
 
 	/**
 	 * @param $id
@@ -49,23 +42,5 @@ class UserFacade extends \Nette\Object implements \Flame\Model\IFacade
 	public function getByEmail($email)
     {
         return $this->repository->findOneBy(array('email' => $email));
-    }
-
-	/**
-	 * @param User $user
-	 * @return mixed
-	 */
-	public function save(User $user)
-    {
-        return $this->repository->save($user);
-    }
-
-	/**
-	 * @param User $user
-	 * @return mixed
-	 */
-	public function delete(User $user)
-    {
-        return $this->repository->delete($user);
     }
 }
