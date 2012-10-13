@@ -15,7 +15,7 @@
 		<ul class="thumbnails">
 			<li class="span3" n:foreach="$images as $image">
 				<div class="thumbnail">
-					<a href="{$baseUrl}/{$imageDir}/{$image->file}" target="_blank"  class="thumbnail">
+					<a href="{$baseUrl}/{$image->file}" target="_blank"  class="thumbnail">
 						<img src="{$baseUrl}/{$image->file|thumb:230}" alt="">
 					</a>
 					<div class="caption">
@@ -32,4 +32,4 @@
 
 	{/snippet}
 
-	<small>Your images are stored in folder <b>media</b></small>
+	<small>Your images are stored in folder <b>{$imageDir}</b></small>

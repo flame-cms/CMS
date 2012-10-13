@@ -38,7 +38,7 @@ services:
 	FileManager:
 		class: Flame\Utils\FileManager
 		setup:
-			- setFileStorage(%wwwDir%/%imageStorage.imageDir%)
+			- setFileStorage(/%imageStorage.imageDir%)
 
 	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
 	PresenterList:
