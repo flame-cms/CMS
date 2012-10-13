@@ -51,6 +51,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a n:href="User:password">Change password</a></li>
+                    <li><a n:href="User:edit $user->getId()">Account settings</a></li>
                     <li class="divider"></li>
                     <li><a n:href="logout!">Logout</a></li>
                 </ul>
@@ -88,15 +89,11 @@
 
 		</div>
 
-		{if $user->isLoggedIn()}
-			<footer>
-				Logged in as <a n:href="User:edit $user->getId()">{$user->getIdentity()->email}</a> |
-				<a n:href="User:password">Change password</a> |
-				<a n:href="logout!">Logout</a> |
-				<a style="font-weight: bold;" n:href=":Front:Homepage:">Show web</a>
-			</footer>
-		{/if}
-
+        <hr />
+        <footer>
+            <p>Powered by <a href="http://projects.jsifalda.name/cms/" target="_blank">Flame CMS</a> 2012.
+                &copy; Created by <a href="http://jsifalda.name/" target="_blank"> JSifalda</a></p>
+        </footer>
 	</div>
 </body>
 </html>
