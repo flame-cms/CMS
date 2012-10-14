@@ -51,4 +51,12 @@ class Identity extends \Nette\Security\Identity
 		return $data;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return (string) (isset($this->data['email'])) ? $this->data['email'] : '';
+	}
+
 }
