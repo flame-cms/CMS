@@ -10,14 +10,17 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 	 */
 	protected $presentersList;
 
-	public function startup()
-	{
-		parent::startup();
+	/**
+	 * @var \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
+	 */
+	private $navbarBuilderControlFactory;
 
-		if(!$this->getUser()->isAllowed($this->name, $this->view)){
-			$this->flashMessage('Access denied');
-			$this->redirect('Dashboard:');
-		}
+	/**
+	 * @param \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
+	 */
+	public function injectNavbarBuilderControlFactory(\Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory)
+	{
+		$this->navbarBuilderControlFactory = $navbarBuilderControlFactory;
 	}
 
 	/**
@@ -28,11 +31,20 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 		$this->presentersList = $presentersList;
 	}
 
+	public function startup()
+	{
+		parent::startup();
+
+		if(!$this->getUser()->isAllowed($this->name, $this->view)){
+			$this->flashMessage('Access denied');
+			$this->redirect('Dashboard:');
+		}
+	}
+
 	public function beforeRender()
 	{
 		parent::beforeRender();
 
-		$this->template->menuItems = $this->generateMenu();
 		$this->template->breadCrumbs = $this->generateBreadCrumb();
 	}
 
@@ -48,24 +60,6 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 	}
 
 	/**
-	 * @return mixed
-	 */
-	protected function generateMenu()
-	{
-
-		$this->presentersList->load(__NAMESPACE__);
-		$presenters = $this->presentersList->getPresenters();
-
-		foreach($presenters as $k => $v){
-			if($v == 'Admin') unset($presenters[$k]);
-			if($v == 'Dashboard') unset($presenters[$k]);
-			if($v == 'User') unset($presenters[$k]);
-		}
-
-		return $presenters;
-	}
-
-	/**
 	 * @return array
 	 */
 	protected function generateBreadCrumb()
@@ -76,5 +70,33 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 			$parts[] = $parameter;
 		}
 		return $parts;
+	}
+
+	/**
+	 * @return \Flame\Components\NavbarBuilder\NavbarBuilderControl
+	 */
+	protected function createComponentNavbarBuilder()
+	{
+		$control = $this->navbarBuilderControlFactory->create();
+		$control->setTitle('Dashboard', 'Dashboard:');
+
+		$navbar = $control->getNavbarControl();
+
+		$this->presentersList->load(__NAMESPACE__);
+		$presenters = $this->presentersList->getPresenters();
+
+		foreach($presenters as $k => $v){
+			if($v !== 'Admin' and $v !== 'Dashboard'){
+				$navbar->addNavbarItem($v, $v . ':');
+			}
+		}
+
+		$userbar = $control->getUserbarControl();
+
+		$userbar->addItem('Account settings', 'User:edit');
+		$userbar->addItem('Password edit', 'User:password');
+		$userbar->setUserName($this->getUser()->getIdentity());
+
+		return $control;
 	}
 }

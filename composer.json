@@ -25,6 +25,7 @@
 		"kdyby/bootstrap-form-renderer": "dev-master",
 		"doctrine/orm": "2.2.*",
 		"flame/framework": "dev-master",
+		"flame/navbarbuilder-component": "dev-master",
 		"nette/nette": "dev-master",
 		"doctrine/migrations": "dev-master",
 		"symfony/console": "2.0.*"

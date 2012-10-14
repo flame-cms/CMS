@@ -50,3 +50,4 @@ services:
 	CommentFormFactory: Flame\CMS\Components\Comments\CommentFormFactory
 	CommentControlFactory: Flame\CMS\Components\Comments\CommentControlFactory
 	OptionFormFactory: AdminModule\Forms\Options\OptionFormFactory
+	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
