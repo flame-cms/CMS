@@ -41,11 +41,6 @@ services:
 			- setFileStorage(/%imageStorage.imageDir%)
 
 	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
-	PresenterList:
-		class: Flame\Utils\PresentersList
-		setup:
-			- setAppDirectory(%appDir%)
-
 	Loader: Nette\Loaders\RobotLoader
 	CommentFormFactory: Flame\CMS\Components\Comments\CommentFormFactory
 	CommentControlFactory: Flame\CMS\Components\Comments\CommentControlFactory

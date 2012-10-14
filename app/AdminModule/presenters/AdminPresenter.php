@@ -6,11 +6,6 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 {
 
 	/**
-	 * @param \Flame\Utils\PresentersList
-	 */
-	protected $presentersList;
-
-	/**
 	 * @var \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
 	 */
 	private $navbarBuilderControlFactory;
@@ -21,14 +16,6 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 	public function injectNavbarBuilderControlFactory(\Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory)
 	{
 		$this->navbarBuilderControlFactory = $navbarBuilderControlFactory;
-	}
-
-	/**
-	 * @param \Flame\Utils\PresentersList $presentersList
-	 */
-	public function injectPresentersList(\Flame\Utils\PresentersList $presentersList)
-	{
-		$this->presentersList = $presentersList;
 	}
 
 	public function startup()
@@ -82,17 +69,31 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 
 		$navbar = $control->getNavbarControl();
 
-		$this->presentersList->load(__NAMESPACE__);
-		$presenters = $this->presentersList->getPresenters();
+		$items = array(
+			array('Posts', 'Post:'),
+			array('List', 'Post:', 'Posts'),
+			array('Add', 'Post:add', 'Posts'),
+			array('Import', 'Import:', 'Posts', true),
+			array('Categories', 'Category:', 'Posts', true),
+			array('Tags', 'Tag:', 'Posts'),
+			array('Comments', 'Comment:', 'Posts'),
 
-		foreach($presenters as $k => $v){
-			if($v !== 'Admin' and $v !== 'Dashboard'){
-				$navbar->addNavbarItem($v, $v . ':');
+			array('Newsreel', 'Newsreel:'),
+			array('Images', 'Image:'),
+			array('Pages', 'Page:'),
+			array('Options', 'Option:'),
+			array('Users', 'User:'),
+		);
+
+		foreach($items as $item){
+			$linkParts = explode(':', $item[1]);
+
+			if($this->getUser()->isAllowed('Admin:' . $linkParts[0], $linkParts[1])){
+				$navbar->addNavbarItem($item[0], $item[1], (isset($item[2])) ? $item[2] : null, (isset($item[3])) ? $item[3] : false);
 			}
 		}
 
 		$userbar = $control->getUserbarControl();
-
 		$userbar->addItem('Account settings', 'User:edit');
 		$userbar->addItem('Password edit', 'User:password');
 		$userbar->setUserName($this->getUser()->getIdentity());
