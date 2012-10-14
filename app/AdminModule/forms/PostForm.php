@@ -71,7 +71,7 @@ class PostForm extends \Flame\Application\UI\Form
 			->addRule(self::FILLED)
 			->addRule(self::MAX_LENGTH, null, 100);
 
-		$this->addTextArea('content', 'Content:', 105, 35)
+		$this->addTextArea('content', 'Content:', 105, 30)
 			->addRule(self::FILLED)
 			->setAttribute('class', 'mceEditor');
 
