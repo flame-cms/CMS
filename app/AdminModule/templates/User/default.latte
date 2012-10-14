@@ -1,12 +1,18 @@
-{var $title = 'List of Users'}
-
 {#content}
 
-	<p><a n:href="User:add">Add new user</a></p>
+	<div class="left">
+		<h2 n:block="title">Users</h2>
+	</div>
+	<div class="right">
+		<a class="btn btn-large btn-primary" n:href="add"><i class="icon-plus icon-white"></i> Add new user</a>
+	</div>
+
+	<br class="clear" />
+
 
 	{snippet #users}
 		{if count($users)}
-			<table class="table table-striped table-condensed">
+			<table class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>Role</th>
@@ -20,8 +26,10 @@
 						<td>{$user->role}</td>
 						<td>{$user->email}</td>
 						<td>
-							<a n:href="Delete! $user->id" class="ajax">X</a>
-							<a n:href="User:edit $user->id">Edit</a>
+                            <div class="btn-group">
+                                <a rel="tooltip" class="btn btn-small" n:href="edit $user->id"><i class="icon-pencil"></i></a>
+                                <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $user->id"><i class="icon-remove"></i></a>
+                            </div>
 						</td>
 					</tr>
 				</tbody>

@@ -95,7 +95,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 
 		$userbar = $control->getUserbarControl();
 		$userbar->addItem('Account settings', 'User:edit');
-		$userbar->addItem('Password edit', 'User:password');
+		$userbar->addItem('Change password', 'User:password');
 		$userbar->setUserName($this->getUser()->getIdentity());
 
 		return $control;

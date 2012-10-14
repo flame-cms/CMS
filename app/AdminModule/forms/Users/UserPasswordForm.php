@@ -1,16 +1,16 @@
 <?php
 /**
- * ChangePasswordForm.php
+ * UserPasswordForm.php
  *
  * @author  Jiří Šifalda <sifalda.jiri@gmail.com>
- * @package Flame
+ * @package Flame\CMS
  *
- * @date    18.07.12
+ * @date    14.10.12
  */
 
-namespace AdminModule;
+namespace AdminModule\Forms\Users;
 
-class ChangePasswordForm extends \Flame\Application\UI\Form
+class UserPasswordForm extends \Flame\Application\UI\Form
 {
 
 	public function configure()
@@ -22,6 +22,7 @@ class ChangePasswordForm extends \Flame\Application\UI\Form
 		$this->addPassword('confirmPassword', 'New password (verify):', 30)
 			->addRule(self::FILLED)
 			->addRule(self::EQUAL, 'Entered passwords is not equal. Try it again.', $this['newPassword']);
-		$this->addSubmit('set', 'Change password');
+		$this->addSubmit('send', 'Change password');
 	}
+
 }

@@ -46,3 +46,6 @@ services:
 	CommentControlFactory: Flame\CMS\Components\Comments\CommentControlFactory
 	OptionFormFactory: AdminModule\Forms\Options\OptionFormFactory
 	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
+	UserEditFormFactory: AdminModule\Forms\Users\UserEditFormFactory
+	UserAddFormFactory: AdminModule\Forms\Users\UserAddFormFactory
+	UserPasswordFormFactory: AdminModule\Forms\Users\UserPasswordFormFactory
