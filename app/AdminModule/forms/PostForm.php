@@ -47,7 +47,6 @@ class PostForm extends \Flame\Application\UI\Form
 	public function configureAdd()
 	{
 		$this->configure();
-		$this->setDefaults(array('markdown' => '1'));
 		$this->addSubmit('send', 'Create post');
 
 	}
