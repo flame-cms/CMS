@@ -24,11 +24,6 @@ class PostForm extends \Flame\Application\UI\Form
 	private $tags;
 
 	/**
-	 * @var array
-	 */
-	private $defaults;
-
-	/**
 	 * @param array $categories
 	 */
 	public function setCategories(array $categories)
@@ -56,9 +51,8 @@ class PostForm extends \Flame\Application\UI\Form
 	 */
 	public function configureEdit(array $defaults)
 	{
-		$this->defaults = $this->prepareDefaultValues($defaults);
 		$this->configure();
-		$this->setDefaults($this->defaults);
+		$this->setDefaults($this->prepareDefaultValues($defaults));
 		$this->addSubmit('send', 'Edit post');
 
 	}
@@ -124,15 +118,10 @@ class PostForm extends \Flame\Application\UI\Form
 	 */
 	private function prepareDefaultValues(array $defaults)
 	{
-		if(isset($defaults['category'])){
-			$defaults['category'] = $defaults['category']->id;
-		}
-
 		if(isset($defaults['tags'])){
 			$tags = $defaults['tags']->toArray();
 			if(is_array($tags)) $defaults['tags'] = array_map(function($tag){ return $tag->id; }, $tags);
 		}
-
 		return $defaults;
 	}
 }
