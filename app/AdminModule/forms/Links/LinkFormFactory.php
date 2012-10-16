@@ -64,17 +64,30 @@ class LinkFormFactory extends \Flame\Application\FormFactory
 		if($this->link){
 			$this->link->setName($values->name)
 				->setDescription($values->description)
-				->setUrl($values->url)
+				->setUrl($this->treatUrl($values->url))
 				->setPublic($values->public);
 			$this->linkFacade->save($this->link);
 			$form->presenter->flashMessage('Link was edited!', 'success');
 		}else{
-			$link = new \Flame\CMS\Models\Links\Link($values->name, $values->url);
+			$link = new \Flame\CMS\Models\Links\Link($values->name, $this->treatUrl($values->url));
 			$link->setDescription($values->description)
 				->setPublic($values->public);
 			$this->linkFacade->save($link);
 			$form->presenter->flashMessage('Link was added!', 'success');
 		}
+	}
+
+	/**
+	 * @param $url
+	 * @return string
+	 */
+	protected function treatUrl($url)
+	{
+		if(strpos($url, 'http') !== true){
+			$url = 'http://' . $url;
+		}
+
+		return $url;
 	}
 
 }
