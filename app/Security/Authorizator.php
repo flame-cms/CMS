@@ -51,6 +51,7 @@ class Authorizator extends NS\Permission implements NS\IAuthorizator
 		$this->addResource('Admin:Page');
 		$this->addResource('Admin:Newsreel');
 		$this->addResource('Admin:Import');
+		$this->addResource('Admin:Link');
 
 		$this->allow(self::GUEST, array(
 			'Front:Homepage',
@@ -72,8 +73,9 @@ class Authorizator extends NS\Permission implements NS\IAuthorizator
 			'Admin:Page',
 			'Admin:Newsreel',
 			'Admin:Tag',
+			'Admin:Link',
 			'Admin:Category',
-			'Admin:Comment'
+			'Admin:Comment',
 		));
 
 		//DEFINE ADMIN ADMINISTRATORS ACCESS

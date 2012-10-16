@@ -82,6 +82,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 			array('Images', 'Image:'),
 			array('Pages', 'Page:'),
 			array('Options', 'Option:'),
+			array('Links', 'Link:'),
 			array('Users', 'User:'),
 		);
 

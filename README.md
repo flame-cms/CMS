@@ -18,6 +18,7 @@ Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flam
 * Managing of images
 * Paginator for posts
 * Users management
+* Links management
 * Newsreel
 * Pages management
 * Wordpress posts import

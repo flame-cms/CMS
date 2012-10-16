@@ -31,6 +31,7 @@ services:
 	PageFacade: Flame\CMS\Models\Pages\PageFacade
 	ImageFacade: Flame\CMS\Models\Images\ImageFacade
 	UserInfoFacade: Flame\CMS\Models\UsersInfo\UserInfoFacade
+	LinkFacade: Flame\CMS\Models\Links\LinkFacade
 
 	WordPressImporter: Flame\Utils\WordPressImporter
 	ThemeManager: Flame\CMS\Utils\ThemeManager(%theme%, @OptionFacade)
@@ -49,3 +50,4 @@ services:
 	UserEditFormFactory: AdminModule\Forms\Users\UserEditFormFactory
 	UserAddFormFactory: AdminModule\Forms\Users\UserAddFormFactory
 	UserPasswordFormFactory: AdminModule\Forms\Users\UserPasswordFormFactory
+	LinkFormFactory: AdminModule\Forms\Links\LinkFormFactory
