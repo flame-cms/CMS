@@ -63,6 +63,28 @@ class LinkPresenter extends AdminPresenter
 	}
 
 	/**
+	 * @param $id
+	 */
+	public function handleDelete($id)
+	{
+		if(!$this->getUser()->isAllowed('Admin:Link', 'delete')){
+			$this->flashMessage('Access denied!');
+		}else{
+			if(!$link = $this->linkFacade->getOne($id)){
+				$this->flashMessage('Link does not exist');
+			}else{
+				$this->linkFacade->delete($link);
+			}
+		}
+
+		if($this->isAjax()){
+			$this->invalidateControl();
+		}else{
+			$this->redirect('default');
+		}
+	}
+
+	/**
 	 * @return \Nette\Application\UI\Form
 	 */
 	protected function createComponentLinkForm()
