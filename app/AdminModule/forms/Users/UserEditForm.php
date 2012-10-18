@@ -10,7 +10,7 @@
 
 namespace AdminModule\Forms\Users;
 
-class UserEditForm extends \Flame\Application\UI\Form
+class UserEditForm extends \Flame\CMS\Application\UI\Form
 {
 
 	public function configure(array $defaults)

@@ -10,7 +10,7 @@
 
 namespace AdminModule;
 
-class CategoryForm extends \Flame\Application\UI\Form
+class CategoryForm extends \Flame\CMS\Application\UI\Form
 {
 	/**
 	 * @var array

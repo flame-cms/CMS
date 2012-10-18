@@ -10,7 +10,7 @@
 
 namespace AdminModule;
 
-class PageForm extends \Flame\Application\UI\Form
+class PageForm extends \Flame\CMS\Application\UI\Form
 {
 
 	public function configureEdit()

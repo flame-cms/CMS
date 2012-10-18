@@ -10,7 +10,7 @@
 
 namespace AdminModule;
 
-class PostForm extends \Flame\Application\UI\Form
+class PostForm extends \Flame\CMS\Application\UI\Form
 {
 
 	/**

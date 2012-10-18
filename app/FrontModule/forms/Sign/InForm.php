@@ -10,7 +10,7 @@
 
 namespace DoctrineSandbox\Forms\Sign;
 
-class InForm extends \Flame\Application\UI\Form
+class InForm extends \Flame\CMS\Application\UI\Form
 {
 
 	public function configure()

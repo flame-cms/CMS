@@ -10,7 +10,7 @@
 
 namespace AdminModule;
 
-class ImageForm extends \Flame\Application\UI\Form
+class ImageForm extends \Flame\CMS\Application\UI\Form
 {
 
 	public function configure()

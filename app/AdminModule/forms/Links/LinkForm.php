@@ -10,7 +10,7 @@
 
 namespace AdminModule\Forms\Links;
 
-class LinkForm extends \Flame\Application\UI\Form
+class LinkForm extends \Flame\CMS\Application\UI\Form
 {
 
 	public function configureAdd()
