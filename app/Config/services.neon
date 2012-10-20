@@ -1,53 +1,64 @@
 services:
 	Authorizator: Flame\CMS\Security\Authorizator
 	Authenticator: Flame\CMS\Security\Authenticator
-
 	SqlLogger: Flame\Utils\ConnectionPanel::register
-
+	Loader: Nette\Loaders\RobotLoader
 	TablePrefix: Flame\Doctrine\TablePrefix(%database.prefix%)
-
-	EventManager:
-		class: Doctrine\Common\EventManager
-		setup:
-			- @EventManager::addEventListener('loadClassMetadata', @TablePrefix)
-
-	EntityManagerConfig:
-		class: Doctrine\ORM\Configuration
-		factory: Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(%entities%, true)
-		setup:
-			- @EntityManagerConfig::setSQLLogger(@SqlLogger)
-
-	EntityManager:
-		class: Doctrine\ORM\EntityManager
-		factory: Doctrine\ORM\EntityManager::create(%database%, @EntityManagerConfig, @EventManager)
-
-	NewsreelFacade: Flame\CMS\Models\Newsreel\NewsreelFacade
-	UserFacade: Flame\CMS\Models\Users\UserFacade
-	OptionFacade: Flame\CMS\Models\Options\OptionFacade
-	CommentFacade: Flame\CMS\Models\Comments\CommentFacade
-	PostFacade: Flame\CMS\Models\Posts\PostFacade
-	CategoryFacade: Flame\CMS\Models\Categories\CategoryFacade
-	TagFacade: Flame\CMS\Models\Tags\TagFacade
-	PageFacade: Flame\CMS\Models\Pages\PageFacade
-	ImageFacade: Flame\CMS\Models\Images\ImageFacade
-	UserInfoFacade: Flame\CMS\Models\UsersInfo\UserInfoFacade
-	LinkFacade: Flame\CMS\Models\Links\LinkFacade
-
 	WordPressImporter: Flame\Utils\WordPressImporter
 	ThemeManager: Flame\CMS\Utils\ThemeManager(%theme%, @OptionFacade)
+	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
+	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
 
 	FileManager:
 		class: Flame\Utils\FileManager
 		setup:
 			- setFileStorage(/%imageStorage.imageDir%)
 
-	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
-	Loader: Nette\Loaders\RobotLoader
-	CommentFormFactory: Flame\CMS\Components\Comments\CommentFormFactory
-	CommentControlFactory: Flame\CMS\Components\Comments\CommentControlFactory
-	OptionFormFactory: AdminModule\Forms\Options\OptionFormFactory
-	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
+	EventManager:
+		class: Doctrine\Common\EventManager
+		setup:
+			- addEventListener('loadClassMetadata', @TablePrefix)
+
+	EntityManagerConfig:
+		class: Doctrine\ORM\Configuration
+		factory: Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(%entities%, true)
+		setup:
+			- setSQLLogger(@SqlLogger)
+
+	EntityManager:
+		class: Doctrine\ORM\EntityManager
+		factory: Doctrine\ORM\EntityManager::create(%database%, @EntityManagerConfig, @EventManager)
+
+	NewsreelFacade: Flame\CMS\Models\Newsreel\NewsreelFacade
+
+	UserFacade: Flame\CMS\Models\Users\UserFacade
 	UserEditFormFactory: AdminModule\Forms\Users\UserEditFormFactory
 	UserAddFormFactory: AdminModule\Forms\Users\UserAddFormFactory
 	UserPasswordFormFactory: AdminModule\Forms\Users\UserPasswordFormFactory
+
+	UserInfoFacade: Flame\CMS\Models\UsersInfo\UserInfoFacade
+
+	OptionFacade: Flame\CMS\Models\Options\OptionFacade
+	OptionFormFactory: AdminModule\Forms\Options\OptionFormFactory
+
+	CommentFacade: Flame\CMS\Models\Comments\CommentFacade
+	CommentFormFactory: Flame\CMS\Components\Comments\CommentFormFactory
+	CommentControlFactory: Flame\CMS\Components\Comments\CommentControlFactory
+
+	PostFacade: Flame\CMS\Models\Posts\PostFacade
+	CategoryFacade: Flame\CMS\Models\Categories\CategoryFacade
+	TagFacade: Flame\CMS\Models\Tags\TagFacade
+	PageFacade: Flame\CMS\Models\Pages\PageFacade
+	ImageFacade: Flame\CMS\Models\Images\ImageFacade
+
+	LinkFacade: Flame\CMS\Models\Links\LinkFacade
 	LinkFormFactory: AdminModule\Forms\Links\LinkFormFactory
+
+	MenuFacade: Flame\CMS\Models\Menu\MenuFacade
+	RawLinkFormFactory: AdminModule\Forms\Menu\RawLinkFormFactory
+	PageLinkFormFactory: AdminModule\Forms\Menu\PageLinkFormFactory
+
+
+
+
+
