@@ -1,0 +1,17 @@
+{#content}
+
+	<h2 n:block="title">Links</h2>
+
+	{if count($links)}
+		<ul>
+			{foreach $links as $link}
+				{if $link->public}
+					<li><a href="{$link->url}" target="_blank">{$link->name}</a><br />
+						{$link->description}</li>
+				{/if}
+			{/foreach}
+		</ul>
+	{else}
+		<h4>None</h4>
+	{/if}
+{/#}
