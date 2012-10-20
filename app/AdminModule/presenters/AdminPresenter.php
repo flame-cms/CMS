@@ -66,6 +66,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 	{
 		$control = $this->navbarBuilderControlFactory->create();
 		$control->setTitle('Dashboard', 'Dashboard:');
+		$control->displayUserbar();
 
 		$navbar = $control->getNavbarControl();
 
