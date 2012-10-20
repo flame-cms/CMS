@@ -81,16 +81,24 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 			array('Newsreel', 'Newsreel:'),
 			array('Images', 'Image:'),
 			array('Pages', 'Page:'),
-			array('Options', 'Option:'),
 			array('Links', 'Link:'),
-			array('Users', 'User:'),
+
+			array('Setting'),
+			array('Options', 'Option:', 'Setting'),
+			array('Users', 'User:', 'Setting'),
+			array('Menu', 'Menu:', 'Setting'),
+
 		);
 
 		foreach($items as $item){
-			$linkParts = explode(':', $item[1]);
+			if(isset($item[1])){
+				$linkParts = explode(':', $item[1]);
 
-			if($this->getUser()->isAllowed('Admin:' . $linkParts[0], $linkParts[1])){
-				$navbar->addNavbarItem($item[0], $item[1], (isset($item[2])) ? $item[2] : null, (isset($item[3])) ? $item[3] : false);
+				if($this->getUser()->isAllowed('Admin:' . $linkParts[0], $linkParts[1])){
+					$navbar->addNavbarItem($item[0], $item[1], (isset($item[2])) ? $item[2] : null, (isset($item[3])) ? $item[3] : false);
+				}
+			}else{
+				$navbar->addNavbarItem($item[0], '.', (isset($item[2])) ? $item[2] : null, (isset($item[3])) ? $item[3] : false);
 			}
 		}
 
