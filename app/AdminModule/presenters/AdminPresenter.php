@@ -96,16 +96,16 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 				$linkParts = explode(':', $item[1]);
 
 				if($this->getUser()->isAllowed('Admin:' . $linkParts[0], $linkParts[1])){
-					$navbar->addNavbarItem($item[0], $item[1], (isset($item[2])) ? $item[2] : null, (isset($item[3])) ? $item[3] : false);
+					$navbar->addNavbarItem($item[0], $this->link($item[1]), (isset($item[2])) ? $item[2] : null, (isset($item[3])) ? $item[3] : false);
 				}
 			}else{
-				$navbar->addNavbarItem($item[0], '.', (isset($item[2])) ? $item[2] : null, (isset($item[3])) ? $item[3] : false);
+				$navbar->addNavbarItem($item[0], '.', null, false);
 			}
 		}
 
 		$userbar = $control->getUserbarControl();
-		$userbar->addItem('Account settings', 'User:edit');
-		$userbar->addItem('Change password', 'User:password');
+		$userbar->addItem('Account settings', $this->link('User:edit'));
+		$userbar->addItem('Change password', $this->link('User:password'));
 		$userbar->setUserName($this->getUser()->getIdentity());
 
 		return $control;
