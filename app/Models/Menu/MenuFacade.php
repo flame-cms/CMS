@@ -1,0 +1,29 @@
+<?php
+/**
+ * MenuFacade.php
+ *
+ * @author  Jiří Šifalda <sifalda.jiri@gmail.com>
+ * @package Flame\CMS
+ *
+ * @date    20.10.12
+ */
+
+namespace Flame\CMS\Models\Menu;
+
+class MenuFacade extends \Flame\Model\Facade
+{
+
+	/**
+	 * @var string
+	 */
+	protected $repositoryName = '\Flame\CMS\Models\Menu\Menu';
+
+	/**
+	 * @return array
+	 */
+	public function getLastMenuLinks()
+	{
+		return $this->repository->findAll();
+	}
+
+}

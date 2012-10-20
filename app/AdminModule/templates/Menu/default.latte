@@ -1,0 +1,45 @@
+{#content}
+	<div class="left">
+		<h2 n:block="title">Menu</h2>
+	</div>
+	<div class="right">
+		<a class="btn btn-large btn-primary" n:href="addLink"><i class="icon-plus icon-white"></i> Add raw link</a>
+        <a class="btn btn-large btn-primary" n:href="addPage"><i class="icon-plus icon-white"></i> Add page link</a>
+	</div>
+
+	<br class="clear" />
+
+	{snippet links}
+		{if count($links)}
+        <table class="table table-striped table-condensed table-bordered">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Url</th>
+                <th>Priority</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr n:foreach="$links as $link">
+
+                <td>{$link->title}</td>
+                <td><a href="{$link->url}" target="_blank">{$link->url}</a></td>
+                <td>{$link->priority}</td>
+                <td>
+                    <div class="btn-group">
+                        <a rel="tooltip" class="btn btn-small" n:href="editLink $link->id"><i class="icon-pencil"></i></a>
+                        <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $link->id"><i class="icon-remove"></i></a>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+		{else}
+			<h4>None</h4>
+		{/if}
+	{/snippet}
+{/#}
