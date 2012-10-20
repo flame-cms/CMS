@@ -40,7 +40,8 @@ class LinkForm extends \Flame\CMS\Application\UI\Form
 		$this->addTextArea('description', 'Description')
 			->addRule(self::MAX_LENGTH, null, 500);
 
-		$this->addCheckbox('public', 'Show?');
+		$this->addCheckbox('public', 'Public?')
+			->setOption('description', 'Make this link visible?');
 	}
 
 }
