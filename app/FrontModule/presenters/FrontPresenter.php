@@ -127,14 +127,27 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 		$navbar = $control->getNavbarControl();
 
 		if(count($items = $this->menuFacade->getLastMenuLinks())){
+			$items = $this->sortBySubkey($items, 'priority');
 			foreach($items as $item){
 				$navbar->addNavbarItem($item->title, $item->url);
 			}
 		}
 
 		return $control;
-
 	}
 
+	/**
+	 * @param $array
+	 * @param $subkey
+	 * @param int $sortType
+	 * @return mixed
+	 */
+	protected function sortBySubkey(&$array, $subkey, $sortType = SORT_ASC) {
+		foreach ($array as $subarray) {
+			$keys[] = $subarray->$subkey;
+		}
 
+		array_multisort($keys, $sortType, $array);
+		return $array;
+	}
 }
