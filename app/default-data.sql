@@ -86,5 +86,10 @@ INSERT INTO `Fl_Tag` (`id`, `name`, `slug`) VALUES
 INSERT INTO `Fl_User` (`id`, `info_id`, `password`, `role`, `email`, `facebook`) VALUES
 (1,	NULL,	'$2a$07$8237dee42f4370e9015dbOkJ.dMdxysALY0pC2YtQLfc8NwppXM/i',	'administrator',	'user@demo.com',	NULL);
 
+INSERT INTO `Fl_Menu` (`id`, `title`, `url`, `priority`) VALUES
+(1,	'Home',	'/',	5),
+(2,	'Pellentesque habitant morbi',	'/page/detail/1',	10);
+
+
 
 -- 2012-08-08 14:56:25
