@@ -30,6 +30,7 @@ services:
 		factory: Doctrine\ORM\EntityManager::create(%database%, @EntityManagerConfig, @EventManager)
 
 	NewsreelFacade: Flame\CMS\Models\Newsreel\NewsreelFacade
+	NewsreelControlFactory: Flame\CMS\Components\Newsreel\NewsreelControlFactory
 
 	UserFacade: Flame\CMS\Models\Users\UserFacade
 	UserEditFormFactory: AdminModule\Forms\Users\UserEditFormFactory
@@ -45,9 +46,13 @@ services:
 	CommentFormFactory: Flame\CMS\Components\Comments\CommentFormFactory
 	CommentControlFactory: Flame\CMS\Components\Comments\CommentControlFactory
 
-	PostFacade: Flame\CMS\Models\Posts\PostFacade
-	CategoryFacade: Flame\CMS\Models\Categories\CategoryFacade
 	TagFacade: Flame\CMS\Models\Tags\TagFacade
+	TagControlFactory: Flame\CMS\Components\Tags\TagControlFactory
+
+	CategoryFacade: Flame\CMS\Models\Categories\CategoryFacade
+	CategoryControlFactory: Flame\CMS\Components\Categories\CategoryControlFactory
+
+	PostFacade: Flame\CMS\Models\Posts\PostFacade
 	PageFacade: Flame\CMS\Models\Pages\PageFacade
 	ImageFacade: Flame\CMS\Models\Images\ImageFacade
 

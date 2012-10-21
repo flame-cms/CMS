@@ -11,6 +11,11 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	private $theme;
 
 	/**
+	 * @var int
+	 */
+	private $itemsInMenu = 5;
+
+	/**
 	 * @var \Flame\CMS\Models\Pages\PageFacade
 	 */
 	private $pageFacade;
@@ -21,11 +26,6 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	private $optionFacade;
 
 	/**
-	 * @var int
-	 */
-    private $itemsInMenu = 5;
-
-	/**
 	 * @var \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
 	 */
 	private $navbarBuilderControlFactory;
@@ -34,6 +34,21 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	 * @var \Flame\CMS\Models\Menu\MenuFacade $menuFacade
 	 */
 	private $menuFacade;
+
+	/**
+	 * @var \Flame\CMS\Components\Tags\TagControlFactory $tagControlFactory
+	 */
+	private $tagControlFactory;
+
+	/**
+	 * @var \Flame\CMS\Components\Newsreel\NewsreelControlFactory $newsreelControlFactory
+	 */
+	private $newsreelControlFactory;
+
+	/**
+	 * @var \Flame\CMS\Components\Categories\CategoryControlFactory $categoryControlFactory
+	 */
+	private $categoryControlFactory;
 
 	public function startup()
 	{
@@ -49,6 +64,9 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 		$this->optionFacade = $this->context->OptionFacade;
 
 		$this->navbarBuilderControlFactory = $this->context->NavbarBuilderControlFactory;
+		$this->tagControlFactory = $this->context->TagControlFactory;
+		$this->newsreelControlFactory = $this->context->NewsreelControlFactory;
+		$this->categoryControlFactory = $this->context->CategoryControlFactory;
 
 		$this->theme = $this->context->ThemeManager->getTheme();
 	}
@@ -76,27 +94,27 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	}
 
 	/**
-	 * @return \Flame\CMS\Components\Newsreel\Newsreel
+	 * @return \Flame\CMS\Components\Newsreel\NewsreelControl
 	 */
 	protected function createComponentNewsreelControl()
 	{
-		return new \Flame\CMS\Components\Newsreel\Newsreel($this, 'newsreelControl');
+		return $this->newsreelControlFactory->create();
 	}
 
 	/**
-	 * @return \Flame\CMS\Components\Categories\Category
+	 * @return \Flame\CMS\Components\Categories\CategoryControl
 	 */
 	protected function createComponentCategoriesControl()
 	{
-		return new \Flame\CMS\Components\Categories\Category($this, 'categoriesControl');
+		return $this->categoryControlFactory->create();
 	}
 
 	/**
-	 * @return \Flame\CMS\Components\Tags\Tag
+	 * @return \Flame\CMS\Components\Tags\TagControl
 	 */
 	protected function createComponentTagsControl()
 	{
-		return new \Flame\CMS\Components\Tags\Tag($this, 'tagsControl');
+		return $this->tagControlFactory->create();
 	}
 
 	/**
