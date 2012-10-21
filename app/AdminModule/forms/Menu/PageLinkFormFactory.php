@@ -49,7 +49,7 @@ class PageLinkFormFactory extends \Flame\Application\FormFactory
 	 */
 	public function setLinkProvider($provider)
 	{
-		$this->linkProvider = callback($provider);
+		$this->linkProvider = \Nette\Callback::create($provider);
 	}
 
 	/**
