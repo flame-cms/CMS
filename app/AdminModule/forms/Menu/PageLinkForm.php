@@ -29,7 +29,7 @@ class PageLinkForm extends \Flame\CMS\Application\UI\Form
 
 	public function configure()
 	{
-		$this->addMultiSelect('pages', 'Pages', $this->pages)
+		$this->addMultiSelect('pages', 'Pages', $this->prepareForFormItem($this->pages))
 			->setRequired();
 		$this->addSubmit('send', 'Add');
 	}
