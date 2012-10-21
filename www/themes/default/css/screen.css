@@ -30,11 +30,15 @@ a.active {
 }
 
 #navigation {
-	padding: 5px;
-	background: #eee;
+    background: #eee;
 }
 
-#navigation li{
+#navigation ul {
+	padding: 10px;
+    margin: 0;
+}
+
+#navigation ul li{
 	display: inline;
 }
 

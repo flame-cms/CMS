@@ -25,6 +25,16 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	 */
     private $itemsInMenu = 5;
 
+	/**
+	 * @var \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
+	 */
+	private $navbarBuilderControlFactory;
+
+	/**
+	 * @var \Flame\CMS\Models\Menu\MenuFacade $menuFacade
+	 */
+	private $menuFacade;
+
 	public function startup()
 	{
 		parent::startup();
@@ -35,7 +45,10 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 		}
 
 		$this->pageFacade = $this->context->PageFacade;
+		$this->menuFacade = $this->context->MenuFacade;
 		$this->optionFacade = $this->context->OptionFacade;
+
+		$this->navbarBuilderControlFactory = $this->context->NavbarBuilderControlFactory;
 
 		$this->theme = $this->context->ThemeManager->getTheme();
 	}
@@ -84,6 +97,25 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	protected function createComponentTagsControl()
 	{
 		return new \Flame\CMS\Components\Tags\Tag($this, 'tagsControl');
+	}
+
+	/**
+	 * @return \Flame\Components\NavbarBuilder\NavbarBuilderControl
+	 */
+	protected function createComponentNavbar()
+	{
+		$control = $this->navbarBuilderControlFactory->create();
+
+		$navbar = $control->getNavbarControl();
+
+		if(count($items = $this->menuFacade->getLastMenuLinks())){
+			foreach($items as $item){
+				$navbar->addNavbarItem($item->title, $item->url);
+			}
+		}
+
+		return $control;
+
 	}
 
 
