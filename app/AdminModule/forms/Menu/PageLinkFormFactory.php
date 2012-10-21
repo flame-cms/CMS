@@ -58,7 +58,7 @@ class PageLinkFormFactory extends \Flame\Application\FormFactory
 	public function createForm()
 	{
 		$form = new PageLinkForm();
-		$form->setPages($this->pageFacade->getLastPages());
+		$form->setPages($this->getAvailablePages());
 		$form->configure();
 		$form->onSuccess[] = $this->formSubmitted;
 		return $form;
@@ -87,5 +87,26 @@ class PageLinkFormFactory extends \Flame\Application\FormFactory
 		}else{
 			$form->presenter->flashMessage('No pages selected');
 		}
+	}
+
+	/**
+	 * @return mixed
+	 */
+	protected function getAvailablePages()
+	{
+		$pages = $this->pageFacade->getLastPages();
+		$links = $this->menuFacade->getLastMenuLinks();
+
+		if(count($pages) and count($links)){
+			foreach($pages as $k => $page){
+				foreach($links as $link){
+					if($link->title == $page->name){
+						unset($pages[$k]);
+					}
+				}
+			}
+		}
+
+		return $pages;
 	}
 }
