@@ -22,7 +22,7 @@ class OptionFacade extends \Flame\Model\Facade
 	 * @var array
 	 */
 	private $availableOptions = array(
-		'Name', 'Thumbnail:Width', 'Thumbnail:Height', 'ItemsPerPage', 'Menu:ItemsCount', 'Menu:NewsreelCount', 'Menu:TagsCount',
+		'Name', 'Thumbnail:Width', 'Thumbnail:Height', 'ItemsPerPage', 'Menu:NewsreelCount', 'Menu:TagsCount',
 		'Theme'
 	);
 

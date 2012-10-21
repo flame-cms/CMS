@@ -11,11 +11,6 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	private $theme;
 
 	/**
-	 * @var int
-	 */
-	private $itemsInMenu = 5;
-
-	/**
 	 * @var \Flame\CMS\Models\Pages\PageFacade
 	 */
 	private $pageFacade;
@@ -85,11 +80,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	{
 		parent::beforeRender();
 
-		$option = $this->optionFacade->getOptionValue('Menu:ItemsCount');
-		if(!is_null($option)) $this->itemsInMenu = $option;
-
 		$this->template->name = $this->optionFacade->getOptionValue('Name');
-		$this->template->menus = $this->pageFacade->getLastPages($this->itemsInMenu);
 		$this->template->theme = $this->theme;
 	}
 
