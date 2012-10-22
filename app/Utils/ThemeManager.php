@@ -14,22 +14,15 @@ class ThemeManager extends \Flame\Utils\ThemeManager
 {
 
 	/**
-	 * @var array
-	 */
-	private $parameters;
-
-	/**
-	 * @var \Flame\CMS\Models\Options\OptionFacade
+	 * @var \Flame\CMS\Models\Options\OptionFacade $optionFacade
 	 */
 	private $optionFacade;
 
 	/**
-	 * @param array $parameters
 	 * @param \Flame\CMS\Models\Options\OptionFacade $optionFacade
 	 */
-	public function __construct(array $parameters, \Flame\CMS\Models\Options\OptionFacade $optionFacade)
+	public function injectOptionFacade(\Flame\CMS\Models\Options\OptionFacade $optionFacade)
 	{
-		$this->parameters = $parameters;
 		$this->optionFacade = $optionFacade;
 	}
 
