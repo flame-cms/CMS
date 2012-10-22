@@ -88,8 +88,12 @@ INSERT INTO `Fl_User` (`id`, `info_id`, `password`, `role`, `email`, `facebook`)
 
 INSERT INTO `Fl_Menu` (`id`, `title`, `url`, `priority`) VALUES
 (1,	'Home',	'/',	5),
-(2,	'Pellentesque habitant morbi',	'/page/detail/1',	10);
+(2,	'Pellentesque habitant morbi',	'/page/detail/1',	10),
+(3,	'Links',	'/link/',	20);
 
-
+INSERT INTO `Fl_Link` (`id`, `name`, `url`, `description`, `public`) VALUES
+(1,	'JSifalda.name',	'http://http://http://jsifalda.name/',	'Online profile of author',	1),
+(2,	'https://github.com/flame-org',	'http://Github/flame-org',	'Profile of organization which is working Flame framework',	1),
+(3,	'Github/flame-org/CMS',	'http://https://github.com/flame-org/CMS',	'Public sources of Flame framework',	1);
 
 -- 2012-08-08 14:56:25
