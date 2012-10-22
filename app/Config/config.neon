@@ -10,6 +10,9 @@ common:
 		zlib.output_compression: yes
 
 	nette:
+		container:
+			debugger: false
+
 		application:
 			debugger: true
 
