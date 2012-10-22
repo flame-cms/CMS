@@ -42,6 +42,12 @@ a.active {
 	display: inline;
 }
 
+#navigation ul li a{
+    padding: 10px;
+    color: #000000;
+    font-weight: bold;
+}
+
 #comment {
 	margin: 35px 0;
 }
