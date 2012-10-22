@@ -38,26 +38,15 @@
 		{control navbar:custom}
     </div>
 
-
     <div id="page">
-
-		<div id="left">
 		{snippet flashMessages}
 			<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
 		{/snippet}
 
-			<div id="content">
-			{include #content}
-			</div>
+		<div id="content">
+		{include #content}
 		</div>
 
-		<div id="right">
-		{control categoriesControl}
-				{control newsreelControl}
-				{control tagsControl}
-		</div>
-
-    	<br class="clear" />
 	</div>
 
 	<div id="footer">

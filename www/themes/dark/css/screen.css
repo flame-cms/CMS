@@ -74,10 +74,15 @@ hr {
 }
 
 #header {
-    background: url(../img/header.jpg) no-repeat center top;
+    background: #000;
     width: 900px;
-    height: 210px;
+    min-height: 120px;
     margin: 0 auto;
+}
+
+#header h1 {
+    text-align: center;
+    padding: 50px;
 }
 
 /* Menu */
@@ -123,47 +128,10 @@ hr {
     padding: 30px;
 }
 
-#left {
-    width: 620px;
-    float: right;
-}
-
-#right {
-    width: 250px;
-    float: left;
-}
-
-
 /* Content */
 
 #content {
-    float: left;
-    width: 100%;
-}
 
-#post {
-    margin-bottom: 50px;
-}
-
-#post #title {
-}
-
-#post #title h2 {
-    font-size: 2.2em;
-}
-
-#post #title p {
-    margin: 0;
-    line-height: normal;
-    color: #BABABA;
-}
-
-#post #title p a {
-    color: #BABABA;
-}
-
-#post #entry {
-    padding-top: 30px;
 }
 
 /* Footer */
@@ -186,6 +154,14 @@ hr {
     text-decoration: none;
 }
 
+.tags-multiSelect{
+    max-height: 200px;
+}
+
+.clear {
+    clear: both;
+}
+
 /* BOOTSTRAP RESET */
 
 .form-actions {
@@ -193,10 +169,6 @@ hr {
     border: none;
 }
 
-.tags-multiSelect{
-    max-height: 200px;
-}
-
-.clear {
-    clear: both;
+.pagination a, .pagination span {
+    background: black;
 }
