@@ -126,6 +126,7 @@ hr {
 
 #page {
     padding: 30px;
+    min-height: 250px;
 }
 
 /* Content */
