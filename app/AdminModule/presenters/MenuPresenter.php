@@ -112,7 +112,7 @@ class MenuPresenter extends AdminPresenter
 
 		$this->pageLinkFormFactory->setLinkProvider($this->link);
 		$form = $this->pageLinkFormFactory->createForm();
-		$form->onSuccess[] = $this->lazyLink('default');
+		$form->onSuccess[] = $this->lazyLink('this');
 		return $form;
 	}
 
