@@ -26,4 +26,14 @@ class MenuFacade extends \Flame\Model\Facade
 		return $this->repository->findAll();
 	}
 
+
+	/**
+	 * @param string $order
+	 * @return array
+	 */
+	public function getLastMenuLinkByPriority($order = 'ASC')
+	{
+		return $this->repository->findBy(array(), array('priority' => $order));
+	}
+
 }
