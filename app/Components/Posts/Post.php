@@ -76,13 +76,6 @@ class Post extends \Flame\Application\UI\Control
 		$this->template->render();
 	}
 
-	public function renderTable()
-	{
-		$this->beforeRender();
-		$this->template->setFile(__DIR__ . '/PostTable.latte');
-		$this->template->render();
-	}
-
 	/**
 	 * @param $posts
 	 */
