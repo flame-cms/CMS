@@ -53,11 +53,13 @@ class Post extends \Flame\Doctrine\Entity
 
 	/**
 	 * @ManyToOne(targetEntity="\Flame\CMS\Models\Categories\Category", inversedBy="posts")
+	 * @JoinColumn(onDelete="SET NULL")
 	 */
 	protected $category;
 
 	/**
 	 * @ManyToMany(targetEntity="\Flame\CMS\Models\Tags\Tag", inversedBy="posts")
+	 * @JoinColumn(onDelete="SET NULL")
 	 */
 	protected $tags;
 

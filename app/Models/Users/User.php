@@ -37,6 +37,7 @@ class User extends \Flame\Doctrine\Entity
 
 	/**
 	 * @OneToOne(targetEntity="\Flame\CMS\Models\UsersInfo\UserInfo")
+	 * @JoinColumn(onDelete="Cascade")
 	 */
 	protected $info;
 

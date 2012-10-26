@@ -20,6 +20,7 @@ class Comment extends \Flame\Doctrine\Entity
 {
     /**
      * @ManyToOne(targetEntity="\Flame\CMS\Models\Posts\Post")
+     * @JoinColumn(onDelete="Cascade")
      */
     protected $post;
 
