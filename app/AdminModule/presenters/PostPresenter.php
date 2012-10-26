@@ -69,6 +69,24 @@ class PostPresenter extends AdminPresenter
 		$this->categoryFacade = $categoryFacade;
 	}
 
+	public function renderDefault()
+	{
+		$paginator = $this['paginator']->getPaginator();
+		$posts = $this->postFacade->getLastPostsPaginator($paginator->offset, 25);
+		$paginator->itemCount = count($posts);
+		$this->template->posts = $posts;
+	}
+
+	/**
+	 * @return \Flame\Addons\VisualPaginator\Paginator
+	 */
+	protected function createComponentPaginator()
+	{
+		$visualPaginator = new \Flame\Addons\VisualPaginator\Paginator;
+		$visualPaginator->paginator->setItemsPerPage(25);
+		return $visualPaginator;
+	}
+
 	/**
 	 * @param $id
 	 */
@@ -133,14 +151,6 @@ class PostPresenter extends AdminPresenter
             $this->redirect('Post:');
         }
 
-	}
-
-	/**
-	 * @return \Flame\CMS\Components\Posts\Post
-	 */
-	protected function createComponentPostControl()
-	{
-		return new \Flame\CMS\Components\Posts\Post($this, 'postControl', false);
 	}
 
 	/**
