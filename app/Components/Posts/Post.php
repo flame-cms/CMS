@@ -2,7 +2,7 @@
 
 namespace Flame\CMS\Components\Posts;
 
-class Post extends \Flame\Application\UI\Control
+class PostControl extends \Flame\Application\UI\Control
 {
 
 	/**
@@ -11,40 +11,30 @@ class Post extends \Flame\Application\UI\Control
 	private $posts;
 
 	/**
-	 * @var bool
-	 */
-	private $onlyPublish;
-
-	/**
 	 * @var \Flame\CMS\Models\Posts\PostFacade
 	 */
 	private $postFacade;
-
-	/**
-	 * @var \Flame\CMS\Models\Options\OptionFacade
-	 */
-	private $optionFacade;
 
 	/**
 	 * @var int
 	 */
 	private $itemsPerPage = 10;
 
-	/**
-	 * @param \Nette\ComponentModel\IContainer $parent
-	 * @param null $name
-	 * @param bool $onlyPublish
-	 */
-	public function __construct($parent, $name, $onlyPublish = true)
+
+	public function __construct(\Flame\CMS\Models\Posts\PostFacade $postFacade, $posts = null)
 	{
-		parent::__construct($parent, $name);
+		parent::__construct();
 
-		$this->onlyPublish = $onlyPublish;
+		$this->postFacade = $postFacade;
+		$this->posts = $posts;
+	}
 
-		$this->optionFacade = $this->presenter->context->OptionFacade;
-		$this->postFacade = $this->presenter->context->PostFacade;
-
-		$this->initItemsPerPage();
+	/**
+	 * @param $itemsPerPage
+	 */
+	public function setPageLimit($itemsPerPage)
+	{
+		if((int) $itemsPerPage >= 1) $this->itemsPerPage = (int) $itemsPerPage;
 	}
 
 	private function beforeRender()
@@ -65,23 +55,15 @@ class Post extends \Flame\Application\UI\Control
 	public function render()
 	{
 		$this->beforeRender();
-		$this->template->setFile(__DIR__ . '/PostFull.latte');
+		$this->template->setFile(__DIR__ . '/PostControlFull.latte');
 		$this->template->render();
 	}
 
 	public function renderExcept()
 	{
 		$this->beforeRender();
-		$this->template->setFile(__DIR__ . '/PostExcept.latte');
+		$this->template->setFile(__DIR__ . '/PostControlExcept.latte');
 		$this->template->render();
-	}
-
-	/**
-	 * @param $posts
-	 */
-	public function setPosts($posts)
-	{
-		$this->posts = $posts;
 	}
 
 	/**
@@ -89,7 +71,7 @@ class Post extends \Flame\Application\UI\Control
 	 */
 	protected function createComponentPaginator()
 	{
-		$visualPaginator = new \Flame\Addons\VisualPaginator\Paginator($this, 'paginator');
+		$visualPaginator = new \Flame\Addons\VisualPaginator\Paginator;
 	    $visualPaginator->paginator->setItemsPerPage($this->itemsPerPage);
 	    return $visualPaginator;
 	}
@@ -100,11 +82,7 @@ class Post extends \Flame\Application\UI\Control
 	 */
 	private function getItemsPerPagePaginator($offset)
 	{
-		if(!$this->onlyPublish){
-			return $this->postFacade->getLastPostsPaginator($offset, $this->itemsPerPage);
-		}else{
-			return $this->postFacade->getLastPublishPostsPaginator($offset, $this->itemsPerPage);
-		}
+		return $this->postFacade->getLastPublishPostsPaginator($offset, $this->itemsPerPage);
 	}
 
 	/**
@@ -115,12 +93,6 @@ class Post extends \Flame\Application\UI\Control
 	private function getItemsPerPage(&$posts, $offset)
 	{
 		return array_slice($posts, $offset, $this->itemsPerPage);
-	}
-
-	private function initItemsPerPage()
-	{
-		$itemsPerPage = $this->optionFacade->getOptionValue('ItemsPerPage');
-		if((int) $itemsPerPage >= 1) $this->itemsPerPage = (int) $itemsPerPage;
 	}
 
 }

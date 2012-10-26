@@ -9,32 +9,23 @@ class HomepagePresenter extends FrontPresenter
 {
 
 	/**
-	 * @var \Flame\CMS\Models\Posts\PostFacade
+	 * @var \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
 	 */
-	private $postFacade;
+	private $postControlFactory;
 
 	/**
-	 * @param \Flame\CMS\Models\Posts\PostFacade $postFacade
+	 * @param \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
 	 */
-	public function injectPostFacade(\Flame\CMS\Models\Posts\PostFacade $postFacade)
+	public function injectPostControlFactory(\Flame\CMS\Components\Posts\PostControlFactory $postControlFactory)
 	{
-		$this->postFacade = $postFacade;
-	}
-
-	public function actionDefault()
-	{
-
-		if(!count($this->postFacade->getLastPublishPosts())){
-			$this->flashMessage('No posts');
-		}
-
+		$this->postControlFactory = $postControlFactory;
 	}
 
 	/**
-	 * @return \Flame\CMS\Components\Posts\Post
+	 * @return \Flame\CMS\Components\Posts\PostControl
 	 */
 	public function createComponentPostsControl()
 	{
-		return new \Flame\CMS\Components\Posts\Post($this, 'postsControl');
+		return $this->postControlFactory->create();
 	}
 }

@@ -24,6 +24,19 @@ class TagPresenter extends FrontPresenter
 	private $tagFacade;
 
 	/**
+	 * @var \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
+	 */
+	private $postControlFactory;
+
+	/**
+	 * @param \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
+	 */
+	public function injectPostControlFactory(\Flame\CMS\Components\Posts\PostControlFactory $postControlFactory)
+	{
+		$this->postControlFactory = $postControlFactory;
+	}
+
+	/**
 	 * @param \Flame\CMS\Models\Tags\TagFacade $tagFacade
 	 */
 	public function injectTagFacade(\Flame\CMS\Models\Tags\TagFacade $tagFacade)
@@ -31,6 +44,9 @@ class TagPresenter extends FrontPresenter
 		$this->tagFacade = $tagFacade;
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function actionPosts($id)
 	{
 		if($tag = $this->tagFacade->getOne($id)){
@@ -46,11 +62,12 @@ class TagPresenter extends FrontPresenter
 		}
 	}
 
+	/**
+	 * @return \Flame\CMS\Components\Posts\PostControl
+	 */
 	public function createComponentPostsControl()
 	{
-		$postControl = new \Flame\CMS\Components\Posts\Post($this, 'postsControl');
-		$postControl->setPosts($this->posts);
-		return $postControl;
+		return $this->postControlFactory->create($this->posts);
 	}
 
 }

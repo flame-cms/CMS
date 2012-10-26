@@ -53,6 +53,8 @@ services:
 	CategoryControlFactory: Flame\CMS\Components\Categories\CategoryControlFactory
 
 	PostFacade: Flame\CMS\Models\Posts\PostFacade
+	PostControlFactory: Flame\CMS\Components\Posts\PostControlFactory
+
 	PageFacade: Flame\CMS\Models\Pages\PageFacade
 	ImageFacade: Flame\CMS\Models\Images\ImageFacade
 

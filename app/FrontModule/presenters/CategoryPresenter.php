@@ -24,6 +24,19 @@ class CategoryPresenter extends \FrontModule\FrontPresenter
 	private $categoryFacade;
 
 	/**
+	 * @var \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
+	 */
+	private $postControlFactory;
+
+	/**
+	 * @param \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
+	 */
+	public function injectPostControlFactory(\Flame\CMS\Components\Posts\PostControlFactory $postControlFactory)
+	{
+		$this->postControlFactory = $postControlFactory;
+	}
+
+	/**
 	 * @param \Flame\CMS\Models\Categories\CategoryFacade $categoryFacade
 	 */
 	public function injectCategoryFacade(\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade)
@@ -50,12 +63,10 @@ class CategoryPresenter extends \FrontModule\FrontPresenter
 	}
 
 	/**
-	 * @return \Flame\CMS\Components\Posts\Post
+	 * @return \Flame\CMS\Components\Posts\PostControl
 	 */
 	protected function createComponentPostsControl()
 	{
-		$postControl = new \Flame\CMS\Components\Posts\Post($this, 'postsControl');
-		$postControl->setPosts($this->posts);
-		return $postControl;
+		return $this->postControlFactory->create($this->posts);
 	}
 }
