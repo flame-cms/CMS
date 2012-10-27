@@ -83,7 +83,7 @@ class LinkFormFactory extends \Flame\Application\FormFactory
 	 */
 	protected function treatUrl($url)
 	{
-		if(strpos($url, 'http') !== true){
+		if(strpos($url, 'http') === false){
 			$url = 'http://' . $url;
 		}
 
