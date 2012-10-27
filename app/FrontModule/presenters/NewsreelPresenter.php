@@ -11,6 +11,19 @@ class NewsreelPresenter extends FrontPresenter
 	private $newsreelFacade;
 
 	/**
+	 * @var \Flame\CMS\Components\Newsreel\NewsreelControlFactory $newsreelControlFactory
+	 */
+	private $newsreelControlFactory;
+
+	/**
+	 * @param \Flame\CMS\Components\Newsreel\NewsreelControlFactory $newsreelControlFactory
+	 */
+	public function injectNewsreelControlFactory(\Flame\CMS\Components\Newsreel\NewsreelControlFactory $newsreelControlFactory)
+	{
+		$this->newsreelControlFactory = $newsreelControlFactory;
+	}
+
+	/**
 	 * @param \Flame\CMS\Models\Newsreel\NewsreelFacade $newsreelFacade
 	 */
 	public function injectNewsreelFacade(\Flame\CMS\Models\Newsreel\NewsreelFacade $newsreelFacade)
@@ -29,5 +42,14 @@ class NewsreelPresenter extends FrontPresenter
 		}else{
 			$this->setView('notFound');
 		}
+	}
+
+	/**
+	 * @return \Flame\CMS\Components\Newsreel\NewsreelControl
+	 */
+	protected function createComponentNewsreel()
+	{
+		$this->newsreelControlFactory->setLimit(15);
+		return $this->newsreelControlFactory->create();
 	}
 }

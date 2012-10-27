@@ -89,6 +89,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	 */
 	protected function createComponentNewsreelControl()
 	{
+		$this->newsreelControlFactory->setLimit($this->optionFacade->getOptionValue('Menu:NewsreelCount'));
 		return $this->newsreelControlFactory->create();
 	}
 

@@ -50,16 +50,17 @@ class NewsreelControlFactory extends \Flame\Application\ControlFactory
 	 */
 	public function create($data = null)
 	{
-		$this->initCountOfItems();
 		$control = new NewsreelControl();
 		$control->setItems($this->newsreelFacade->getLastPassedNewsreel($this->itemsInNewsreelMenuList));
 		return $control;
 	}
 
-	private function initCountOfItems()
+	/**
+	 * @param $limit
+	 */
+	public function setLimit($limit)
 	{
-		$countOfItems = $this->optionFacade->getOptionValue('Menu:NewsreelCount');
-		if((int) $countOfItems > 0) $this->itemsInNewsreelMenuList = (int) $countOfItems;
+		if((int) $limit > 0) $this->itemsInNewsreelMenuList = (int) $limit;
 	}
 
 }
