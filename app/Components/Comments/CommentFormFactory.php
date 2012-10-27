@@ -73,7 +73,7 @@ class CommentFormFactory extends \Flame\Application\FormFactory
 	 */
 	protected function treatUrl($url)
 	{
-		if(strpos($url, 'http') === false){
+		if(substr($url, 0, 4) !== 'http'){
 			$url = 'http://' . $url;
 		}
 
