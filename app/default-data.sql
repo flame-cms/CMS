@@ -89,7 +89,8 @@ INSERT INTO `Fl_User` (`id`, `info_id`, `password`, `role`, `email`, `facebook`)
 INSERT INTO `Fl_Menu` (`id`, `title`, `url`, `priority`) VALUES
 (1,	'Home',	'/',	5),
 (2,	'Pellentesque habitant morbi',	'/page/detail/1',	10),
-(3,	'Links',	'/link/',	20);
+(3,	'Newsreel',	'/newsreel/',	15);
+(4,	'Links',	'/link/',	20);
 
 INSERT INTO `Fl_Link` (`id`, `name`, `url`, `description`, `public`) VALUES
 (1,	'JSifalda.name',	'http://http://http://jsifalda.name/',	'Online profile of author',	1),
