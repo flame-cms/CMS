@@ -26,6 +26,26 @@ class LinkPresenter extends FrontPresenter
 		$this->linkFacade = $linkFacade;
 	}
 
+	/**
+	 * @param $link
+	 */
+	public function actionRedirect($link)
+	{
+
+		if(!$link){
+			$this->flashMessage('Invalid link');
+			$this->redirect('Link:');
+		}else{
+
+			if($linkModel = $this->linkFacade->getLinkByUrl($link)){
+				$this->linkFacade->increaseHit($linkModel);
+			}
+
+			$this->redirectUrl($link);
+		}
+
+	}
+
 	public function renderDefault()
 	{
 		$this->template->links = $this->linkFacade->getLastLinks();

@@ -36,6 +36,11 @@ class Link extends \Flame\Doctrine\Entity
 	 */
 	protected $public;
 
+	/**
+	 * @Column(type="integer", length=11)
+	 */
+	protected $hit;
+
 	public function __construct($name, $url)
 	{
 		$this->name = $name;
@@ -43,6 +48,7 @@ class Link extends \Flame\Doctrine\Entity
 
 		$this->description = '';
 		$this->public = true;
+		$this->hit = 0;
 	}
 
 	public function getName()
@@ -86,6 +92,17 @@ class Link extends \Flame\Doctrine\Entity
 	public function setPublic($public)
 	{
 		$this->public = (bool) $public;
+		return $this;
+	}
+
+	public function getHit()
+	{
+		return $this->hit;
+	}
+
+	public function setHit($hit)
+	{
+		$this->hit = (int) $hit;
 		return $this;
 	}
 }
