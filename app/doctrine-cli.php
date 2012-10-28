@@ -29,14 +29,6 @@ $cli->addCommands(array(
 	new Doctrine\DBAL\Tools\Console\Command\RunSqlCommand(),
 	new Doctrine\DBAL\Tools\Console\Command\ImportCommand(),
 
-	// Migrations Commands
-	new \Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand(),
-	new \Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand(),
-	new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand(),
-	new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand(),
-	new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand(),
-	new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand(),
-
 	// ORM Commands
 	new Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand(),
 	new Doctrine\ORM\Tools\Console\Command\ClearCache\ResultCommand(),
