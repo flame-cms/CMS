@@ -24,6 +24,7 @@ services:
 		factory: Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(%entities%, true)
 		setup:
 			- setSQLLogger(@SqlLogger)
+			- setProxyDir(%rootDir%/temp/proxy)
 
 	EntityManager:
 		class: Doctrine\ORM\EntityManager
