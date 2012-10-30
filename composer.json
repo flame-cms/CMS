@@ -26,6 +26,7 @@
 		"doctrine/orm": "2.2.*",
 		"flame/framework": "dev-master",
 		"flame/navbarbuilder-component": "dev-master",
+		"flame/fileuploader-component": "dev-master",
 		"nette/nette": "dev-master",
 		"symfony/console": "2.0.*"
 	}
