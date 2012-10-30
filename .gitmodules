@@ -4,3 +4,6 @@
 [submodule "www/bootstrap"]
 	path = www/bootstrap
 	url = git://github.com/jsifalda/twitter-bootstrap.git
+[submodule "www/tiny_mce"]
+	path = www/tiny_mce
+	url = git://github.com/jsifalda/tiny-mce.git
