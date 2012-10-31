@@ -3,7 +3,7 @@ parameters:
 		driver: pdo_mysql
 		charset: utf8
 		port: 3306
-		prefix: Fl_
+		prefix: flame_
 
 	entities:
 		- %appDir%/Models
