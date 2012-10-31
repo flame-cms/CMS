@@ -23,7 +23,7 @@
 
 	"require": {
 		"kdyby/bootstrap-form-renderer": "dev-master",
-		"doctrine/orm": "2.2.*",
+		"doctrine/orm": "2.3.0",
 		"flame/framework": "dev-master",
 		"flame/navbarbuilder-component": "dev-master",
 		"flame/fileuploader-component": "dev-master",

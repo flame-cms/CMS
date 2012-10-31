@@ -8,6 +8,7 @@ services:
 	ThemeManager: Flame\CMS\Utils\ThemeManager(%theme%, @OptionFacade)
 	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
 	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
+	MappingStrategy: \Doctrine\ORM\Mapping\UnderscoreNamingStrategy
 
 	FileManager:
 		class: Flame\Utils\FileManager
@@ -25,6 +26,7 @@ services:
 		setup:
 			- setSQLLogger(@SqlLogger)
 			- setProxyDir(%rootDir%/temp/proxy)
+			- setNamingStrategy(@MappingStrategy)
 
 	EntityManager:
 		class: Doctrine\ORM\EntityManager
