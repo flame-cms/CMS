@@ -49,7 +49,7 @@ class SignPresenter extends FrontPresenter
 	 */
 	protected function createComponentSignInForm()
 	{
-		$this->inFormFactory->setPresenter($this);
+		$this->inFormFactory->setRestoreRequestProvider($this->restoreRequest);
 		$this->inFormFactory->setBacklink($this->backlink);
 		$form = $this->inFormFactory->createForm();
 		$form->onSuccess[] = $this->lazyLink(':Admin:DashBoard:');

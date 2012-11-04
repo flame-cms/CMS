@@ -28,14 +28,14 @@ class InFormFactory extends \Flame\Application\FormFactory
 	/**
 	 * @var \FrontModule\SignPresenter
 	 */
-	private $presenter;
+	private $restoreRequestProvider;
 
 	/**
-	 * @param \FrontModule\SignPresenter $presenter
+	 * @param $provider
 	 */
-	public function setPresenter(\FrontModule\SignPresenter $presenter)
+	public function setRestoreRequestProvider($provider)
 	{
-		$this->presenter = $presenter;
+		$this->restoreRequestProvider = \Nette\Callback::create($provider);
 	}
 
 	/**
@@ -79,7 +79,8 @@ class InFormFactory extends \Flame\Application\FormFactory
 
 			$this->user->login($values->email, $values->password);
 
-			if($this->backlink and $this->presenter) $this->presenter->restoreRequest($this->backlink);
+			if($this->backlink and $this->restoreRequestProvider)
+				$this->restoreRequestProvider->invoke($this->backlink);
 
 		} catch (NS\AuthenticationException $e) {
 			$form->addError($e->getMessage());
