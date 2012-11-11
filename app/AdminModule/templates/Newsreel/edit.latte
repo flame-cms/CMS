@@ -1,8 +1,16 @@
 {var $title = 'Edit newsreel'}
 
 {#head}
+<link rel="stylesheet" style="text/css" href="{$basePath}/css/datepicker.css" />
+
+<script type="text/javascript" src="{$basePath}/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="{$baseUrl}/tiny_mce/tiny_mce.js" ></script>
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.bootstrapDatePicker').datepicker();
+    });
+
     tinyMCE.init({
         mode: "specific_textareas",
         editor_selector: "mceEditor",

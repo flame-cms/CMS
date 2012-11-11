@@ -28,6 +28,7 @@
 		"flame/navbarbuilder-component": "dev-master",
 		"flame/fileuploader-component": "dev-master",
 		"nette/nette": "dev-master",
-		"symfony/console": "2.0.*"
+		"symfony/console": "2.0.*",
+		"flame/bootstrapdatepicker-control": "dev-master"
 	}
 }
