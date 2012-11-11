@@ -1,0 +1,15 @@
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
+.clear {
+    clear: both;
+}
+input, textarea {
+    width: auto;
+}
+.tags-multiSelect{
+    max-height: 200px;
+}
