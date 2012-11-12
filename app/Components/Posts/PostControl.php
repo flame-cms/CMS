@@ -11,21 +11,27 @@ class PostControl extends \Flame\Application\UI\Control
 	private $posts;
 
 	/**
-	 * @var \Flame\CMS\Models\Posts\PostFacade
-	 */
-	private $postFacade;
-
-	/**
 	 * @var int
 	 */
 	private $itemsPerPage = 10;
 
-
-	public function __construct(\Flame\CMS\Models\Posts\PostFacade $postFacade, $posts = null)
+	/**
+	 * @param array $posts
+	 */
+	public function __construct($posts)
 	{
 		parent::__construct();
 
-		$this->postFacade = $postFacade;
+		$this->posts = $posts;
+	}
+
+	/**
+	 * For additional adding of posts
+	 *
+	 * @param array $posts
+	 */
+	public function setPosts($posts)
+	{
 		$this->posts = $posts;
 	}
 
@@ -35,21 +41,6 @@ class PostControl extends \Flame\Application\UI\Control
 	public function setPageLimit($itemsPerPage)
 	{
 		if((int) $itemsPerPage >= 1) $this->itemsPerPage = (int) $itemsPerPage;
-	}
-
-	private function beforeRender()
-	{
-		$paginator = $this['paginator']->getPaginator();
-
-		if(!$this->posts){
-			$posts = $this->getItemsPerPagePaginator($paginator->offset);
-			$paginator->itemCount = count($posts);
-		}else{
-			$posts = $this->getItemsPerPage($this->posts, $paginator->offset);
-			$paginator->itemCount = count($this->posts);
-		}
-
-		$this->template->posts = $posts;
 	}
 
 	public function render()
@@ -66,6 +57,18 @@ class PostControl extends \Flame\Application\UI\Control
 		$this->template->render();
 	}
 
+	protected function beforeRender()
+	{
+		$paginator = $this['paginator']->getPaginator();
+
+		$posts = $this->posts;
+		if(is_array($this->posts) and count($this->posts))
+			$posts = $this->getItemsPerPage($this->posts, $paginator->offset);
+
+		$paginator->itemCount = count($this->posts);
+		$this->template->posts = $posts;
+	}
+
 	/**
 	 * @return \Flame\Addons\VisualPaginator\Paginator
 	 */
@@ -77,20 +80,11 @@ class PostControl extends \Flame\Application\UI\Control
 	}
 
 	/**
-	 * @param $offset
-	 * @return \Doctrine\ORM\Tools\Pagination\Paginator
-	 */
-	private function getItemsPerPagePaginator($offset)
-	{
-		return $this->postFacade->getLastPublishPostsPaginator($offset, $this->itemsPerPage);
-	}
-
-	/**
 	 * @param $posts
 	 * @param $offset
 	 * @return array
 	 */
-	private function getItemsPerPage(&$posts, $offset)
+	protected function getItemsPerPage(array &$posts, $offset)
 	{
 		return array_slice($posts, $offset, $this->itemsPerPage);
 	}

@@ -46,8 +46,17 @@ class PostControlFactory extends \Flame\Application\ControlFactory
 	public function create($data = null)
 	{
 		$postsLimit = $this->optionFacade->getOptionValue('ItemsPerPage');
-		$control = new PostControl($this->postFacade, $data);
+
+		$control = new PostControl($data);
 		$control->setPageLimit($postsLimit);
+
+		if($data === null){
+			$paginator = $control->getComponent('paginator')->getPaginator();
+			$data = $this->postFacade->getLastPublishPostsPaginator($paginator->offset, $postsLimit);
+			$paginator->itemCount = count($data);
+			$control->setPosts($data);
+		}
+
 		return $control;
 	}
 
