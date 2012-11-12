@@ -38,7 +38,7 @@ class Category extends \Flame\Doctrine\Entity
 
 	/**
 	 * @ManyToOne(targetEntity="Category", inversedBy="children")
-	 * @JoinColumn(name="parent_id", referencedColumnName="id")
+	 * @JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
 	 **/
 	protected $parent;
 

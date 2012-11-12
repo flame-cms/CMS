@@ -149,11 +149,7 @@ class CategoryPresenter extends AdminPresenter
 			$category = $this->categoryFacade->getOne($id);
 
 			if($category){
-				if(count($category->getChildren()) == 0){
-					$this->categoryFacade->delete($category);
-				}else{
-					$this->flashMessage('Category cannot by delete because category has subcategories');
-				}
+				$this->categoryFacade->delete($category);
 
 			}else{
 				$this->flashMessage('Category does not exist.');
