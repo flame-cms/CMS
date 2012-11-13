@@ -8,7 +8,7 @@
  * @date    14.07.12
  */
 
-namespace AdminModule;
+namespace AdminModule\Forms\Posts;
 
 class PostForm extends \Flame\CMS\Application\UI\Form
 {
@@ -42,6 +42,7 @@ class PostForm extends \Flame\CMS\Application\UI\Form
 	public function configureAdd()
 	{
 		$this->configure();
+		$this->setDefaults(array('publish' => true));
 		$this->addSubmit('send', 'Create post');
 
 	}

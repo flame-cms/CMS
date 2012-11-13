@@ -57,6 +57,7 @@ services:
 
 	PostFacade: Flame\CMS\Models\Posts\PostFacade
 	PostControlFactory: Flame\CMS\Components\Posts\PostControlFactory
+	PostFormFactory: \AdminModule\Forms\Posts\PostFormFactory
 
 	PageFacade: Flame\CMS\Models\Pages\PageFacade
 	ImageFacade: Flame\CMS\Models\Images\ImageFacade

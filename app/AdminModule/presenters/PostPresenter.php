@@ -7,10 +7,6 @@ namespace AdminModule;
 */
 class PostPresenter extends AdminPresenter
 {
-	/**
-	 * @var int
-	 */
-	private $id;
 
 	/**
 	 * @var \Flame\CMS\Models\Posts\Post
@@ -18,45 +14,27 @@ class PostPresenter extends AdminPresenter
     private $post;
 
 	/**
-	 * @var \Flame\CMS\Models\Tags\TagFacade
-	 */
-	private $tagFacade;
-
-	/**
-	 * @var \Flame\CMS\Models\Posts\PostFacade
-	 */
-    private $postFacade;
-
-	/**
-	 * @var \Flame\CMS\Models\Users\UserFacade
-	 */
-    private $userFacade;
-
-	/**
-	 * @var \Flame\CMS\Models\Categories\CategoryFacade
-	 */
-	private $categoryFacade;
-
-	/**
 	 * @var \Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory
 	 */
 	private $fileUploaderControlFactory;
 
 	/**
-	 * @param \Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory
+	 * @var \Flame\CMS\Models\Posts\PostFacade $postFacade
 	 */
-	public function injectFileUploaderControlFactory(\Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory)
-	{
-		$this->fileUploaderControlFactory = $fileUploaderControlFactory;
-	}
+	private $postFacade;
 
 	/**
-	 * @param \Flame\CMS\Models\Tags\TagFacade $tagFacade
+	 * @var \AdminModule\Forms\Posts\PostFormFactory $postFormFactory
 	 */
-    public function injectTagFacade(\Flame\CMS\Models\Tags\TagFacade $tagFacade)
-    {
-    	$this->tagFacade = $tagFacade;
-    }
+	private $postFormFactory;
+
+	/**
+	 * @param \AdminModule\Forms\Posts\PostFormFactory $postFormFactory
+	 */
+	public function injectPostFormFactory(\AdminModule\Forms\Posts\PostFormFactory $postFormFactory)
+	{
+		$this->postFormFactory = $postFormFactory;
+	}
 
 	/**
 	 * @param \Flame\CMS\Models\Posts\PostFacade $postFacade
@@ -67,19 +45,11 @@ class PostPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \Flame\CMS\Models\Users\UserFacade $userFacade
+	 * @param \Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory
 	 */
-	public function injectUserFacade(\Flame\CMS\Models\Users\UserFacade $userFacade)
+	public function injectFileUploaderControlFactory(\Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory)
 	{
-		$this->userFacade = $userFacade;
-	}
-
-	/**
-	 * @param \Flame\CMS\Models\Categories\CategoryFacade $categoryFacade
-	 */
-	public function injectCategoryFacade(\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade)
-	{
-		$this->categoryFacade = $categoryFacade;
+		$this->fileUploaderControlFactory = $fileUploaderControlFactory;
 	}
 
 	public function renderDefault()
@@ -157,157 +127,27 @@ class PostPresenter extends AdminPresenter
 	 */
 	public function actionEdit($id)
 	{
-		$this->id = $id;
-
         if(!$this->post = $this->postFacade->getOne($id)){
 	        $this->flashMessage('Post does not exist.');
-            $this->redirect('Post:');
+            $this->redirect('default');
         }
 
 	}
 
 	/**
-	 * @return Posts\PostForm
+	 * @return \Nette\Application\UI\Form
 	 */
 	protected function createComponentPostForm()
 	{
 
-		$f = new PostForm($this, 'postForm');
+		$form = $this->postFormFactory->configure($this->post)->createForm();
 
-		$f->setTags($this->tagFacade->getLastTags());
-		$f->setCategories($this->categoryFacade->getLastCategories());
-
-		if($this->id){
-			$f->configureEdit($this->post->toArray());
+		if($this->post){
+			$form->onSuccess[] = $this->lazyLink('this');
 		}else{
-			$f->configureAdd();
+			$form->onSuccess[] = $this->lazyLink('default');
 		}
-
-		$f->onSuccess[] = $this->postFormSubmitted;
-
-        return $f;
-	}
-
-	/**
-	 * @param PostForm $f
-	 * @throws \Nette\Application\BadRequestException
-	 */
-	public function postFormSubmitted(PostForm $f)
-	{
-        if($this->id and !$this->post){
-            throw new \Nette\Application\BadRequestException;
-        }
-
-        $values = $f->getValues();
-
-        if(empty($values['slug'])){
-            $slug = $this->createSlug($values['name']);
-        }else{
-            $slug = $this->createSlug($values['slug']);
-        }
-
-		$tags = array();
-
-		if(isset($values['tags']) and is_array($values['tags']) and count($values['tags'])){
-
-			foreach($values['tags'] as $tag){
-				$tags[] = $this->tagFacade->getOne($tag);
-			}
-		}
-
-		if(isset($values['tagsNew']) and !empty($values['tagsNew'])){
-
-			$tagsRaw = explode(',', $values['tagsNew']);
-
-			if(count($tagsRaw)){
-				foreach($tagsRaw as $tag){
-					if(!empty($tag)) $tags[] = $this->createNewTag(trim($tag));
-				}
-			}else{
-				if(!empty($values['tagsNew'])) $tags[] = $this->createNewTag(trim($values['tagsNew']));
-			}
-
-		}
-
-		if(isset($values['categoryNew']) and isset($values['category']) and !empty($values['categoryNew'])){
-			$category = $this->createNewCategory($values['categoryNew']);
-
-		}elseif(isset($values['categoryNew']) and !empty($values['categoryNew'])){
-			$category = $this->createNewCategory($values['categoryNew']);
-
-		}elseif(isset($values['category'])){
-			$category = $this->categoryFacade->getOne($values['category']);
-
-		}else{
-			$f->addError('Category is required. Please select one or create new.');
-
-		}
-
-		if(!$f->hasErrors()){
-	        if($this->id){
-	            $this->post
-	                ->setName($values['name'])
-	                ->setSlug($values['slug'])
-	                ->setDescription($values['description'])
-	                ->setKeywords($values['keywords'])
-	                ->setContent($values['content'])
-	                ->setCategory($category)
-	                ->setPublish($values['publish'])
-	                ->setComment($values['comment'])
-		            ->setTags($tags);
-
-	            $this->postFacade->save($this->post);
-		        $this->flashMessage('Post was edited');
-		        $this->redirect('this');
-
-	        }else{
-	            $post = new \Flame\CMS\Models\Posts\Post(
-	                $this->userFacade->getOne($this->getUser()->getId()),
-	                $values['name'],
-	                $slug,
-	                $values['content'],
-		            $category
-	            );
-
-		        $post->setComment($values['comment'])
-			        ->setPublish($values['publish'])
-			        ->setKeywords($values['keywords'])
-			        ->setDescription($values['description'])
-			        ->setTags($tags);
-
-	            $this->postFacade->save($post);
-		        $this->flashMessage('Post was successfully added.', 'success');
-		        $this->redirect('Post:');
-
-	        }
-		}
-
-	}
-
-	/**
-	 * @param $name
-	 * @return \Flame\CMS\Models\Categories\Category|object
-	 */
-	private function createNewCategory($name)
-	{
-		if($categoryExist = $this->categoryFacade->getOneByName($name)) return $categoryExist;
-
-		$category = new \Flame\CMS\Models\Categories\Category($name, $this->createSlug($name));
-		$this->categoryFacade->save($category);
-		return $category;
-	}
-
-	/**
-	 * @param $name
-	 * @return \Flame\CMS\Models\Tags\Tag|object
-	 */
-	private function createNewTag($name)
-	{
-		if($tagExist = $this->tagFacade->getOneByName($name)) return $tagExist;
-
-		$tag = new \Flame\CMS\Models\Tags\Tag($name, $this->createSlug($name));
-		$this->tagFacade->save($tag);
-		return $tag;
+        return $form;
 	}
 
 	/**
