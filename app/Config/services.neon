@@ -68,6 +68,9 @@ services:
 	RawLinkFormFactory: AdminModule\Forms\Menu\RawLinkFormFactory
 	PageLinkFormFactory: AdminModule\Forms\Menu\PageLinkFormFactory
 
+	FileUploaderForm: \Flame\Components\FileUploader\FileUploaderFormFactory
+	FileUploaderControl: \Flame\Components\FileUploader\FileUploaderControlFactory
+
 
 
 

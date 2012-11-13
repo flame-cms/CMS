@@ -38,6 +38,19 @@ class PostPresenter extends AdminPresenter
 	private $categoryFacade;
 
 	/**
+	 * @var \Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory
+	 */
+	private $fileUploaderControlFactory;
+
+	/**
+	 * @param \Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory
+	 */
+	public function injectFileUploaderControlFactory(\Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory)
+	{
+		$this->fileUploaderControlFactory = $fileUploaderControlFactory;
+	}
+
+	/**
 	 * @param \Flame\CMS\Models\Tags\TagFacade $tagFacade
 	 */
     public function injectTagFacade(\Flame\CMS\Models\Tags\TagFacade $tagFacade)
@@ -295,6 +308,14 @@ class PostPresenter extends AdminPresenter
 		$tag = new \Flame\CMS\Models\Tags\Tag($name, $this->createSlug($name));
 		$this->tagFacade->save($tag);
 		return $tag;
+	}
+
+	/**
+	 * @return \Flame\Components\FileUploader\FileUploaderControl
+	 */
+	protected function createComponentFileUploader()
+	{
+		return $this->fileUploaderControlFactory->create();
 	}
 
 }
