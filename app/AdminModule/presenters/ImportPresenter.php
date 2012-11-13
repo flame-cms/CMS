@@ -10,6 +10,8 @@
 
 namespace AdminModule;
 
+use Flame\Utils\Strings;
+
 class ImportPresenter extends AdminPresenter
 {
 
@@ -111,7 +113,7 @@ class ImportPresenter extends AdminPresenter
 		$post = new \Flame\CMS\Models\Posts\Post(
 			$this->userFacade->getOne($this->getUser()->getId()),
 			$postData['name'],
-			$this->createSlug($postData['name']),
+			Strings::createSlug($postData['name']),
 			$postData['content'],
 			$category
 		);
@@ -137,7 +139,7 @@ class ImportPresenter extends AdminPresenter
 	{
 		if($category = $this->categoryFacade->getOneByName($name)) return $category;
 
-		$category = new \Flame\CMS\Models\Categories\Category($name, "", $this->createSlug($name));
+		$category = new \Flame\CMS\Models\Categories\Category($name, "", Strings::createSlug($name));
 		$this->categoryFacade->save($category);
 		return $category;
 	}
@@ -146,7 +148,7 @@ class ImportPresenter extends AdminPresenter
 	{
 		if($tag = $this->tagFacade->getOneByName($name)) return $tag;
 
-		$tag = new \Flame\CMS\Models\Tags\Tag($name, $this->createSlug($name));
+		$tag = new \Flame\CMS\Models\Tags\Tag($name, Strings::createSlug($name));
 		$this->tagFacade->save($tag);
 		return $tag;
 	}

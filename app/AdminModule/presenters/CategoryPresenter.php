@@ -10,6 +10,8 @@
 
 namespace AdminModule;
 
+use Flame\Utils\Strings;
+
 class CategoryPresenter extends AdminPresenter
 {
 
@@ -95,9 +97,9 @@ class CategoryPresenter extends AdminPresenter
 		$values = $form->getValues();
 
 		if(empty($values['slug'])){
-			$slug = $this->createSlug($values['name']);
+			$slug = Strings::createSlug($values['name']);
 		}else{
-			$slug = $this->createSlug($values['slug']);
+			$slug = Strings::createSlug($values['slug']);
 		}
 
 		if($this->id){
