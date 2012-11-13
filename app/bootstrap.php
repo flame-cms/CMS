@@ -16,6 +16,7 @@ require LIBS_DIR . '/autoload.php';
 //Is not required include nette loader because it do the composer!
 
 $configurator = new Configurator();
+$configurator->setDebugMode(true);
 $configurator->enableDebugger(WWW_DIR . '/../log');
 $configurator->setTempDirectory(WWW_DIR . '/../temp');
 $configurator->createRobotLoader()->addDirectory(APP_DIR)->register();
