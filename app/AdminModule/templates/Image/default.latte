@@ -21,7 +21,10 @@
 					<div class="caption">
 						<h5>{$image->name}</h5>
 						<p>{$image->description}</p>
-						<p><a n:href="delete! $image->id" class="ajax btn btn-primary">Delete</a></p>
+                        <div class="btn-group">
+                            <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $image->id"><i class="icon-remove"></i></a>
+                            <a rel="tooltip" class="btn btn-small ajax" n:href="public! $image->id"><i class="icon-eye-{if $image->public}close{else}open{/if}"></i></a>
+						</div>
 					</div>
 				</div>
 			</li>

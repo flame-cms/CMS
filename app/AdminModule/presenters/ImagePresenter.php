@@ -125,4 +125,22 @@ class ImagePresenter extends AdminPresenter
 			$this->invalidateControl('images');
 		}
 	}
+
+	public function handlePublic($id)
+	{
+
+		if($image = $this->imageFacade->getOne($id)){
+			$image->setPublic(!$image->getPublic());
+			$this->imageFacade->save($image);
+			$this->flashMessage('Public status changed', 'success');
+		}else{
+			$this->flashMessage('Image does not exist!');
+		}
+
+		if(!$this->isAjax()){
+			$this->redirect('this');
+		}else{
+			$this->invalidateControl('images');
+		}
+	}
 }
