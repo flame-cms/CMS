@@ -34,4 +34,12 @@ class ImageFacade extends \Flame\Model\Facade
 	{
 		return $this->repository->findBy(array(), array('id' => 'DESC'));
 	}
+
+	/**
+	 * @return array
+	 */
+	public function getLastPublicImages()
+	{
+		return $this->repository->findBy(array('public' => true), array('id' => 'DESC'));
+	}
 }

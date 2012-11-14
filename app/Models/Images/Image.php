@@ -31,11 +31,17 @@ class Image extends \Flame\Doctrine\Entity
      */
     protected $description;
 
+	/**
+	 * @Column(type="boolean")
+	 */
+	protected $public;
+
     public function __construct($file)
     {
         $this->file = $file;
         $this->name = '';
         $this->description = '';
+	    $this->public = false;
     }
 
     public function getFile()
@@ -70,4 +76,15 @@ class Image extends \Flame\Doctrine\Entity
         $this->description = (string) $description;
         return $this;
     }
+
+	public function getPublic()
+	{
+		return $this->public;
+	}
+
+	public function setPublic($public)
+	{
+		$this->public = (bool) $public;
+		return $this;
+	}
 }

@@ -83,7 +83,8 @@ class ImagePresenter extends AdminPresenter
 			foreach($values->images as $image){
 				$imageModel = new \Flame\CMS\Models\Images\Image($this->fileManager->saveFile($image));
 				$imageModel->setName($values->name)
-					->setDescription($values->description);
+					->setDescription($values->description)
+					->setPublic($values->public);
 
 				$this->imageFacade->save($imageModel);
 			}

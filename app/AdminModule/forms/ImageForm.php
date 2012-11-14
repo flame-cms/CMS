@@ -21,10 +21,15 @@ class ImageForm extends \Flame\CMS\Application\UI\Form
 			->addRule(self::FILLED)
 			->addRule(self::IMAGE, 'Image must be JPEG, PNG or GIF')
 			->addRule(self::MAX_FILE_SIZE, 'MAX file size is 5MB', 1024 * 5000/* 5MB in bytes */);
+
 		$this->addText('name', 'Name:')
 			->addRule(self::MAX_LENGTH, null, 100);
+
 		$this->addTextArea('description', 'Description')
 			->addRule(self::MAX_LENGTH, null, 250);
+
+		$this->addCheckbox('public', 'Show in gallery?');
+
 		$this->addSubmit('upload', 'Upload image');
 	}
 

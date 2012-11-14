@@ -41,7 +41,7 @@ class GalleryPresenter extends FrontPresenter
 
 	protected function createComponentLightGallery()
 	{
-		$images = $this->imageFacade->getLastImages();
+		$images = $this->imageFacade->getLastPublicImages();
 		return $this->lightGalleryControlFactory->create($images);
 	}
 
