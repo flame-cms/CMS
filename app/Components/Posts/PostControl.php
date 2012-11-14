@@ -59,13 +59,12 @@ class PostControl extends \Flame\Application\UI\Control
 
 	protected function beforeRender()
 	{
+		$posts = $this->posts;
 		$paginator = $this['paginator']->getPaginator();
 
-		$posts = $this->posts;
 		if(is_array($this->posts) and count($this->posts))
 			$posts = $this->getItemsPerPage($this->posts, $paginator->offset);
 
-		$paginator->itemCount = count($this->posts);
 		$this->template->posts = $posts;
 	}
 
@@ -75,7 +74,8 @@ class PostControl extends \Flame\Application\UI\Control
 	protected function createComponentPaginator()
 	{
 		$visualPaginator = new \Flame\Addons\VisualPaginator\Paginator;
-	    $visualPaginator->paginator->setItemsPerPage($this->itemsPerPage);
+	    $visualPaginator->getPaginator()->setItemsPerPage($this->itemsPerPage);
+		$visualPaginator->getPaginator()->setItemCount(count($this->posts));
 	    return $visualPaginator;
 	}
 
