@@ -39,6 +39,7 @@ class Authorizator extends NS\Permission implements NS\IAuthorizator
 		$this->addResource('Front:Tag');
 		$this->addResource('Front:Sign');
 		$this->addResource('Front:Link');
+		$this->addResource('Front:Gallery');
 
 		//DEFINE ADMIN RESOURCE
 		$this->addResource('Admin:Tag');
@@ -64,7 +65,8 @@ class Authorizator extends NS\Permission implements NS\IAuthorizator
 			'Front:Category',
 			'Front:Tag',
 			'Front:Sign',
-			'Front:Link'
+			'Front:Link',
+			'Front:Gallery'
 		));
 
 		$this->allow(self::USER, array('Admin:User'), array('password', 'edit'));

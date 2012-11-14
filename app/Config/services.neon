@@ -61,6 +61,7 @@ services:
 
 	PageFacade: Flame\CMS\Models\Pages\PageFacade
 	ImageFacade: Flame\CMS\Models\Images\ImageFacade
+	LightGalleryControlFactory: Flame\Components\LightGallery\LightGalleryControlFactory
 
 	LinkFacade: Flame\CMS\Models\Links\LinkFacade
 	LinkFormFactory: AdminModule\Forms\Links\LinkFormFactory
