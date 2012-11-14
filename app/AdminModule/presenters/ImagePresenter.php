@@ -79,14 +79,18 @@ class ImagePresenter extends AdminPresenter
 	{
 		$values = $f->getValues();
 
-		$image = new \Flame\CMS\Models\Images\Image($this->fileManager->saveFile($values['image']));
+		if(count($values->images)){
+			foreach($values->images as $image){
+				$imageModel = new \Flame\CMS\Models\Images\Image($this->fileManager->saveFile($image));
+				$imageModel->setName($values->name)
+					->setDescription($values->description);
 
-		$image->setName($values['name'])
-			->setDescription($values['description']);
+				$this->imageFacade->save($imageModel);
+			}
+		}
 
-		$this->imageFacade->save($image);
-		$this->flashMessage('Image was uploaded.');
-		$this->redirect('Image:');
+		$this->flashMessage('Images was uploaded.', 'success');
+		$this->redirect('default');
 	}
 
 	public function handleDelete($id)

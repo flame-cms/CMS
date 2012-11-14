@@ -15,7 +15,9 @@ class ImageForm extends \Flame\CMS\Application\UI\Form
 
 	public function configure()
 	{
-		$this->addUpload('image', 'Image')
+		$this->addExtension('addMultiUpload', new \Flame\Forms\Controls\MultipleFileUpload());
+
+		$this->addMultiUpload('images', 'Images')
 			->addRule(self::FILLED)
 			->addRule(self::IMAGE, 'Image must be JPEG, PNG or GIF')
 			->addRule(self::MAX_FILE_SIZE, 'MAX file size is 5MB', 1024 * 5000/* 5MB in bytes */);
