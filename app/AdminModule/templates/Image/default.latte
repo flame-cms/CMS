@@ -15,8 +15,8 @@
 		<ul class="thumbnails">
 			<li class="span3" n:foreach="$images as $image">
 				<div class="thumbnail">
-					<a href="{$baseUrl}/{$image->file}" target="_blank"  class="thumbnail">
-						<img src="{$baseUrl}/{$image->file|thumb:230}" alt="">
+					<a href="{$baseUrl}{$image->file}" target="_blank"  class="thumbnail">
+						<img src="{$basePath}/{$image->file|thumb:230}" alt="">
 					</a>
 					<div class="caption">
 						<h5>{$image->name}</h5>
