@@ -14,9 +14,11 @@
     tinyMCE.init({
         mode: "specific_textareas",
         editor_selector: "mceEditor",
-        theme : "advanced",
         theme_advanced_buttons1 : "formatselect,separator,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,separator,undo,redo,separator,link,unlink,image,removeformat,code",
-        plugins : 'inlinepopups'
+        plugins : 'inlinepopups',
+        relative_urls : false,
+        remove_script_host : false,
+        convert_urls : false
     });
 </script>
 {/#}
