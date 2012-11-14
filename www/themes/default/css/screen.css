@@ -7,7 +7,7 @@ body {
 }
 
 a:hover {
-	color: #3484D2;
+    color: #3484D2;
     font-weight: bold;
 }
 
@@ -47,6 +47,10 @@ a.active {
     padding: 10px;
     color: #000000;
     font-weight: bold;
+}
+
+#navigation ul li a:hover {
+    background: #3484D2;
 }
 
 #comment {
