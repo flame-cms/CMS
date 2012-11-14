@@ -44,14 +44,6 @@ class PostPresenter extends AdminPresenter
 		$this->postFacade = $postFacade;
 	}
 
-	/**
-	 * @param \Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory
-	 */
-	public function injectFileUploaderControlFactory(\Flame\Components\FileUploader\FileUploaderControlFactory $fileUploaderControlFactory)
-	{
-		$this->fileUploaderControlFactory = $fileUploaderControlFactory;
-	}
-
 	public function renderDefault()
 	{
 		$paginator = $this['paginator']->getPaginator();
@@ -148,14 +140,6 @@ class PostPresenter extends AdminPresenter
 			$form->onSuccess[] = $this->lazyLink('default');
 		}
         return $form;
-	}
-
-	/**
-	 * @return \Flame\Components\FileUploader\FileUploaderControl
-	 */
-	protected function createComponentFileUploader()
-	{
-		return $this->fileUploaderControlFactory->create();
 	}
 
 }

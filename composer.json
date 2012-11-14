@@ -30,7 +30,6 @@
 		"nette/nette": "dev-master",
 		"symfony/console": "2.0.*",
 		"flame/bootstrapdatepicker-control": "dev-master",
-		"flame/fileuploader-component": "@dev",
 		"flame/multiplefileupload-control": "@dev",
 		"flame/lightboxgallery-component": "@dev"
 	}
