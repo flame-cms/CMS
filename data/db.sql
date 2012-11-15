@@ -78,8 +78,7 @@ INSERT INTO `flame_menu` (`id`, `title`, `url`, `priority`) VALUES
 (2,	'Pellentesque habitant morbi',	'/page/detail/1',	10),
 (5,	'Links',	'/link/',	20),
 (6,	'Newsreel',	'/newsreel/',	19),
-(8,	'Second Page',	'/page/detail/2',	5),
-(9,	'Gallery',	'/gallery/',	65);
+(8,	'Second Page',	'/page/detail/2',	5);
 
 DROP TABLE IF EXISTS `flame_newsreel`;
 CREATE TABLE `flame_newsreel` (
