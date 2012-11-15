@@ -8,7 +8,7 @@ web1:
     - www/media/images
     - www/media/imported_images
   document_root: www
-  php_version: 5.4
+  php_version: 5.3.10
   php_extensions:
     - pdo_mysql
     - mysql
