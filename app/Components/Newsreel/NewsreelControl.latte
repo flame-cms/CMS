@@ -5,7 +5,7 @@
 				<small>{$newsreel->date|date:'%d.%m.%y'}</small>
 				<strong>{$newsreel->title}</strong><br />
 				<p>
-					{$newsreel->content|striptags|truncate:250}
+					{!$newsreel->content|striptags|truncate:250}
 					<a href="{plink Newsreel:detail $newsreel->id}">Show detail &raquo</a>
 				</p>
 			</div>
