@@ -120,7 +120,7 @@ CREATE TABLE `flame_page` (
   `hit` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_A4304C3EA76ED395` (`user_id`),
-  CONSTRAINT `FK_A4304C3EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `flame_user` (`id`)
+  CONSTRAINT `FK_A4304C3EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `flame_user` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `flame_page` (`id`, `user_id`, `name`, `slug`, `description`, `keywords`, `content`, `created`, `hit`) VALUES
@@ -144,8 +144,8 @@ CREATE TABLE `flame_post` (
   PRIMARY KEY (`id`),
   KEY `IDX_EAB09693A76ED395` (`user_id`),
   KEY `IDX_EAB0969312469DE2` (`category_id`),
-  CONSTRAINT `FK_EAB0969312469DE2` FOREIGN KEY (`category_id`) REFERENCES `flame_category` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_EAB09693A76ED395` FOREIGN KEY (`user_id`) REFERENCES `flame_user` (`id`)
+  CONSTRAINT `FK_EAB09693A76ED395` FOREIGN KEY (`user_id`) REFERENCES `flame_user` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `FK_EAB0969312469DE2` FOREIGN KEY (`category_id`) REFERENCES `flame_category` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `flame_post` (`id`, `user_id`, `category_id`, `name`, `slug`, `description`, `keywords`, `content`, `created`, `publish`, `comment`, `hit`) VALUES
@@ -232,4 +232,4 @@ CREATE TABLE `flame_user_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
--- 2012-11-15 17:48:51
+-- 2012-11-20 18:45:12
