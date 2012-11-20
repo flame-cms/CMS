@@ -23,7 +23,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 		parent::startup();
 
 		if(!$this->getUser()->isAllowed($this->name, $this->view)){
-			$this->flashMessage('Access denied');
+			$this->flashMessage('Access denied', 'error');
 			$this->redirect('Dashboard:');
 		}
 	}
