@@ -23,6 +23,7 @@ class Post extends \Flame\Doctrine\Entity
 
     /**
      * @ManyToOne(targetEntity="\Flame\CMS\Models\Users\User")
+     * @JoinColumn(onDelete="SET NULL")
      */
     protected $user;
 
