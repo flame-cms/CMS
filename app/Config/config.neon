@@ -14,7 +14,7 @@ common:
 			debugger: false
 
 		application:
-			debugger: true
+			debugger: false
 
 		session:
 			autoStart: true
