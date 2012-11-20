@@ -19,17 +19,14 @@ class NewsreelRepository extends \Flame\Model\Repository
 	public function findAllPassed($limit)
 	{
 		$qb = $this->_em->createQueryBuilder();
-		$q = $qb->select('n')
-			->from('\Flame\CMS\Models\Newsreel\Newsreel', 'n')
-			->where($qb->expr()->lte('n.date', ':date_from'))
-			->orderBy('n.date', 'DESC');
+		$qb->add('select', 'n')
+			->add('from', '\Flame\CMS\Models\Newsreel\Newsreel n')
+			->add('where', 'n.date <= :date')
+			->add('orderBy', 'n.date DESC')
+			->setParameter('date', new \DateTime);
 
-		if($limit){
-			$q->setMaxResults((int) $limit);
-		}
+		if($limit) $qb->setMaxResults((int) $limit);
 
-		return $q->getQuery()
-			->setParameters(array('date_from' => new \DateTime()))
-			->getResult();
+		return $qb->getQuery()->getResult();
 	}
 }
