@@ -70,6 +70,7 @@ class Authorizator extends NS\Permission implements NS\IAuthorizator
 		));
 
 		$this->allow(self::USER, array('Admin:User'), array('password', 'edit'));
+		$this->allow(self::USER, array('Admin:Dashboard'));
 
 		$this->allow(self::MODERATOR, array(
 			'Admin:Dashboard',
