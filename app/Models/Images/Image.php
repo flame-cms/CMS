@@ -36,6 +36,12 @@ class Image extends \Flame\Doctrine\Entity
 	 */
 	protected $public;
 
+	/**
+	 * @ManyToOne(targetEntity="\Flame\CMS\Models\ImageCategories\ImageCategory")
+	 * @JoinColumn(onDelete="SET NULL")
+	 */
+	protected $category;
+
     public function __construct($file)
     {
         $this->file = $file;
