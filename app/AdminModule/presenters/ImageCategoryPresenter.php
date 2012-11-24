@@ -57,6 +57,25 @@ class ImageCategoryPresenter extends AdminPresenter
 		$this->template->imageCategories = $this->imageCategoryFacade->getImageCategories();
 	}
 
+	public function handleDelete($id)
+	{
+		if(!$this->getUser()->isAllowed('Admin:ImageCategory', 'delete')){
+			$this->flashMessage('Access denied!');
+		}else{
+			if(!$link = $this->imageCategoryFacade->getOne($id)){
+				$this->flashMessage('Link does not exist');
+			}else{
+				$this->imageCategoryFacade->delete($link);
+			}
+		}
+
+		if($this->isAjax()){
+			$this->invalidateControl();
+		}else{
+			$this->redirect('default');
+		}
+	}
+
 	/**
 	 * @return Forms\ImageCategories\ImageCategoryForm
 	 */
