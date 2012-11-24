@@ -24,8 +24,8 @@ common:
 	includes:
 		- parameters.neon
 		- services.neon
+		- factories.neon
 
-	factories:
 
 development < common:
 	parameters:
