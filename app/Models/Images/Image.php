@@ -44,10 +44,12 @@ class Image extends \Flame\Doctrine\Entity
 
     public function __construct($file)
     {
-        $this->file = $file;
-        $this->name = '';
+        $this->file = (string) $file;
+
+	    $this->name = '';
         $this->description = '';
 	    $this->public = false;
+	    $this->category = null;
     }
 
     public function getFile()
@@ -91,6 +93,17 @@ class Image extends \Flame\Doctrine\Entity
 	public function setPublic($public)
 	{
 		$this->public = (bool) $public;
+		return $this;
+	}
+
+	public function getCategory()
+	{
+		return $this->category;
+	}
+
+	public function setCategory(\Flame\CMS\Models\ImageCategories\ImageCategory $category)
+	{
+		$this->category = $category;
 		return $this;
 	}
 }
