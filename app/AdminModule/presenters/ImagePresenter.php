@@ -131,7 +131,6 @@ class ImagePresenter extends AdminPresenter
 		if($image = $this->imageFacade->getOne($id)){
 			$image->setPublic(!$image->getPublic());
 			$this->imageFacade->save($image);
-			$this->flashMessage('Public status changed', 'success');
 		}else{
 			$this->flashMessage('Image does not exist!');
 		}
