@@ -70,6 +70,9 @@ services:
 	RawLinkFormFactory: AdminModule\Forms\Menu\RawLinkFormFactory
 	PageLinkFormFactory: AdminModule\Forms\Menu\PageLinkFormFactory
 
+	ImageCategoryFacade: \Flame\CMS\Models\ImageCategories\ImageCategoryFacade
+	ImageCategoryFormFactory: \AdminModule\Forms\ImageCategories\ImageCategoryFormFactory
+
 
 
 
