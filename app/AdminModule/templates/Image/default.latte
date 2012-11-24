@@ -20,8 +20,12 @@
 					</a>
 					<div class="caption">
 						<h5>{$image->name}</h5>
-						<p>{$image->description}</p>
+						<p>
+							{$image->description} <br />
+                            <strong>{$image->category}</strong>
+						</p>
                         <div class="btn-group">
+                            <a rel="tooltip" class="btn btn-small" n:href="edit $image->id"><i class="icon-pencil"></i></a>
                             <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $image->id"><i class="icon-remove"></i></a>
                             <a rel="tooltip" class="btn btn-small ajax" n:href="public! $image->id"><i class="icon-eye-{if $image->public}close{else}open{/if}"></i></a>
 						</div>
