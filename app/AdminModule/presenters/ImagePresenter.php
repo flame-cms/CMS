@@ -91,8 +91,6 @@ class ImagePresenter extends AdminPresenter
 		return $form;
 	}
 
-
-
 	public function handleDelete($id)
 	{
 
