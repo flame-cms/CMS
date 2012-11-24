@@ -26,26 +26,21 @@ class ImagePresenter extends AdminPresenter
 	private $imageFacade;
 
 	/**
-	 * @var \Flame\CMS\Models\Users\UserFacade $userFacade
-	 */
-	private $userFacade;
-
-	/**
 	 * @var \Flame\Utils\FileManager $fileManager
 	 */
 	private $fileManager;
 
 	/**
-	 * @var \Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade
+	 * @var \AdminModule\Forms\Images\ImageFormFactory $imageFormFactory
 	 */
-	private $imageCategoryFacade;
+	private $imageFormFactory;
 
 	/**
-	 * @param \Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade
+	 * @param \AdminModule\Forms\Images\ImageFormFactory $imageFormFactory
 	 */
-	public function injectImageCategoryFacade(\Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade)
+	public function injectImageFormFactory(\AdminModule\Forms\Images\ImageFormFactory $imageFormFactory)
 	{
-		$this->imageCategoryFacade = $imageCategoryFacade;
+		$this->imageFormFactory = $imageFormFactory;
 	}
 
 	/**
@@ -62,14 +57,6 @@ class ImagePresenter extends AdminPresenter
 	public function injectImageFacade(\Flame\CMS\Models\Images\ImageFacade $imageFacade)
 	{
 		$this->imageFacade = $imageFacade;
-	}
-
-	/**
-	 * @param \Flame\CMS\Models\Users\UserFacade $userFacade
-	 */
-	public function injectUserFacade(\Flame\CMS\Models\Users\UserFacade $userFacade)
-	{
-		$this->userFacade = $userFacade;
 	}
 
 	public function startup()
@@ -99,52 +86,12 @@ class ImagePresenter extends AdminPresenter
 	 */
 	protected function createComponentImageForm()
 	{
-		$f = new ImageForm($this->imageCategoryFacade->getImageCategories(), $this->image ? $this->image->toArray() : array());
-		$f->onSuccess[] = $this->uploadImageSubmitted;
-
-		return $f;
+		$form = $this->imageFormFactory->configure($this->image)->createForm();
+		$form->onSuccess[] = $this->lazyLink('default');
+		return $form;
 	}
 
-	/**
-	 * @param ImageForm $f
-	 */
-	public function uploadImageSubmitted(ImageForm $f)
-	{
-		$values = $f->getValues();
 
-		if($this->image){
-			$this->image->setDescription($values->description)
-				->setName($values->name)
-				->setPublic($values->public);
-
-			if($category = $this->imageCategoryFacade->getOne($values->category)){
-				$this->image->setCategory($category);
-			}
-
-			$this->imageFacade->save($this->image);
-
-			$this->flashMessage('Image was edited', 'success');
-		}else{
-			if(count($values->images)){
-				foreach($values->images as $image){
-					$imageModel = new \Flame\CMS\Models\Images\Image($this->fileManager->saveFile($image));
-					$imageModel->setName($values->name)
-						->setDescription($values->description)
-						->setPublic($values->public);
-
-					if($category = $this->imageCategoryFacade->getOne($values->category)){
-						$imageModel->setCategory($category);
-					}
-
-					$this->imageFacade->save($imageModel);
-				}
-			}
-
-			$this->flashMessage('Images was uploaded.', 'success');
-		}
-
-		$this->redirect('default');
-	}
 
 	public function handleDelete($id)
 	{

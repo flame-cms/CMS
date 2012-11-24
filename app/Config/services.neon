@@ -60,11 +60,13 @@ services:
 	PostFormFactory: \AdminModule\Forms\Posts\PostFormFactory
 
 	PageFacade: Flame\CMS\Models\Pages\PageFacade
-	ImageFacade: Flame\CMS\Models\Images\ImageFacade
 	LightGalleryControlFactory: Flame\Components\LightGallery\LightGalleryControlFactory
 
 	LinkFacade: Flame\CMS\Models\Links\LinkFacade
 	LinkFormFactory: AdminModule\Forms\Links\LinkFormFactory
+
+	ImageFacade: Flame\CMS\Models\Images\ImageFacade
+	ImageFormFactory: \AdminModule\Forms\Images\ImageFormFactory
 
 	MenuFacade: Flame\CMS\Models\Menu\MenuFacade
 	RawLinkFormFactory: AdminModule\Forms\Menu\RawLinkFormFactory
