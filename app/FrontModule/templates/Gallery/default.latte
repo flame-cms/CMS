@@ -2,5 +2,13 @@
 
 	<h1 n:block="title">Gallery</h1>
 
+	{if count($categories)}
+		<ul class="nav nav-pills">
+			{foreach $categories as $category}
+				<li><a n:href="Gallery:default $category->id" n:class="$presenter->isLinkCurrent('.') ? active">{$category}</a></li>
+			{/foreach}
+		</ul>
+	{/if}
+
 	{control lightGallery}
 {/#}
