@@ -42,4 +42,13 @@ class ImageFacade extends \Flame\Model\Facade
 	{
 		return $this->repository->findBy(array('public' => true), array('id' => 'DESC'));
 	}
+
+	/**
+	 * @param \Flame\CMS\Models\ImageCategories\ImageCategory $category
+	 * @return array
+	 */
+	public function getLastPublicImagesByCategory(\Flame\CMS\Models\ImageCategories\ImageCategory $category)
+	{
+		return $this->repository->findBy(array('public' => true, 'category' => $category), array('id' => 'DESC'));
+	}
 }
