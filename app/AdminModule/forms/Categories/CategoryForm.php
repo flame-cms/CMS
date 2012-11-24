@@ -8,7 +8,7 @@
  * @date    15.07.12
  */
 
-namespace AdminModule;
+namespace AdminModule\Forms\Categories;
 
 class CategoryForm extends \Flame\CMS\Application\UI\Form
 {
@@ -19,43 +19,25 @@ class CategoryForm extends \Flame\CMS\Application\UI\Form
 
 	/**
 	 * @param array $categories
+	 * @param array $defaults
 	 */
-	public function setCategories(array $categories)
+	public function __construct(array $categories, array $defaults = array())
 	{
+		parent::__construct();
+
 		$this->categories = $this->prepareForFormItem($categories);
-	}
-
-	/**
-	 * @param array $defaults
-	 * @param array $categories
-	 */
-	public function restore(array $defaults = array(), $categories = array())
-	{
-		parent::restore($defaults);
-		$this['parent']->setItems($categories);
-	}
-
-
-	public function configureAdd()
-	{
 		$this->configure();
-		$this->addSubmit('send', 'create');
-	}
 
-	/**
-	 * @param array $defaults
-	 */
-	public function configureEdit(array $defaults)
-	{
-		$this->configure();
-		$this->setDefaults($defaults);
-		$this->addSubmit('send', 'edit');
+		if(count($defaults)){
+			$this->setDefaults($defaults);
+			$this->addSubmit('send', 'Edit');
+		}else{
+			$this->addSubmit('send', 'Add');
+		}
 	}
 
 	private function configure()
 	{
-		$this->getElementPrototype()->class[] = 'ajax';
-
 		$this->addText('name', 'Name:', 50)
 			->addRule(self::FILLED)
 			->addRule(self::MAX_LENGTH, null, 100);

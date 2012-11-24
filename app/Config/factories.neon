@@ -1,1 +1,5 @@
 factories:
+	categoryFormFactory:
+		create: AdminModule\Forms\Categories\CategoryForm(%categories%, %defaults%)
+		implement: AdminModule\Forms\Categories\ICategoryFormFactory
+		parameters: [array categories, array defaults = []]
