@@ -76,7 +76,7 @@ class CategoryPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @return CategoryForm
+	 * @return Forms\Categories\CategoryForm
 	 */
 	protected function createComponentCategoryForm()
 	{
@@ -91,6 +91,9 @@ class CategoryPresenter extends AdminPresenter
 		return $form;
 	}
 
+	/**
+	 * @param Forms\Categories\CategoryForm $form
+	 */
 	public function formSubmitted(\AdminModule\Forms\Categories\CategoryForm $form)
 	{
 		if($this->category){
