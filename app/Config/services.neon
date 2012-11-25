@@ -9,11 +9,8 @@ services:
 	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
 	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
 	MappingStrategy: \Doctrine\ORM\Mapping\UnderscoreNamingStrategy
-
-	FileManager:
-		class: Flame\Utils\FileManager
-		setup:
-			- setFileStorage(/%imageStorage.imageDir%)
+	FileManager: Flame\Utils\FileManager(%wwwDir%, %imageStorage.imageDir%)
+	Helpers: \Flame\Templating\Helpers(%wwwDir%)
 
 	EventManager:
 		class: Doctrine\Common\EventManager
