@@ -9,9 +9,9 @@ parameters:
 		- %appDir%/Models
 
 	imageStorage:
-		thumbDir: 'media/images_thumbnails'
-		imageDir: 'media/images'
-		importImageDir: 'media/imported_images'
+		thumbDir: '/media/images_thumbnails'
+		imageDir: '/media/images'
+		importImageDir: '/media/imported_images'
 		baseDir: %wwwDir%
 
 	selenium:
