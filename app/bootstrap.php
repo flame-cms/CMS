@@ -12,15 +12,19 @@ use Flame\Config\Configurator,
 	Nette\Application\Routers\Route,
 	Nette\Application\Routers\RouteList;
 
-require LIBS_DIR . '/autoload.php';
+require __DIR__ . '/../libs/autoload.php';
 //Is not required include nette loader because it do the composer!
 
 $configurator = new Configurator();
-$configurator->enableDebugger(WWW_DIR . '/../log');
-$configurator->setTempDirectory(WWW_DIR . '/../temp');
-$configurator->createRobotLoader()->addDirectory(APP_DIR)->register();
-$configurator->addConfig(APP_DIR . '/Config/config.neon', $configurator::AUTO);
-$configurator->addParameters(array('appDir' => APP_DIR, 'wwwDir' => WWW_DIR, 'rootDir' => realpath(__DIR__ . '/..')));
+$configurator->enableDebugger(__DIR__ . '/../log');
+$configurator->setTempDirectory(__DIR__ . '/../temp');
+$configurator->createRobotLoader()->addDirectory(__DIR__)->register();
+$configurator->addConfig(__DIR__ . '/Config/config.neon', $configurator::AUTO);
+$configurator->addParameters(array(
+	'appDir' => __DIR__,
+	'wwwDir' => realpath(__DIR__ . '/../www'),
+	'rootDir' => realpath(__DIR__ . '/..')
+));
 $container = $configurator->createContainer();
 
 if ($container->parameters['consoleMode']) {
@@ -43,5 +47,4 @@ if ($container->parameters['consoleMode']) {
 	));
 }
 
-if (!$container->parameters['consoleMode'])
-	$container->application->run();
+return $container;
