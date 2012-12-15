@@ -79,9 +79,9 @@ class CategoryFormProcces extends \Nette\Object
 	protected function createSlug($values)
 	{
 		if(empty($values['slug'])){
-			return Strings::createSlug($values['name']);
+			return Strings::webalize($values['name']);
 		}else{
-			return Strings::createSlug($values['slug']);
+			return Strings::webalize($values['slug']);
 		}
 	}
 }
