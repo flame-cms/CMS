@@ -9,8 +9,7 @@ services:
 	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
 	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
 	MappingStrategy: \Doctrine\ORM\Mapping\UnderscoreNamingStrategy
-	FileManager: Flame\Utils\FileManager(%wwwDir%, %imageStorage.imageDir%)
-	Helpers: \Flame\Templating\Helpers(%wwwDir%)
+	FileManager: \Flame\Tools\Files\FileManager(%imageStorage.baseDir%, %imageStorage.imageDir%)
 
 	EventManager:
 		class: Doctrine\Common\EventManager
@@ -63,7 +62,7 @@ services:
 	LinkFormFactory: AdminModule\Forms\Links\LinkFormFactory
 
 	ImageFacade: Flame\CMS\Models\Images\ImageFacade
-	ImageFormFactory: \AdminModule\Forms\Images\ImageFormFactory
+	ImageFormProcess: \AdminModule\Forms\Images\ImageFormProcess
 
 	MenuFacade: Flame\CMS\Models\Menu\MenuFacade
 	RawLinkFormFactory: AdminModule\Forms\Menu\RawLinkFormFactory
@@ -72,7 +71,7 @@ services:
 	ImageCategoryFacade: \Flame\CMS\Models\ImageCategories\ImageCategoryFacade
 	ImageCategoryFormFactory: \AdminModule\Forms\ImageCategories\ImageCategoryFormFactory
 
-	ThumbnailsCreator: \Flame\Templating\Helpers\ThumbnailsCreator(%wwwDir%)
+	ThumbnailsCreator: \Flame\Templating\Helpers\ThumbnailsCreator(%wwwDir%, %imageStorage.thumbDir%)
 
 
 

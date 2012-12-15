@@ -1,10 +1,15 @@
 factories:
-	categoryFormFactory:
-		create: AdminModule\Forms\Categories\CategoryForm(%categories%, %defaults%)
-		implement: AdminModule\Forms\Categories\ICategoryFormFactory
+	categoryForm:
+		create: \AdminModule\Forms\Categories\CategoryForm(%categories%, %defaults%)
+		implement: \AdminModule\Forms\Categories\ICategoryFormFactory
 		parameters: [array categories, array defaults = []]
 
 	lightGalleryControl:
 		create: \Flame\Components\LightGallery\LightGalleryControl(%images%)
 		implement: \Flame\Components\LightGallery\ILightGalleryControlFactory
 		parameters: [images]
+
+	imageForm:
+		create: \AdminModule\Forms\Images\ImageForm(%categories%, %defaults%)
+		implement: \AdminModule\Forms\Images\IImageFormFactory
+		parameters: [array categories, array defaults = []]

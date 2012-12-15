@@ -26,29 +26,55 @@ class ImagePresenter extends AdminPresenter
 	private $imageFacade;
 
 	/**
-	 * @var \Flame\Utils\FileManager $fileManager
+	 * @var \Flame\Templating\Helpers\ThumbnailsCreator $thumbnailsCreator
 	 */
-	private $fileManager;
+	private $thumbnailsCreator;
 
 	/**
-	 * @var \AdminModule\Forms\Images\ImageFormFactory $imageFormFactory
+	 * @var \AdminModule\Forms\Images\IImageFormFactory $imageFormFactory
 	 */
 	private $imageFormFactory;
 
 	/**
-	 * @param \AdminModule\Forms\Images\ImageFormFactory $imageFormFactory
+	 * @var \Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade
 	 */
-	public function injectImageFormFactory(\AdminModule\Forms\Images\ImageFormFactory $imageFormFactory)
+	private $imageCategoryFacade;
+
+	/**
+	 * @var \AdminModule\Forms\Images\ImageFormProcess $imageFormProcess
+	 */
+	private $imageFormProcess;
+
+	/**
+	 * @param \AdminModule\Forms\Images\ImageFormProcess $imageFormProcess
+	 */
+	public function injectImageFormProcess(\AdminModule\Forms\Images\ImageFormProcess $imageFormProcess)
+	{
+		$this->imageFormProcess = $imageFormProcess;
+	}
+
+	/**
+	 * @param \Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade
+	 */
+	public function injectImageCategoryFacade(\Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade)
+	{
+		$this->imageCategoryFacade = $imageCategoryFacade;
+	}
+
+	/**
+	 * @param \AdminModule\Forms\Images\IImageFormFactory $imageFormFactory
+	 */
+	public function injectImageFormFactory(\AdminModule\Forms\Images\IImageFormFactory $imageFormFactory)
 	{
 		$this->imageFormFactory = $imageFormFactory;
 	}
 
 	/**
-	 * @param \Flame\Utils\FileManager $fileManager
+	 * @param \Flame\Templating\Helpers\ThumbnailsCreator $thumbnailsCreator
 	 */
-	public function injectFileManager(\Flame\Utils\FileManager $fileManager)
+	public function injectThumbnailsCreator(\Flame\Templating\Helpers\ThumbnailsCreator $thumbnailsCreator)
 	{
-		$this->fileManager = $fileManager;
+		$this->thumbnailsCreator = $thumbnailsCreator;
 	}
 
 	/**
@@ -62,13 +88,14 @@ class ImagePresenter extends AdminPresenter
 	public function startup()
 	{
 		parent::startup();
+		$this->template->registerHelper('thumb', \Nette\Callback::create($this->thumbnailsCreator, 'thumb'));
 		$this->imageStorage = $this->getContextParameter('imageStorage');
 	}
 
 	public function renderDefault()
 	{
 		$this->template->images = $this->imageFacade->getLastImages();
-		$this->template->imageDir = $this->imageStorage['imageDir'];
+		$this->template->imageDir = $this->imageStorage['baseDir'] . $this->imageStorage['imageDir'];
 	}
 
 	public function actionEdit($id)
@@ -82,13 +109,15 @@ class ImagePresenter extends AdminPresenter
 	}
 
 	/**
-	 * @return ImageForm
+	 * @param Forms\Images\ImageForm $form
 	 */
-	protected function createComponentImageForm()
+	public function formSubmitted(\AdminModule\Forms\Images\ImageForm $form)
 	{
-		$form = $this->imageFormFactory->configure($this->image)->createForm();
-		$form->onSuccess[] = $this->lazyLink('default');
-		return $form;
+		if($this->image){
+			$this->imageFormProcess->sendEdit($form, $this->image);
+		}else{
+			$this->imageFormProcess->sendUpload($form);
+		}
 	}
 
 	public function handleDelete($id)
@@ -100,17 +129,9 @@ class ImagePresenter extends AdminPresenter
 			$row = $this->imageFacade->getOne($id);
 
 			if($row){
-
-				$file = $this->imageStorage['baseDir'] .
-					DIRECTORY_SEPARATOR .
-					$this->imageStorage['imageDir'] .
-					DIRECTORY_SEPARATOR . $row->file;
-
-				if(file_exists($file)){
-					unlink($file);
-				}
-
+				$file = $this->imageStorage['baseDir'] . $row->file;
 				$this->imageFacade->delete($row);
+				\Flame\Tools\Files\FileSystem::rm($file, false);
 			}else{
 				$this->flashMessage('Required image to delete does not exist!');
 			}
@@ -138,5 +159,18 @@ class ImagePresenter extends AdminPresenter
 		}else{
 			$this->invalidateControl('images');
 		}
+	}
+
+	/**
+	 * @return ImageForm
+	 */
+	protected function createComponentImageForm()
+	{
+		$form = $this->imageFormFactory->create(
+			$this->imageCategoryFacade->getImageCategories(), $this->image ? $this->image->toArray() : array());
+
+		$form->onSuccess[] = $this->formSubmitted;
+		$form->onSuccess[] = $this->lazyLink('default');
+		return $form;
 	}
 }
