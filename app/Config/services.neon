@@ -5,7 +5,7 @@ services:
 	Loader: Nette\Loaders\RobotLoader
 	TablePrefix: Flame\Doctrine\TablePrefix(%database.prefix%)
 	WordPressImporter: Flame\Addons\WordPress\PostsImporter
-	ThemeManager: Flame\CMS\Templating\ThemeManager(%theme%, @OptionFacade)
+	ThemeManager: Flame\CMS\Templating\ThemeManager(%theme%)
 	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
 	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
 	MappingStrategy: \Doctrine\ORM\Mapping\UnderscoreNamingStrategy

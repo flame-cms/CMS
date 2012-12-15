@@ -34,8 +34,9 @@ class ThemeManager extends \Flame\Templating\ThemeManager
 		$theme = parent::getTheme();
 
 		if($option = $this->optionFacade->getOptionValue('Theme')){
-			$path = $this->getDefaultThemeFolder() . '/' . $option;
-			if($this->existTheme($path)) return $path;
+			$path = $this->getDefaultThemeFolder() . DIRECTORY_SEPARATOR . $option;
+			if($this->existTheme($option))
+				$theme = $path;
 		}
 
 		return $theme;

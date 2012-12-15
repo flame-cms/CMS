@@ -72,7 +72,8 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	public function formatLayoutTemplateFiles()
 	{
 		$list = parent::formatLayoutTemplateFiles();
-		array_unshift($list, WWW_DIR . '/' .  $this->theme . "/@layout.latte");
+		$wwwDir = $this->getContextParameter('wwwDir');
+		array_unshift($list, $wwwDir . DIRECTORY_SEPARATOR . $this->theme . "/@layout.latte");
 		return $list;
 	}
 

@@ -21,5 +21,6 @@ parameters:
 		# port: 4444
 
 	theme:
+		baseDir: %wwwDir%
 		baseFolder: themes
 		default: default
