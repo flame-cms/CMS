@@ -1,4 +1,6 @@
 services:
+	routerFactory: \Flame\CMS\Router\RouterFactory
+	router: @routerFactory::createRouter
 	Authorizator: Flame\CMS\Security\Authorizator
 	Authenticator: Flame\CMS\Security\Authenticator
 	SqlLogger: Flame\Addons\Doctrine\Diagnostics\ConnectionPanel::register

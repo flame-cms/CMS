@@ -13,7 +13,6 @@ use Flame\Config\Configurator,
 	Nette\Application\Routers\RouteList;
 
 require __DIR__ . '/../libs/autoload.php';
-//Is not required include nette loader because it do the composer!
 
 $configurator = new Configurator();
 $configurator->enableDebugger(__DIR__ . '/../log');
@@ -26,25 +25,5 @@ $configurator->addParameters(array(
 	'rootDir' => realpath(__DIR__ . '/..')
 ));
 $container = $configurator->createContainer();
-
-if ($container->parameters['consoleMode']) {
-	$container->router[] = new \Nette\Application\Routers\SimpleRouter();
-} else {
-
-	$container->router[] = new Route('index.php', 'Front:Homepage:default', Route::ONE_WAY);
-	$container->router[] = new Route('admin/<presenter>/<action>[/<id>]', array(
-		'module' => 'Admin',
-		'presenter' => 'Dashboard',
-		'action' => 'default',
-		'id' => null
-	));
-	$container->router[] = new Route('<presenter>/<action>[/<id>][/<slug>]', array(
-		'module' => 'Front',
-		'presenter' => 'Homepage',
-		'action' => 'default',
-		'id' => null,
-		'slug' => null
-	));
-}
 
 return $container;
