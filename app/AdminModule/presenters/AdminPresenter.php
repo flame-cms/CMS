@@ -11,19 +11,6 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 	private $navbarBuilderControlFactory;
 
 	/**
-	 * @var \Flame\Templating\Helpers $helpers
-	 */
-	private $helpers;
-
-	/**
-	 * @param \Flame\Templating\Helpers $helpers
-	 */
-	public function injectHelpers(\Flame\Templating\Helpers $helpers)
-	{
-		$this->helpers = $helpers;
-	}
-
-	/**
 	 * @param \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
 	 */
 	public function injectNavbarBuilderControlFactory(\Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory)
@@ -46,17 +33,6 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 		parent::beforeRender();
 
 		$this->template->breadCrumbs = $this->generateBreadCrumb();
-	}
-
-	/**
-	 * @param null $class
-	 * @return \Nette\Templating\ITemplate
-	 */
-	public function createTemplate($class = null)
-	{
-		$template = parent::createTemplate($class);
-		$template->registerHelperLoader(\Nette\Callback::create($this->helpers, 'loader'));
-		return $template;
 	}
 
 	/**
