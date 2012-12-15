@@ -1,11 +1,11 @@
 services:
 	Authorizator: Flame\CMS\Security\Authorizator
 	Authenticator: Flame\CMS\Security\Authenticator
-	SqlLogger: Flame\Utils\ConnectionPanel::register
+	SqlLogger: Flame\Addons\Doctrine\Diagnostics\ConnectionPanel::register
 	Loader: Nette\Loaders\RobotLoader
 	TablePrefix: Flame\Doctrine\TablePrefix(%database.prefix%)
-	WordPressImporter: Flame\Utils\WordPressImporter
-	ThemeManager: Flame\CMS\Utils\ThemeManager(%theme%, @OptionFacade)
+	WordPressImporter: Flame\Addons\WordPress\PostsImporter
+	ThemeManager: Flame\CMS\Templating\ThemeManager(%theme%, @OptionFacade)
 	InFormFactory: DoctrineSandbox\Forms\Sign\InFormFactory
 	NavbarBuilderControlFactory: Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
 	MappingStrategy: \Doctrine\ORM\Mapping\UnderscoreNamingStrategy
