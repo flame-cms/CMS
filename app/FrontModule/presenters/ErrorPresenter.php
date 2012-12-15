@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontModule;
+namespace Flame\CMS\FrontModule;
 
 use Nette\Diagnostics\Debugger,
 	Nette\Application as NA;

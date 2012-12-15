@@ -8,7 +8,7 @@
  * @date    15.07.12
  */
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 use Flame\Utils\Strings;
 

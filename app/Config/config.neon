@@ -14,6 +14,8 @@ common:
 			debugger: false
 
 		application:
+			mapping:
+				*: Flame\CMS\*Module\*Presenter
 			debugger: false
 
 		session:

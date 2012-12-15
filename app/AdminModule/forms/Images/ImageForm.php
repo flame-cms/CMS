@@ -8,7 +8,7 @@
  * @date    18.07.12
  */
 
-namespace AdminModule\Forms\Images;
+namespace Flame\CMS\AdminModule\Forms\Images;
 
 class ImageForm extends \Flame\CMS\Application\UI\Form
 {

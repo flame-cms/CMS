@@ -8,7 +8,7 @@
  * @date    05.08.12
  */
 
-namespace AdminModule\Forms\Options;
+namespace Flame\CMS\AdminModule\Forms\Options;
 
 class OptionForm extends \Flame\CMS\Application\UI\Form
 {

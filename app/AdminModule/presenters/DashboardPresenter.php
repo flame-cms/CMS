@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 /**
 * Dashboard for administration

@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 use Nette\Image;
 
@@ -31,7 +31,7 @@ class ImagePresenter extends AdminPresenter
 	private $thumbnailsCreator;
 
 	/**
-	 * @var \AdminModule\Forms\Images\IImageFormFactory $imageFormFactory
+	 * @var \Flame\CMS\AdminModule\Forms\Images\IImageFormFactory $imageFormFactory
 	 */
 	private $imageFormFactory;
 
@@ -41,14 +41,14 @@ class ImagePresenter extends AdminPresenter
 	private $imageCategoryFacade;
 
 	/**
-	 * @var \AdminModule\Forms\Images\ImageFormProcess $imageFormProcess
+	 * @var \Flame\CMS\AdminModule\Forms\Images\ImageFormProcess $imageFormProcess
 	 */
 	private $imageFormProcess;
 
 	/**
-	 * @param \AdminModule\Forms\Images\ImageFormProcess $imageFormProcess
+	 * @param \Flame\CMS\AdminModule\Forms\Images\ImageFormProcess $imageFormProcess
 	 */
-	public function injectImageFormProcess(\AdminModule\Forms\Images\ImageFormProcess $imageFormProcess)
+	public function injectImageFormProcess(\Flame\CMS\AdminModule\Forms\Images\ImageFormProcess $imageFormProcess)
 	{
 		$this->imageFormProcess = $imageFormProcess;
 	}
@@ -62,9 +62,9 @@ class ImagePresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \AdminModule\Forms\Images\IImageFormFactory $imageFormFactory
+	 * @param \Flame\CMS\AdminModule\Forms\Images\IImageFormFactory $imageFormFactory
 	 */
-	public function injectImageFormFactory(\AdminModule\Forms\Images\IImageFormFactory $imageFormFactory)
+	public function injectImageFormFactory(\Flame\CMS\AdminModule\Forms\Images\IImageFormFactory $imageFormFactory)
 	{
 		$this->imageFormFactory = $imageFormFactory;
 	}
@@ -111,7 +111,7 @@ class ImagePresenter extends AdminPresenter
 	/**
 	 * @param Forms\Images\ImageForm $form
 	 */
-	public function formSubmitted(\AdminModule\Forms\Images\ImageForm $form)
+	public function formSubmitted(\Flame\CMS\AdminModule\Forms\Images\ImageForm $form)
 	{
 		if($this->image){
 			$this->imageFormProcess->sendEdit($form, $this->image);

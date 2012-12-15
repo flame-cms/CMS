@@ -8,7 +8,7 @@
  * @date    28.07.12
  */
 
-namespace FrontModule;
+namespace Flame\CMS\FrontModule;
 
 class TagPresenter extends FrontPresenter
 {

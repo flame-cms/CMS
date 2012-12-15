@@ -8,7 +8,7 @@
  * @date    13.11.12
  */
 
-namespace AdminModule\Forms\Posts;
+namespace Flame\CMS\AdminModule\Forms\Posts;
 
 use Flame\Utils\Strings;
 

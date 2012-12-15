@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 /**
 * PostPresenter
@@ -24,14 +24,14 @@ class PostPresenter extends AdminPresenter
 	private $postFacade;
 
 	/**
-	 * @var \AdminModule\Forms\Posts\PostFormFactory $postFormFactory
+	 * @var \Flame\CMS\AdminModule\Forms\Posts\PostFormFactory $postFormFactory
 	 */
 	private $postFormFactory;
 
 	/**
-	 * @param \AdminModule\Forms\Posts\PostFormFactory $postFormFactory
+	 * @param \Flame\CMS\AdminModule\Forms\Posts\PostFormFactory $postFormFactory
 	 */
-	public function injectPostFormFactory(\AdminModule\Forms\Posts\PostFormFactory $postFormFactory)
+	public function injectPostFormFactory(\Flame\CMS\AdminModule\Forms\Posts\PostFormFactory $postFormFactory)
 	{
 		$this->postFormFactory = $postFormFactory;
 	}

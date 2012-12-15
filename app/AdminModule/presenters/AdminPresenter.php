@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 {

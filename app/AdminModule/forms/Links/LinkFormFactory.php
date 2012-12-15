@@ -3,12 +3,12 @@
  * LinkFormFactory.php
  *
  * @author  Jiří Šifalda <sifalda.jiri@gmail.com>
- * @package AdminModule
+ * @package Flame\CMS\AdminModule
  *
  * @date    15.10.12
  */
 
-namespace AdminModule\Forms\Links;
+namespace Flame\CMS\AdminModule\Forms\Links;
 
 class LinkFormFactory extends \Flame\Application\FormFactory
 {

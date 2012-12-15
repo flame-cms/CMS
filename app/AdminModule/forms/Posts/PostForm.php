@@ -8,7 +8,7 @@
  * @date    14.07.12
  */
 
-namespace AdminModule\Forms\Posts;
+namespace Flame\CMS\AdminModule\Forms\Posts;
 
 class PostForm extends \Flame\CMS\Application\UI\Form
 {

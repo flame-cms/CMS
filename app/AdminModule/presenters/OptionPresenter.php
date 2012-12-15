@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 use Flame\CMS\Models\Options;
 
@@ -21,14 +21,14 @@ class OptionPresenter extends AdminPresenter
 	private $optionFacade;
 
 	/**
-	 * @var \AdminModule\Forms\Options\OptionFormFactory $optionFormFactory
+	 * @var \Flame\CMS\AdminModule\Forms\Options\OptionFormFactory $optionFormFactory
 	 */
 	private $optionFormFactory;
 
 	/**
-	 * @param \AdminModule\Forms\Options\OptionFormFactory $optionFormFactory
+	 * @param \Flame\CMS\AdminModule\Forms\Options\OptionFormFactory $optionFormFactory
 	 */
-	public function injectOptionFormFactory(\AdminModule\Forms\Options\OptionFormFactory $optionFormFactory)
+	public function injectOptionFormFactory(\Flame\CMS\AdminModule\Forms\Options\OptionFormFactory $optionFormFactory)
 	{
 		$this->optionFormFactory = $optionFormFactory;
 	}

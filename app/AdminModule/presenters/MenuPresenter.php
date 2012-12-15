@@ -8,7 +8,7 @@
  * @date    20.10.12
  */
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 class MenuPresenter extends AdminPresenter
 {
@@ -24,27 +24,27 @@ class MenuPresenter extends AdminPresenter
 	private $menuLink;
 
 	/**
-	 * @var \AdminModule\Forms\Menu\RawLinkFormFactory $rawLinkFormFactory
+	 * @var \Flame\CMS\AdminModule\Forms\Menu\RawLinkFormFactory $rawLinkFormFactory
 	 */
 	private $rawLinkFormFactory;
 
 	/**
-	 * @var \AdminModule\Forms\Menu\PageLinkFormFactory $pageLinkFormFactory
+	 * @var \Flame\CMS\AdminModule\Forms\Menu\PageLinkFormFactory $pageLinkFormFactory
 	 */
 	private $pageLinkFormFactory;
 
 	/**
-	 * @param \AdminModule\Forms\Menu\PageLinkFormFactory $pageLinkFormFactory
+	 * @param \Flame\CMS\AdminModule\Forms\Menu\PageLinkFormFactory $pageLinkFormFactory
 	 */
-	public function injectPageLinkFormFactory(\AdminModule\Forms\Menu\PageLinkFormFactory $pageLinkFormFactory)
+	public function injectPageLinkFormFactory(\Flame\CMS\AdminModule\Forms\Menu\PageLinkFormFactory $pageLinkFormFactory)
 	{
 		$this->pageLinkFormFactory = $pageLinkFormFactory;
 	}
 
 	/**
-	 * @param \AdminModule\Forms\Menu\RawLinkFormFactory $rawLinkFormFactory
+	 * @param \Flame\CMS\AdminModule\Forms\Menu\RawLinkFormFactory $rawLinkFormFactory
 	 */
-	public function injectAddLinkFormFactory(\AdminModule\Forms\Menu\RawLinkFormFactory $rawLinkFormFactory)
+	public function injectAddLinkFormFactory(\Flame\CMS\AdminModule\Forms\Menu\RawLinkFormFactory $rawLinkFormFactory)
 	{
 		$this->rawLinkFormFactory = $rawLinkFormFactory;
 	}

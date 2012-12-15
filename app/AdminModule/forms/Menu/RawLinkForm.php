@@ -8,7 +8,7 @@
  * @date    20.10.12
  */
 
-namespace AdminModule\Forms\Menu;
+namespace Flame\CMS\AdminModule\Forms\Menu;
 
 class RawLinkForm extends \Flame\CMS\Application\UI\Form
 {

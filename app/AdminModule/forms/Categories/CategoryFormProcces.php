@@ -8,7 +8,7 @@
  * @date    24.11.12
  */
 
-namespace AdminModule\Forms\Categories;
+namespace Flame\CMS\AdminModule\Forms\Categories;
 
 use Flame\Utils\Strings;
 

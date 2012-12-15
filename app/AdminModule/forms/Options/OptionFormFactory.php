@@ -3,12 +3,12 @@
  * OptionFormFactory.php
  *
  * @author  Jiří Šifalda <sifalda.jiri@gmail.com>
- * @package AdminModule
+ * @package Flame\CMS\AdminModule
  *
  * @date    13.10.12
  */
 
-namespace AdminModule\Forms\Options;
+namespace Flame\CMS\AdminModule\Forms\Options;
 
 class OptionFormFactory extends \Flame\Application\FormFactory
 {

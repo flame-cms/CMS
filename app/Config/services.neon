@@ -32,14 +32,14 @@ services:
 	NewsreelControlFactory: Flame\CMS\Components\Newsreel\NewsreelControlFactory
 
 	UserFacade: Flame\CMS\Models\Users\UserFacade
-	UserEditFormFactory: AdminModule\Forms\Users\UserEditFormFactory
-	UserAddFormFactory: AdminModule\Forms\Users\UserAddFormFactory
-	UserPasswordFormFactory: AdminModule\Forms\Users\UserPasswordFormFactory
+	UserEditFormFactory: Flame\CMS\AdminModule\Forms\Users\UserEditFormFactory
+	UserAddFormFactory: Flame\CMS\AdminModule\Forms\Users\UserAddFormFactory
+	UserPasswordFormFactory: Flame\CMS\AdminModule\Forms\Users\UserPasswordFormFactory
 
 	UserInfoFacade: Flame\CMS\Models\UsersInfo\UserInfoFacade
 
 	OptionFacade: Flame\CMS\Models\Options\OptionFacade
-	OptionFormFactory: AdminModule\Forms\Options\OptionFormFactory
+	OptionFormFactory: Flame\CMS\AdminModule\Forms\Options\OptionFormFactory
 
 	CommentFacade: Flame\CMS\Models\Comments\CommentFacade
 	CommentFormFactory: Flame\CMS\Components\Comments\CommentFormFactory
@@ -50,26 +50,26 @@ services:
 
 	CategoryFacade: Flame\CMS\Models\Categories\CategoryFacade
 	CategoryControlFactory: Flame\CMS\Components\Categories\CategoryControlFactory
-	CategoryFormProcces: \AdminModule\Forms\Categories\CategoryFormProcces
+	CategoryFormProcces: \Flame\CMS\AdminModule\Forms\Categories\CategoryFormProcces
 
 	PostFacade: Flame\CMS\Models\Posts\PostFacade
 	PostControlFactory: Flame\CMS\Components\Posts\PostControlFactory
-	PostFormFactory: \AdminModule\Forms\Posts\PostFormFactory
+	PostFormFactory: \Flame\CMS\AdminModule\Forms\Posts\PostFormFactory
 
 	PageFacade: Flame\CMS\Models\Pages\PageFacade
 
 	LinkFacade: Flame\CMS\Models\Links\LinkFacade
-	LinkFormFactory: AdminModule\Forms\Links\LinkFormFactory
+	LinkFormFactory: Flame\CMS\AdminModule\Forms\Links\LinkFormFactory
 
 	ImageFacade: Flame\CMS\Models\Images\ImageFacade
-	ImageFormProcess: \AdminModule\Forms\Images\ImageFormProcess
+	ImageFormProcess: \Flame\CMS\AdminModule\Forms\Images\ImageFormProcess
 
 	MenuFacade: Flame\CMS\Models\Menu\MenuFacade
-	RawLinkFormFactory: AdminModule\Forms\Menu\RawLinkFormFactory
-	PageLinkFormFactory: AdminModule\Forms\Menu\PageLinkFormFactory
+	RawLinkFormFactory: Flame\CMS\AdminModule\Forms\Menu\RawLinkFormFactory
+	PageLinkFormFactory: Flame\CMS\AdminModule\Forms\Menu\PageLinkFormFactory
 
 	ImageCategoryFacade: \Flame\CMS\Models\ImageCategories\ImageCategoryFacade
-	ImageCategoryFormFactory: \AdminModule\Forms\ImageCategories\ImageCategoryFormFactory
+	ImageCategoryFormFactory: \Flame\CMS\AdminModule\Forms\ImageCategories\ImageCategoryFormFactory
 
 	ThumbnailsCreator: \Flame\Templating\Helpers\ThumbnailsCreator(%wwwDir%, %imageStorage.thumbDir%)
 

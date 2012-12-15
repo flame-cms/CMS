@@ -8,7 +8,7 @@
  * @date    15.07.12
  */
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 class CategoryPresenter extends AdminPresenter
 {
@@ -24,27 +24,27 @@ class CategoryPresenter extends AdminPresenter
 	private $categoryFacade;
 
 	/**
-	 * @var \AdminModule\Forms\Categories\ICategoryFormFactory $categoryFormFactory
+	 * @var \Flame\CMS\AdminModule\Forms\Categories\ICategoryFormFactory $categoryFormFactory
 	 */
 	private $categoryFormFactory;
 
 	/**
-	 * @var \AdminModule\Forms\Categories\CategoryFormProcces $categoryFormProcces
+	 * @var \Flame\CMS\AdminModule\Forms\Categories\CategoryFormProcces $categoryFormProcces
 	 */
 	private $categoryFormProcces;
 
 	/**
-	 * @param \AdminModule\Forms\Categories\CategoryFormProcces $categoryFormProcces
+	 * @param \Flame\CMS\AdminModule\Forms\Categories\CategoryFormProcces $categoryFormProcces
 	 */
-	public function injectCategoryFormProcces(\AdminModule\Forms\Categories\CategoryFormProcces $categoryFormProcces)
+	public function injectCategoryFormProcces(\Flame\CMS\AdminModule\Forms\Categories\CategoryFormProcces $categoryFormProcces)
 	{
 		$this->categoryFormProcces = $categoryFormProcces;
 	}
 
 	/**
-	 * @param \AdminModule\Forms\Categories\ICategoryFormFactory $categoryFormFactory
+	 * @param \Flame\CMS\AdminModule\Forms\Categories\ICategoryFormFactory $categoryFormFactory
 	 */
-	public function injectCategoryFormFactory(\AdminModule\Forms\Categories\ICategoryFormFactory $categoryFormFactory)
+	public function injectCategoryFormFactory(\Flame\CMS\AdminModule\Forms\Categories\ICategoryFormFactory $categoryFormFactory)
 	{
 		$this->categoryFormFactory = $categoryFormFactory;
 	}
@@ -94,7 +94,7 @@ class CategoryPresenter extends AdminPresenter
 	/**
 	 * @param Forms\Categories\CategoryForm $form
 	 */
-	public function formSubmitted(\AdminModule\Forms\Categories\CategoryForm $form)
+	public function formSubmitted(\Flame\CMS\AdminModule\Forms\Categories\CategoryForm $form)
 	{
 		if($this->category){
 			$this->categoryFormProcces->edit($form, $this->category);

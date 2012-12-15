@@ -3,12 +3,12 @@
  * LinkPresenter.php
  *
  * @author  Jiří Šifalda <sifalda.jiri@gmail.com>
- * @package AdminModule
+ * @package Flame\CMS\AdminModule
  *
  * @date    15.10.12
  */
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 class LinkPresenter extends AdminPresenter
 {
@@ -19,7 +19,7 @@ class LinkPresenter extends AdminPresenter
 	private $link;
 
 	/**
-	 * @var \AdminModule\Forms\Links\LinkFormFactory $linkFormFactory
+	 * @var \Flame\CMS\AdminModule\Forms\Links\LinkFormFactory $linkFormFactory
 	 */
 	private $linkFormFactory;
 
@@ -37,9 +37,9 @@ class LinkPresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \AdminModule\Forms\Links\LinkFormFactory $linkFormFactory
+	 * @param \Flame\CMS\AdminModule\Forms\Links\LinkFormFactory $linkFormFactory
 	 */
-	public function injectLinkFormFactory(\AdminModule\Forms\Links\LinkFormFactory $linkFormFactory)
+	public function injectLinkFormFactory(\Flame\CMS\AdminModule\Forms\Links\LinkFormFactory $linkFormFactory)
 	{
 		$this->linkFormFactory = $linkFormFactory;
 	}

@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontModule;
+namespace Flame\CMS\FrontModule;
 
 abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 {

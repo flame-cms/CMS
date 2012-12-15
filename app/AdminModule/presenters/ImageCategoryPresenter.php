@@ -8,7 +8,7 @@
  * @date    22.11.12
  */
 
-namespace AdminModule;
+namespace Flame\CMS\AdminModule;
 
 class ImageCategoryPresenter extends AdminPresenter
 {
@@ -24,14 +24,14 @@ class ImageCategoryPresenter extends AdminPresenter
 	private $imageCategoryFacade;
 
 	/**
-	 * @var \AdminModule\Forms\ImageCategories\ImageCategoryFormFactory $imageCategoryFormFactory
+	 * @var \Flame\CMS\AdminModule\Forms\ImageCategories\ImageCategoryFormFactory $imageCategoryFormFactory
 	 */
 	private $imageCategoryFormFactory;
 
 	/**
-	 * @param \AdminModule\Forms\ImageCategories\ImageCategoryFormFactory $imageCategoryFormFactory
+	 * @param \Flame\CMS\AdminModule\Forms\ImageCategories\ImageCategoryFormFactory $imageCategoryFormFactory
 	 */
-	public function injectImageCategoryFormFactory(\AdminModule\Forms\ImageCategories\ImageCategoryFormFactory $imageCategoryFormFactory)
+	public function injectImageCategoryFormFactory(\Flame\CMS\AdminModule\Forms\ImageCategories\ImageCategoryFormFactory $imageCategoryFormFactory)
 	{
 		$this->imageCategoryFormFactory = $imageCategoryFormFactory;
 	}

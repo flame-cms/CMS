@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontModule;
+namespace Flame\CMS\FrontModule;
 
 /**
 * Post presenter

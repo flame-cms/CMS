@@ -8,7 +8,7 @@
  * @date    22.11.12
  */
 
-namespace AdminModule\Forms\ImageCategories;
+namespace Flame\CMS\AdminModule\Forms\ImageCategories;
 
 use Flame\Utils\Strings;
 

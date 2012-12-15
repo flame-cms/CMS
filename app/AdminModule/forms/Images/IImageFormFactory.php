@@ -8,7 +8,7 @@
  * @date    15.12.12
  */
 
-namespace AdminModule\Forms\Images;
+namespace Flame\CMS\AdminModule\Forms\Images;
 
 interface IImageFormFactory
 {

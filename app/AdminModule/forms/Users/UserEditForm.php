@@ -8,7 +8,7 @@
  * @date    14.10.12
  */
 
-namespace AdminModule\Forms\Users;
+namespace Flame\CMS\AdminModule\Forms\Users;
 
 class UserEditForm extends \Flame\CMS\Application\UI\Form
 {

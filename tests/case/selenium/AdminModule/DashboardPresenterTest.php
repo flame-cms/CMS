@@ -8,7 +8,7 @@
  * @date    05.08.12
  */
 
-namespace Flame\CMS\Tests\Selenium\AdminModule;
+namespace Flame\CMS\Tests\Selenium\Flame\CMS\AdminModule;
 
 class DashboardPresenterTest extends \Flame\CMS\Tests\SeleniumTestCase
 {

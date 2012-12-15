@@ -26,7 +26,7 @@ class InFormFactory extends \Flame\Application\FormFactory
 	private $user;
 
 	/**
-	 * @var \FrontModule\SignPresenter
+	 * @var \Flame\CMS\FrontModule\SignPresenter
 	 */
 	private $restoreRequestProvider;
 
