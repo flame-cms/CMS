@@ -32,7 +32,7 @@ class ImportPresenter extends AdminPresenter
 	private $dirName;
 
 	public function __construct(
-		\Flame\Utils\WordPressImporter $wordPressImporter,
+		\Flame\Addons\WordPress\PostsImporter $wordPressImporter,
 		\Flame\CMS\Models\Posts\PostFacade $postFacade,
 		\Flame\CMS\Models\Users\UserFacade $userFacade,
 		\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade,
