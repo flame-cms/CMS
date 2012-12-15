@@ -8,9 +8,9 @@
  * @date    06.08.12
  */
 
-namespace Flame\CMS\Utils;
+namespace Flame\CMS\Templating;
 
-class ThemeManager extends \Flame\Utils\ThemeManager
+class ThemeManager extends \Flame\Templating\ThemeManager
 {
 
 	/**
