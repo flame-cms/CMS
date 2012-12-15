@@ -9,14 +9,27 @@ class HomepagePresenter extends FrontPresenter
 {
 
 	/**
-	 * @var \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
+	 * @var \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
 	 */
 	private $postControlFactory;
 
 	/**
-	 * @param \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
+	 * @var \Flame\CMS\Models\Posts\PostFacade $postFacade
 	 */
-	public function injectPostControlFactory(\Flame\CMS\Components\Posts\PostControlFactory $postControlFactory)
+	private $postFacade;
+
+	/**
+	 * @param \Flame\CMS\Models\Posts\PostFacade $postFacade
+	 */
+	public function injectPostFacade(\Flame\CMS\Models\Posts\PostFacade $postFacade)
+	{
+		$this->postFacade = $postFacade;
+	}
+
+	/**
+	 * @param \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
+	 */
+	public function injectPostControlFactory(\Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory)
 	{
 		$this->postControlFactory = $postControlFactory;
 	}
@@ -26,6 +39,6 @@ class HomepagePresenter extends FrontPresenter
 	 */
 	public function createComponentPostsControl()
 	{
-		return $this->postControlFactory->create();
+		return $this->postControlFactory->create($this->postFacade->getLastPublishPosts());
 	}
 }

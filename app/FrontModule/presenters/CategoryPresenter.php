@@ -24,14 +24,14 @@ class CategoryPresenter extends \Flame\CMS\FrontModule\FrontPresenter
 	private $categoryFacade;
 
 	/**
-	 * @var \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
+	 * @var \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
 	 */
 	private $postControlFactory;
 
 	/**
-	 * @param \Flame\CMS\Components\Posts\PostControlFactory $postControlFactory
+	 * @param \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
 	 */
-	public function injectPostControlFactory(\Flame\CMS\Components\Posts\PostControlFactory $postControlFactory)
+	public function injectPostControlFactory(\Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory)
 	{
 		$this->postControlFactory = $postControlFactory;
 	}

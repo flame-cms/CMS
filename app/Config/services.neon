@@ -55,7 +55,6 @@ services:
 	CategoryFormProcces: \Flame\CMS\AdminModule\Forms\Categories\CategoryFormProcces
 
 	PostFacade: Flame\CMS\Models\Posts\PostFacade
-	PostControlFactory: Flame\CMS\Components\Posts\PostControlFactory
 	PostFormFactory: \Flame\CMS\AdminModule\Forms\Posts\PostFormFactory
 
 	PageFacade: Flame\CMS\Models\Pages\PageFacade

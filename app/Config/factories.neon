@@ -13,3 +13,8 @@ factories:
 		create: \Flame\CMS\AdminModule\Forms\Images\ImageForm(%categories%, %defaults%)
 		implement: \Flame\CMS\AdminModule\Forms\Images\IImageFormFactory
 		parameters: [array categories, array defaults = []]
+
+	postControl:
+		create: \Flame\CMS\Components\Posts\PostControl(%posts%)
+		implement: \Flame\CMS\Components\Posts\IPostControlFactory
+		parameters: [array posts]

@@ -16,6 +16,19 @@ class PostControl extends \Flame\Application\UI\Control
 	private $itemsPerPage = 10;
 
 	/**
+	 * @var \Flame\CMS\Models\Options\OptionFacade $optionFacade
+	 */
+	private $optionFacade;
+
+	/**
+	 * @param \Flame\CMS\Models\Options\OptionFacade $optionFacade
+	 */
+	public function injectOptionFacade(\Flame\CMS\Models\Options\OptionFacade $optionFacade)
+	{
+		$this->optionFacade = $optionFacade;
+	}
+
+	/**
 	 * @param array $posts
 	 */
 	public function __construct($posts)
@@ -25,45 +38,30 @@ class PostControl extends \Flame\Application\UI\Control
 		$this->posts = $posts;
 	}
 
-	/**
-	 * For additional adding of posts
-	 *
-	 * @param array $posts
-	 */
-	public function setPosts($posts)
-	{
-		$this->posts = $posts;
-	}
-
-	/**
-	 * @param $itemsPerPage
-	 */
-	public function setPageLimit($itemsPerPage)
-	{
-		if((int) $itemsPerPage >= 1) $this->itemsPerPage = (int) $itemsPerPage;
-	}
-
 	public function render()
 	{
 		$this->beforeRender();
-		$this->template->setFile(__DIR__ . '/PostControlFull.latte');
-		$this->template->render();
+		$this->template->setFile(__DIR__ . '/PostControlFull.latte')->render();
 	}
 
 	public function renderExcept()
 	{
 		$this->beforeRender();
-		$this->template->setFile(__DIR__ . '/PostControlExcept.latte');
-		$this->template->render();
+		$this->template->setFile(__DIR__ . '/PostControlExcept.latte')->render();
 	}
 
 	protected function beforeRender()
 	{
+		$postsLimit = (int) $this->optionFacade->getOptionValue('ItemsPerPage');
+		if($postsLimit > 0) $this->itemsPerPage = $postsLimit;
+
 		$posts = $this->posts;
 		$paginator = $this['paginator']->getPaginator();
+		$paginator->itemsPerPage = $this->itemsPerPage;
+		$paginator->itemCount = count($posts);
 
-		if(is_array($this->posts) and count($this->posts))
-			$posts = $this->getItemsPerPage($this->posts, $paginator->offset);
+		if(is_array($posts) and count($posts))
+			$posts = $this->getItemsPerPage($posts, $paginator->offset);
 
 		$this->template->posts = $posts;
 	}
@@ -73,10 +71,7 @@ class PostControl extends \Flame\Application\UI\Control
 	 */
 	protected function createComponentPaginator()
 	{
-		$visualPaginator = new \Flame\Addons\VisualPaginator\Paginator;
-	    $visualPaginator->getPaginator()->setItemsPerPage($this->itemsPerPage);
-		$visualPaginator->getPaginator()->setItemCount(count($this->posts));
-	    return $visualPaginator;
+		return new \Flame\Addons\VisualPaginator\Paginator;
 	}
 
 	/**
