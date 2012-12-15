@@ -58,7 +58,6 @@ services:
 	PostFormFactory: \AdminModule\Forms\Posts\PostFormFactory
 
 	PageFacade: Flame\CMS\Models\Pages\PageFacade
-	LightGalleryControlFactory: Flame\Components\LightGallery\LightGalleryControlFactory
 
 	LinkFacade: Flame\CMS\Models\Links\LinkFacade
 	LinkFormFactory: AdminModule\Forms\Links\LinkFormFactory
@@ -73,6 +72,7 @@ services:
 	ImageCategoryFacade: \Flame\CMS\Models\ImageCategories\ImageCategoryFacade
 	ImageCategoryFormFactory: \AdminModule\Forms\ImageCategories\ImageCategoryFormFactory
 
+	ThumbnailsCreator: \Flame\Templating\Helpers\ThumbnailsCreator(%wwwDir%)
 
 
 

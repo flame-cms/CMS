@@ -3,3 +3,8 @@ factories:
 		create: AdminModule\Forms\Categories\CategoryForm(%categories%, %defaults%)
 		implement: AdminModule\Forms\Categories\ICategoryFormFactory
 		parameters: [array categories, array defaults = []]
+
+	lightGalleryControl:
+		create: \Flame\Components\LightGallery\LightGalleryControl(%images%)
+		implement: \Flame\Components\LightGallery\ILightGalleryControlFactory
+		parameters: [images]

@@ -16,11 +16,6 @@ class GalleryPresenter extends FrontPresenter
 	private $images;
 
 	/**
-	 * @var \Flame\Components\LightGallery\LightGalleryControlFactory $lightGalleryControlFactory
-	 */
-	private $lightGalleryControlFactory;
-
-	/**
 	 * @var \Flame\CMS\Models\Images\ImageFacade $imageFacade
 	 */
 	private $imageFacade;
@@ -29,6 +24,19 @@ class GalleryPresenter extends FrontPresenter
 	 * @var \Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade
 	 */
 	private $imageCategoryFacade;
+
+	/**
+	 * @var \Flame\Components\LightGallery\ILightGalleryControlFactory $lightGalleryControlFactory
+	 */
+	private $lightGalleryControlFactory;
+
+	/**
+	 * @param \Flame\Components\LightGallery\ILightGalleryControlFactory $lightGalleryControlFactory
+	 */
+	public function injectLightGalleryControlFactory(\Flame\Components\LightGallery\ILightGalleryControlFactory $lightGalleryControlFactory)
+	{
+		$this->lightGalleryControlFactory = $lightGalleryControlFactory;
+	}
 
 	/**
 	 * @param \Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade
@@ -44,14 +52,6 @@ class GalleryPresenter extends FrontPresenter
 	public function injectImageFacade(\Flame\CMS\Models\Images\ImageFacade $imageFacade)
 	{
 		$this->imageFacade = $imageFacade;
-	}
-
-	/**
-	 * @param \Flame\Components\LightGallery\LightGalleryControlFactory $lightGalleryControlFactory
-	 */
-	public function injectLightGalleryControlFactory(\Flame\Components\LightGallery\LightGalleryControlFactory $lightGalleryControlFactory)
-	{
-		$this->lightGalleryControlFactory = $lightGalleryControlFactory;
 	}
 
 	public function actionDefault($cat = null)
