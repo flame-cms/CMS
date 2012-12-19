@@ -28,5 +28,9 @@
 		"flame/bootstrapdatepicker-control": "dev-master",
 		"flame/multiplefileupload-control": "@dev",
 		"flame/lightboxgallery-component": "@dev"
+	},
+
+	"autoload": {
+		"psr-0": {"Flame": ""}
 	}
 }
