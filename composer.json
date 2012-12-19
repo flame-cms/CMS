@@ -2,7 +2,7 @@
 	"name": "flame/cms",
 	"description": "Simple and smart CMS based on framework Flame",
 	"keywords": ["cms", "nette", "simple", "flame", "jsifalda", "sandbox", "tools"],
-	"homepage": "https://github.com/flame-org/CMS",
+	"homepage": "https://github.com/flame-cms/CMS",
 	"license": "BSD-2-Clause-FreeBSD",
 
 	"authors": [
@@ -14,11 +14,7 @@
 
 	"support":{
 		"email":"flame@jsifalda.name",
-		"issues":"https://github.com/flame-org/CMS/issues"
-	},
-
-	"config": {
-		"vendor-dir": "libs"
+		"issues":"https://github.com/flame-cms/CMS/issues"
 	},
 
 	"require": {

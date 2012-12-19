@@ -1,6 +1,0 @@
-# change for your own domain
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^(www\.)?flame.jsifalda\.name$
-RewriteRule ^$ www/ [L]
-RewriteCond %{HTTP_HOST} ^(www\.)?flame.jsifalda\.name$
-RewriteRule (.*) www/$1 [L]
