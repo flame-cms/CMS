@@ -1,6 +1,6 @@
 <?php
 
-namespace Flame\CMS\FrontModule;
+namespace Flame\CMS\FrontModule\Presenters;
 
 /**
  * Sign in/out presenters.
@@ -14,14 +14,14 @@ class SignPresenter extends FrontPresenter
 	private $backlink;
 
 	/**
-	 * @var \DoctrineSandbox\Forms\Sign\InFormFactory $inFormFactory
+	 * @var \Flame\CMS\FrontModule\\Forms\Sign\InFormFactory $inFormFactory
 	 */
 	private $inFormFactory;
 
 	/**
-	 * @param \DoctrineSandbox\Forms\Sign\InFormFactory $inFormFactory
+	 * @param \Flame\CMS\FrontModule\\Forms\Sign\InFormFactory $inFormFactory
 	 */
-	public function injectInFormFactory(\DoctrineSandbox\Forms\Sign\InFormFactory $inFormFactory)
+	public function injectInFormFactory(\Flame\CMS\FrontModule\\Forms\Sign\InFormFactory $inFormFactory)
 	{
 		$this->inFormFactory = $inFormFactory;
 	}
@@ -45,7 +45,7 @@ class SignPresenter extends FrontPresenter
 
 	/**
 	 * Sign in form component factory.
-	 * @return \DoctrineSandbox\Forms\Sign\InForm|\Nette\Application\UI\Form
+	 * @return \Flame\CMS\FrontModule\\Forms\Sign\InForm|\Nette\Application\UI\Form
 	 */
 	protected function createComponentSignInForm()
 	{

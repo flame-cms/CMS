@@ -3,12 +3,12 @@
  * InFormFactory.php
  *
  * @author  Jiří Šifalda <sifalda.jiri@gmail.com>
- * @package DoctrineSandbox
+ * @package Flame\CMS\FrontModule\
  *
  * @date    01.09.12
  */
 
-namespace DoctrineSandbox\Forms\Sign;
+namespace Flame\CMS\FrontModule\Forms\Sign;
 
 use Nette\Security as NS;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Flame\CMS\FrontModule;
+namespace Flame\CMS\FrontModule\Presenters;
 
 /**
 * Home page
@@ -41,4 +41,5 @@ class HomepagePresenter extends FrontPresenter
 	{
 		return $this->postControlFactory->create($this->postFacade->getLastPublishPosts());
 	}
+
 }

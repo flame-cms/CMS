@@ -8,7 +8,7 @@
  * @date    11.07.12
  */
 
-namespace Flame\CMS\FrontModule;
+namespace Flame\CMS\FrontModule\Presenters;
 
 class PagePresenter extends FrontPresenter
 {

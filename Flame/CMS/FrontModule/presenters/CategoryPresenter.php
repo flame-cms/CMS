@@ -8,7 +8,7 @@
  * @date    16.07.12
  */
 
-namespace Flame\CMS\FrontModule;
+namespace Flame\CMS\FrontModule\Presenters;
 
 class CategoryPresenter extends \Flame\CMS\FrontModule\FrontPresenter
 {

@@ -8,7 +8,7 @@
  * @date    14.11.12
  */
 
-namespace Flame\CMS\FrontModule;
+namespace Flame\CMS\FrontModule\Presenters;
 
 class GalleryPresenter extends FrontPresenter
 {

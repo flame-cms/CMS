@@ -3,12 +3,12 @@
  * InForm.php
  *
  * @author  Jiří Šifalda <sifalda.jiri@gmail.com>
- * @package DoctrineSandbox
+ * @package Flame\CMS\FrontModule\
  *
  * @date    01.09.12
  */
 
-namespace DoctrineSandbox\Forms\Sign;
+namespace Flame\CMS\FrontModule\Forms\Sign;
 
 class InForm extends \Flame\CMS\Application\UI\Form
 {

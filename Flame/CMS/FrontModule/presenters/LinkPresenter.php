@@ -8,7 +8,7 @@
  * @date    20.10.12
  */
 
-namespace Flame\CMS\FrontModule;
+namespace Flame\CMS\FrontModule\Presenters;
 
 class LinkPresenter extends FrontPresenter
 {
