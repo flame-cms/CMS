@@ -31,6 +31,6 @@
 	},
 
 	"autoload": {
-		"psr-0": {"Flame/CMS": "Flame"}
+		"psr-0": {"Flame": ""}
 	}
 }
