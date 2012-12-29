@@ -27,7 +27,7 @@ Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flam
 ###Installing
 #####Download sandbox
 
-	git clone git://github.com/jsifalda/flame-cms.git myApp
+	git clone git://github.com/flame-cms/CMS.git myApp
 	cd myApp
 
 #####Make directories './log', './temp' and './www/media' writable (chmod 777)
