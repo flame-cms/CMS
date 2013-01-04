@@ -8,7 +8,7 @@
  * @date    17.07.12
  */
 
-namespace Flame\CMS\AdminModule\Presenters;
+namespace Flame\CMS\AdminModule;
 
 class NewsreelForm extends \Flame\CMS\Application\UI\Form
 {
