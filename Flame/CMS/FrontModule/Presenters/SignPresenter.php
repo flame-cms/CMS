@@ -14,14 +14,14 @@ class SignPresenter extends FrontPresenter
 	private $backlink;
 
 	/**
-	 * @var \Flame\CMS\FrontModule\\Forms\Sign\InFormFactory $inFormFactory
+	 * @var \Flame\CMS\FrontModule\Forms\Sign\InFormFactory $inFormFactory
 	 */
 	private $inFormFactory;
 
 	/**
-	 * @param \Flame\CMS\FrontModule\\Forms\Sign\InFormFactory $inFormFactory
+	 * @param \Flame\CMS\FrontModule\Forms\Sign\InFormFactory $inFormFactory
 	 */
-	public function injectInFormFactory(\Flame\CMS\FrontModule\\Forms\Sign\InFormFactory $inFormFactory)
+	public function injectInFormFactory(\Flame\CMS\FrontModule\Forms\Sign\InFormFactory $inFormFactory)
 	{
 		$this->inFormFactory = $inFormFactory;
 	}
@@ -45,7 +45,7 @@ class SignPresenter extends FrontPresenter
 
 	/**
 	 * Sign in form component factory.
-	 * @return \Flame\CMS\FrontModule\\Forms\Sign\InForm|\Nette\Application\UI\Form
+	 * @return \Flame\CMS\FrontModule\Forms\Sign\InForm|\Nette\Application\UI\Form
 	 */
 	protected function createComponentSignInForm()
 	{
