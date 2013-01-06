@@ -1,6 +1,6 @@
 #FLAME:CMS
 
-Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flame)
+Simple and smart CMS based on framework [Flame](https://github.com/flame-org/Framework)
 
 ##Screen from FrontModule
 
@@ -27,12 +27,13 @@ Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flam
 ###Installing
 #####Download sandbox
 
-	git clone git://github.com/flame-cms/CMS.git myApp
+	git clone https://github.com/flame-cms/sandbox myApp
 	cd myApp
 
 #####Make directories './log', './temp' and './www/media' writable (chmod 777)
-#####Install dependencies (composer.phar included in sandbox)
+#####Install dependencies
 
+	curl -s http://getcomposer.org/installer | php #download composer
 	php composer.phar install
 
 #####Create database structure with command:
@@ -41,8 +42,12 @@ Simple and smart CMS based on framework [Flame](https://github.com/jsifalda/flam
 
 #####Import defaults data
 
-	php app/doctrine-cli.php dbal:import app/default-data.sql
+	php app/doctrine-cli.php dbal:import data/db.sql
 
-###Flame is ready now!
+#####Install submodules
+
+	git submodule update --init
+
+###Flame:CMS is ready now!
 
 If you want to sign in to backend part (Administration) of Flame, use email **user@demo.com** and password **PASSWORD12** (all in lower case)
