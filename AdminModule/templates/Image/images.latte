@@ -13,8 +13,8 @@
                 </p>
                 <div class="btn-group">
                     <a rel="tooltip" class="btn btn-small" n:href="edit $image->id"><i class="icon-edit"></i> Edit</a>
+                    <a rel="tooltip" class="btn btn-small ajax" n:href="public! $image->id"><i class="icon-eye-{if $image->public}close{else}open{/if}"></i> {if $image->public}Unpublish{else}Publish{/if}</a>
                     <a rel="tooltip" class="btn btn-small btn-danger ajax" n:href="delete! $image->id"><i class="icon-trash icon-white"></i> Delete</a>
-                    <a rel="tooltip" class="btn btn-small ajax" n:href="public! $image->id"><i class="icon-eye-{if $image->public}close{else}open{/if}"></i></a>
                 </div>
             </div>
         </div>
