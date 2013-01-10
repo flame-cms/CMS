@@ -4,10 +4,10 @@
 		<h2 n:block="title">Pages</h2>
 	</div>
 	<div class="right">
-		<a class="btn btn-large btn-primary" n:href="add"><i class="icon-plus icon-white"></i> Add new page</a>
+		<a class="btn btn-large btn-primary" n:href="add"><i class="icon-plus-sign icon-white"></i> Add new page</a>
 	</div>
 
-	<br class="clear" />
+	<br class="clear" /> <hr />
 
 	{snippet #pages}
 		{if count($pages)}
@@ -32,8 +32,8 @@
 						<td>{$page->hit}</td>
 						<td>
                             <div class="btn-group">
-                                <a rel="tooltip" class="btn btn-small" n:href="edit $page->id"><i class="icon-pencil"></i></a>
-                                <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $page->id"><i class="icon-remove"></i></a>
+                                <a rel="tooltip" class="btn btn-small" n:href="edit $page->id"><i class="icon-edit"></i> Edit</a>
+                                <a rel="tooltip" class="btn btn-small btn-danger ajax" n:href="delete! $page->id"><i class="icon-trash icon-white"></i> Delete</a>
                             </div>
 						</td>
 					</tr>

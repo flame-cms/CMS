@@ -27,30 +27,24 @@
 	{control navbarBuilder}
 
 	<div class="container">
+		<ul style="margin-top: 60px;" class="breadcrumb">
+		{foreach $breadCrumbs as $breadcrumb}
+			{if $iterator->last}
+				<li class="active">{$breadcrumb}</li>
+				{else}
+				<li><a>{$breadcrumb}</a> <span class="divider">/</span></li>
+			{/if}
+		{/foreach}
+		</ul>
 
-		<div class="hero-unit">
-
-            <ul class="breadcrumb">
-			{foreach $breadCrumbs as $breadcrumb}
-				{if $iterator->last}
-                    <li class="active">{$breadcrumb}</li>
-					{else}
-                    <li><a>{$breadcrumb}</a> <span class="divider">/</span></li>
-				{/if}
-			{/foreach}
-            </ul>
-
-			{snippet flashMessages}
-			<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">
-				<a class="close" data-dismiss="alert" href="#">×</a>
-				<h4 class="alert-heading">{$flash->message}</h4>
-			</div>
-			{/snippet}
-
-
-			{include #content}
-
+		{snippet flashMessages}
+		<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<h4 class="alert-heading">{$flash->message}</h4>
 		</div>
+		{/snippet}
+
+		{include #content}
 
         <hr />
         <footer>
@@ -58,5 +52,6 @@
                 &copy; Created by <a href="http://jsifalda.name/" target="_blank">JSifalda</a></p>
         </footer>
 	</div>
+
 </body>
 </html>

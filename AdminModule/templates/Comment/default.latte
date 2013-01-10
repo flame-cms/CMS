@@ -28,7 +28,7 @@
                         <div class="btn-group">
                             <a rel="tooltip" class="btn btn-small ajax" n:href="markPublish! $comment->id" title="Publish/Unpublish">
 								{if $comment->publish}<i class="icon-eye-close"></i>{else}<i class="icon-eye-open"></i>{/if}</a>
-                            <a rel="tooltip" class="btn btn-small ajax" n:href="delete! $comment->id"><i class="icon-remove"></i></a>
+                            <a rel="tooltip" class="btn btn-danger btn-small ajax" n:href="delete! $comment->id"><i class="icon-trash icon-white"></i> Delete</a>
                         </div>
 					</td>
 				</tr>

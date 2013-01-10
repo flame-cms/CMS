@@ -3,10 +3,10 @@
 		<h2 n:block="title">Posts</h2>
 	</div>
 	<div class="right">
-		<a class="btn btn-large btn-primary" n:href="add"><i class="icon-plus icon-white"></i> Add new post</a>
+		<a class="btn btn-large btn-primary" n:href="add"><i class="icon-plus-sign icon-white"></i> Add new post</a>
 	</div>
 
-	<br class="clear" />
+	<br class="clear" /> <hr />
 
 	{snippet #posts}
 		{if count($posts)}
@@ -41,8 +41,8 @@
                     <div class="btn-group">
                         <a rel="tooltip" class="btn btn-small ajax" href="{plink markPublish! $post->id}" title="Publish/Unpublish">
 								{if $post->publish}<i class="icon-eye-close"></i>{else}<i class="icon-eye-open"></i>{/if}</a>
-                        <a rel="tooltip" class="btn btn-small" href="{plink edit $post->id}"><i class="icon-pencil"></i></a>
-                        <a rel="tooltip" class="btn btn-small ajax" href="{plink delete! $post->id}"><i class="icon-remove"></i></a>
+                        <a rel="tooltip" class="btn btn-small" href="{plink edit $post->id}"><i class="icon-edit"></i> Edit</a>
+                        <a rel="tooltip" class="btn btn-small btn-danger ajax" href="{plink delete! $post->id}"><i class="icon-trash icon-white"></i> Delete</a>
                     </div>
                 </td>
             </tr>
