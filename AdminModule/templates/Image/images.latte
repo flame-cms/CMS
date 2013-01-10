@@ -1,0 +1,25 @@
+{if count($images)}
+<ul class="thumbnails">
+    <li class="span3" n:foreach="$images as $image">
+        <div class="thumbnail">
+            <a href="{$baseUrl}{$image->file}" target="_blank"  class="thumbnail">
+                <img src="{$basePath}/{$image->file|thumb:250:250}" alt="">
+            </a>
+            <div class="caption">
+                <h5>{$image->name}</h5>
+                <p>
+					{$image->description} <br />
+                    <strong>{$image->category}</strong>
+                </p>
+                <div class="btn-group">
+                    <a rel="tooltip" class="btn btn-small" n:href="edit $image->id"><i class="icon-edit"></i> Edit</a>
+                    <a rel="tooltip" class="btn btn-small btn-danger ajax" n:href="delete! $image->id"><i class="icon-trash icon-white"></i> Delete</a>
+                    <a rel="tooltip" class="btn btn-small ajax" n:href="public! $image->id"><i class="icon-eye-{if $image->public}close{else}open{/if}"></i></a>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+{else}
+	<h4>None</h4>
+{/if}

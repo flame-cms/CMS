@@ -94,7 +94,8 @@ class ImagePresenter extends AdminPresenter
 
 	public function renderDefault()
 	{
-		$this->template->images = $this->imageFacade->getLastImages();
+		$this->template->publicImages = $this->imageFacade->getLastPublicImages();
+		$this->template->unPublicImages = $this->imageFacade->getLastUnPublicImages();
 		$this->template->imageDir = $this->imageStorage['baseDir'] . $this->imageStorage['imageDir'];
 	}
 
@@ -173,4 +174,5 @@ class ImagePresenter extends AdminPresenter
 		$form->onSuccess[] = $this->lazyLink('default');
 		return $form;
 	}
+
 }
