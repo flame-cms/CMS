@@ -44,6 +44,14 @@ class ImageFacade extends \Flame\Model\Facade
 	}
 
 	/**
+	 * @return array
+	 */
+	public function getLastUnPublicImages()
+	{
+		return $this->repository->findBy(array('public' => false), array('id' => 'DESC'));
+	}
+
+	/**
 	 * @param \Flame\CMS\Models\ImageCategories\ImageCategory $category
 	 * @return array
 	 */
