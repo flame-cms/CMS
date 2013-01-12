@@ -22,7 +22,7 @@ class GalleryPresenter extends FrontPresenter
 	 * @autowire
 	 * @var \Flame\CMS\Models\Images\ImageFacade
 	 */
-	protected $imgaeFacade;
+	protected $imageFacade;
 
 	/**
 	 * @autowire
@@ -36,6 +36,9 @@ class GalleryPresenter extends FrontPresenter
 	 */
 	protected $imageCategoryFacade;
 
+	/**
+	 * @param null $cat
+	 */
 	public function actionDefault($cat = null)
 	{
 		if($cat and $category = $this->imageCategoryFacade->getOne($cat)){
