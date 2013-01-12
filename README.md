@@ -2,6 +2,8 @@
 
 Simple and smart CMS based on framework [Flame](https://github.com/flame-org/Framework)
 
+**If you want to try Flame:CMS please visit [Demo page](http://flame.jsifalda.name/)**
+
 ##Screen from FrontModule
 
 ![FrontModule](http://projects.jsifalda.name/flame/screens/front_module.png "FrontModule")
