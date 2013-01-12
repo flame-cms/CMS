@@ -24,12 +24,7 @@ class ImagePresenter extends AdminPresenter
 	 * @var \Flame\CMS\Models\Images\ImageFacade $imageFacade
 	 */
 	private $imageFacade;
-
-	/**
-	 * @var \Flame\Templating\Helpers\ThumbnailsCreator $thumbnailsCreator
-	 */
-	private $thumbnailsCreator;
-
+	
 	/**
 	 * @var \Flame\CMS\AdminModule\Forms\Images\IImageFormFactory $imageFormFactory
 	 */
@@ -70,14 +65,6 @@ class ImagePresenter extends AdminPresenter
 	}
 
 	/**
-	 * @param \Flame\Templating\Helpers\ThumbnailsCreator $thumbnailsCreator
-	 */
-	public function injectThumbnailsCreator(\Flame\Templating\Helpers\ThumbnailsCreator $thumbnailsCreator)
-	{
-		$this->thumbnailsCreator = $thumbnailsCreator;
-	}
-
-	/**
 	 * @param \Flame\CMS\Models\Images\ImageFacade $imageFacade
 	 */
 	public function injectImageFacade(\Flame\CMS\Models\Images\ImageFacade $imageFacade)
@@ -88,7 +75,6 @@ class ImagePresenter extends AdminPresenter
 	public function startup()
 	{
 		parent::startup();
-		$this->template->registerHelper('thumb', \Nette\Callback::create($this->thumbnailsCreator, 'thumb'));
 		$this->imageStorage = $this->getContextParameter('imageStorage');
 	}
 
