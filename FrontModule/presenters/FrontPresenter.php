@@ -6,44 +6,52 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 {
 
 	/**
-	 * @var string
+	 * @autowire
+	 * @var \Flame\CMS\Models\Menu\MenuFacade
 	 */
-	private $theme;
-
+	protected $menuFacade;
+	
 	/**
+	 * @autowire
 	 * @var \Flame\CMS\Models\Pages\PageFacade
 	 */
-	private $pageFacade;
-
+	protected $pageFacade;
+	
 	/**
+	 * @autowire
 	 * @var \Flame\CMS\Models\Options\OptionFacade
 	 */
-	private $optionFacade;
-
+	protected $optionFacade;
+	
 	/**
-	 * @var \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
+	 * @autowire
+	 * @var \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
 	 */
-	private $navbarBuilderControlFactory;
-
+	protected $navbarBuilderControlFactory;
+	
 	/**
-	 * @var \Flame\CMS\Models\Menu\MenuFacade $menuFacade
+	 * @autowire
+	 * @var \Flame\CMS\Components\Tags\TagControlFactory
 	 */
-	private $menuFacade;
-
+	protected $tagControlFactory;
+	
 	/**
-	 * @var \Flame\CMS\Components\Tags\TagControlFactory $tagControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Components\Newsreel\NewsreelControlFactory
 	 */
-	private $tagControlFactory;
-
+	protected $newsreelControlFactory;
+	
 	/**
-	 * @var \Flame\CMS\Components\Newsreel\NewsreelControlFactory $newsreelControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Components\Categories\CategoryControlFactory
 	 */
-	private $newsreelControlFactory;
-
+	protected $categoryControlFactory;
+	
 	/**
-	 * @var \Flame\CMS\Components\Categories\CategoryControlFactory $categoryControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Templating\ThemeManager
 	 */
-	private $categoryControlFactory;
+	protected $themeManager;
 
 	public function startup()
 	{
@@ -53,17 +61,6 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 //			$this->flashMessage('Access denied', 'error');
 //			$this->redirect('Homepage:');
 //		}
-
-		$this->pageFacade = $this->context->PageFacade;
-		$this->menuFacade = $this->context->MenuFacade;
-		$this->optionFacade = $this->context->OptionFacade;
-
-		$this->navbarBuilderControlFactory = $this->context->NavbarBuilderControlFactory;
-		$this->tagControlFactory = $this->context->TagControlFactory;
-		$this->newsreelControlFactory = $this->context->NewsreelControlFactory;
-		$this->categoryControlFactory = $this->context->CategoryControlFactory;
-
-		$this->theme = $this->context->ThemeManager->getTheme();
 	}
 
 	/**
@@ -73,7 +70,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	{
 		$list = parent::formatLayoutTemplateFiles();
 		$wwwDir = $this->getContextParameter('wwwDir');
-		array_unshift($list, $wwwDir . DIRECTORY_SEPARATOR . $this->theme . "/@layout.latte");
+		array_unshift($list, $wwwDir . DIRECTORY_SEPARATOR . $this->themeManager->getTheme() . "/@layout.latte");
 		return $list;
 	}
 
@@ -82,7 +79,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 		parent::beforeRender();
 
 		$this->template->name = $this->optionFacade->getOptionValue('Name');
-		$this->template->theme = $this->theme;
+		$this->template->theme = $this->themeManager->getTheme();
 	}
 
 	/**

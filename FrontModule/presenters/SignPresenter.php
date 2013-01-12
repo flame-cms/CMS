@@ -14,17 +14,10 @@ class SignPresenter extends FrontPresenter
 	private $backlink;
 
 	/**
-	 * @var \Flame\CMS\FrontModule\Forms\Sign\InFormFactory $inFormFactory
+	 * @autowire
+	 * @var \Flame\CMS\FrontModule\Forms\Sign\InFormFactory
 	 */
-	private $inFormFactory;
-
-	/**
-	 * @param \Flame\CMS\FrontModule\Forms\Sign\InFormFactory $inFormFactory
-	 */
-	public function injectInFormFactory(\Flame\CMS\FrontModule\Forms\Sign\InFormFactory $inFormFactory)
-	{
-		$this->inFormFactory = $inFormFactory;
-	}
+	protected $inFormFactory;
 
 	public function startup()
 	{

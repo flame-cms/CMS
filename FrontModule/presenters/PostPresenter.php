@@ -7,36 +7,24 @@ namespace Flame\CMS\FrontModule;
 */
 class PostPresenter extends FrontPresenter
 {
-	/**
-	 * @var \Flame\CMS\Models\Posts\PostFacade
-	 */
-	private $postFacade;
+
 
 	/**
 	 * @var \Flame\CMS\Models\Posts\Post
 	 */
-    private $post;
+	private $post;
 
 	/**
-	 * @var \Flame\CMS\Components\Comments\CommentControlFactory $commentControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Models\Posts\PostFacade
 	 */
-	private $commentControlFactory;
+	protected $postFacade;
 
 	/**
-	 * @param \Flame\CMS\Components\Comments\CommentControlFactory $commentControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Components\Comments\CommentControlFactory
 	 */
-	public function injectCommentControlFactory(\Flame\CMS\Components\Comments\CommentControlFactory $commentControlFactory)
-	{
-		$this->commentControlFactory = $commentControlFactory;
-	}
-
-    /**
-     * @param \Flame\CMS\Models\Posts\PostFacade $postFacade
-     */
-    public function injectPostFacade(\Flame\CMS\Models\Posts\PostFacade $postFacade)
-    {
-    	$this->postFacade = $postFacade;
-    }
+	protected $commentControlFactory;
 
 	/**
 	 * @param $id
@@ -65,7 +53,6 @@ class PostPresenter extends FrontPresenter
 	protected function createComponentCommentsControl()
 	{
 		$this->commentControlFactory->setPostModel($this->post);
-
 		return $this->commentControlFactory->create();
 	}
 }

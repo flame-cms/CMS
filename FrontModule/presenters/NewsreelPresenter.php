@@ -6,30 +6,16 @@ class NewsreelPresenter extends FrontPresenter
 {
 
 	/**
+	 * @autowire
 	 * @var \Flame\CMS\Models\Newsreel\NewsreelFacade
 	 */
-	private $newsreelFacade;
+	protected $newsreelFacade;
 
 	/**
-	 * @var \Flame\CMS\Components\Newsreel\NewsreelControlFactory $newsreelControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Components\Newsreel\NewsreelControlFactory
 	 */
-	private $newsreelControlFactory;
-
-	/**
-	 * @param \Flame\CMS\Components\Newsreel\NewsreelControlFactory $newsreelControlFactory
-	 */
-	public function injectNewsreelControlFactory(\Flame\CMS\Components\Newsreel\NewsreelControlFactory $newsreelControlFactory)
-	{
-		$this->newsreelControlFactory = $newsreelControlFactory;
-	}
-
-	/**
-	 * @param \Flame\CMS\Models\Newsreel\NewsreelFacade $newsreelFacade
-	 */
-	public function injectNewsreelFacade(\Flame\CMS\Models\Newsreel\NewsreelFacade $newsreelFacade)
-	{
-		$this->newsreelFacade = $newsreelFacade;
-	}
+	protected $newsreelControlFactory;
 
 	/**
 	 * @param $id

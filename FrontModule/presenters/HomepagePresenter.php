@@ -9,30 +9,16 @@ class HomepagePresenter extends FrontPresenter
 {
 
 	/**
-	 * @var \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Models\Posts\PostFacade
 	 */
-	private $postControlFactory;
+	protected $postFacade;
 
 	/**
-	 * @var \Flame\CMS\Models\Posts\PostFacade $postFacade
+	 * @autowire
+	 * @var \Flame\CMS\Components\Posts\IPostControlFactory
 	 */
-	private $postFacade;
-
-	/**
-	 * @param \Flame\CMS\Models\Posts\PostFacade $postFacade
-	 */
-	public function injectPostFacade(\Flame\CMS\Models\Posts\PostFacade $postFacade)
-	{
-		$this->postFacade = $postFacade;
-	}
-
-	/**
-	 * @param \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
-	 */
-	public function injectPostControlFactory(\Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory)
-	{
-		$this->postControlFactory = $postControlFactory;
-	}
+	protected $postControlFactory;
 
 	/**
 	 * @return \Flame\CMS\Components\Posts\PostControl

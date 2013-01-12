@@ -19,30 +19,16 @@ class CategoryPresenter extends \Flame\CMS\FrontModule\FrontPresenter
 	private $posts;
 
 	/**
+	 * @autowire
+	 * @var \Flame\CMS\Components\Categories\CategoryControlFactory
+	 */
+	protected $categoryControlFactory;
+
+	/**
+	 * @autowire
 	 * @var \Flame\CMS\Models\Categories\CategoryFacade
 	 */
-	private $categoryFacade;
-
-	/**
-	 * @var \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
-	 */
-	private $postControlFactory;
-
-	/**
-	 * @param \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
-	 */
-	public function injectPostControlFactory(\Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory)
-	{
-		$this->postControlFactory = $postControlFactory;
-	}
-
-	/**
-	 * @param \Flame\CMS\Models\Categories\CategoryFacade $categoryFacade
-	 */
-	public function injectCategoryFacade(\Flame\CMS\Models\Categories\CategoryFacade $categoryFacade)
-	{
-		$this->categoryFacade = $categoryFacade;
-	}
+	protected $categoryFacade;
 
 	/**
 	 * @param $id

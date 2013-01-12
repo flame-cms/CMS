@@ -24,7 +24,7 @@ class ImagePresenter extends AdminPresenter
 	 * @var \Flame\CMS\Models\Images\ImageFacade $imageFacade
 	 */
 	private $imageFacade;
-	
+
 	/**
 	 * @var \Flame\CMS\AdminModule\Forms\Images\IImageFormFactory $imageFormFactory
 	 */

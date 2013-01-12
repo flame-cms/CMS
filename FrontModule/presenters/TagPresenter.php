@@ -19,30 +19,16 @@ class TagPresenter extends FrontPresenter
 	private $posts;
 
 	/**
+	 * @autowire
 	 * @var \Flame\CMS\Models\Tags\TagFacade
 	 */
-	private $tagFacade;
+	protected $tagFacade;
 
 	/**
-	 * @var \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Components\Posts\IPostControlFactory
 	 */
-	private $postControlFactory;
-
-	/**
-	 * @param \Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory
-	 */
-	public function injectPostControlFactory(\Flame\CMS\Components\Posts\IPostControlFactory $postControlFactory)
-	{
-		$this->postControlFactory = $postControlFactory;
-	}
-
-	/**
-	 * @param \Flame\CMS\Models\Tags\TagFacade $tagFacade
-	 */
-	public function injectTagFacade(\Flame\CMS\Models\Tags\TagFacade $tagFacade)
-	{
-		$this->tagFacade = $tagFacade;
-	}
+	protected $postControlFactory;
 
 	/**
 	 * @param $id

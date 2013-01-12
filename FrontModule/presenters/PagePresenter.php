@@ -14,17 +14,10 @@ class PagePresenter extends FrontPresenter
 {
 
 	/**
+	 * @autowire
 	 * @var \Flame\CMS\Models\Pages\PageFacade
 	 */
-    private $pageFacade;
-
-	/**
-	 * @param \Flame\CMS\Models\Pages\PageFacade $pageFacade
-	 */
-    public function injectPageFacade(\Flame\CMS\Models\Pages\PageFacade $pageFacade)
-    {
-    	$this->pageFacade = $pageFacade;
-    }
+	protected $pageFacade;
 
 	/**
 	 * @param $id

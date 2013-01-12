@@ -14,17 +14,10 @@ class LinkPresenter extends FrontPresenter
 {
 
 	/**
-	 * @var \Flame\CMS\Models\Links\LinkFacade $linkFacade
+	 * @autowire
+	 * @var \Flame\CMS\Models\Links\LinkFacade
 	 */
-	private $linkFacade;
-
-	/**
-	 * @param \Flame\CMS\Models\Links\LinkFacade $linkFacade
-	 */
-	public function injectLinkFacade(\Flame\CMS\Models\Links\LinkFacade $linkFacade)
-	{
-		$this->linkFacade = $linkFacade;
-	}
+	protected $linkFacade;
 
 	/**
 	 * @param $link

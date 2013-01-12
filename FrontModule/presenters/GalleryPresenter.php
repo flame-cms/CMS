@@ -13,46 +13,28 @@ namespace Flame\CMS\FrontModule;
 class GalleryPresenter extends FrontPresenter
 {
 
+	/**
+	 * @var array
+	 */
 	private $images;
 
 	/**
-	 * @var \Flame\CMS\Models\Images\ImageFacade $imageFacade
+	 * @autowire
+	 * @var \Flame\CMS\Models\Images\ImageFacade
 	 */
-	private $imageFacade;
+	protected $imgaeFacade;
 
 	/**
-	 * @var \Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade
+	 * @autowire
+	 * @var \Flame\Components\LightGallery\ILightGalleryControlFactory
 	 */
-	private $imageCategoryFacade;
+	protected $lightGalleryControlFactory;
 
 	/**
-	 * @var \Flame\Components\LightGallery\ILightGalleryControlFactory $lightGalleryControlFactory
+	 * @autowire
+	 * @var \Flame\CMS\Models\ImageCategories\ImageCategoryFacade
 	 */
-	private $lightGalleryControlFactory;
-
-	/**
-	 * @param \Flame\Components\LightGallery\ILightGalleryControlFactory $lightGalleryControlFactory
-	 */
-	public function injectLightGalleryControlFactory(\Flame\Components\LightGallery\ILightGalleryControlFactory $lightGalleryControlFactory)
-	{
-		$this->lightGalleryControlFactory = $lightGalleryControlFactory;
-	}
-
-	/**
-	 * @param \Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade
-	 */
-	public function injectImageCategoryFacade(\Flame\CMS\Models\ImageCategories\ImageCategoryFacade $imageCategoryFacade)
-	{
-		$this->imageCategoryFacade = $imageCategoryFacade;
-	}
-
-	/**
-	 * @param \Flame\CMS\Models\Images\ImageFacade $imageFacade
-	 */
-	public function injectImageFacade(\Flame\CMS\Models\Images\ImageFacade $imageFacade)
-	{
-		$this->imageFacade = $imageFacade;
-	}
+	protected $imageCategoryFacade;
 
 	public function actionDefault($cat = null)
 	{
