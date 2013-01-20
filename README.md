@@ -2,6 +2,8 @@
 
 Simple and smart CMS based on framework [Flame](https://github.com/flame-org/Framework)
 
+WARNING: This package is under active development, and shouldn't be used at production!
+
 **If you want to try Flame:CMS please visit [Demo page](http://flame.jsifalda.name/)**
 
 ##Screen from FrontModule
