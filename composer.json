@@ -18,7 +18,7 @@
 	},
 
 	"require": {
-		"kdyby/bootstrap-form-renderer": "dev-master",
+		"kdyby/bootstrap-form-renderer": ">=1.0.0",
 		"doctrine/orm": "2.3.0",
 		"flame/framework": "dev-master",
 		"flame/navbarbuilder-component": "dev-master",
@@ -26,7 +26,6 @@
 		"nette/nette": "dev-master",
 		"symfony/console": "2.0.*",
 		"flame/bootstrapdatepicker-control": "dev-master",
-		"flame/multiplefileupload-control": "@dev",
 		"flame/lightboxgallery-component": "@dev"
 	}
 }
