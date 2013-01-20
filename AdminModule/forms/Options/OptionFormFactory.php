@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Options;
 
-class OptionFormFactory extends \Flame\Application\FormFactory
+class OptionFormFactory extends \Nette\Object
 {
 
 	/**

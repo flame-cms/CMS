@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Menu;
 
-class PageLinkFormFactory extends \Flame\Application\FormFactory
+class PageLinkFormFactory extends \Nette\Object
 {
 
 	/**

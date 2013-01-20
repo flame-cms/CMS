@@ -12,7 +12,7 @@ namespace Flame\CMS\AdminModule\Forms\Posts;
 
 use Flame\Utils\Strings;
 
-class PostFormFactory extends \Flame\Application\FormFactory
+class PostFormFactory extends \Nette\Object
 {
 
 	/**

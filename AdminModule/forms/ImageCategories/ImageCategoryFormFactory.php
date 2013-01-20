@@ -12,7 +12,7 @@ namespace Flame\CMS\AdminModule\Forms\ImageCategories;
 
 use Flame\Utils\Strings;
 
-class ImageCategoryFormFactory extends \Flame\Application\FormFactory
+class ImageCategoryFormFactory extends \Nette\Object
 {
 
 

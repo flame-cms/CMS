@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Components\Categories;
 
-class CategoryControlFactory extends \Flame\Application\ControlFactory
+class CategoryControlFactory extends \Nette\Object
 {
 
 	/**

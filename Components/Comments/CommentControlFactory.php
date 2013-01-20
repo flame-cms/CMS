@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Components\Comments;
 
-class CommentControlFactory extends \Flame\Application\ControlFactory
+class CommentControlFactory extends \Nette\Object
 {
 
 	/**

@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Users;
 
-class UserEditFormFactory extends \Flame\Application\FormFactory
+class UserEditFormFactory extends \Nette\Object
 {
 
 	/**

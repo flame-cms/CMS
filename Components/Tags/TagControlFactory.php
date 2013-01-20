@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Components\Tags;
 
-class TagControlFactory extends \Flame\Application\ControlFactory
+class TagControlFactory extends \Nette\Object
 {
 
 	/**

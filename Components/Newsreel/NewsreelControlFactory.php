@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Components\Newsreel;
 
-class NewsreelControlFactory extends \Flame\Application\ControlFactory
+class NewsreelControlFactory extends \Nette\Object
 {
 
 	/**

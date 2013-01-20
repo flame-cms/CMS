@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Links;
 
-class LinkFormFactory extends \Flame\Application\FormFactory
+class LinkFormFactory extends \Nette\Object
 {
 
 	/**

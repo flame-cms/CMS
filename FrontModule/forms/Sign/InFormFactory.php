@@ -12,7 +12,7 @@ namespace Flame\CMS\FrontModule\Forms\Sign;
 
 use Nette\Security as NS;
 
-class InFormFactory extends \Flame\Application\FormFactory
+class InFormFactory extends \Nette\Object
 {
 
 	/**
