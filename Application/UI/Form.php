@@ -17,7 +17,7 @@ abstract class Form extends \Flame\Application\UI\Form
 	{
 		parent::__construct();
 
-		$this->setRenderer(new \Kdyby\Extension\Forms\BootstrapRenderer\BootstrapRenderer);
+		$this->setRenderer(new \Kdyby\BootstrapFormRenderer\BootstrapRenderer);
 		\Flame\Forms\Controls\BootstrapDatePicker::register();
 	}
 
