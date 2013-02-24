@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\UsersInfo;
 
-class UserInfoRepository extends \Flame\Model\Repository
+class UserInfoRepository extends \Flame\Doctrine\Model\Repository
 {
 
 }

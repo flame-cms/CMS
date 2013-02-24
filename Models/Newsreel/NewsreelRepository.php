@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Newsreel;
 
-class NewsreelRepository extends \Flame\Model\Repository
+class NewsreelRepository extends \Flame\Doctrine\Model\Repository
 {
 	/**
 	 * @param $limit

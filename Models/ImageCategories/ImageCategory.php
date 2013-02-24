@@ -11,7 +11,7 @@
 namespace Flame\CMS\Models\ImageCategories;
 
 /**
- * @Entity(repositoryClass="\Flame\Model\Repository")
+ * @Entity(repositoryClass="\Flame\Doctrine\Model\Repository")
  */
 class ImageCategory extends \Flame\Doctrine\Entity
 {

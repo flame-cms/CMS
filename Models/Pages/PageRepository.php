@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Pages;
 
-class PageRepository extends \Flame\Model\Repository
+class PageRepository extends \Flame\Doctrine\Model\Repository
 {
 	/**
 	 * @param $limit

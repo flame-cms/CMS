@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Tags;
 
-class TagRepository extends \Flame\Model\Repository
+class TagRepository extends \Flame\Doctrine\Model\Repository
 {
 
 }

@@ -11,7 +11,7 @@
 namespace Flame\CMS\Models\Menu;
 
 /**
- * @Entity(repositoryClass="\Flame\Model\Repository")
+ * @Entity(repositoryClass="\Flame\Doctrine\Model\Repository")
  */
 class Menu extends \Flame\Doctrine\Entity
 {

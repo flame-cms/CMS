@@ -11,7 +11,7 @@
 namespace Flame\CMS\Models\Links;
 
 /**
- * @Entity(repositoryClass="\Flame\Model\Repository")
+ * @Entity(repositoryClass="\Flame\Doctrine\Model\Repository")
  */
 class Link extends \Flame\Doctrine\Entity
 {
