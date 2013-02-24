@@ -2,7 +2,7 @@
 
 namespace Flame\CMS\Models\Newsreel;
 
-class NewsreelFacade extends \Flame\Model\Facade
+class NewsreelFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

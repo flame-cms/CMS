@@ -12,7 +12,7 @@ namespace Flame\CMS\Models\Pages;
 
 use Flame\CMS\Models\Pages;
 
-class PageFacade extends \Flame\Model\Facade
+class PageFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

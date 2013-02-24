@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Tags;
 
-class TagFacade extends \Flame\Model\Facade
+class TagFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Categories;
 
-class CategoryFacade extends \Flame\Model\Facade
+class CategoryFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

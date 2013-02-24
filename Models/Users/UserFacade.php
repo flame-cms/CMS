@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Users;
 
-class UserFacade extends \Flame\Model\Facade
+class UserFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

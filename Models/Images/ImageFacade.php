@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Images;
 
-class ImageFacade extends \Flame\Model\Facade
+class ImageFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

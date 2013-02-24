@@ -12,7 +12,7 @@ namespace Flame\CMS\Models\Comments;
 
 use \Flame\CMS\Models\Comments\Comment;
 
-class CommentFacade extends \Flame\Model\Facade
+class CommentFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

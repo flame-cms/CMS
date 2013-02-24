@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Links;
 
-class LinkFacade extends \Flame\Model\Facade
+class LinkFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

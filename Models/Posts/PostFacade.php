@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Posts;
 
-class PostFacade extends \Flame\Model\Facade
+class PostFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

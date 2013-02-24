@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\ImageCategories;
 
-class ImageCategoryFacade extends \Flame\Model\Facade
+class ImageCategoryFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/** @var string */

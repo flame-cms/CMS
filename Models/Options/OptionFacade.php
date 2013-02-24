@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Options;
 
-class OptionFacade extends \Flame\Model\Facade
+class OptionFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**

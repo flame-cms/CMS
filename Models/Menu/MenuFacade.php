@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Models\Menu;
 
-class MenuFacade extends \Flame\Model\Facade
+class MenuFacade extends \Flame\Doctrine\Model\Facade
 {
 
 	/**
