@@ -25,7 +25,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 	
 	/**
 	 * @autowire
-	 * @var \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory
+	 * @var \Flame\Components\NavbarBuilder\INavbarBuilderControlFactory
 	 */
 	protected $navbarBuilderControlFactory;
 	

@@ -6,17 +6,10 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 {
 
 	/**
-	 * @var \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
+	 * @autowire
+	 * @var \Flame\Components\NavbarBuilder\INavbarBuilderControlFactory
 	 */
-	private $navbarBuilderControlFactory;
-
-	/**
-	 * @param \Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory
-	 */
-	public function injectNavbarBuilderControlFactory(\Flame\Components\NavbarBuilder\NavbarBuilderControlFactory $navbarBuilderControlFactory)
-	{
-		$this->navbarBuilderControlFactory = $navbarBuilderControlFactory;
-	}
+	protected $navbarBuilderControlFactory;
 
 	public function startup()
 	{
