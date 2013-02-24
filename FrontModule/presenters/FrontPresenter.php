@@ -118,7 +118,7 @@ abstract class FrontPresenter extends \Flame\Application\UI\Presenter
 
 		if(count($items = $this->menuFacade->getLastMenuLinkByPriority())){
 			foreach($items as $item){
-				$navbar->addNavbarItem($item->title, $item->url);
+				$navbar->addItem($item->title, $item->url);
 			}
 		}
 

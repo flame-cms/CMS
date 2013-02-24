@@ -61,7 +61,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 				if(count($linkParts) < 2) continue;
 
 				if($this->getUser()->isAllowed('Admin:' . $linkParts[0], $linkParts[1])){
-					$navbar->addNavbarItem(
+					$navbar->addItem(
 						$item['label'],
 						$this->link($item['link']),
 						(isset($item['parent'])) ? $item['parent'] : null,
@@ -70,7 +70,7 @@ abstract class AdminPresenter extends \Flame\Application\UI\SecuredPresenter
 					);
 				}
 			}else{
-				$navbar->addNavbarItem($item['label'], '.', null, false, (isset($item['icon'])) ? $item['icon'] : null);
+				$navbar->addItem($item['label'], '.', null, false, (isset($item['icon'])) ? $item['icon'] : null);
 			}
 		}
 
