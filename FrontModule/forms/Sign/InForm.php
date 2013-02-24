@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\FrontModule\Forms\Sign;
 
-class InForm extends \Flame\CMS\Application\UI\Form
+class InForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	public function configure()

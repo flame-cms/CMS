@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Images;
 
-class ImageForm extends \Flame\CMS\Application\UI\Form
+class ImageForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	/**

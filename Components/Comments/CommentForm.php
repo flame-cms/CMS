@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\Components\Comments;
 
-class CommentForm extends \Flame\CMS\Application\UI\Form
+class CommentForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 	
 	public function configure()

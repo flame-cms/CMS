@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Menu;
 
-class PageLinkForm extends \Flame\CMS\Application\UI\Form
+class PageLinkForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	/**

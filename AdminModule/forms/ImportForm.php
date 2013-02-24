@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule;
 
-class ImportForm extends \Flame\CMS\Application\UI\Form
+class ImportForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	public function configure()

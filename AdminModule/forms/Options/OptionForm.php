@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Options;
 
-class OptionForm extends \Flame\CMS\Application\UI\Form
+class OptionForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	/**

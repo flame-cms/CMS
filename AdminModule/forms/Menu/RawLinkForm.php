@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Menu;
 
-class RawLinkForm extends \Flame\CMS\Application\UI\Form
+class RawLinkForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 	public function configureAdd()
 	{

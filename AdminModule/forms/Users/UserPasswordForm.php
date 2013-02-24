@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Users;
 
-class UserPasswordForm extends \Flame\CMS\Application\UI\Form
+class UserPasswordForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	public function configure()

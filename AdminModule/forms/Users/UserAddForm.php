@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Users;
 
-class UserAddForm extends \Flame\CMS\Application\UI\Form
+class UserAddForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	public function configure()

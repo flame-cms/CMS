@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule;
 
-class NewsreelForm extends \Flame\CMS\Application\UI\Form
+class NewsreelForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	public function configureAdd()

@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule\Forms\Posts;
 
-class PostForm extends \Flame\CMS\Application\UI\Form
+class PostForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	/**

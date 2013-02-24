@@ -10,7 +10,7 @@
 
 namespace Flame\CMS\AdminModule;
 
-class TagForm extends \Flame\CMS\Application\UI\Form
+class TagForm extends \Flame\CMS\AppModule\Application\UI\Form
 {
 
 	public function configureAdd()
